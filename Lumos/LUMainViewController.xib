@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LUMainViewController">
             <connections>
+                <outlet property="recordStopPlayButton" destination="Vj7-Ng-B6z" id="9wv-g4-tnO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

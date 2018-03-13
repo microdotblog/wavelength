@@ -11,6 +11,7 @@
 
 @interface LUMainViewController ()
 	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
+	@property (nonatomic, strong) IBOutlet UIButton* recordStopPlayButton;
 @end
 
 @implementation LUMainViewController
@@ -18,30 +19,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSURL* path = [self generateTimeStampedFilePath];
+    NSURL* path = [LUAudioRecorder generateTimeStampedFileURL];
+	
     self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:path];
-}
 
-- (NSURL*) generateTimeStampedFilePath
-{
-	NSURL* documentsDirectory = [self applicationDocumentsDirectory];
-	
-	NSDate* now = [NSDate dateWithTimeIntervalSinceNow:0];
-	NSString* dateString = [now description];
-	NSString* fileName = [NSString stringWithFormat:@"%@.caf", dateString];
-	
-	NSURL* recorderFilePath = [documentsDirectory URLByAppendingPathComponent:fileName];
-	return recorderFilePath;
-}
-
-- (NSURL*) applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+	__weak LUMainViewController* weakSelf = self;
+    self.audioRecorder.playbackCompleteCallback = ^(LUAudioRecorder* audioRecorder)
+    {
+		dispatch_async(dispatch_get_main_queue(), ^
+		{
+			[weakSelf.recordStopPlayButton setTitle:@"Play" forState:UIControlStateNormal];
+		});
+	};
 }
 
 - (IBAction) onRecord:(id)sender
 {
-	[self.audioRecorder record];
+	if ([[self.recordStopPlayButton titleForState:UIControlStateNormal] isEqualToString:@"Record"])
+	{
+		[self.recordStopPlayButton setTitle:@"Stop" forState:UIControlStateNormal];
+		[self.audioRecorder record];
+	}
+	else if ([[self.recordStopPlayButton titleForState:UIControlStateNormal] isEqualToString:@"Stop"])
+	{
+		[self.recordStopPlayButton setTitle:@"Play" forState:UIControlStateNormal];
+		[self.audioRecorder stop];
+	}
+	else if ([[self.recordStopPlayButton titleForState:UIControlStateNormal] isEqualToString:@"Play"])
+	{
+		[self.recordStopPlayButton setTitle:@"Stop" forState:UIControlStateNormal];
+		[self.audioRecorder play];
+	}
 }
 
 

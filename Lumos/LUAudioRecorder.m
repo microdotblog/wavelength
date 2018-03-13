@@ -18,6 +18,11 @@
 
 @implementation LUAudioRecorder
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 + (BOOL) canRecord
 {
 	AVAudioSession* audioSession = [AVAudioSession sharedInstance];
@@ -48,6 +53,27 @@
 
 	return TRUE;
 }
+
++ (NSURL*) generateTimeStampedFileURL
+{
+	NSURL* documentsDirectory = [self applicationDocumentsDirectory];
+	
+	NSDate* now = [NSDate dateWithTimeIntervalSinceNow:0];
+	NSString* dateString = [now description];
+	NSString* fileName = [NSString stringWithFormat:@"%@.caf", dateString];
+	
+	NSURL* recorderFilePath = [documentsDirectory URLByAppendingPathComponent:fileName];
+	return recorderFilePath;
+}
+
++ (NSURL*) applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (instancetype) initWithDestination:(NSURL*)destinationUrl
 {
@@ -106,12 +132,6 @@
 	[self.recorder prepareToRecord];
 	self.recorder.meteringEnabled = YES;
 
-	//prepare to playback
-    NSError* error;
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.destination error:&error];
-    self.player.numberOfLoops = 0;
-    self.player.delegate = self;
-
 	return true;
 }
 
@@ -123,8 +143,28 @@
 
 - (void) play
 {
-	[self.recorder stop];
-    [self.player play];
+	if (self.recorder.isRecording)
+	{
+		[self.recorder stop];
+	}
+	
+	if (self.player.isPlaying)
+	{
+		[self.player stop];
+	}
+	
+	//prepare to playback
+    NSError* error;
+    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.destination error:&error];
+    self.player.numberOfLoops = 0;
+    self.player.delegate = self;
+
+	BOOL ableToPlay = [self.player prepareToPlay];
+	ableToPlay = [self.player play];
+	if (!ableToPlay)
+	{
+		NSLog(@"FAIL TO PLAY!!!");
+	}
 }
 
 - (void) stop

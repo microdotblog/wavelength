@@ -13,8 +13,11 @@
 	// Safety check on global settings to see if the device can record
 	+ (BOOL) canRecord;
 
-	- (instancetype) initWithDestination:(NSURL*)destinationUrl;
+	// Create a unique, time stamped file URL in the Documents directory
+	+ (NSURL*) generateTimeStampedFileURL;
 
+
+	- (instancetype) initWithDestination:(NSURL*)destinationUrl;
 	- (void) record;
 	- (void) play;
 	- (void) stop;
