@@ -7,31 +7,42 @@
 //
 
 #import "LUMainViewController.h"
+#import "LUAudioRecorder.h"
 
 @interface LUMainViewController ()
-
+	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
 @end
 
 @implementation LUMainViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    NSURL* path = [self generateTimeStampedFilePath];
+    self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:path];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSURL*) generateTimeStampedFilePath
+{
+	NSURL* documentsDirectory = [self applicationDocumentsDirectory];
+	
+	NSDate* now = [NSDate dateWithTimeIntervalSinceNow:0];
+	NSString* dateString = [now description];
+	NSString* fileName = [NSString stringWithFormat:@"%@.caf", dateString];
+	
+	NSURL* recorderFilePath = [documentsDirectory URLByAppendingPathComponent:fileName];
+	return recorderFilePath;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSURL*) applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
-*/
+
+- (IBAction) onRecord:(id)sender
+{
+	[self.audioRecorder record];
+}
+
 
 @end

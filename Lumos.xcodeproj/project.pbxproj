@@ -15,6 +15,7 @@
 		C5DC32B7205780AD00D0594B /* shared in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32B6205780AD00D0594B /* shared */; };
 		C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32B9205780F000D0594B /* LUMainViewController.m */; };
 		C5DC32BC205780F000D0594B /* LUMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32BA205780F000D0594B /* LUMainViewController.xib */; };
+		C5DC32C020586E8500D0594B /* LUAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32BF20586E8500D0594B /* LUAudioRecorder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		C5DC32B8205780F000D0594B /* LUMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUMainViewController.h; sourceTree = "<group>"; };
 		C5DC32B9205780F000D0594B /* LUMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUMainViewController.m; sourceTree = "<group>"; };
 		C5DC32BA205780F000D0594B /* LUMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LUMainViewController.xib; sourceTree = "<group>"; };
+		C5DC32BE20586E8500D0594B /* LUAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAudioRecorder.h; sourceTree = "<group>"; };
+		C5DC32BF20586E8500D0594B /* LUAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAudioRecorder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 		C5DC3299205774A600D0594B /* Lumos */ = {
 			isa = PBXGroup;
 			children = (
+				C5DC32BE20586E8500D0594B /* LUAudioRecorder.h */,
+				C5DC32BF20586E8500D0594B /* LUAudioRecorder.m */,
 				C5DC329A205774A600D0594B /* LUAppDelegate.h */,
 				C5DC329B205774A600D0594B /* LUAppDelegate.m */,
 				C5DC32B8205780F000D0594B /* LUMainViewController.h */,
@@ -159,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5DC32AA205774A600D0594B /* main.m in Sources */,
+				C5DC32C020586E8500D0594B /* LUAudioRecorder.m in Sources */,
 				C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */,
 				C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */,
 			);
