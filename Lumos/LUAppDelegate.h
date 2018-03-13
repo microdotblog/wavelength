@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LUAppDelegate.h
 //  Lumos
 //
 //  Created by Jonathan Hays on 3/12/18.
@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface LUAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 
 @end

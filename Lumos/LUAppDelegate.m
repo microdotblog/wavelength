@@ -1,18 +1,18 @@
 //
-//  AppDelegate.m
+//  LUAppDelegate.m
 //  Lumos
 //
 //  Created by Jonathan Hays on 3/12/18.
 //  Copyright © 2018 Jonathan Hays. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "LUAppDelegate.h"
 
-@interface AppDelegate ()
+@interface LUAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation LUAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

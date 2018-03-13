@@ -7,25 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C5DC329C205774A600D0594B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC329B205774A600D0594B /* AppDelegate.m */; };
-		C5DC329F205774A600D0594B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC329E205774A600D0594B /* ViewController.m */; };
+		C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC329B205774A600D0594B /* LUAppDelegate.m */; };
 		C5DC32A2205774A600D0594B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A0205774A600D0594B /* Main.storyboard */; };
 		C5DC32A4205774A600D0594B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A3205774A600D0594B /* Assets.xcassets */; };
 		C5DC32A7205774A600D0594B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A5205774A600D0594B /* LaunchScreen.storyboard */; };
 		C5DC32AA205774A600D0594B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32A9205774A600D0594B /* main.m */; };
+		C5DC32B7205780AD00D0594B /* shared in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32B6205780AD00D0594B /* shared */; };
+		C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32B9205780F000D0594B /* LUMainViewController.m */; };
+		C5DC32BC205780F000D0594B /* LUMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32BA205780F000D0594B /* LUMainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C5DC3297205774A600D0594B /* Lumos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumos.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5DC329A205774A600D0594B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		C5DC329B205774A600D0594B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C5DC329D205774A600D0594B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C5DC329E205774A600D0594B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C5DC329A205774A600D0594B /* LUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAppDelegate.h; sourceTree = "<group>"; };
+		C5DC329B205774A600D0594B /* LUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAppDelegate.m; sourceTree = "<group>"; };
 		C5DC32A1205774A600D0594B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C5DC32A3205774A600D0594B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5DC32A6205774A600D0594B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5DC32A8205774A600D0594B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5DC32A9205774A600D0594B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C5DC32B6205780AD00D0594B /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shared; sourceTree = "<group>"; };
+		C5DC32B8205780F000D0594B /* LUMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUMainViewController.h; sourceTree = "<group>"; };
+		C5DC32B9205780F000D0594B /* LUMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUMainViewController.m; sourceTree = "<group>"; };
+		C5DC32BA205780F000D0594B /* LUMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LUMainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +46,7 @@
 		C5DC328E205774A600D0594B = {
 			isa = PBXGroup;
 			children = (
+				C5DC32B6205780AD00D0594B /* shared */,
 				C5DC3299205774A600D0594B /* Lumos */,
 				C5DC3298205774A600D0594B /* Products */,
 			);
@@ -58,17 +63,26 @@
 		C5DC3299205774A600D0594B /* Lumos */ = {
 			isa = PBXGroup;
 			children = (
-				C5DC329A205774A600D0594B /* AppDelegate.h */,
-				C5DC329B205774A600D0594B /* AppDelegate.m */,
-				C5DC329D205774A600D0594B /* ViewController.h */,
-				C5DC329E205774A600D0594B /* ViewController.m */,
+				C5DC329A205774A600D0594B /* LUAppDelegate.h */,
+				C5DC329B205774A600D0594B /* LUAppDelegate.m */,
+				C5DC32B8205780F000D0594B /* LUMainViewController.h */,
+				C5DC32B9205780F000D0594B /* LUMainViewController.m */,
+				C5DC32BA205780F000D0594B /* LUMainViewController.xib */,
+				C5DC32BD2057810C00D0594B /* Supporting Files */,
+			);
+			path = Lumos;
+			sourceTree = "<group>";
+		};
+		C5DC32BD2057810C00D0594B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C5DC32A9205774A600D0594B /* main.m */,
 				C5DC32A0205774A600D0594B /* Main.storyboard */,
 				C5DC32A3205774A600D0594B /* Assets.xcassets */,
 				C5DC32A5205774A600D0594B /* LaunchScreen.storyboard */,
 				C5DC32A8205774A600D0594B /* Info.plist */,
-				C5DC32A9205774A600D0594B /* main.m */,
 			);
-			path = Lumos;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5DC32A7205774A600D0594B /* LaunchScreen.storyboard in Resources */,
+				C5DC32B7205780AD00D0594B /* shared in Resources */,
+				C5DC32BC205780F000D0594B /* LUMainViewController.xib in Resources */,
 				C5DC32A4205774A600D0594B /* Assets.xcassets in Resources */,
 				C5DC32A2205774A600D0594B /* Main.storyboard in Resources */,
 			);
@@ -142,9 +158,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5DC329F205774A600D0594B /* ViewController.m in Sources */,
 				C5DC32AA205774A600D0594B /* main.m in Sources */,
-				C5DC329C205774A600D0594B /* AppDelegate.m in Sources */,
+				C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */,
+				C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
