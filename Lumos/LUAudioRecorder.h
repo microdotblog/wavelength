@@ -6,7 +6,7 @@
 //  Copyright © 2018 Jonathan Hays. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface LUAudioRecorder : NSObject
 
@@ -22,6 +22,13 @@
 	- (void) play;
 	- (void) stop;
 
+	// Visualization functionality.
+	- (UIView*) requestAudioInputView;
+	- (UIImage*) renderWaveImage:(CGSize)size;
+
 	// Set the callback if you want to be notified when the playback of the audio completes. Optional.
 	@property (nonatomic, copy) void (^playbackCompleteCallback)(LUAudioRecorder* recorder);
+
+	// Where did this file get written
+	@property (nonatomic, readonly) NSURL* destination;
 @end

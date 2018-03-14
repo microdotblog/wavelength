@@ -12,6 +12,8 @@
 @interface LUMainViewController ()
 	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
 	@property (nonatomic, strong) IBOutlet UIButton* recordStopPlayButton;
+	@property (nonatomic, strong) IBOutlet UIView* waveFormViewContainer;
+	@property (nonatomic, strong) IBOutlet UIImageView* waveFormImageView;
 @end
 
 @implementation LUMainViewController
@@ -31,6 +33,17 @@
 			[weakSelf.recordStopPlayButton setTitle:@"Play" forState:UIControlStateNormal];
 		});
 	};
+	
+	UIView* waveFormView = [self.audioRecorder requestAudioInputView];
+	waveFormView.frame = self.waveFormViewContainer.bounds;
+	[self.waveFormViewContainer addSubview:waveFormView];
+}
+
+- (void) viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+	
+	[self.audioRecorder requestAudioInputView].frame = self.waveFormViewContainer.bounds;
 }
 
 - (IBAction) onRecord:(id)sender
@@ -44,6 +57,8 @@
 	{
 		[self.recordStopPlayButton setTitle:@"Play" forState:UIControlStateNormal];
 		[self.audioRecorder stop];
+		
+		self.waveFormImageView.image = [self.audioRecorder renderWaveImage:self.waveFormImageView.bounds.size];
 	}
 	else if ([[self.recordStopPlayButton titleForState:UIControlStateNormal] isEqualToString:@"Play"])
 	{

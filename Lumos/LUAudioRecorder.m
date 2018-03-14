@@ -7,13 +7,16 @@
 //
 
 #import "LUAudioRecorder.h"
+#import <EZAudio/EZAudio.h>
 
 @import AVFoundation;
 
-@interface LUAudioRecorder()<AVAudioRecorderDelegate, AVAudioPlayerDelegate>
-	@property (nonatomic, strong) AVAudioRecorder* recorder;
-	@property (nonatomic, strong) AVAudioPlayer* player;
+@interface LUAudioRecorder()<EZMicrophoneDelegate, EZRecorderDelegate, EZAudioPlayerDelegate>
 	@property (nonatomic, strong) NSURL* destination;
+	@property (nonatomic, strong) EZAudioPlot* audioPlot;
+	@property (nonatomic, strong) EZMicrophone* microphone;
+	@property (nonatomic, strong) EZRecorder* recorder;
+	@property (nonatomic, strong) EZAudioPlayer *player;
 @end
 
 @implementation LUAudioRecorder
@@ -87,7 +90,6 @@
 	return self;
 }
 
-
 - (BOOL) setup
 {
 	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
@@ -109,74 +111,152 @@
     	return FALSE;
 	}
 
-	NSMutableDictionary* recordSetting = [[NSMutableDictionary alloc] init];
+	self.audioPlot = [[EZAudioPlot alloc] init];
+    self.audioPlot.plotType = EZPlotTypeBuffer;
+    self.audioPlot.shouldOptimizeForRealtimePlot = YES;
 
-	[recordSetting setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
-	[recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-	[recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
-
-	[recordSetting setValue :[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
-	[recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
-	[recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
+    //
+    // Create the microphone
+    //
+    self.microphone = [EZMicrophone microphoneWithDelegate:self];
+	self.microphone.delegate = self;
 	
-	err = nil;
-	self.recorder = [[AVAudioRecorder alloc] initWithURL:self.destination settings:recordSetting error:&err];
-	if(!self.recorder)
-	{
-		NSLog(@"recorder: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
-    	return FALSE;
-	}
+    self.player = [EZAudioPlayer audioPlayerWithDelegate:self];
+	
+	[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
 
-	//prepare to record
-	[self.recorder setDelegate:self];
-	[self.recorder prepareToRecord];
-	self.recorder.meteringEnabled = YES;
+    //
+    // Start the microphone
+    //
+    [self.microphone startFetchingAudio];
+	
 
 	return true;
 }
 
+- (UIImage*) renderWaveImage:(CGSize)size
+{
+	CALayer* layer = self.audioPlot.waveformLayer;
+	CGRect bounds = layer.bounds;
+	layer.bounds = CGRectMake(0, 0, size.width, size.height);
+	
+	UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+	
+    [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+
+    UIGraphicsEndImageContext();
+	
+    layer.bounds = bounds;
+
+    return outputImage;
+}
+
+- (UIView*) requestAudioInputView
+{
+	return self.audioPlot;
+}
+
 - (void) record
 {
-	[self.player stop];
-	[self.recorder record];
+    self.audioPlot.plotType        = EZPlotTypeRolling;
+    self.audioPlot.shouldFill      = YES;
+    self.audioPlot.shouldMirror    = YES;
+
+	self.recorder = [EZRecorder recorderWithURL:self.destination
+                                       clientFormat:[self.microphone audioStreamBasicDescription]
+                                           fileType:EZRecorderFileTypeM4A
+                                           delegate:self];
 }
 
 - (void) play
 {
-	if (self.recorder.isRecording)
-	{
-		[self.recorder stop];
-	}
-	
-	if (self.player.isPlaying)
-	{
-		[self.player stop];
-	}
-	
-	//prepare to playback
-    NSError* error;
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.destination error:&error];
-    self.player.numberOfLoops = 0;
-    self.player.delegate = self;
-
-	BOOL ableToPlay = [self.player prepareToPlay];
-	ableToPlay = [self.player play];
-	if (!ableToPlay)
-	{
-		NSLog(@"FAIL TO PLAY!!!");
-	}
+    EZAudioFile* audioFile = [EZAudioFile audioFileWithURL:self.destination];
+    [self.player playAudioFile:audioFile];
 }
 
 - (void) stop
 {
-	[self.player stop];
-	[self.recorder stop];
+	[self.recorder closeAudioFile];
+	self.recorder.delegate = nil;
+	
+    [self.microphone stopFetchingAudio];
+
+	[self.player pause];
+	[self.player seekToFrame:0];
+
+	self.audioPlot.plotType = EZPlotTypeBuffer;
+
+	EZAudioFile *audioFile = [EZAudioFile audioFileWithURL:self.destination];
+	EZAudioFloatData* data = [audioFile getWaveformData];
+	
+	[self.audioPlot setSampleData:data.buffers[0]  length:data.bufferSize];
 }
 
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+- (void)microphone:(EZMicrophone *)microphone hasAudioReceived:(float **)buffer withBufferSize:(UInt32)bufferSize withNumberOfChannels:(UInt32)numberOfChannels
+{
+    //
+    // Getting audio data as an array of float buffer arrays. What does that mean?
+    // Because the audio is coming in as a stereo signal the data is split into
+    // a left and right channel. So buffer[0] corresponds to the float* data
+    // for the left channel while buffer[1] corresponds to the float* data
+    // for the right channel.
+    //
+
+    //
+    // See the Thread Safety warning above, but in a nutshell these callbacks
+    // happen on a separate audio thread. We wrap any UI updating in a GCD block
+    // on the main thread to avoid blocking that audio flow.
+    //
+    __weak typeof (self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //
+        // All the audio plot needs is the buffer data (float*) and the size.
+        // Internally the audio plot will handle all the drawing related code,
+        // history management, and freeing its own resources.
+        // Hence, one badass line of code gets you a pretty plot :)
+        //
+        [weakSelf.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
+    });
+}
+
+- (void) microphone:(EZMicrophone *)microphone hasBufferList:(AudioBufferList *)bufferList withBufferSize:(UInt32)bufferSize withNumberOfChannels:(UInt32)numberOfChannels
+{
+    //
+    // Getting audio data as a buffer list that can be directly fed into the
+    // EZRecorder. This is happening on the audio thread - any UI updating needs
+    // a GCD main queue block. This will keep appending data to the tail of the
+    // audio file.
+    //
+    if (self.recorder)
+    {
+        [self.recorder appendDataFromBufferList:bufferList
+                                 withBufferSize:bufferSize];
+    }
+}
+
+//------------------------------------------------------------------------------
+#pragma mark - EZAudioPlayerDelegate
+//------------------------------------------------------------------------------
+
+- (void) audioPlayer:(EZAudioPlayer *)audioPlayer playedAudio:(float **)buffer withBufferSize:(UInt32)bufferSize withNumberOfChannels:(UInt32)numberOfChannels inAudioFile:(EZAudioFile *)audioFile
+{
+    __weak typeof (self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        [weakSelf.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
+    });
+}
+
+- (void)audioPlayer:(EZAudioPlayer *)audioPlayer updatedPosition:(SInt64)framePosition inAudioFile:(EZAudioFile *)audioFile
+{
+}
+
+- (void)audioPlayer:(EZAudioPlayer *)audioPlayer reachedEndOfAudioFile:(EZAudioFile *)audioFile
 {
 	if (self.playbackCompleteCallback)
 		self.playbackCompleteCallback(self);
 }
+
 
 @end
