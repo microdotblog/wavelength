@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		03D7B2EF1AE083BA2B0F0D88 /* libPods-Lumos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E28A020DCE8EB80280E4E2 /* libPods-Lumos.a */; };
+		4B74C8C2205A23A40050A105 /* LUEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C1205A23A40050A105 /* LUEditController.m */; };
+		4B74C8C5205A23D10050A105 /* LUPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C4205A23D10050A105 /* LUPostController.m */; };
+		4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C7205A26180050A105 /* LUEpisode.m */; };
+		4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8CA205A27E90050A105 /* LUEpisodeCell.m */; };
 		C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC329B205774A600D0594B /* LUAppDelegate.m */; };
 		C5DC32A2205774A600D0594B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A0205774A600D0594B /* Main.storyboard */; };
 		C5DC32A4205774A600D0594B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A3205774A600D0594B /* Assets.xcassets */; };
@@ -15,12 +19,19 @@
 		C5DC32AA205774A600D0594B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32A9205774A600D0594B /* main.m */; };
 		C5DC32B7205780AD00D0594B /* shared in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32B6205780AD00D0594B /* shared */; };
 		C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32B9205780F000D0594B /* LUMainViewController.m */; };
-		C5DC32BC205780F000D0594B /* LUMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32BA205780F000D0594B /* LUMainViewController.xib */; };
 		C5DC32C020586E8500D0594B /* LUAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32BF20586E8500D0594B /* LUAudioRecorder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		34E28A020DCE8EB80280E4E2 /* libPods-Lumos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lumos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B74C8C0205A23A40050A105 /* LUEditController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUEditController.h; sourceTree = "<group>"; };
+		4B74C8C1205A23A40050A105 /* LUEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUEditController.m; sourceTree = "<group>"; };
+		4B74C8C3205A23D10050A105 /* LUPostController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUPostController.h; sourceTree = "<group>"; };
+		4B74C8C4205A23D10050A105 /* LUPostController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUPostController.m; sourceTree = "<group>"; };
+		4B74C8C6205A26180050A105 /* LUEpisode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUEpisode.h; sourceTree = "<group>"; };
+		4B74C8C7205A26180050A105 /* LUEpisode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUEpisode.m; sourceTree = "<group>"; };
+		4B74C8C9205A27E90050A105 /* LUEpisodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUEpisodeCell.h; sourceTree = "<group>"; };
+		4B74C8CA205A27E90050A105 /* LUEpisodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUEpisodeCell.m; sourceTree = "<group>"; };
 		7C13C85763A56F0C388DEA20 /* Pods-Lumos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lumos/Pods-Lumos.release.xcconfig"; sourceTree = "<group>"; };
 		9CA3ED3895EE9FE2D946DF9D /* Pods-Lumos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lumos/Pods-Lumos.debug.xcconfig"; sourceTree = "<group>"; };
 		C5DC3297205774A600D0594B /* Lumos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumos.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,7 +45,6 @@
 		C5DC32B6205780AD00D0594B /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shared; sourceTree = "<group>"; };
 		C5DC32B8205780F000D0594B /* LUMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUMainViewController.h; sourceTree = "<group>"; };
 		C5DC32B9205780F000D0594B /* LUMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUMainViewController.m; sourceTree = "<group>"; };
-		C5DC32BA205780F000D0594B /* LUMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LUMainViewController.xib; sourceTree = "<group>"; };
 		C5DC32BE20586E8500D0594B /* LUAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAudioRecorder.h; sourceTree = "<group>"; };
 		C5DC32BF20586E8500D0594B /* LUAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAudioRecorder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,9 +104,16 @@
 				C5DC32BF20586E8500D0594B /* LUAudioRecorder.m */,
 				C5DC329A205774A600D0594B /* LUAppDelegate.h */,
 				C5DC329B205774A600D0594B /* LUAppDelegate.m */,
+				4B74C8C6205A26180050A105 /* LUEpisode.h */,
+				4B74C8C7205A26180050A105 /* LUEpisode.m */,
+				4B74C8C9205A27E90050A105 /* LUEpisodeCell.h */,
+				4B74C8CA205A27E90050A105 /* LUEpisodeCell.m */,
 				C5DC32B8205780F000D0594B /* LUMainViewController.h */,
 				C5DC32B9205780F000D0594B /* LUMainViewController.m */,
-				C5DC32BA205780F000D0594B /* LUMainViewController.xib */,
+				4B74C8C0205A23A40050A105 /* LUEditController.h */,
+				4B74C8C1205A23A40050A105 /* LUEditController.m */,
+				4B74C8C3205A23D10050A105 /* LUPostController.h */,
+				4B74C8C4205A23D10050A105 /* LUPostController.m */,
 				C5DC32BD2057810C00D0594B /* Supporting Files */,
 			);
 			path = Lumos;
@@ -107,8 +124,8 @@
 			children = (
 				C5DC32A9205774A600D0594B /* main.m */,
 				C5DC32A0205774A600D0594B /* Main.storyboard */,
-				C5DC32A3205774A600D0594B /* Assets.xcassets */,
 				C5DC32A5205774A600D0594B /* LaunchScreen.storyboard */,
+				C5DC32A3205774A600D0594B /* Assets.xcassets */,
 				C5DC32A8205774A600D0594B /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -177,7 +194,6 @@
 			files = (
 				C5DC32A7205774A600D0594B /* LaunchScreen.storyboard in Resources */,
 				C5DC32B7205780AD00D0594B /* shared in Resources */,
-				C5DC32BC205780F000D0594B /* LUMainViewController.xib in Resources */,
 				C5DC32A4205774A600D0594B /* Assets.xcassets in Resources */,
 				C5DC32A2205774A600D0594B /* Main.storyboard in Resources */,
 			);
@@ -250,7 +266,11 @@
 			files = (
 				C5DC32AA205774A600D0594B /* main.m in Sources */,
 				C5DC32C020586E8500D0594B /* LUAudioRecorder.m in Sources */,
+				4B74C8C5205A23D10050A105 /* LUPostController.m in Sources */,
+				4B74C8C2205A23A40050A105 /* LUEditController.m in Sources */,
+				4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */,
 				C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */,
+				4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */,
 				C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
