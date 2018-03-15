@@ -8,6 +8,7 @@
 
 #import "LUAudioRecorder.h"
 #import <EZAudio/EZAudio.h>
+#import "UUDate.h"
 
 @import AVFoundation;
 
@@ -65,7 +66,23 @@
 	NSString* dateString = [now description];
 	NSString* fileName = [NSString stringWithFormat:@"%@.caf", dateString];
 	
-	NSURL* recorderFilePath = [documentsDirectory URLByAppendingPathComponent:fileName];
+	NSString* episodeName = [now uuIso8601DateString];
+	NSURL* episodeDirectory = nil;
+	BOOL found = NO;
+	NSInteger i = 1;
+	while (!found) {
+		episodeDirectory = [documentsDirectory URLByAppendingPathComponent:episodeName];
+		if ([[NSFileManager defaultManager] fileExistsAtPath:episodeDirectory.path]) {
+			i++;
+			episodeName = [NSString stringWithFormat:@"%@ (%ld)", [now uuIso8601DateString], (long)i];
+		}
+		else {
+			found = YES;
+			[[NSFileManager defaultManager] createDirectoryAtURL:episodeDirectory withIntermediateDirectories:NO attributes:nil error:NULL];
+		}
+	}
+	
+	NSURL* recorderFilePath = [episodeDirectory URLByAppendingPathComponent:fileName];
 	return recorderFilePath;
 }
 

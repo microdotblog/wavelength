@@ -10,8 +10,12 @@
 
 @interface LUEpisode : NSObject
 
+@property (strong) NSString* path;
 @property (strong) NSString* title;
 @property (strong) NSString* duration;
 @property (strong) UIImage* previewImage;
+
+- (id) initWithFolder:(NSString *)path;
+- (NSArray *) audioSegmentPaths;
 
 @end

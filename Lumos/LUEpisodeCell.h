@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class LUEpisode;
+
 @interface LUEpisodeCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel* titleField;
 @property (strong, nonatomic) IBOutlet UILabel* durationField;
 @property (strong, nonatomic) IBOutlet UIImageView* previewImageView;
+
+- (void) setupWithEpisode:(LUEpisode *)episode;
 
 @end
