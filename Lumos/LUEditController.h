@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class LUEpisode;
+
 @interface LUEditController : UIViewController
+
+@property (strong, nonatomic) IBOutlet UICollectionView* collectionView;
+
+@property (strong, nonatomic) LUEpisode* episode;
 
 @end
