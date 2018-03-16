@@ -194,10 +194,11 @@
 
 - (void) stop
 {
+    [self.microphone stopFetchingAudio];
+
 	[self.recorder closeAudioFile];
 	self.recorder.delegate = nil;
 	
-    [self.microphone stopFetchingAudio];
 
 	[self.player pause];
 	[self.player seekToFrame:0];
