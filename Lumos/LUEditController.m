@@ -11,6 +11,7 @@
 #import "LUEpisode.h"
 #import "LUSegmentCell.h"
 #import "LUAudioRecorder.h"
+#import <EZAudio/EZAudio.h>
 
 @interface LUEditController ()
 
@@ -44,11 +45,31 @@
 {
 	LUSegmentCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SegmentCell" forIndexPath:indexPath];
 	
+	CGSize size = CGSizeMake (150, 90);
+	
 	NSString* audio_path = [[self.episode audioSegmentPaths] objectAtIndex:indexPath.item];
 	NSURL* audio_url = [NSURL fileURLWithPath:audio_path isDirectory:NO];
-	LUAudioRecorder* recorder = [[LUAudioRecorder alloc] initWithDestination:audio_url];
+	
+	EZAudioFile* audio_file = [EZAudioFile audioFileWithURL:audio_url];
+	EZAudioFloatData* data = [audio_file getWaveformData];
+	EZAudioPlot* plot = [[EZAudioPlot alloc] initWithFrame:CGRectMake (0, 0, size.width, size.height)];
+	plot.shouldCenterYAxis = YES;
+	[plot setSampleData:data.buffers[0] length:data.bufferSize];
 
-	cell.previewImageView.image = [recorder renderWaveImage:CGSizeMake (150, 90)];
+	CALayer* layer = plot.waveformLayer;
+	CGRect bounds = layer.bounds;
+	layer.bounds = CGRectMake(0, 0, size.width, size.height);
+	
+	UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+	
+    [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+
+    UIGraphicsEndImageContext();
+	
+    layer.bounds = bounds;
+
+	cell.previewImageView.image = outputImage;
 	
 	return cell;
 }
