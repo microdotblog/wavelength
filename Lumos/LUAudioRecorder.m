@@ -131,6 +131,8 @@
 	self.audioPlot = [[EZAudioPlot alloc] init];
     self.audioPlot.plotType = EZPlotTypeBuffer;
     self.audioPlot.shouldOptimizeForRealtimePlot = YES;
+    self.audioPlot.color = [UIApplication sharedApplication].windows.firstObject.tintColor;
+    self.audioPlot.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
 
     //
     // Create the microphone

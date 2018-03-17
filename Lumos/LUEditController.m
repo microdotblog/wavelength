@@ -41,7 +41,7 @@
 	return [self.episode audioSegmentPaths].count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	LUSegmentCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SegmentCell" forIndexPath:indexPath];
 	
@@ -52,8 +52,11 @@
 	
 	EZAudioFile* audio_file = [EZAudioFile audioFileWithURL:audio_url];
 	EZAudioFloatData* data = [audio_file getWaveformData];
+
 	EZAudioPlot* plot = [[EZAudioPlot alloc] initWithFrame:CGRectMake (0, 0, size.width, size.height)];
 	plot.shouldCenterYAxis = YES;
+	plot.color = self.view.window.tintColor;
+
 	[plot setSampleData:data.buffers[0] length:data.bufferSize];
 
 	CALayer* layer = plot.waveformLayer;
@@ -71,7 +74,31 @@
 
 	cell.previewImageView.image = outputImage;
 	
+	cell.previewImageView.layer.cornerRadius = 3.0;
+	cell.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	cell.previewImageView.layer.borderWidth = 0.5;
+	
 	return cell;
+}
+
+- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	return CGSizeMake (150, 90);
+}
+
+- (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+	return UIEdgeInsetsMake (10, 10, 10, 10);
+}
+
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+	return 10.0;
+}
+
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+	return 10;
 }
 
 @end

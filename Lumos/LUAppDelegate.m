@@ -8,18 +8,14 @@
 
 #import "LUAppDelegate.h"
 
-@interface LUAppDelegate ()
-
-@end
-
 @implementation LUAppDelegate
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	// Override point for customization after application launch.
+- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+	[self setupAppearance];
+	
 	return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -47,5 +43,33 @@
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void) setupAppearance
+{
+	self.window.tintColor = [UIColor colorWithRed:0.510 green:0.698 blue:0.875 alpha:1.000];
+
+	UIColor* fontColor = self.window.tintColor;
+
+	UIColor* shadowColor = [UIColor clearColor];
+	NSShadow* shadow = [[NSShadow alloc] init];
+	shadow.shadowOffset = CGSizeMake(0, 1);
+	shadow.shadowColor = shadowColor;
+	shadow.shadowBlurRadius = 2.0;
+	[[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+														  [UIColor blackColor], NSForegroundColorAttributeName,
+														  //shadowColor, NSBackgroundColorAttributeName,
+														  shadow, NSShadowAttributeName,
+														  [UIFont fontWithName:@"AvenirNext-Medium" size:16], NSFontAttributeName,
+														  nil]];
+	
+	UIImage* header_img = [[UIImage imageNamed:@"menu_header"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
+	[[UINavigationBar appearance] setBackgroundImage:header_img forBarMetrics:UIBarMetricsDefault];
+	
+	[[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+														  fontColor, NSForegroundColorAttributeName,
+														  //shadowColor, NSBackgroundColorAttributeName,
+														  shadow, NSShadowAttributeName,
+														  [UIFont fontWithName:@"AvenirNext-Regular" size:16], NSFontAttributeName, nil]
+												forState:UIControlStateNormal];
+}
 
 @end
