@@ -25,12 +25,11 @@
 
 @implementation LUMainViewController
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
 	
 	[self setupEpisodes];
-	[self setupAudio];
 	
 	[self updateRecordButton];
 }
@@ -38,28 +37,30 @@
 - (void) viewDidLayoutSubviews
 {
 	[super viewDidLayoutSubviews];
-	
-	[self.audioRecorder requestAudioInputView].frame = self.waveFormViewContainer.bounds;
 }
 
 - (void) setupAudio
 {
-    NSURL* path = [LUAudioRecorder generateTimeStampedFileURL];
-	
-    self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:path];
+	if (self.audioRecorder == nil) {
+		NSURL* path = [LUAudioRecorder generateTimeStampedFileURL];
+		self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:path];
 
-	__weak LUMainViewController* weakSelf = self;
-    self.audioRecorder.playbackCompleteCallback = ^(LUAudioRecorder* audioRecorder)
-    {
-		dispatch_async(dispatch_get_main_queue(), ^
+		__weak LUMainViewController* weakSelf = self;
+		self.audioRecorder.playbackCompleteCallback = ^(LUAudioRecorder* audioRecorder)
 		{
-			[weakSelf.recordStopPlayButton setTitle:@"Record" forState:UIControlStateNormal];
-		});
-	};
-	
-	UIView* waveFormView = [self.audioRecorder requestAudioInputView];
-	waveFormView.frame = self.waveFormViewContainer.bounds;
-	[self.waveFormViewContainer addSubview:waveFormView];
+			dispatch_async(dispatch_get_main_queue(), ^
+			{
+				weakSelf.isRecording = NO;
+				[weakSelf updateRecordButton];
+			});
+		};
+		
+		UIView* waveFormView = [self.audioRecorder requestAudioInputView];
+		waveFormView.frame = self.waveFormViewContainer.bounds;
+		[self.waveFormViewContainer addSubview:waveFormView];
+
+		[self.audioRecorder requestAudioInputView].frame = self.waveFormViewContainer.bounds;
+	}
 }
 
 - (void) setupEpisodes
@@ -97,6 +98,8 @@
 
 - (IBAction) onRecord:(id)sender
 {
+	[self setupAudio];
+
 	if (!self.isRecording)
 	{
 		self.isRecording = YES;
