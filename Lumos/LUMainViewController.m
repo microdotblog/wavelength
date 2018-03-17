@@ -20,6 +20,7 @@
 
 	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
 	@property (nonatomic, strong) NSMutableArray* episodes; // LUEpisode
+	@property (nonatomic, assign) BOOL isRecording;
 @end
 
 @implementation LUMainViewController
@@ -30,6 +31,8 @@
 	
 	[self setupEpisodes];
 	[self setupAudio];
+	
+	[self updateRecordButton];
 }
 
 - (void) viewDidLayoutSubviews
@@ -76,18 +79,38 @@
 	}
 }
 
+- (void) updateRecordButton
+{
+	self.recordStopPlayButton.layer.cornerRadius = 28.0;
+	self.recordStopPlayButton.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5].CGColor;
+	self.recordStopPlayButton.clipsToBounds = YES;
+	
+	UIImage* img;
+	if (self.isRecording) {
+		img = [UIImage imageNamed:@"stop"];
+	}
+	else {
+		img = [UIImage imageNamed:@"mic"];
+	}
+	[self.recordStopPlayButton setImage:img forState:UIControlStateNormal];
+}
+
 - (IBAction) onRecord:(id)sender
 {
-	if ([[self.recordStopPlayButton titleForState:UIControlStateNormal] isEqualToString:@"Record"])
+	if (!self.isRecording)
 	{
+		self.isRecording = YES;
+		[self updateRecordButton];
+
 		self.waveFormViewContainer.hidden = NO;
-		[self.recordStopPlayButton setTitle:@"Stop" forState:UIControlStateNormal];
 		[self.audioRecorder record];
 	}
-	else if ([[self.recordStopPlayButton titleForState:UIControlStateNormal] isEqualToString:@"Stop"])
+	else
 	{
+		self.isRecording = NO;
+		[self updateRecordButton];
+
 		self.waveFormViewContainer.hidden = YES;
-		[self.recordStopPlayButton setTitle:@"Record" forState:UIControlStateNormal];
 		[self.audioRecorder stop];
 		
 		CGSize preview_size = CGSizeMake (150, 54);
@@ -105,11 +128,12 @@
 
 		[self.tableView reloadData];
 	}
-	else if ([[self.recordStopPlayButton titleForState:UIControlStateNormal] isEqualToString:@"Play"])
-	{
-		[self.recordStopPlayButton setTitle:@"Stop" forState:UIControlStateNormal];
-		[self.audioRecorder play];
-	}
+
+//	else if ([[self.recordStopPlayButton titleForState:UIControlStateNormal] isEqualToString:@"Play"])
+//	{
+//		[self.recordStopPlayButton setTitle:@"Stop" forState:UIControlStateNormal];
+//		[self.audioRecorder play];
+//	}
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
