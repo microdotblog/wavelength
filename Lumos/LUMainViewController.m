@@ -169,4 +169,21 @@
 	[self performSegueWithIdentifier:@"EditSegue" sender:episode];
 }
 
+- (UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return UITableViewCellEditingStyleDelete;
+}
+
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	// TODO: prompt to confirm deletion
+	// ...
+	
+	LUEpisode* episode = [self.episodes objectAtIndex:indexPath.row];
+	[[NSFileManager defaultManager] removeItemAtPath:episode.path error:NULL];
+	[self setupEpisodes];
+	
+	[self.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 @end
