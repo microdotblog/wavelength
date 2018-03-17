@@ -13,6 +13,8 @@
 #import "LUAudioRecorder.h"
 #import <EZAudio/EZAudio.h>
 
+static CGFloat const kCellPadding = 10.0;
+
 @interface LUEditController ()
 
 @end
@@ -55,6 +57,14 @@
 {
 }
 
+- (CGSize) bestCellSize
+{
+	CGFloat w = (self.view.bounds.size.width / 2.0) - kCellPadding - (kCellPadding / 2.0);
+	CGFloat h = 90.0;
+	
+	return CGSizeMake (w, h);
+}
+
 #pragma mark -
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -66,7 +76,7 @@
 {
 	LUSegmentCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SegmentCell" forIndexPath:indexPath];
 	
-	CGSize size = CGSizeMake (150, 90);
+	CGSize size = [self bestCellSize];
 	
 	NSString* audio_path = [[self.episode audioSegmentPaths] objectAtIndex:indexPath.item];
 	NSURL* audio_url = [NSURL fileURLWithPath:audio_path isDirectory:NO];
@@ -104,22 +114,22 @@
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	return CGSizeMake (150, 90);
+	return [self bestCellSize];
 }
 
 - (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-	return UIEdgeInsetsMake (10, 10, 10, 10);
+	return UIEdgeInsetsMake (kCellPadding, kCellPadding, kCellPadding, kCellPadding);
 }
 
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-	return 10.0;
+	return kCellPadding;
 }
 
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-	return 10;
+	return 0;
 }
 
 @end
