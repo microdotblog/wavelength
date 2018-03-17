@@ -38,6 +38,19 @@
 	self.addPopover = [PopoverView showPopoverAtPoint:pt inView:self.view withContentView:self.addPopoverView delegate:self];
 }
 
+- (IBAction) addMusic:(id)sender
+{
+	[self.addPopover dismiss];
+	
+	NSString* test_file = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"m4a" inDirectory:@"Music"];
+	[self.episode addFile:test_file];
+	[self.collectionView reloadData];
+}
+
+- (IBAction) addRecording:(id)sender
+{
+}
+
 - (void) popoverViewDidDismiss:(PopoverView *)popoverView
 {
 }

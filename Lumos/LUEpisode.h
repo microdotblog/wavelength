@@ -17,5 +17,6 @@
 
 - (id) initWithFolder:(NSString *)path;
 - (NSArray *) audioSegmentPaths;
+- (void) addFile:(NSString *)path;
 
 @end

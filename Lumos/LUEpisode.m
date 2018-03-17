@@ -8,6 +8,8 @@
 
 #import "LUEpisode.h"
 
+#import "UUString.h"
+
 @implementation LUEpisode
 
 - (id) initWithFolder:(NSString *)path
@@ -31,13 +33,22 @@
 	NSMutableArray* paths = [NSMutableArray array];
 	NSArray* contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:NULL];
 	for (NSString* filename in contents) {
-		if ([[filename pathExtension] isEqualToString:@"caf"]) {
+		NSString* e = [filename pathExtension];
+		if ([e isEqualToString:@"caf"] || [e isEqualToString:@"m4a"]) {
 			NSString* s = [self.path stringByAppendingPathComponent:filename];
 			[paths addObject:s];
 		}
 	}
 	
 	return paths;
+}
+
+- (void) addFile:(NSString *)path
+{
+	NSString* e = [path pathExtension];
+	NSString* filename = [[NSString uuGenerateUUIDString] stringByAppendingPathExtension:e];
+	NSString* dest_path = [self.path stringByAppendingPathComponent:filename];
+	[[NSFileManager defaultManager] copyItemAtPath:path toPath:dest_path error:NULL];
 }
 
 @end

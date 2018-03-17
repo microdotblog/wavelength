@@ -25,6 +25,8 @@
 		4B74C956205A39E30050A105 /* UUDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C955205A39E30050A105 /* UUDataCache.m */; };
 		4B74C959205A3F4A0050A105 /* LUSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C958205A3F4A0050A105 /* LUSegmentCell.m */; };
 		4B74C95D205CB2030050A105 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C95C205CB2030050A105 /* PopoverView.m */; };
+		4B74C966205D75CB0050A105 /* test.m4a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B74C962205D75860050A105 /* test.m4a */; };
+		4B74C969205D77760050A105 /* UUString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C968205D77760050A105 /* UUString.m */; };
 		C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC329B205774A600D0594B /* LUAppDelegate.m */; };
 		C5DC32A2205774A600D0594B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A0205774A600D0594B /* Main.storyboard */; };
 		C5DC32A4205774A600D0594B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A3205774A600D0594B /* Assets.xcassets */; };
@@ -33,6 +35,19 @@
 		C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32B9205780F000D0594B /* LUMainViewController.m */; };
 		C5DC32C020586E8500D0594B /* LUAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32BF20586E8500D0594B /* LUAudioRecorder.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4B74C965205D75BB0050A105 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Music;
+			dstSubfolderSpec = 7;
+			files = (
+				4B74C966205D75CB0050A105 /* test.m4a in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		34E28A020DCE8EB80280E4E2 /* libPods-Lumos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lumos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +86,9 @@
 		4B74C95A205CB2020050A105 /* PopoverView_Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopoverView_Configuration.h; path = shared/PopoverView/PopoverView_Configuration.h; sourceTree = "<group>"; };
 		4B74C95B205CB2030050A105 /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopoverView.h; path = shared/PopoverView/PopoverView.h; sourceTree = "<group>"; };
 		4B74C95C205CB2030050A105 /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopoverView.m; path = shared/PopoverView/PopoverView.m; sourceTree = "<group>"; };
+		4B74C962205D75860050A105 /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.m4a; path = Music/test.m4a; sourceTree = "<group>"; };
+		4B74C967205D77760050A105 /* UUString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUString.h; sourceTree = "<group>"; };
+		4B74C968205D77760050A105 /* UUString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUString.m; sourceTree = "<group>"; };
 		7C13C85763A56F0C388DEA20 /* Pods-Lumos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lumos/Pods-Lumos.release.xcconfig"; sourceTree = "<group>"; };
 		9CA3ED3895EE9FE2D946DF9D /* Pods-Lumos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lumos/Pods-Lumos.debug.xcconfig"; sourceTree = "<group>"; };
 		C5DC3297205774A600D0594B /* Lumos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumos.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +142,8 @@
 				4B74C952205A39DB0050A105 /* UURemoteData.m */,
 				4B74C954205A39E20050A105 /* UUDataCache.h */,
 				4B74C955205A39E30050A105 /* UUDataCache.m */,
+				4B74C967205D77760050A105 /* UUString.h */,
+				4B74C968205D77760050A105 /* UUString.m */,
 			);
 			name = UU;
 			path = shared/UU;
@@ -137,6 +157,14 @@
 				4B74C95C205CB2030050A105 /* PopoverView.m */,
 			);
 			name = PopoverView;
+			sourceTree = "<group>";
+		};
+		4B74C963205D758B0050A105 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				4B74C962205D75860050A105 /* test.m4a */,
+			);
+			name = Music;
 			sourceTree = "<group>";
 		};
 		5259634BBEA440FE73DE2B63 /* Pods */ = {
@@ -160,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				C5DC3299205774A600D0594B /* Lumos */,
+				4B74C963205D758B0050A105 /* Music */,
 				4B74C95E205CB2070050A105 /* PopoverView */,
 				4B74C8CC205A39670050A105 /* UU */,
 				C5DC3298205774A600D0594B /* Products */,
@@ -223,6 +252,7 @@
 				C5DC3293205774A600D0594B /* Sources */,
 				C5DC3294205774A600D0594B /* Frameworks */,
 				C5DC3295205774A600D0594B /* Resources */,
+				4B74C965205D75BB0050A105 /* CopyFiles */,
 				34E40EBB3B3C20497D6EBE2B /* [CP] Embed Pods Frameworks */,
 				220FF789046631370E8FB582 /* [CP] Copy Pods Resources */,
 			);
@@ -354,6 +384,7 @@
 				4B74C959205A3F4A0050A105 /* LUSegmentCell.m in Sources */,
 				4B74C93A205A39930050A105 /* UUAlert.m in Sources */,
 				4B74C8C5205A23D10050A105 /* LUPostController.m in Sources */,
+				4B74C969205D77760050A105 /* UUString.m in Sources */,
 				4B74C8C2205A23A40050A105 /* LUEditController.m in Sources */,
 				4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */,
 				C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */,
