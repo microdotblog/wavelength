@@ -32,6 +32,14 @@
 
 - (IBAction) addAudio:(id)sender
 {
+	CGRect r = [self.view bounds];
+	CGPoint pt = CGPointMake (r.size.width - 75, 80);
+	
+	self.addPopover = [PopoverView showPopoverAtPoint:pt inView:self.view withContentView:self.addPopoverView delegate:self];
+}
+
+- (void) popoverViewDidDismiss:(PopoverView *)popoverView
+{
 }
 
 #pragma mark -
