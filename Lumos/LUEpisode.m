@@ -7,10 +7,23 @@
 //
 
 #import "LUEpisode.h"
-
+#import <EZAudio/EZAudio.h>
 #import "UUString.h"
 
 @implementation LUEpisode
+
++ (NSString *)stringFromTimeInterval:(NSTimeInterval)interval
+{
+    NSInteger ti = (NSInteger)interval;
+    NSInteger seconds = ti % 60;
+    NSInteger minutes = (ti / 60) % 60;
+    NSInteger hours = (ti / 3600);
+    return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hours, (long)minutes, (long)seconds];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (id) initWithFolder:(NSString *)path
 {
@@ -19,7 +32,6 @@
 		self.path = path;
 		
 		self.title = [path lastPathComponent];
-		self.duration = @"30s"; // FIXME
 
 		NSString* preview_path = [path stringByAppendingPathComponent:@"preview.png"];
 		self.previewImage = [[UIImage alloc] initWithContentsOfFile:preview_path];
@@ -49,6 +61,21 @@
 	NSString* filename = [[NSString uuGenerateUUIDString] stringByAppendingPathExtension:e];
 	NSString* dest_path = [self.path stringByAppendingPathComponent:filename];
 	[[NSFileManager defaultManager] copyItemAtPath:path toPath:dest_path error:NULL];
+}
+
+- (NSString*) duration
+{
+	NSArray* segments = [self audioSegmentPaths];
+	
+	NSTimeInterval duration = 0;
+	for (NSString* path in segments)
+	{
+		NSURL* url = [NSURL fileURLWithPath:path];
+		EZAudioFile* audioFile = [EZAudioFile audioFileWithURL:url];
+		duration += audioFile.duration;
+	}
+
+	return [LUEpisode stringFromTimeInterval:duration];
 }
 
 @end

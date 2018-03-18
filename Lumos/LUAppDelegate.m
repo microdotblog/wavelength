@@ -7,11 +7,13 @@
 //
 
 #import "LUAppDelegate.h"
+#import <EZAudio/EZAudio.h>
 
 @implementation LUAppDelegate
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	[EZAudioUtilities setShouldExitOnCheckResultFail:NO];
 	[self setupAppearance];
 	
 	return YES;

@@ -17,6 +17,8 @@
 	self.titleField.text = episode.title;
 	self.previewImageView.image = episode.previewImage;
 
+	self.durationField.text = episode.duration;
+
 	self.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 	self.previewImageView.layer.borderWidth = 0.5;
 }

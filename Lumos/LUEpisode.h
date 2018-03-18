@@ -12,8 +12,8 @@
 
 @property (strong) NSString* path;
 @property (strong) NSString* title;
-@property (strong) NSString* duration;
 @property (strong) UIImage* previewImage;
+@property (strong, readonly) NSString* duration;
 
 - (id) initWithFolder:(NSString *)path;
 - (NSArray *) audioSegmentPaths;
