@@ -130,6 +130,8 @@
 		[self.episodes addObject:episode];
 
 		[self.tableView reloadData];
+		
+		[self performSegueWithIdentifier:@"EditSegue" sender:episode];
 	}
 
 //	else if ([[self.recordStopPlayButton titleForState:UIControlStateNormal] isEqualToString:@"Play"])
