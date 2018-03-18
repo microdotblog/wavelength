@@ -15,7 +15,7 @@
 
 static CGFloat const kCellPadding = 10.0;
 
-@interface LUEditController ()
+@interface LUEditController ()<UICollectionViewDragDelegate, UICollectionViewDropDelegate>
 
 @end
 
@@ -24,6 +24,10 @@ static CGFloat const kCellPadding = 10.0;
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
+	
+	self.collectionView.dragDelegate = self;
+	self.collectionView.dropDelegate = self;
+	self.collectionView.dragInteractionEnabled = YES;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -130,6 +134,42 @@ static CGFloat const kCellPadding = 10.0;
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
 	return 0;
+}
+
+#pragma mark -
+
+- (NSArray<UIDragItem *> *) collectionView:(UICollectionView *)collectionView itemsForBeginningDragSession:(id<UIDragSession>)session atIndexPath:(NSIndexPath *)indexPath
+{
+	NSString* audio_path = [[self.episode audioSegmentPaths] objectAtIndex:indexPath.item];
+	NSURL* audio_url = [NSURL fileURLWithPath:audio_path isDirectory:NO];
+	
+	EZAudioFile* audio_file = [EZAudioFile audioFileWithURL:audio_url];
+	NSItemProvider* provider = [[NSItemProvider alloc] initWithObject:audio_path];
+
+	UIDragItem* item = [[UIDragItem alloc] initWithItemProvider:provider];
+	item.localObject = audio_path;
+	
+	return @[ item ];
+}
+
+- (UICollectionViewDropProposal *) collectionView:(UICollectionView *)collectionView dropSessionDidUpdate:(id<UIDropSession>)session withDestinationIndexPath:(nullable NSIndexPath *)destinationIndexPath
+{
+	UICollectionViewDropProposal* proposal;
+	
+	if (destinationIndexPath) {
+		proposal = [[UICollectionViewDropProposal alloc] initWithDropOperation:UIDropOperationMove intent:UICollectionViewDropIntentInsertAtDestinationIndexPath];
+	}
+	else {
+		proposal = [[UICollectionViewDropProposal alloc] initWithDropOperation:UIDropOperationForbidden];
+	}
+	
+	return proposal;
+}
+
+- (void) collectionView:(UICollectionView *)collectionView performDropWithCoordinator:(id<UICollectionViewDropCoordinator>)coordinator
+{
+	id<UICollectionViewDropItem> drop = [coordinator.items firstObject];
+	UIDragItem* item = drop.dragItem;
 }
 
 @end
