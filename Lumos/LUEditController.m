@@ -10,7 +10,7 @@
 
 #import "LUEpisode.h"
 #import "LUSegmentCell.h"
-#import "LUAudioRecorder.h"
+#import "LUAudioClip.h"
 #import <EZAudio/EZAudio.h>
 
 static CGFloat const kCellPadding = 10.0;
@@ -85,29 +85,8 @@ static CGFloat const kCellPadding = 10.0;
 	NSString* audio_path = [[self.episode audioSegmentPaths] objectAtIndex:indexPath.item];
 	NSURL* audio_url = [NSURL fileURLWithPath:audio_path isDirectory:NO];
 	
-	EZAudioFile* audio_file = [EZAudioFile audioFileWithURL:audio_url];
-	EZAudioFloatData* data = [audio_file getWaveformData];
-
-	EZAudioPlot* plot = [[EZAudioPlot alloc] initWithFrame:CGRectMake (0, 0, size.width, size.height)];
-	plot.shouldCenterYAxis = YES;
-	plot.color = self.view.window.tintColor;
-
-	[plot setSampleData:data.buffers[0] length:data.bufferSize];
-
-	CALayer* layer = plot.waveformLayer;
-	CGRect bounds = layer.bounds;
-	layer.bounds = CGRectMake(0, 0, size.width, size.height);
-	
-	UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
-	
-    [layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
-
-    UIGraphicsEndImageContext();
-	
-    layer.bounds = bounds;
-
-	cell.previewImageView.image = outputImage;
+	LUAudioClip* audioData = [[LUAudioClip alloc] initWithDestination:audio_url];
+	cell.previewImageView.image = [audioData renderWaveImage:size];
 	
 	cell.previewImageView.layer.cornerRadius = 3.0;
 	cell.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;

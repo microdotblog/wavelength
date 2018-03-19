@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LUAudioRecorder : NSObject
+@interface LUAudioClip : NSObject
 
 	// Safety check on global settings to see if the device can record
 	+ (BOOL) canRecord;
@@ -27,7 +27,7 @@
 	- (UIImage*) renderWaveImage:(CGSize)size;
 
 	// Set the callback if you want to be notified when the playback of the audio completes. Optional.
-	@property (nonatomic, copy) void (^playbackCompleteCallback)(LUAudioRecorder* recorder);
+	@property (nonatomic, copy) void (^playbackCompleteCallback)(LUAudioClip* recorder);
 
 	// Where did this file get written
 	@property (nonatomic, readonly) NSURL* destination;

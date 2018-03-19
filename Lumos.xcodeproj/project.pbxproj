@@ -13,7 +13,6 @@
 		4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C7205A26180050A105 /* LUEpisode.m */; };
 		4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8CA205A27E90050A105 /* LUEpisodeCell.m */; };
 		4B74C93A205A39930050A105 /* UUAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C936205A39930050A105 /* UUAlert.m */; };
-		4B74C93B205A39930050A105 /* UUActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C938205A39930050A105 /* UUActionSheet.m */; };
 		4B74C93E205A39990050A105 /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C93C205A39990050A105 /* UUColor.m */; };
 		4B74C941205A39A00050A105 /* UUDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C93F205A39A00050A105 /* UUDate.m */; };
 		4B74C948205A39AB0050A105 /* UUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C942205A39AA0050A105 /* UUImageView.m */; };
@@ -33,7 +32,7 @@
 		C5DC32A7205774A600D0594B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A5205774A600D0594B /* LaunchScreen.storyboard */; };
 		C5DC32AA205774A600D0594B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32A9205774A600D0594B /* main.m */; };
 		C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32B9205780F000D0594B /* LUMainViewController.m */; };
-		C5DC32C020586E8500D0594B /* LUAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32BF20586E8500D0594B /* LUAudioRecorder.m */; };
+		C5DC32C020586E8500D0594B /* LUAudioClip.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32BF20586E8500D0594B /* LUAudioClip.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,8 +59,6 @@
 		4B74C8C9205A27E90050A105 /* LUEpisodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUEpisodeCell.h; sourceTree = "<group>"; };
 		4B74C8CA205A27E90050A105 /* LUEpisodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUEpisodeCell.m; sourceTree = "<group>"; };
 		4B74C936205A39930050A105 /* UUAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUAlert.m; sourceTree = "<group>"; };
-		4B74C937205A39930050A105 /* UUActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUActionSheet.h; sourceTree = "<group>"; };
-		4B74C938205A39930050A105 /* UUActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUActionSheet.m; sourceTree = "<group>"; };
 		4B74C939205A39930050A105 /* UUAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUAlert.h; sourceTree = "<group>"; };
 		4B74C93C205A39990050A105 /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
 		4B74C93D205A39990050A105 /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
@@ -101,8 +98,8 @@
 		C5DC32A9205774A600D0594B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C5DC32B8205780F000D0594B /* LUMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUMainViewController.h; sourceTree = "<group>"; };
 		C5DC32B9205780F000D0594B /* LUMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUMainViewController.m; sourceTree = "<group>"; };
-		C5DC32BE20586E8500D0594B /* LUAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAudioRecorder.h; sourceTree = "<group>"; };
-		C5DC32BF20586E8500D0594B /* LUAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAudioRecorder.m; sourceTree = "<group>"; };
+		C5DC32BE20586E8500D0594B /* LUAudioClip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAudioClip.h; sourceTree = "<group>"; };
+		C5DC32BF20586E8500D0594B /* LUAudioClip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAudioClip.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +117,6 @@
 		4B74C8CC205A39670050A105 /* UU */ = {
 			isa = PBXGroup;
 			children = (
-				4B74C937205A39930050A105 /* UUActionSheet.h */,
-				4B74C938205A39930050A105 /* UUActionSheet.m */,
 				4B74C939205A39930050A105 /* UUAlert.h */,
 				4B74C936205A39930050A105 /* UUAlert.m */,
 				4B74C93D205A39990050A105 /* UUColor.h */,
@@ -208,8 +203,8 @@
 		C5DC3299205774A600D0594B /* Lumos */ = {
 			isa = PBXGroup;
 			children = (
-				C5DC32BE20586E8500D0594B /* LUAudioRecorder.h */,
-				C5DC32BF20586E8500D0594B /* LUAudioRecorder.m */,
+				C5DC32BE20586E8500D0594B /* LUAudioClip.h */,
+				C5DC32BF20586E8500D0594B /* LUAudioClip.m */,
 				C5DC329A205774A600D0594B /* LUAppDelegate.h */,
 				C5DC329B205774A600D0594B /* LUAppDelegate.m */,
 				4B74C8C6205A26180050A105 /* LUEpisode.h */,
@@ -380,7 +375,7 @@
 				4B74C953205A39DC0050A105 /* UURemoteData.m in Sources */,
 				4B74C95D205CB2030050A105 /* PopoverView.m in Sources */,
 				4B74C956205A39E30050A105 /* UUDataCache.m in Sources */,
-				C5DC32C020586E8500D0594B /* LUAudioRecorder.m in Sources */,
+				C5DC32C020586E8500D0594B /* LUAudioClip.m in Sources */,
 				4B74C959205A3F4A0050A105 /* LUSegmentCell.m in Sources */,
 				4B74C93A205A39930050A105 /* UUAlert.m in Sources */,
 				4B74C8C5205A23D10050A105 /* LUPostController.m in Sources */,
@@ -392,7 +387,6 @@
 				4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */,
 				4B74C93E205A39990050A105 /* UUColor.m in Sources */,
 				C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */,
-				4B74C93B205A39930050A105 /* UUActionSheet.m in Sources */,
 				4B74C949205A39AB0050A105 /* UUImageCache.m in Sources */,
 				4B74C950205A39CD0050A105 /* UUHttpSession.m in Sources */,
 				4B74C941205A39A00050A105 /* UUDate.m in Sources */,

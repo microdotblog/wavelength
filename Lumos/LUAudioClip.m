@@ -6,13 +6,13 @@
 //  Copyright © 2018 Jonathan Hays. All rights reserved.
 //
 
-#import "LUAudioRecorder.h"
+#import "LUAudioClip.h"
 #import <EZAudio/EZAudio.h>
 #import "UUDate.h"
 
 @import AVFoundation;
 
-@interface LUAudioRecorder()<EZMicrophoneDelegate, EZRecorderDelegate, EZAudioPlayerDelegate>
+@interface LUAudioClip()<EZMicrophoneDelegate, EZRecorderDelegate, EZAudioPlayerDelegate>
 	@property (nonatomic, strong) NSURL* destination;
 	@property (nonatomic, strong) EZAudioPlot* audioPlot;
 	@property (nonatomic, strong) EZMicrophone* microphone;
@@ -20,7 +20,7 @@
 	@property (nonatomic, strong) EZAudioPlayer *player;
 @end
 
-@implementation LUAudioRecorder
+@implementation LUAudioClip
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark-
@@ -129,10 +129,16 @@
 	}
 
 	self.audioPlot = [[EZAudioPlot alloc] init];
-    self.audioPlot.plotType = EZPlotTypeBuffer;
-    self.audioPlot.shouldOptimizeForRealtimePlot = YES;
     self.audioPlot.color = [UIApplication sharedApplication].windows.firstObject.tintColor;
     self.audioPlot.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+    self.audioPlot.plotType = EZPlotTypeBuffer;
+    self.audioPlot.shouldFill = YES;
+    self.audioPlot.shouldMirror = YES;
+    self.audioPlot.shouldOptimizeForRealtimePlot = YES;
+
+    EZAudioFile* audioFile = [EZAudioFile audioFileWithURL:self.destination];
+	EZAudioFloatData* audioData = [audioFile getWaveformData];
+	[self.audioPlot updateBuffer:audioData.buffers[0] withBufferSize:audioData.bufferSize];
 
     //
     // Create the microphone
@@ -144,17 +150,16 @@
 	
 	[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
 
-    //
-    // Start the microphone
-    //
-    [self.microphone startFetchingAudio];
-	
-
 	return true;
 }
 
 - (UIImage*) renderWaveImage:(CGSize)size
 {
+	CGRect previousFrame = self.audioPlot.frame;
+	
+	self.audioPlot.frame = CGRectMake(0, 0, size.width, size.height);
+	[self.audioPlot redraw];
+
 	CALayer* layer = self.audioPlot.waveformLayer;
 	CGRect bounds = layer.bounds;
 	layer.bounds = CGRectMake(0, 0, size.width, size.height);
@@ -168,6 +173,8 @@
 	
     layer.bounds = bounds;
 
+	self.audioPlot.frame = previousFrame;
+	
     return outputImage;
 }
 

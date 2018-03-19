@@ -8,7 +8,7 @@
 
 #import "LUMainViewController.h"
 
-#import "LUAudioRecorder.h"
+#import "LUAudioClip.h"
 #import "LUEpisode.h"
 #import "LUEpisodeCell.h"
 #import "LUEditController.h"
@@ -18,7 +18,7 @@
 	@property (nonatomic, strong) IBOutlet UIView* waveFormViewContainer;
 	@property (nonatomic, strong) IBOutlet UITableView* tableView;
 
-	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
+	@property (nonatomic, strong) LUAudioClip* audioRecorder;
 	@property (nonatomic, strong) NSMutableArray* episodes; // LUEpisode
 	@property (nonatomic, assign) BOOL isRecording;
 @end
@@ -42,11 +42,11 @@
 - (void) setupAudio
 {
 	if (self.audioRecorder == nil) {
-		NSURL* path = [LUAudioRecorder generateTimeStampedFileURL];
-		self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:path];
+		NSURL* path = [LUAudioClip generateTimeStampedFileURL];
+		self.audioRecorder = [[LUAudioClip alloc] initWithDestination:path];
 
 		__weak LUMainViewController* weakSelf = self;
-		self.audioRecorder.playbackCompleteCallback = ^(LUAudioRecorder* audioRecorder)
+		self.audioRecorder.playbackCompleteCallback = ^(LUAudioClip* audioRecorder)
 		{
 			dispatch_async(dispatch_get_main_queue(), ^
 			{
