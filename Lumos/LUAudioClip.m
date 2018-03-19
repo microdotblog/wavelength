@@ -134,12 +134,15 @@
     self.audioPlot.plotType = EZPlotTypeBuffer;
     self.audioPlot.shouldFill = YES;
     self.audioPlot.shouldMirror = YES;
-    self.audioPlot.shouldOptimizeForRealtimePlot = YES;
+    self.audioPlot.shouldOptimizeForRealtimePlot = NO;
 
     EZAudioFile* audioFile = [EZAudioFile audioFileWithURL:self.destination];
 	EZAudioFloatData* audioData = [audioFile getWaveformData];
-	[self.audioPlot updateBuffer:audioData.buffers[0] withBufferSize:audioData.bufferSize];
-
+	if (audioData)
+	{
+		[self.audioPlot updateBuffer:audioData.buffers[0] withBufferSize:audioData.bufferSize];
+	}
+	
     //
     // Create the microphone
     //
@@ -185,7 +188,7 @@
 
 - (void) record
 {
-    self.audioPlot.plotType        = EZPlotTypeRolling;
+    self.audioPlot.plotType        = EZPlotTypeBuffer;
     self.audioPlot.shouldFill      = YES;
     self.audioPlot.shouldMirror    = YES;
 
@@ -193,6 +196,8 @@
                                        clientFormat:[self.microphone audioStreamBasicDescription]
                                            fileType:EZRecorderFileTypeM4A
                                            delegate:self];
+	
+	[self.microphone startFetchingAudio];
 }
 
 - (void) play

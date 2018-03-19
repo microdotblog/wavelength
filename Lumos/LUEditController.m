@@ -159,9 +159,9 @@ static CGFloat const kCellPadding = 10.0;
 - (NSArray<UIDragItem *> *) collectionView:(UICollectionView *)collectionView itemsForBeginningDragSession:(id<UIDragSession>)session atIndexPath:(NSIndexPath *)indexPath
 {
 	NSString* audio_path = [[self.episode audioSegmentPaths] objectAtIndex:indexPath.item];
-	NSURL* audio_url = [NSURL fileURLWithPath:audio_path isDirectory:NO];
+	//NSURL* audio_url = [NSURL fileURLWithPath:audio_path isDirectory:NO];
 	
-	EZAudioFile* audio_file = [EZAudioFile audioFileWithURL:audio_url];
+	//EZAudioFile* audio_file = [EZAudioFile audioFileWithURL:audio_url];
 	NSItemProvider* provider = [[NSItemProvider alloc] initWithObject:audio_path];
 
 	UIDragItem* item = [[UIDragItem alloc] initWithItemProvider:provider];
@@ -186,8 +186,25 @@ static CGFloat const kCellPadding = 10.0;
 
 - (void) collectionView:(UICollectionView *)collectionView performDropWithCoordinator:(id<UICollectionViewDropCoordinator>)coordinator
 {
+	NSMutableArray* clips = [NSMutableArray arrayWithArray:self.episode.audioSegmentPaths];
 	id<UICollectionViewDropItem> drop = [coordinator.items firstObject];
-	UIDragItem* item = drop.dragItem;
+
+	NSIndexPath* endLocation = coordinator.destinationIndexPath;
+	NSIndexPath* startLocation = drop.sourceIndexPath;
+	NSString* clip = [clips objectAtIndex:startLocation.item];
+	[clips removeObjectAtIndex:startLocation.item];
+	[clips insertObject:clip atIndex:endLocation.item];
+	
+	[self.episode updateAudioSegmentOrder:clips];
+	
+	[self.collectionView performBatchUpdates:^
+	{
+		[self.collectionView deleteItemsAtIndexPaths:@[ startLocation ]];
+		[self.collectionView insertItemsAtIndexPaths:@[ endLocation ]];
+	}
+	completion:^(BOOL finished)
+	{
+	}];
 }
 
 @end

@@ -14,9 +14,10 @@
 @property (strong) NSString* title;
 @property (strong) UIImage* previewImage;
 @property (strong, readonly) NSString* duration;
+@property (strong, readonly) NSMutableArray* audioSegmentPaths;
 
 - (id) initWithFolder:(NSString *)path;
-- (NSArray *) audioSegmentPaths;
 - (void) addFile:(NSString *)path;
+- (void) updateAudioSegmentOrder:(NSArray*)updatedSegmentPaths;
 
 @end

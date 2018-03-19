@@ -10,6 +10,10 @@
 #import <EZAudio/EZAudio.h>
 #import "UUString.h"
 
+@interface LUEpisode()
+	@property (strong, nonatomic) NSMutableArray* audioSegmentPaths;
+@end
+
 @implementation LUEpisode
 
 + (NSString *)stringFromTimeInterval:(NSTimeInterval)interval
@@ -25,6 +29,17 @@
 #pragma mark -
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+- (id) init
+{
+	self = [super init];
+	if (self)
+	{
+		self.audioSegmentPaths = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
 - (id) initWithFolder:(NSString *)path
 {
 	self = [super init];
@@ -33,26 +48,56 @@
 		
 		self.title = [path lastPathComponent];
 
+		self.audioSegmentPaths = [NSMutableArray array];
+		
 		NSString* preview_path = [path stringByAppendingPathComponent:@"preview.png"];
-		self.previewImage = [[UIImage alloc] initWithContentsOfFile:preview_path];
+		
+		if ([[NSFileManager defaultManager] fileExistsAtPath:preview_path])
+		{
+			self.previewImage = [[UIImage alloc] initWithContentsOfFile:preview_path];
+		}
+		
+		[self loadFileInfo];
 	}
 	
 	return self;
 }
 
-- (NSArray *) audioSegmentPaths
+
+- (void) loadFileInfo
 {
-	NSMutableArray* paths = [NSMutableArray array];
-	NSArray* contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:NULL];
-	for (NSString* filename in contents) {
-		NSString* e = [filename pathExtension];
-		if ([e isEqualToString:@"caf"] || [e isEqualToString:@"m4a"]) {
-			NSString* s = [self.path stringByAppendingPathComponent:filename];
-			[paths addObject:s];
-		}
+	NSString* clips_info_path = [self.path stringByAppendingPathComponent:@"clips.plist"];
+	NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:clips_info_path];
+	NSArray* foundArray = [dictionary objectForKey:@"clips"];
+	
+	if (foundArray)
+	{
+		self.audioSegmentPaths = [NSMutableArray arrayWithArray:foundArray];
 	}
 	
-	return paths;
+	if (!self.audioSegmentPaths.count)
+	{
+		NSMutableArray* foundClips = [NSMutableArray array];
+
+		NSArray* contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:NULL];
+		for (NSString* filename in contents) {
+			NSString* e = [filename pathExtension];
+			if ([e isEqualToString:@"caf"] || [e isEqualToString:@"m4a"]) {
+				NSString* s = [self.path stringByAppendingPathComponent:filename];
+				[foundClips addObject:s];
+			}
+		}
+		
+		self.audioSegmentPaths = foundClips;
+		[self saveFileInfo];
+	}
+}
+
+- (void) saveFileInfo
+{
+	NSString* clips_info_path = [self.path stringByAppendingPathComponent:@"clips.plist"];
+	NSDictionary* clipDictionary = @{ @"clips" : self.audioSegmentPaths };
+	[clipDictionary writeToFile:clips_info_path atomically:YES];
 }
 
 - (void) addFile:(NSString *)path
@@ -61,6 +106,16 @@
 	NSString* filename = [[NSString uuGenerateUUIDString] stringByAppendingPathExtension:e];
 	NSString* dest_path = [self.path stringByAppendingPathComponent:filename];
 	[[NSFileManager defaultManager] copyItemAtPath:path toPath:dest_path error:NULL];
+	
+	[self.audioSegmentPaths addObject:dest_path];
+	
+	[self saveFileInfo];
+}
+
+- (void) updateAudioSegmentOrder:(NSArray*)updatedSegmentPaths
+{
+	self.audioSegmentPaths = [NSMutableArray arrayWithArray:updatedSegmentPaths];
+	[self saveFileInfo];
 }
 
 - (NSString*) duration
