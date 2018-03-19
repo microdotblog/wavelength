@@ -17,6 +17,16 @@
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
+	
+	self.titleContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	self.titleContainer.layer.borderWidth = 0.5;
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	[self.titleField becomeFirstResponder];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

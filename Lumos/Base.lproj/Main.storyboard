@@ -251,7 +251,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="action" id="cCq-cL-sll">
                                 <connections>
-                                    <segue destination="rbR-yE-SLm" kind="show" id="MQl-4E-6fQ"/>
+                                    <segue destination="rbR-yE-SLm" kind="show" identifier="PostSegue" id="MQl-4E-6fQ"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="add" id="Kon-KW-Ley">
@@ -266,7 +266,7 @@
                         <outlet property="addPopoverView" destination="uJ7-sy-mFc" id="8ds-Af-S4Y"/>
                         <outlet property="collectionView" destination="ji9-mB-grC" id="8dp-Da-Cwu"/>
                         <outlet property="playPauseButton" destination="t1W-4M-E0Z" id="6IS-Oc-GdJ"/>
-                        <segue destination="rbR-yE-SLm" kind="show" identifier="PostSegue" id="WBj-KG-sZQ"/>
+                        <segue destination="2uZ-XV-J6w" kind="presentation" identifier="SigninSegue" id="pR2-pI-Ygd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sib-9Z-J3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -322,6 +322,60 @@
             </objects>
             <point key="canvasLocation" x="1632.8" y="770.46476761619192"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nJT-sk-bWh">
+            <objects>
+                <navigationController id="2uZ-XV-J6w" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aeH-YI-V4W">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="amd-cP-OOi" kind="relationship" relationship="rootViewController" id="lWU-ND-nc5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ol6-XK-P2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2465" y="347"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bWO-Yi-LUL">
+            <objects>
+                <viewController id="amd-cP-OOi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vct-dw-bSd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign in with your Micro.blog account to publish your microcast to Micro.blog:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVW-Lx-4Zw">
+                                <rect key="frame" x="16" y="214" width="326" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DXd-Hi-nrY">
+                                <rect key="frame" x="117" y="78" width="140" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aFj-SJ-b0K">
+                                <rect key="frame" x="16" y="296" width="326" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qmq-9u-dpF"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Frp-gf-Xvz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xKh-hL-gRj"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A9p-o4-6f6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3216.8000000000002" y="346.77661169415296"/>
+        </scene>
         <!--Post Controller-->
         <scene sceneID="hpZ-7g-LoC">
             <objects>
@@ -330,32 +384,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-Os-aMO">
-                                <rect key="frame" x="16" y="85" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSf-pX-uX4">
+                                <rect key="frame" x="-1" y="63" width="377" height="50"/>
+                                <color key="backgroundColor" white="0.9845552884615385" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fDP-YR-Ino"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-Os-aMO">
+                                <rect key="frame" x="16" y="73" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="hoo-Mc-be1"/>
+                                </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1HZ-QX-Oyy">
-                                <rect key="frame" x="16" y="135" width="343" height="204"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1HZ-QX-Oyy">
+                                <rect key="frame" x="10" y="123" width="355" height="204"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="204" id="4BH-64-0HF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XSf-pX-uX4" firstAttribute="leading" secondItem="DNk-ns-fm0" secondAttribute="leading" constant="-1" id="CPG-yy-UV8"/>
+                            <constraint firstItem="XSf-pX-uX4" firstAttribute="trailing" secondItem="DNk-ns-fm0" secondAttribute="trailing" constant="1" id="MWw-65-hyX"/>
+                            <constraint firstItem="DNk-ns-fm0" firstAttribute="trailing" secondItem="1HZ-QX-Oyy" secondAttribute="trailing" constant="10" id="OiT-0O-F5i"/>
+                            <constraint firstItem="1HZ-QX-Oyy" firstAttribute="top" secondItem="XSf-pX-uX4" secondAttribute="bottom" constant="10" id="SNi-1P-98a"/>
+                            <constraint firstItem="DNk-ns-fm0" firstAttribute="trailing" secondItem="kP6-Os-aMO" secondAttribute="trailing" constant="16" id="U0e-7x-Xmh"/>
+                            <constraint firstItem="kP6-Os-aMO" firstAttribute="top" secondItem="DNk-ns-fm0" secondAttribute="top" constant="9" id="lPC-CE-pVq"/>
+                            <constraint firstItem="1HZ-QX-Oyy" firstAttribute="leading" secondItem="DNk-ns-fm0" secondAttribute="leading" constant="10" id="mhl-sW-Sph"/>
+                            <constraint firstItem="kP6-Os-aMO" firstAttribute="leading" secondItem="DNk-ns-fm0" secondAttribute="leading" constant="16" id="qxu-DW-AEJ"/>
+                            <constraint firstItem="XSf-pX-uX4" firstAttribute="top" secondItem="DNk-ns-fm0" secondAttribute="top" constant="-1" id="vv5-gG-dLs"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="DNk-ns-fm0"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ziy-3L-i6F">
                         <barButtonItem key="rightBarButtonItem" title="Post" id="4xg-h5-vEp"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="1HZ-QX-Oyy" id="Ubn-Te-rpt"/>
+                        <outlet property="titleContainer" destination="XSf-pX-uX4" id="kvy-hW-hiK"/>
+                        <outlet property="titleField" destination="kP6-Os-aMO" id="dXV-Mf-yse"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="riP-ze-7eN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2405.5999999999999" y="771.36431784107947"/>
+            <point key="canvasLocation" x="2466" y="1026"/>
         </scene>
     </scenes>
     <resources>
@@ -363,7 +443,4 @@
         <image name="mic_small" width="16" height="16"/>
         <image name="play" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="MQl-4E-6fQ"/>
-    </inferredMetricsTieBreakers>
 </document>

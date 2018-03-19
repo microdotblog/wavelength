@@ -110,7 +110,7 @@
     self.audioPlot.shouldMirror = YES;
     self.audioPlot.shouldOptimizeForRealtimePlot = NO;
 
-	if ([[NSFileManager defaultManager] fileExistsAtPath:self.destination.absoluteString])
+	if ([[NSFileManager defaultManager] fileExistsAtPath:self.destination.path])
 	{
     	EZAudioFile* audioFile = [EZAudioFile audioFileWithURL:self.destination];
 		EZAudioFloatData* audioData = [audioFile getWaveformData];
