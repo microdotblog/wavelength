@@ -14,6 +14,7 @@
 #import <EZAudio/EZAudio.h>
 
 static CGFloat const kCellPadding = 10.0;
+static const NSString* kItemStatusContext;
 
 @interface LUEditController ()<UICollectionViewDragDelegate, UICollectionViewDropDelegate>
 
@@ -59,11 +60,90 @@ static CGFloat const kCellPadding = 10.0;
 
 - (IBAction) play:(id)sender
 {
-	AVMutableComposition* composition = [self makeComposition];
+	if (self.player) {
+		[self.player pause];
+		self.player = nil;
+	}
+	else {
+		AVMutableComposition* composition = [self makeComposition];
+		
+		AVPlayerItem* item = [AVPlayerItem playerItemWithAsset:composition];
+		[item addObserver:self forKeyPath:@"status" options:0 context:&kItemStatusContext];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+
+		self.player = [AVPlayer playerWithPlayerItem:item];
+
+		CMTime interval = CMTimeMakeWithSeconds (0.1, NSEC_PER_SEC);
+		__weak LUEditController* weak_self = self;
+		[self.player addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
+			dispatch_async (dispatch_get_main_queue(), ^{
+				[weak_self updatePlayback:time];
+			});
+		}];
+
+		[self.player play];
+	}
 	
-	AVPlayerItem* item = [AVPlayerItem playerItemWithAsset:composition];
-	self.player = [AVPlayer playerWithPlayerItem:item];
-	[self.player play];
+	[self updatePlayButton];
+}
+
+- (void) playerDidFinishPlaying:(NSNotification *)notification
+{
+	[self play:nil];
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if (context == &kItemStatusContext) {
+		dispatch_async (dispatch_get_main_queue(), ^{
+			// composition ready to play
+		});
+	}
+	else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
+}
+
+- (void) updatePlayback:(CMTime)time
+{
+//	AVPlayerItem* item = self.player.currentItem;
+//	Float64 episode_duration = CMTimeGetSeconds (item.duration);
+	Float64 episode_offset = CMTimeGetSeconds (time);
+	Float64 current_offset = 0;
+
+	for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
+		NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
+		LUSegmentCell* cell = (LUSegmentCell *)[self.collectionView cellForItemAtIndexPath:index_path];
+
+		NSString* path = [self.episode.audioSegmentPaths objectAtIndex:i];
+		NSURL* url = [NSURL fileURLWithPath:path];
+		AVAsset* asset = [AVAsset assetWithURL:url];
+		Float64 segment_duration = CMTimeGetSeconds (asset.duration);
+		if ((episode_offset > current_offset) && (episode_offset < (current_offset + segment_duration))) {
+			Float64 segment_offset = episode_offset - current_offset;
+			Float64 segment_progress = segment_offset / segment_duration;
+			[cell updatePercentComplete:segment_progress];
+		}
+		else {
+			[cell updatePercentComplete:0.0];
+		}
+		
+		current_offset = current_offset + segment_duration;
+	}
+}
+
+- (void) updatePlayButton
+{
+	UIImage* img = nil;
+	if (self.player) {
+		img = [UIImage imageNamed:@"pause"];
+	}
+	else {
+		img = [UIImage imageNamed:@"play"];
+	}
+
+	[self.playPauseButton setImage:img forState:UIControlStateNormal];
 }
 
 - (void) popoverViewDidDismiss:(PopoverView *)popoverView
@@ -130,26 +210,35 @@ static CGFloat const kCellPadding = 10.0;
 	cell.previewImageView.layer.cornerRadius = 3.0;
 	cell.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 	cell.previewImageView.layer.borderWidth = 0.5;
+	cell.positionLine.hidden = YES;
 	
 	return cell;
 }
 
-- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+}
+
+- (void) collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+}
+
+- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	return [self bestCellSize];
 }
 
-- (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+- (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
 	return UIEdgeInsetsMake (kCellPadding, kCellPadding, kCellPadding, kCellPadding);
 }
 
-- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
 	return kCellPadding;
 }
 
-- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
 	return 0;
 }

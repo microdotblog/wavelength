@@ -17,9 +17,10 @@
 
 @property (strong, nonatomic) IBOutlet UICollectionView* _Nonnull collectionView;
 @property (strong, nonatomic) IBOutlet UIView* addPopoverView;
+@property (strong, nonatomic) IBOutlet UIButton* playPauseButton;
 
 @property (strong, nonatomic) LUEpisode* episode;
 @property (weak, nonatomic) PopoverView* addPopover;
-@property (strong, nonnull) AVPlayer* player;
+@property (strong, nonatomic) AVPlayer* player;
 
 @end
