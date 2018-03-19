@@ -118,19 +118,19 @@
 		
 		CGSize preview_size = CGSizeMake (150, 54);
 		
-		LUEpisode* episode = [[LUEpisode alloc] init];
-		episode.previewImage = [self.audioRecorder renderWaveImage:preview_size];
-		episode.path = [self.audioRecorder.destination URLByDeletingLastPathComponent].path;
-		episode.title = [episode.path lastPathComponent];
+		NSString* episodePath = [self.audioRecorder.destination URLByDeletingLastPathComponent].path;
 
-		NSData* d = UIImagePNGRepresentation (episode.previewImage);
-		NSString* preview_filepath = [episode.path stringByAppendingPathComponent:@"preview.png"];
+		UIImage* previewImage = [self.audioRecorder renderWaveImage:preview_size];
+		NSData* d = UIImagePNGRepresentation(previewImage);
+		NSString* preview_filepath = [episodePath stringByAppendingPathComponent:@"preview.png"];
 		[d writeToFile:preview_filepath atomically:NO];
+
+		LUEpisode* episode = [[LUEpisode alloc] initWithFolder:episodePath];
+		episode.previewImage = previewImage;
 		
 		[self.episodes addObject:episode];
-
-		[self.tableView reloadData];
 		
+		[self.tableView reloadData];
 		[self performSegueWithIdentifier:@"EditSegue" sender:episode];
 	}
 
