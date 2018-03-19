@@ -31,10 +31,12 @@
 	if (self)
 	{
 		self.destination = destinationUrl;
-		
+
 		[self setupPlotAndPlayer];
 		
-		[self loadThumbnailImage];
+		if ([[NSFileManager defaultManager] fileExistsAtPath:self.destination.path]) {
+			[self loadThumbnailImage];
+		}
 	}
 	
 	return self;
