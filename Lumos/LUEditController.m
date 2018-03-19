@@ -14,6 +14,7 @@
 #import <EZAudio/EZAudio.h>
 
 static CGFloat const kCellPadding = 10.0;
+static const NSString* kItemStatusContext;
 
 @interface LUEditController ()<UICollectionViewDragDelegate, UICollectionViewDropDelegate>
 
@@ -59,11 +60,59 @@ static CGFloat const kCellPadding = 10.0;
 
 - (IBAction) play:(id)sender
 {
-	AVMutableComposition* composition = [self makeComposition];
+	if (self.player) {
+		[self.player pause];
+		self.player = nil;
+	}
+	else {
+		AVMutableComposition* composition = [self makeComposition];
+		
+		AVPlayerItem* item = [AVPlayerItem playerItemWithAsset:composition];
+		[item addObserver:self forKeyPath:@"status" options:0 context:&kItemStatusContext];
+
+//		CMTime interval = CMTimeMake (250, item.duration.timescale);
+//		[self.player addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
+//			dispatch_async (dispatch_get_main_queue(), ^{
+//			});
+//		}];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+
+		self.player = [AVPlayer playerWithPlayerItem:item];
+		[self.player play];
+	}
 	
-	AVPlayerItem* item = [AVPlayerItem playerItemWithAsset:composition];
-	self.player = [AVPlayer playerWithPlayerItem:item];
-	[self.player play];
+	[self updatePlayButton];
+}
+
+- (void) playerDidFinishPlaying:(NSNotification *)notification
+{
+	[self play:nil];
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if (context == &kItemStatusContext) {
+		dispatch_async (dispatch_get_main_queue(), ^{
+			// composition ready to play
+		});
+	}
+	else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
+}
+
+- (void) updatePlayButton
+{
+	UIImage* img = nil;
+	if (self.player) {
+		img = [UIImage imageNamed:@"pause"];
+	}
+	else {
+		img = [UIImage imageNamed:@"play"];
+	}
+
+	[self.playPauseButton setImage:img forState:UIControlStateNormal];
 }
 
 - (void) popoverViewDidDismiss:(PopoverView *)popoverView

@@ -259,6 +259,7 @@
                     <connections>
                         <outlet property="addPopoverView" destination="uJ7-sy-mFc" id="8ds-Af-S4Y"/>
                         <outlet property="collectionView" destination="ji9-mB-grC" id="8dp-Da-Cwu"/>
+                        <outlet property="playPauseButton" destination="t1W-4M-E0Z" id="6IS-Oc-GdJ"/>
                         <segue destination="rbR-yE-SLm" kind="show" identifier="PostSegue" id="WBj-KG-sZQ"/>
                     </connections>
                 </viewController>
