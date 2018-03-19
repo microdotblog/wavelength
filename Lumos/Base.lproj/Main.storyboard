@@ -251,7 +251,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="action" id="cCq-cL-sll">
                                 <connections>
-                                    <segue destination="rbR-yE-SLm" kind="show" id="MQl-4E-6fQ"/>
+                                    <segue destination="rbR-yE-SLm" kind="show" identifier="PostSegue" id="MQl-4E-6fQ"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="add" id="Kon-KW-Ley">
@@ -266,7 +266,7 @@
                         <outlet property="addPopoverView" destination="uJ7-sy-mFc" id="8ds-Af-S4Y"/>
                         <outlet property="collectionView" destination="ji9-mB-grC" id="8dp-Da-Cwu"/>
                         <outlet property="playPauseButton" destination="t1W-4M-E0Z" id="6IS-Oc-GdJ"/>
-                        <segue destination="rbR-yE-SLm" kind="show" identifier="PostSegue" id="WBj-KG-sZQ"/>
+                        <segue destination="2uZ-XV-J6w" kind="presentation" identifier="SigninSegue" id="pR2-pI-Ygd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sib-9Z-J3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -321,6 +321,60 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="1632.8" y="770.46476761619192"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nJT-sk-bWh">
+            <objects>
+                <navigationController id="2uZ-XV-J6w" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aeH-YI-V4W">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="amd-cP-OOi" kind="relationship" relationship="rootViewController" id="lWU-ND-nc5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ol6-XK-P2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2465" y="347"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bWO-Yi-LUL">
+            <objects>
+                <viewController id="amd-cP-OOi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vct-dw-bSd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign in with your Micro.blog account to publish your microcast to Micro.blog:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVW-Lx-4Zw">
+                                <rect key="frame" x="16" y="214" width="326" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DXd-Hi-nrY">
+                                <rect key="frame" x="117" y="78" width="140" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aFj-SJ-b0K">
+                                <rect key="frame" x="16" y="296" width="326" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qmq-9u-dpF"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Frp-gf-Xvz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xKh-hL-gRj"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A9p-o4-6f6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3216.8000000000002" y="346.77661169415296"/>
         </scene>
         <!--Post Controller-->
         <scene sceneID="hpZ-7g-LoC">
@@ -381,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="riP-ze-7eN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2405.5999999999999" y="771.36431784107947"/>
+            <point key="canvasLocation" x="2466" y="1026"/>
         </scene>
     </scenes>
     <resources>
@@ -389,7 +443,4 @@
         <image name="mic_small" width="16" height="16"/>
         <image name="play" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="MQl-4E-6fQ"/>
-    </inferredMetricsTieBreakers>
 </document>
