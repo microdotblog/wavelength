@@ -107,14 +107,30 @@ static const NSString* kItemStatusContext;
 
 - (void) updatePlayback:(CMTime)time
 {
-	AVPlayerItem* item = self.player.currentItem;
-	Float64 duration = CMTimeGetSeconds (item.duration);
-	Float64 offset = CMTimeGetSeconds (time);
-	CGFloat progress = offset / duration;
+//	AVPlayerItem* item = self.player.currentItem;
+//	Float64 episode_duration = CMTimeGetSeconds (item.duration);
+	Float64 episode_offset = CMTimeGetSeconds (time);
+	Float64 current_offset = 0;
 
-	NSIndexPath* index_path = [NSIndexPath indexPathForItem:0 inSection:0];
-	LUSegmentCell* cell = (LUSegmentCell *)[self.collectionView cellForItemAtIndexPath:index_path];
-	[cell updatePercentComplete:progress];
+	for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
+		NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
+		LUSegmentCell* cell = (LUSegmentCell *)[self.collectionView cellForItemAtIndexPath:index_path];
+
+		NSString* path = [self.episode.audioSegmentPaths objectAtIndex:i];
+		NSURL* url = [NSURL fileURLWithPath:path];
+		AVAsset* asset = [AVAsset assetWithURL:url];
+		Float64 segment_duration = CMTimeGetSeconds (asset.duration);
+		if ((episode_offset > current_offset) && (episode_offset < (current_offset + segment_duration))) {
+			Float64 segment_offset = episode_offset - current_offset;
+			Float64 segment_progress = segment_offset / segment_duration;
+			[cell updatePercentComplete:segment_progress];
+		}
+		else {
+			[cell updatePercentComplete:0.0];
+		}
+		
+		current_offset = current_offset + segment_duration;
+	}
 }
 
 - (void) updatePlayButton
