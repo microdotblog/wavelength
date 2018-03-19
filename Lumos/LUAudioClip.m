@@ -116,12 +116,10 @@
 		EZAudioFloatData* audioData = [audioFile getWaveformData];
 		if (audioData)
 		{
-			[self.audioPlot updateBuffer:audioData.buffers[0] withBufferSize:audioData.bufferSize];
+			[self.audioPlot setSampleData:audioData.buffers[0] length:audioData.bufferSize];
 		}
 	}
 
-    self.player = [EZAudioPlayer audioPlayerWithDelegate:self];
-	
 	[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
 
 	return true;
@@ -133,7 +131,7 @@
 	EZAudioFloatData* audioData = [audioFile getWaveformData];
 	if (audioData)
 	{
-		[self.audioPlot updateBuffer:audioData.buffers[0] withBufferSize:audioData.bufferSize];
+		[self.audioPlot setSampleData:audioData.buffers[0] length:audioData.bufferSize];
 	}
 
 	CGRect previousFrame = self.audioPlot.frame;
@@ -177,6 +175,11 @@
 
 - (void) play
 {
+	if (!self.player)
+	{
+		self.player = [EZAudioPlayer audioPlayerWithDelegate:self];
+	}
+	
     EZAudioFile* audioFile = [EZAudioFile audioFileWithURL:self.destination];
 	EZAudioFloatData* data = [audioFile getWaveformData];
 	
