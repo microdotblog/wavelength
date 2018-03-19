@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "PopoverView.h"
 
@@ -19,5 +20,6 @@
 
 @property (strong, nonatomic) LUEpisode* episode;
 @property (weak, nonatomic) PopoverView* addPopover;
+@property (strong, nonnull) AVPlayer* player;
 
 @end

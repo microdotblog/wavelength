@@ -216,6 +216,9 @@
                                             <constraint firstAttribute="width" constant="56" id="hYZ-v7-xap"/>
                                         </constraints>
                                         <state key="normal" image="play"/>
+                                        <connections>
+                                            <action selector="play:" destination="t5R-7u-r5x" eventType="touchUpInside" id="ipZ-bE-nh7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

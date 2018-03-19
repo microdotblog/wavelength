@@ -57,6 +57,15 @@ static CGFloat const kCellPadding = 10.0;
 {
 }
 
+- (IBAction) play:(id)sender
+{
+	AVMutableComposition* composition = [self makeComposition];
+	
+	AVPlayerItem* item = [AVPlayerItem playerItemWithAsset:composition];
+	self.player = [AVPlayer playerWithPlayerItem:item];
+	[self.player play];
+}
+
 - (void) popoverViewDidDismiss:(PopoverView *)popoverView
 {
 }
@@ -67,6 +76,36 @@ static CGFloat const kCellPadding = 10.0;
 	CGFloat h = 90.0;
 	
 	return CGSizeMake (w, h);
+}
+
+- (AVMutableComposition *) makeComposition
+{
+	AVMutableComposition* composition = [AVMutableComposition composition];
+	AVMutableCompositionTrack* audio_track = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+
+	CMTime offset = kCMTimeZero;
+	for (NSString* audio_path in [self.episode audioSegmentPaths]) {
+		AVAsset* asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:audio_path]];
+		AVAssetTrack* asset_track = [[asset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
+		[audio_track insertTimeRange:CMTimeRangeMake(kCMTimeZero, asset_track.timeRange.duration) ofTrack:asset_track atTime:offset error:nil];
+		offset = CMTimeAdd (offset, asset_track.timeRange.duration);
+	}
+	
+	return composition;
+}
+
+- (void) exportCompositionToPath:(NSString *)path
+{
+	AVMutableComposition* composition = [self makeComposition];
+	AVAssetExportSession* exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+	exporter.outputURL = [NSURL fileURLWithPath:path];
+	exporter.outputFileType = AVFileTypeMPEGLayer3;
+	[exporter exportAsynchronouslyWithCompletionHandler:^{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if (exporter.status == AVAssetExportSessionStatusCompleted) {
+			}
+		});
+	}];
 }
 
 #pragma mark -
