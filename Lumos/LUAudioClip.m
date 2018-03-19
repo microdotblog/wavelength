@@ -63,7 +63,13 @@
 			NSData* imageData = UIImagePNGRepresentation(image);
 			if (imageData)
 			{
-				[imageData writeToURL:thumbnail_url atomically:YES];
+				NSError* error = nil;
+				[imageData writeToURL:thumbnail_url options:NSDataWritingFileProtectionNone error:&error];
+				
+				if (error)
+				{
+					NSLog(@"Error = %@", error);
+				}
 			}
 			
 			self.thumbnailImage = image;

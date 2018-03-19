@@ -21,5 +21,4 @@
 	- (void) record;
 	- (void) stop;
 
-	- (UIImage*) renderWaveImage:(CGSize)size;
 @end

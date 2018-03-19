@@ -13,6 +13,7 @@
 
 @import AVFoundation;
 
+// Private declaration
 @interface LUAudioClip()
 	@property (nonatomic, strong) EZAudioPlot* audioPlot;
 @end
@@ -97,7 +98,9 @@
 
 + (NSURL*) applicationDocumentsDirectory
 {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL* url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+	//NSLog(@"Documents Directory = %@", url);
+	return url;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -167,31 +170,6 @@
 	self.recorder.delegate = nil;
 	
 	[super stop];
-}
-
-- (UIImage*) renderWaveImage:(CGSize)size
-{
-	CGRect previousFrame = self.audioPlot.frame;
-	
-	self.audioPlot.frame = CGRectMake(0, 0, size.width, size.height);
-	[self.audioPlot redraw];
-
-	CALayer* layer = self.audioPlot.waveformLayer;
-	CGRect bounds = layer.bounds;
-	layer.bounds = CGRectMake(0, 0, size.width, size.height);
-	
-	UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
-	
-    [layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
-
-    UIGraphicsEndImageContext();
-	
-    layer.bounds = bounds;
-
-	self.audioPlot.frame = previousFrame;
-	
-    return outputImage;
 }
 
 - (UIView*) requestAudioInputView

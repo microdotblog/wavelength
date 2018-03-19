@@ -76,7 +76,12 @@
 	
 	if (foundArray)
 	{
-		self.audioSegmentPaths = [NSMutableArray arrayWithArray:foundArray];
+		self.audioSegmentPaths = [NSMutableArray array];
+		for (NSString* relativePath in foundArray)
+		{
+			NSString* fullPath = [self.path stringByAppendingPathComponent:relativePath];
+			[self.audioSegmentPaths addObject:fullPath];
+		}
 	}
 	
 	if (!self.audioSegmentPaths.count)
@@ -100,7 +105,15 @@
 - (void) saveFileInfo
 {
 	NSString* clips_info_path = [self.path stringByAppendingPathComponent:@"clips.plist"];
-	NSDictionary* clipDictionary = @{ @"clips" : self.audioSegmentPaths };
+	
+	NSMutableArray* relativePaths = [NSMutableArray array];
+	for (NSString* absolutePath in self.audioSegmentPaths)
+	{
+		NSString* fileName = absolutePath.lastPathComponent;
+		[relativePaths addObject:fileName];
+	}
+	
+	NSDictionary* clipDictionary = @{ @"clips" : relativePaths };
 	[clipDictionary writeToFile:clips_info_path atomically:YES];
 }
 

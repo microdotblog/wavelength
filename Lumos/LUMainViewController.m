@@ -133,6 +133,10 @@
 		NSData* d = UIImagePNGRepresentation(previewImage);
 		NSString* preview_filepath = [episodePath stringByAppendingPathComponent:@"preview.png"];
 		[d writeToFile:preview_filepath atomically:NO];
+		
+		NSString* thumbnail_filepath = self.audioRecorder.destination.path;
+		thumbnail_filepath = [thumbnail_filepath stringByAppendingString:@"-thumbnail.png"];
+		[d writeToFile:thumbnail_filepath atomically:NO];
 
 		LUEpisode* episode = [[LUEpisode alloc] initWithFolder:episodePath];
 		episode.previewImage = previewImage;
