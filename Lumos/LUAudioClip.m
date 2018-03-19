@@ -42,10 +42,14 @@
 
 - (void) loadThumbnailImage
 {
-	NSString* thumbnailPath = [self.destination.absoluteString stringByAppendingString:@"-thumbnail.png"];
-	if ([[NSFileManager defaultManager] fileExistsAtPath:thumbnailPath])
+	NSString* thumbnail_filename = [self.destination lastPathComponent];
+	NSURL* thumbnail_base = [self.destination URLByDeletingLastPathComponent];
+	thumbnail_filename = [thumbnail_filename stringByAppendingString:@"-thumbnail.png"];
+	NSURL* thumbnail_url = [thumbnail_base URLByAppendingPathComponent:thumbnail_filename];
+	
+	if ([[NSFileManager defaultManager] fileExistsAtPath:thumbnail_url.path])
 	{
-		self.thumbnailImage = [UIImage imageWithContentsOfFile:thumbnailPath];
+		self.thumbnailImage = [UIImage imageWithContentsOfFile:thumbnail_url.path];
 	}
 	else
 	{
@@ -57,7 +61,7 @@
 			NSData* imageData = UIImagePNGRepresentation(image);
 			if (imageData)
 			{
-				[imageData writeToURL:[NSURL URLWithString:thumbnailPath] atomically:YES];
+				[imageData writeToURL:thumbnail_url atomically:YES];
 			}
 			
 			self.thumbnailImage = image;
