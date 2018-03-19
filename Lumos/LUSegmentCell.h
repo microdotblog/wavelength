@@ -11,5 +11,8 @@
 @interface LUSegmentCell : UICollectionViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView* previewImageView;
+@property (strong, nonatomic) IBOutlet UIView* positionLine;
+
+- (void) updatePercentComplete:(CGFloat)value;
 
 @end

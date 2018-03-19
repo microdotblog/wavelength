@@ -22,4 +22,18 @@
 	}
 }
 
+- (void) updatePercentComplete:(CGFloat)value
+{
+	if (value == 0.0) {
+		self.positionLine.hidden = YES;
+	}
+	else {
+		CGFloat x = self.bounds.size.width * value;
+		CGRect r = self.positionLine.frame;
+		r.origin.x = x;
+		self.positionLine.frame = r;
+		self.positionLine.hidden = NO;
+	}
+}
+
 @end

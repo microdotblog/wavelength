@@ -69,16 +69,19 @@ static const NSString* kItemStatusContext;
 		
 		AVPlayerItem* item = [AVPlayerItem playerItemWithAsset:composition];
 		[item addObserver:self forKeyPath:@"status" options:0 context:&kItemStatusContext];
-
-//		CMTime interval = CMTimeMake (250, item.duration.timescale);
-//		[self.player addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
-//			dispatch_async (dispatch_get_main_queue(), ^{
-//			});
-//		}];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
 
 		self.player = [AVPlayer playerWithPlayerItem:item];
+
+		CMTime interval = CMTimeMakeWithSeconds (0.1, NSEC_PER_SEC);
+		__weak LUEditController* weak_self = self;
+		[self.player addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
+			dispatch_async (dispatch_get_main_queue(), ^{
+				[weak_self updatePlayback:time];
+			});
+		}];
+
 		[self.player play];
 	}
 	
@@ -100,6 +103,18 @@ static const NSString* kItemStatusContext;
 	else {
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
+}
+
+- (void) updatePlayback:(CMTime)time
+{
+	AVPlayerItem* item = self.player.currentItem;
+	Float64 duration = CMTimeGetSeconds (item.duration);
+	Float64 offset = CMTimeGetSeconds (time);
+	CGFloat progress = offset / duration;
+
+	NSIndexPath* index_path = [NSIndexPath indexPathForItem:0 inSection:0];
+	LUSegmentCell* cell = (LUSegmentCell *)[self.collectionView cellForItemAtIndexPath:index_path];
+	[cell updatePercentComplete:progress];
 }
 
 - (void) updatePlayButton
@@ -179,6 +194,7 @@ static const NSString* kItemStatusContext;
 	cell.previewImageView.layer.cornerRadius = 3.0;
 	cell.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 	cell.previewImageView.layer.borderWidth = 0.5;
+	cell.positionLine.hidden = YES;
 	
 	return cell;
 }
