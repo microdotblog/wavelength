@@ -12,84 +12,14 @@
 
 @import AVFoundation;
 
-@interface LUAudioClip()<EZMicrophoneDelegate, EZRecorderDelegate, EZAudioPlayerDelegate>
+@interface LUAudioClip()<EZAudioPlayerDelegate>
 	@property (nonatomic, strong) NSURL* destination;
 	@property (nonatomic, strong) EZAudioPlot* audioPlot;
-	@property (nonatomic, strong) EZMicrophone* microphone;
-	@property (nonatomic, strong) EZRecorder* recorder;
 	@property (nonatomic, strong) EZAudioPlayer *player;
+	@property (nonatomic, strong) UIImage* thumbnailImage;
 @end
 
 @implementation LUAudioClip
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-+ (BOOL) canRecord
-{
-	AVAudioSession* audioSession = [AVAudioSession sharedInstance];
-
-	NSError* err = nil;
-	[audioSession setCategory :AVAudioSessionCategoryPlayAndRecord error:&err];
-
-	if(err)
-	{
-		NSLog(@"audioSession: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
-    	return FALSE;
-	}
-
-	[audioSession setActive:YES error:&err];
-	err = nil;
-	if(err)
-	{
-		NSLog(@"audioSession: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
-    	return FALSE;
-	}
-
-	if (!audioSession.inputAvailable)
-	{
-		NSLog(@"This device does not have the ability to record.");
-    	return FALSE;
-	}
-
-
-	return TRUE;
-}
-
-+ (NSURL*) generateTimeStampedFileURL
-{
-	NSURL* documentsDirectory = [self applicationDocumentsDirectory];
-	
-	NSDate* now = [NSDate dateWithTimeIntervalSinceNow:0];
-	NSString* dateString = [now description];
-	NSString* fileName = [NSString stringWithFormat:@"%@.caf", dateString];
-	
-	NSString* episodeName = [now uuIso8601DateString];
-	NSURL* episodeDirectory = nil;
-	BOOL found = NO;
-	NSInteger i = 1;
-	while (!found) {
-		episodeDirectory = [documentsDirectory URLByAppendingPathComponent:episodeName];
-		if ([[NSFileManager defaultManager] fileExistsAtPath:episodeDirectory.path]) {
-			i++;
-			episodeName = [NSString stringWithFormat:@"%@ (%ld)", [now uuIso8601DateString], (long)i];
-		}
-		else {
-			found = YES;
-			[[NSFileManager defaultManager] createDirectoryAtURL:episodeDirectory withIntermediateDirectories:NO attributes:nil error:NULL];
-		}
-	}
-	
-	NSURL* recorderFilePath = [episodeDirectory URLByAppendingPathComponent:fileName];
-	return recorderFilePath;
-}
-
-+ (NSURL*) applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark-
@@ -101,13 +31,45 @@
 	if (self)
 	{
 		self.destination = destinationUrl;
-		[self setup];
+		
+		[self setupPlotAndPlayer];
+		
+		[self loadThumbnailImage];
 	}
 	
 	return self;
 }
 
-- (BOOL) setup
+- (void) loadThumbnailImage
+{
+	NSString* thumbnailPath = [self.destination.absoluteString stringByAppendingString:@"-thumbnail.png"];
+	if ([[NSFileManager defaultManager] fileExistsAtPath:thumbnailPath])
+	{
+		self.thumbnailImage = [UIImage imageWithContentsOfFile:thumbnailPath];
+	}
+	else
+	{
+		CGSize preview_size = CGSizeMake (150, 54);
+
+		UIImage* image = [self renderWaveImage:preview_size];
+		if (image)
+		{
+			NSData* imageData = UIImagePNGRepresentation(image);
+			if (imageData)
+			{
+				[imageData writeToURL:[NSURL URLWithString:thumbnailPath] atomically:YES];
+			}
+			
+			self.thumbnailImage = image;
+		}
+		else
+		{
+			NSLog(@"ERROR! Unable to load or render waveform!");
+		}
+	}
+}
+
+- (BOOL) setupPlotAndPlayer
 {
 	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
 
@@ -131,24 +93,21 @@
 	self.audioPlot = [[EZAudioPlot alloc] init];
     self.audioPlot.color = [UIApplication sharedApplication].windows.firstObject.tintColor;
     self.audioPlot.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
-    self.audioPlot.plotType = EZPlotTypeBuffer;
+    self.audioPlot.plotType = EZPlotTypeRolling;
     self.audioPlot.shouldFill = YES;
     self.audioPlot.shouldMirror = YES;
     self.audioPlot.shouldOptimizeForRealtimePlot = NO;
 
-    EZAudioFile* audioFile = [EZAudioFile audioFileWithURL:self.destination];
-	EZAudioFloatData* audioData = [audioFile getWaveformData];
-	if (audioData)
+	if ([[NSFileManager defaultManager] fileExistsAtPath:self.destination.absoluteString])
 	{
-		[self.audioPlot updateBuffer:audioData.buffers[0] withBufferSize:audioData.bufferSize];
+    	EZAudioFile* audioFile = [EZAudioFile audioFileWithURL:self.destination];
+		EZAudioFloatData* audioData = [audioFile getWaveformData];
+		if (audioData)
+		{
+			[self.audioPlot updateBuffer:audioData.buffers[0] withBufferSize:audioData.bufferSize];
+		}
 	}
-	
-    //
-    // Create the microphone
-    //
-    self.microphone = [EZMicrophone microphoneWithDelegate:self];
-	self.microphone.delegate = self;
-	
+
     self.player = [EZAudioPlayer audioPlayerWithDelegate:self];
 	
 	[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
@@ -158,6 +117,13 @@
 
 - (UIImage*) renderWaveImage:(CGSize)size
 {
+	EZAudioFile* audioFile = [EZAudioFile audioFileWithURL:self.destination];
+	EZAudioFloatData* audioData = [audioFile getWaveformData];
+	if (audioData)
+	{
+		[self.audioPlot updateBuffer:audioData.buffers[0] withBufferSize:audioData.bufferSize];
+	}
+
 	CGRect previousFrame = self.audioPlot.frame;
 	
 	self.audioPlot.frame = CGRectMake(0, 0, size.width, size.height);
@@ -181,90 +147,43 @@
     return outputImage;
 }
 
+- (UIImage*) waveFormImage
+{
+	if (!self.thumbnailImage)
+	{
+		[self loadThumbnailImage];
+	}
+	
+	return self.thumbnailImage;
+}
+
+
 - (UIView*) requestAudioInputView
 {
 	return self.audioPlot;
 }
 
-- (void) record
-{
-    self.audioPlot.plotType        = EZPlotTypeBuffer;
-    self.audioPlot.shouldFill      = YES;
-    self.audioPlot.shouldMirror    = YES;
-
-	self.recorder = [EZRecorder recorderWithURL:self.destination
-                                       clientFormat:[self.microphone audioStreamBasicDescription]
-                                           fileType:EZRecorderFileTypeM4A
-                                           delegate:self];
-	
-	[self.microphone startFetchingAudio];
-}
-
 - (void) play
 {
     EZAudioFile* audioFile = [EZAudioFile audioFileWithURL:self.destination];
+	EZAudioFloatData* data = [audioFile getWaveformData];
+	
+	[self.audioPlot setSampleData:data.buffers[0]  length:data.bufferSize];
+
     [self.player playAudioFile:audioFile];
 }
 
 - (void) stop
 {
-    [self.microphone stopFetchingAudio];
-
-	[self.recorder closeAudioFile];
-	self.recorder.delegate = nil;
-	
-
 	[self.player pause];
 	[self.player seekToFrame:0];
 
-	self.audioPlot.plotType = EZPlotTypeBuffer;
+	self.audioPlot.plotType = EZPlotTypeRolling;
 
 	EZAudioFile *audioFile = [EZAudioFile audioFileWithURL:self.destination];
 	EZAudioFloatData* data = [audioFile getWaveformData];
 	
 	[self.audioPlot setSampleData:data.buffers[0]  length:data.bufferSize];
-}
-
-- (void)microphone:(EZMicrophone *)microphone hasAudioReceived:(float **)buffer withBufferSize:(UInt32)bufferSize withNumberOfChannels:(UInt32)numberOfChannels
-{
-    //
-    // Getting audio data as an array of float buffer arrays. What does that mean?
-    // Because the audio is coming in as a stereo signal the data is split into
-    // a left and right channel. So buffer[0] corresponds to the float* data
-    // for the left channel while buffer[1] corresponds to the float* data
-    // for the right channel.
-    //
-
-    //
-    // See the Thread Safety warning above, but in a nutshell these callbacks
-    // happen on a separate audio thread. We wrap any UI updating in a GCD block
-    // on the main thread to avoid blocking that audio flow.
-    //
-    __weak typeof (self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        //
-        // All the audio plot needs is the buffer data (float*) and the size.
-        // Internally the audio plot will handle all the drawing related code,
-        // history management, and freeing its own resources.
-        // Hence, one badass line of code gets you a pretty plot :)
-        //
-        [weakSelf.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
-    });
-}
-
-- (void) microphone:(EZMicrophone *)microphone hasBufferList:(AudioBufferList *)bufferList withBufferSize:(UInt32)bufferSize withNumberOfChannels:(UInt32)numberOfChannels
-{
-    //
-    // Getting audio data as a buffer list that can be directly fed into the
-    // EZRecorder. This is happening on the audio thread - any UI updating needs
-    // a GCD main queue block. This will keep appending data to the tail of the
-    // audio file.
-    //
-    if (self.recorder)
-    {
-        [self.recorder appendDataFromBufferList:bufferList
-                                 withBufferSize:bufferSize];
-    }
 }
 
 //------------------------------------------------------------------------------

@@ -119,13 +119,13 @@ static CGFloat const kCellPadding = 10.0;
 {
 	LUSegmentCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SegmentCell" forIndexPath:indexPath];
 	
-	CGSize size = [self bestCellSize];
+	//CGSize size = [self bestCellSize];
 	
 	NSString* audio_path = [[self.episode audioSegmentPaths] objectAtIndex:indexPath.item];
-	NSURL* audio_url = [NSURL fileURLWithPath:audio_path isDirectory:NO];
+	NSURL* audio_url = [NSURL fileURLWithPath:audio_path];
 	
 	LUAudioClip* audioData = [[LUAudioClip alloc] initWithDestination:audio_url];
-	cell.previewImageView.image = [audioData renderWaveImage:size];
+	cell.previewImageView.image = audioData.waveFormImage;//[audioData renderWaveImage:size];
 	
 	cell.previewImageView.layer.cornerRadius = 3.0;
 	cell.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;

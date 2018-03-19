@@ -56,6 +56,10 @@
 		{
 			self.previewImage = [[UIImage alloc] initWithContentsOfFile:preview_path];
 		}
+		else
+		{
+			return nil;
+		}
 		
 		[self loadFileInfo];
 	}

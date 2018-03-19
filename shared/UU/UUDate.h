@@ -102,6 +102,7 @@
 // Returns the numerical value of the hour or minute ie - 6, 7 or 10
 - (NSString*) uuHour;
 - (NSString*) uuMinute;
+- (NSString*) uuSecond;
 
 // Returns a relative time, such as "22 minutes ago" or "1 day ago", or "now"
 - (NSString*) uuFormatAsDeltaFromNow; // Passes YES for adjustTimeZone

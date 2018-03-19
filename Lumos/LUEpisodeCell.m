@@ -9,12 +9,14 @@
 #import "LUEpisodeCell.h"
 
 #import "LUEpisode.h"
+#import "UUString.h"
+
 
 @implementation LUEpisodeCell
 
 - (void) setupWithEpisode:(LUEpisode *)episode
 {
-	self.titleField.text = episode.title;
+	self.titleField.text = [episode.title uuUrlDecoded];
 	self.previewImageView.image = episode.previewImage;
 
 	self.durationField.text = episode.duration;

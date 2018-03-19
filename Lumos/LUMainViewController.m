@@ -8,6 +8,7 @@
 
 #import "LUMainViewController.h"
 
+#import "LUAudioRecorder.h"
 #import "LUAudioClip.h"
 #import "LUEpisode.h"
 #import "LUEpisodeCell.h"
@@ -18,7 +19,7 @@
 	@property (nonatomic, strong) IBOutlet UIView* waveFormViewContainer;
 	@property (nonatomic, strong) IBOutlet UITableView* tableView;
 
-	@property (nonatomic, strong) LUAudioClip* audioRecorder;
+	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
 	@property (nonatomic, strong) NSMutableArray* episodes; // LUEpisode
 	@property (nonatomic, assign) BOOL isRecording;
 @end
@@ -42,9 +43,10 @@
 - (void) setupAudio
 {
 	if (self.audioRecorder == nil) {
-		NSURL* path = [LUAudioClip generateTimeStampedFileURL];
-		self.audioRecorder = [[LUAudioClip alloc] initWithDestination:path];
+		NSURL* path = [LUAudioRecorder generateTimeStampedFileURL];
+		self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:path];
 
+		/*
 		__weak LUMainViewController* weakSelf = self;
 		self.audioRecorder.playbackCompleteCallback = ^(LUAudioClip* audioRecorder)
 		{
@@ -54,6 +56,7 @@
 				[weakSelf updateRecordButton];
 			});
 		};
+		*/
 		
 		UIView* waveFormView = [self.audioRecorder requestAudioInputView];
 		waveFormView.frame = self.waveFormViewContainer.bounds;
@@ -75,7 +78,11 @@
 		[[NSFileManager defaultManager] fileExistsAtPath:url.path isDirectory:&is_dir];
 		if (is_dir) {
 			LUEpisode* episode = [[LUEpisode alloc] initWithFolder:url.path];
-			[self.episodes addObject:episode];
+			
+			if (episode)
+			{
+				[self.episodes addObject:episode];
+			}
 		}
 	}
 }
@@ -112,9 +119,11 @@
 	{
 		self.isRecording = NO;
 		[self updateRecordButton];
+		
+		[self.audioRecorder stop];
 
 		self.waveFormViewContainer.hidden = YES;
-		[self.audioRecorder stop];
+		//[self.audioRecorder stop];
 		
 		CGSize preview_size = CGSizeMake (150, 54);
 		

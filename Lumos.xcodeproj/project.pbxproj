@@ -26,6 +26,7 @@
 		4B74C95D205CB2030050A105 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C95C205CB2030050A105 /* PopoverView.m */; };
 		4B74C966205D75CB0050A105 /* test.m4a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B74C962205D75860050A105 /* test.m4a */; };
 		4B74C969205D77760050A105 /* UUString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C968205D77760050A105 /* UUString.m */; };
+		C5357B2520602B750067413C /* LUAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C5357B2420602B750067413C /* LUAudioRecorder.m */; };
 		C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC329B205774A600D0594B /* LUAppDelegate.m */; };
 		C5DC32A2205774A600D0594B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A0205774A600D0594B /* Main.storyboard */; };
 		C5DC32A4205774A600D0594B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A3205774A600D0594B /* Assets.xcassets */; };
@@ -88,6 +89,8 @@
 		4B74C968205D77760050A105 /* UUString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUString.m; sourceTree = "<group>"; };
 		7C13C85763A56F0C388DEA20 /* Pods-Lumos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lumos/Pods-Lumos.release.xcconfig"; sourceTree = "<group>"; };
 		9CA3ED3895EE9FE2D946DF9D /* Pods-Lumos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lumos/Pods-Lumos.debug.xcconfig"; sourceTree = "<group>"; };
+		C5357B2320602B750067413C /* LUAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAudioRecorder.h; sourceTree = "<group>"; };
+		C5357B2420602B750067413C /* LUAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAudioRecorder.m; sourceTree = "<group>"; };
 		C5DC3297205774A600D0594B /* Lumos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DC329A205774A600D0594B /* LUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAppDelegate.h; sourceTree = "<group>"; };
 		C5DC329B205774A600D0594B /* LUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAppDelegate.m; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 			children = (
 				C5DC32BE20586E8500D0594B /* LUAudioClip.h */,
 				C5DC32BF20586E8500D0594B /* LUAudioClip.m */,
+				C5357B2320602B750067413C /* LUAudioRecorder.h */,
+				C5357B2420602B750067413C /* LUAudioRecorder.m */,
 				C5DC329A205774A600D0594B /* LUAppDelegate.h */,
 				C5DC329B205774A600D0594B /* LUAppDelegate.m */,
 				4B74C8C6205A26180050A105 /* LUEpisode.h */,
@@ -388,6 +393,7 @@
 				4B74C93E205A39990050A105 /* UUColor.m in Sources */,
 				C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */,
 				4B74C949205A39AB0050A105 /* UUImageCache.m in Sources */,
+				C5357B2520602B750067413C /* LUAudioRecorder.m in Sources */,
 				4B74C950205A39CD0050A105 /* UUHttpSession.m in Sources */,
 				4B74C941205A39A00050A105 /* UUDate.m in Sources */,
 			);
