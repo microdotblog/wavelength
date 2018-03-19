@@ -10,6 +10,9 @@
 #import "PopoverView_Configuration.h"
 #import <QuartzCore/QuartzCore.h>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Weverything"
+
 #pragma mark - Implementation
 
 @implementation PopoverView
@@ -1083,3 +1086,5 @@
 }
 
 @end
+
+#pragma clang diagnostic pop
