@@ -25,8 +25,8 @@
 {
 	self.splitButton.layer.cornerRadius = 28.0;
 	self.splitButton.layer.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
-	self.splitButton.layer.borderColor = [UIColor colorWithWhite:0.4 alpha:1.0].CGColor;
-	self.splitButton.layer.borderWidth = 0.5;
+	self.splitButton.layer.borderColor = [UIColor colorWithWhite:0.6 alpha:1.0].CGColor;
+	self.splitButton.layer.borderWidth = 1.0;
 	self.splitButton.clipsToBounds = YES;
 }
 

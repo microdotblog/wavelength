@@ -537,7 +537,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UY2-UI-kO3">
-                                <rect key="frame" x="187" y="64" width="1" height="472"/>
+                                <rect key="frame" x="187" y="64" width="1" height="471"/>
                                 <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="dq2-Zm-MfO"/>
@@ -554,7 +554,7 @@
                             <constraint firstItem="odl-wd-qay" firstAttribute="leading" secondItem="I8F-oX-It9" secondAttribute="leading" id="HIl-56-CRv"/>
                             <constraint firstItem="UY2-UI-kO3" firstAttribute="centerX" secondItem="I8F-oX-It9" secondAttribute="centerX" id="Iui-Ig-yhA"/>
                             <constraint firstItem="A30-Uk-Tul" firstAttribute="top" secondItem="odl-wd-qay" secondAttribute="bottom" id="UQc-3A-XzZ"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="UY2-UI-kO3" secondAttribute="bottom" constant="87" id="hOm-Iy-rBc"/>
+                            <constraint firstItem="UY2-UI-kO3" firstAttribute="bottom" secondItem="odl-wd-qay" secondAttribute="bottom" constant="32" id="bqI-Ou-rpP"/>
                             <constraint firstItem="odl-wd-qay" firstAttribute="top" secondItem="I8F-oX-It9" secondAttribute="top" id="rF5-sp-5AO"/>
                             <constraint firstItem="UY2-UI-kO3" firstAttribute="top" secondItem="MFu-qH-RoV" secondAttribute="topMargin" id="zsr-Dz-gLW"/>
                         </constraints>
