@@ -23,4 +23,7 @@
 
 	// Where did this file get written
 	@property (nonatomic, readonly) NSURL* destination;
+	@property (nonatomic, readonly) NSTimeInterval duration;
+	@property (nonatomic, readonly) NSString* durationString;
+
 @end

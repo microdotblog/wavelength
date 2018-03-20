@@ -341,6 +341,7 @@ static const NSString* kItemStatusContext;
 	LUAudioClip* audioData = [[LUAudioClip alloc] initWithDestination:audio_url];
 	cell.previewImageView.image = audioData.waveFormImage;//[audioData renderWaveImage:size];
 	
+	cell.durationField.text = audioData.durationString;
 	cell.previewImageView.layer.cornerRadius = 3.0;
 	cell.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 	cell.previewImageView.layer.borderWidth = 0.5;
@@ -351,6 +352,7 @@ static const NSString* kItemStatusContext;
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
+	[self editSegmentAtIndexPath:indexPath];
 }
 
 - (void) collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(nonnull NSIndexPath *)indexPath

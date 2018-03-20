@@ -17,6 +17,8 @@
 	@property (nonatomic, strong) EZAudioPlot* audioPlot;
 	@property (nonatomic, strong) EZAudioPlayer *player;
 	@property (nonatomic, strong) UIImage* thumbnailImage;
+	@property (nonatomic, assign) NSTimeInterval duration;
+	@property (nonatomic, strong) NSString* durationString;
 @end
 
 @implementation LUAudioClip
@@ -118,6 +120,9 @@
 		{
 			[self.audioPlot setSampleData:audioData.buffers[0] length:audioData.bufferSize];
 		}
+		
+		self.duration = audioFile.duration;
+		self.durationString = audioFile.formattedDuration;
 	}
 
 	[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
@@ -166,7 +171,6 @@
 	
 	return self.thumbnailImage;
 }
-
 
 - (UIView*) requestAudioInputView
 {

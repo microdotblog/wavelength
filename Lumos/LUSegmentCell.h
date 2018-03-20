@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView* previewImageView;
 @property (strong, nonatomic) IBOutlet UIView* positionLine;
+@property (strong, nonatomic) IBOutlet UILabel* durationField;
 
 - (void) updatePercentComplete:(CGFloat)value;
 
