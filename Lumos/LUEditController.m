@@ -43,8 +43,13 @@ static const NSString* kItemStatusContext;
 - (IBAction) onCancelRecord:(id)sender
 {
 	self.isInRecordMode = NO;
-	
-	[UIView animateWithDuration:0.15 animations:^
+
+	self.playPauseButton.layer.cornerRadius = 0.0;
+	self.playPauseButton.layer.backgroundColor = nil;
+
+	[self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+
+	[UIView animateWithDuration:0.3 animations:^
 	{
 		self.recordingDimView.alpha = 0.0;
 	}];
@@ -73,10 +78,14 @@ static const NSString* kItemStatusContext;
 	
 	[self.addPopover dismiss];
 	
-	[UIView animateWithDuration:0.15 animations:^
+	[UIView animateWithDuration:0.3 animations:^
 	{
 		self.recordingDimView.alpha = 1.0;
 	}];
+
+	self.playPauseButton.layer.cornerRadius = 28.0;
+	self.playPauseButton.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5].CGColor;
+	self.playPauseButton.clipsToBounds = YES;
 
 	[self.playPauseButton setImage:[UIImage imageNamed:@"mic"] forState:UIControlStateNormal];
 }
@@ -148,6 +157,7 @@ static const NSString* kItemStatusContext;
 
 	[self.audioRecorder record];
 	self.waveFormViewContainer.hidden = NO;
+
 	[self.playPauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
 }
 
@@ -166,10 +176,13 @@ static const NSString* kItemStatusContext;
 	self.audioRecorder = nil;
 	
 	self.isInRecordMode = NO;
-	
+
+	self.playPauseButton.layer.cornerRadius = 0;
+	self.playPauseButton.layer.backgroundColor = nil;
+
 	[self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
 	
-	[UIView animateWithDuration:0.15 animations:^
+	[UIView animateWithDuration:0.3 animations:^
 	{
 		self.recordingDimView.alpha = 0.0;
 	}];
