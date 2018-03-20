@@ -133,7 +133,15 @@ static const NSString* kItemStatusContext;
 	NSString* fileName = destination.path.lastPathComponent;
 	destination = [[NSURL fileURLWithPath:self.episode.path] URLByAppendingPathComponent:fileName];
 	self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:destination];
+	self.timerLabel.hidden = NO;
+	self.timerLabel.text = @"00:00";
 
+	__weak LUEditController* weakSelf = self;
+	self.audioRecorder.recordProgressCallback = ^(NSString* timeString)
+	{
+		weakSelf.timerLabel.text = timeString;
+	};
+	
 	UIView* waveFormView = [self.audioRecorder requestAudioInputView];
 	waveFormView.frame = self.waveFormViewContainer.bounds;
 	[self.waveFormViewContainer addSubview:waveFormView];
@@ -146,7 +154,8 @@ static const NSString* kItemStatusContext;
 - (void) stopRecording
 {
 	self.waveFormViewContainer.hidden = YES;
-
+	self.timerLabel.hidden = YES;
+	
 	// Remove the wave form...
 	[[self.audioRecorder requestAudioInputView] removeFromSuperview];
 

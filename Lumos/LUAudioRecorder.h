@@ -21,4 +21,6 @@
 	- (void) record;
 	- (void) stop;
 
+	@property (nonatomic, copy) void (^recordProgressCallback)(NSString* timeString);
+
 @end

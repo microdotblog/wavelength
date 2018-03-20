@@ -18,6 +18,7 @@
 	@property (nonatomic, strong) IBOutlet UIButton* recordStopPlayButton;
 	@property (nonatomic, strong) IBOutlet UIView* waveFormViewContainer;
 	@property (nonatomic, strong) IBOutlet UITableView* tableView;
+	@property (strong, nonatomic) IBOutlet UILabel* _Nonnull timerLabel;
 
 	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
 	@property (nonatomic, strong) NSMutableArray* episodes; // LUEpisode
@@ -45,18 +46,12 @@
 	if (self.audioRecorder == nil) {
 		NSURL* path = [LUAudioRecorder generateTimeStampedFileURL];
 		self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:path];
-
-		/*
+		
 		__weak LUMainViewController* weakSelf = self;
-		self.audioRecorder.playbackCompleteCallback = ^(LUAudioClip* audioRecorder)
+		self.audioRecorder.recordProgressCallback = ^(NSString* timeString)
 		{
-			dispatch_async(dispatch_get_main_queue(), ^
-			{
-				weakSelf.isRecording = NO;
-				[weakSelf updateRecordButton];
-			});
+			weakSelf.timerLabel.text = timeString;
 		};
-		*/
 		
 		UIView* waveFormView = [self.audioRecorder requestAudioInputView];
 		waveFormView.frame = self.waveFormViewContainer.bounds;
@@ -109,6 +104,9 @@
 
 	if (!self.isRecording)
 	{
+		self.timerLabel.hidden = NO;
+		self.timerLabel.text = @"00:00";
+		
 		self.isRecording = YES;
 		[self updateRecordButton];
 
@@ -117,6 +115,8 @@
 	}
 	else
 	{
+		self.timerLabel.hidden = YES;
+		
 		self.isRecording = NO;
 		[self updateRecordButton];
 		

@@ -124,14 +124,22 @@
                                             <action selector="onRecord:" destination="7vi-7i-8Kg" eventType="touchUpInside" id="xFZ-2h-ilu"/>
                                         </connections>
                                     </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgH-es-3c3">
+                                        <rect key="frame" x="301" y="91" width="66" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="uXV-JR-Aq4" secondAttribute="trailing" id="2Hg-Tc-SKu"/>
                                     <constraint firstItem="uXV-JR-Aq4" firstAttribute="top" secondItem="p5R-ab-qc2" secondAttribute="top" id="926-1y-4eR"/>
+                                    <constraint firstAttribute="trailing" secondItem="xgH-es-3c3" secondAttribute="trailing" constant="8" id="9CI-v5-Xit"/>
                                     <constraint firstAttribute="height" constant="120" id="KWZ-JT-zN3"/>
                                     <constraint firstItem="DzR-pJ-bnh" firstAttribute="centerX" secondItem="p5R-ab-qc2" secondAttribute="centerX" id="Tmy-pr-2ZG"/>
                                     <constraint firstItem="DzR-pJ-bnh" firstAttribute="top" secondItem="p5R-ab-qc2" secondAttribute="top" constant="29" id="WOa-sM-AyC"/>
                                     <constraint firstItem="uXV-JR-Aq4" firstAttribute="leading" secondItem="p5R-ab-qc2" secondAttribute="leading" id="jOR-lB-2hv"/>
+                                    <constraint firstAttribute="bottom" secondItem="xgH-es-3c3" secondAttribute="bottom" constant="8" id="xis-RG-Od3"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -151,6 +159,7 @@
                     <connections>
                         <outlet property="recordStopPlayButton" destination="DzR-pJ-bnh" id="Wp3-Qq-tWz"/>
                         <outlet property="tableView" destination="Wvl-IB-D5a" id="4EE-mG-ULb"/>
+                        <outlet property="timerLabel" destination="xgH-es-3c3" id="JuO-bZ-vdx"/>
                         <outlet property="view" destination="UdG-Sy-qPT" id="l21-qf-FsV"/>
                         <outlet property="waveFormViewContainer" destination="uXV-JR-Aq4" id="ady-Gy-dcC"/>
                         <segue destination="t5R-7u-r5x" kind="show" identifier="EditSegue" id="Bkl-GB-6wo"/>
@@ -251,6 +260,12 @@
                                             <action selector="play:" destination="t5R-7u-r5x" eventType="touchUpInside" id="ipZ-bE-nh7"/>
                                         </connections>
                                     </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgl-cq-hL5">
+                                        <rect key="frame" x="301" y="91" width="66" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -258,6 +273,8 @@
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="centerX" secondItem="4za-bv-mkl" secondAttribute="centerX" id="OC6-Bw-TIJ"/>
                                     <constraint firstAttribute="trailing" secondItem="pwc-QB-2DG" secondAttribute="trailing" id="Zxq-9g-wtY"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" constant="29" id="ajb-Rh-lpl"/>
+                                    <constraint firstAttribute="trailing" secondItem="sgl-cq-hL5" secondAttribute="trailing" constant="8" id="ajr-PH-ckG"/>
+                                    <constraint firstAttribute="bottom" secondItem="sgl-cq-hL5" secondAttribute="bottom" constant="8" id="m0s-uj-Eeq"/>
                                     <constraint firstItem="pwc-QB-2DG" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" id="nMR-Zz-Y8j"/>
                                     <constraint firstItem="pwc-QB-2DG" firstAttribute="leading" secondItem="4za-bv-mkl" secondAttribute="leading" id="nU4-qd-jlr"/>
                                 </constraints>
@@ -300,6 +317,7 @@
                         <outlet property="collectionView" destination="ji9-mB-grC" id="8dp-Da-Cwu"/>
                         <outlet property="playPauseButton" destination="t1W-4M-E0Z" id="6IS-Oc-GdJ"/>
                         <outlet property="recordingDimView" destination="kv4-1W-Q7a" id="cjI-nw-ZZ3"/>
+                        <outlet property="timerLabel" destination="sgl-cq-hL5" id="Lab-aH-HAf"/>
                         <outlet property="waveFormViewContainer" destination="pwc-QB-2DG" id="x2G-HZ-Grz"/>
                         <segue destination="2uZ-XV-J6w" kind="presentation" identifier="SigninSegue" id="pR2-pI-Ygd"/>
                     </connections>

@@ -202,6 +202,12 @@
         // Hence, one badass line of code gets you a pretty plot :)
         //
         [weakSelf.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
+		
+        if (weakSelf.recordProgressCallback)
+        {
+        	NSString* timeString = weakSelf.recorder.formattedCurrentTime;
+        	weakSelf.recordProgressCallback(timeString);
+		}
     });
 }
 

@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIView* _Nonnull addPopoverView;
 @property (strong, nonatomic) IBOutlet UIButton* _Nonnull playPauseButton;
 @property (strong, nonatomic) IBOutlet UIView* _Nonnull recordingDimView;
+@property (strong, nonatomic) IBOutlet UILabel* _Nonnull timerLabel;
 
 @property (strong, nonatomic) LUEpisode* _Nullable episode;
 @property (weak, nonatomic) PopoverView* _Nullable addPopover;
