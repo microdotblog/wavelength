@@ -32,12 +32,51 @@ static const NSString* kItemStatusContext;
 	self.collectionView.dragDelegate = self;
 	self.collectionView.dropDelegate = self;
 	self.collectionView.dragInteractionEnabled = YES;
+
+	UITapGestureRecognizer* double_tap_gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTapCollectionView:)];
+	double_tap_gesture.numberOfTapsRequired = 2;
+	[self.collectionView addGestureRecognizer:double_tap_gesture];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+}
+
+- (void) didDoubleTapCollectionView:(UITapGestureRecognizer *)gesture
+{
+	CGPoint pt = [gesture locationInView:self.collectionView];
+	NSIndexPath* index_path = [self.collectionView indexPathForItemAtPoint:pt];
+	[self editSegmentAtIndexPath:index_path];
+}
+
+- (void) editSegmentAtIndexPath:(NSIndexPath *)indexPath
+{
+	self.navigationItem.rightBarButtonItems = @[ [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeEditing:)] ];
+
+	CGRect r = self.recordingDimView.frame;
+	self.editingScrollView.alpha = 0.0;
+	[self.view addSubview:self.editingScrollView];
+	self.editingScrollView.frame = r;
+
+	[UIView animateWithDuration:0.3 animations:^{
+		self.editingScrollView.alpha = 1.0;
+	}];
+}
+
+- (void) closeEditing:(id)sender
+{
+	self.navigationItem.rightBarButtonItems = @[
+		[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"publish"] style:UIBarButtonItemStylePlain target:self action:@selector(publish:)],
+		[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAudio:)]
+	];
+
+	[UIView animateWithDuration:0.3 animations:^{
+		self.editingScrollView.alpha = 0.0;
+	} completion:^(BOOL finished) {
+		[self.editingScrollView removeFromSuperview];
+	}];
 }
 
 - (IBAction) onCancelRecord:(id)sender
@@ -88,6 +127,11 @@ static const NSString* kItemStatusContext;
 	self.playPauseButton.clipsToBounds = YES;
 
 	[self.playPauseButton setImage:[UIImage imageNamed:@"mic"] forState:UIControlStateNormal];
+}
+
+- (IBAction) publish:(id)sender
+{
+	[self performSegueWithIdentifier:@"PostSegue" sender:self];
 }
 
 - (IBAction) play:(id)sender
