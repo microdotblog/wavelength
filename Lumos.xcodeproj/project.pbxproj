@@ -26,6 +26,8 @@
 		4B74C95D205CB2030050A105 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C95C205CB2030050A105 /* PopoverView.m */; };
 		4B74C966205D75CB0050A105 /* test.m4a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B74C962205D75860050A105 /* test.m4a */; };
 		4B74C969205D77760050A105 /* UUString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C968205D77760050A105 /* UUString.m */; };
+		4B881CA72061492C008A4C13 /* LUSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA62061492B008A4C13 /* LUSplitController.m */; };
+		4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA920614AA2008A4C13 /* LUSegment.m */; };
 		C5357B2520602B750067413C /* LUAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C5357B2420602B750067413C /* LUAudioRecorder.m */; };
 		C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC329B205774A600D0594B /* LUAppDelegate.m */; };
 		C5DC32A2205774A600D0594B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A0205774A600D0594B /* Main.storyboard */; };
@@ -87,6 +89,10 @@
 		4B74C962205D75860050A105 /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.m4a; path = Music/test.m4a; sourceTree = "<group>"; };
 		4B74C967205D77760050A105 /* UUString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUString.h; sourceTree = "<group>"; };
 		4B74C968205D77760050A105 /* UUString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUString.m; sourceTree = "<group>"; };
+		4B881CA52061492B008A4C13 /* LUSplitController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUSplitController.h; sourceTree = "<group>"; };
+		4B881CA62061492B008A4C13 /* LUSplitController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSplitController.m; sourceTree = "<group>"; };
+		4B881CA820614AA2008A4C13 /* LUSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUSegment.h; sourceTree = "<group>"; };
+		4B881CA920614AA2008A4C13 /* LUSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSegment.m; sourceTree = "<group>"; };
 		7C13C85763A56F0C388DEA20 /* Pods-Lumos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lumos/Pods-Lumos.release.xcconfig"; sourceTree = "<group>"; };
 		9CA3ED3895EE9FE2D946DF9D /* Pods-Lumos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lumos/Pods-Lumos.debug.xcconfig"; sourceTree = "<group>"; };
 		C5357B2320602B750067413C /* LUAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAudioRecorder.h; sourceTree = "<group>"; };
@@ -214,6 +220,8 @@
 				C5DC329B205774A600D0594B /* LUAppDelegate.m */,
 				4B74C8C6205A26180050A105 /* LUEpisode.h */,
 				4B74C8C7205A26180050A105 /* LUEpisode.m */,
+				4B881CA820614AA2008A4C13 /* LUSegment.h */,
+				4B881CA920614AA2008A4C13 /* LUSegment.m */,
 				4B74C8C9205A27E90050A105 /* LUEpisodeCell.h */,
 				4B74C8CA205A27E90050A105 /* LUEpisodeCell.m */,
 				4B74C957205A3F4A0050A105 /* LUSegmentCell.h */,
@@ -224,6 +232,8 @@
 				4B74C8C1205A23A40050A105 /* LUEditController.m */,
 				4B74C8C3205A23D10050A105 /* LUPostController.h */,
 				4B74C8C4205A23D10050A105 /* LUPostController.m */,
+				4B881CA52061492B008A4C13 /* LUSplitController.h */,
+				4B881CA62061492B008A4C13 /* LUSplitController.m */,
 				C5DC32BD2057810C00D0594B /* Supporting Files */,
 			);
 			path = Lumos;
@@ -378,6 +388,7 @@
 				4B74C948205A39AB0050A105 /* UUImageView.m in Sources */,
 				4B74C94A205A39AB0050A105 /* UUImage.m in Sources */,
 				4B74C953205A39DC0050A105 /* UURemoteData.m in Sources */,
+				4B881CA72061492C008A4C13 /* LUSplitController.m in Sources */,
 				4B74C95D205CB2030050A105 /* PopoverView.m in Sources */,
 				4B74C956205A39E30050A105 /* UUDataCache.m in Sources */,
 				C5DC32C020586E8500D0594B /* LUAudioClip.m in Sources */,
@@ -391,6 +402,7 @@
 				4B74C94F205A39CD0050A105 /* UUHttpResponseHandler.m in Sources */,
 				4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */,
 				4B74C93E205A39990050A105 /* UUColor.m in Sources */,
+				4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */,
 				C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */,
 				4B74C949205A39AB0050A105 /* UUImageCache.m in Sources */,
 				C5357B2520602B750067413C /* LUAudioRecorder.m in Sources */,

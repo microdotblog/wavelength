@@ -266,34 +266,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hm8-z5-MUh">
-                                        <rect key="frame" x="271" y="32" width="56" height="56"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="Wye-BX-3eH"/>
-                                            <constraint firstAttribute="width" constant="56" id="w1A-IW-thX"/>
-                                        </constraints>
-                                        <state key="normal" image="trash"/>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtF-B4-nTE">
-                                        <rect key="frame" x="48" y="29" width="56" height="56"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="lMH-57-f33"/>
-                                            <constraint firstAttribute="width" constant="56" id="vNh-mj-pq0"/>
-                                        </constraints>
-                                        <state key="normal" image="split"/>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="7Or-nu-cTE"/>
-                                    <constraint firstItem="Hm8-z5-MUh" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" constant="32" id="Dcp-LO-fJ8"/>
                                     <constraint firstItem="sgl-cq-hL5" firstAttribute="centerY" secondItem="t1W-4M-E0Z" secondAttribute="centerY" id="Iwe-dz-ms3"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="centerX" secondItem="4za-bv-mkl" secondAttribute="centerX" id="OC6-Bw-TIJ"/>
-                                    <constraint firstItem="gtF-B4-nTE" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" constant="29" id="Sqe-YW-rO4"/>
-                                    <constraint firstAttribute="trailing" secondItem="Hm8-z5-MUh" secondAttribute="trailing" constant="48" id="T7r-pk-FX6"/>
                                     <constraint firstAttribute="trailing" secondItem="pwc-QB-2DG" secondAttribute="trailing" id="Zxq-9g-wtY"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" constant="29" id="ajb-Rh-lpl"/>
                                     <constraint firstAttribute="trailing" secondItem="sgl-cq-hL5" secondAttribute="trailing" constant="8" id="ajr-PH-ckG"/>
-                                    <constraint firstItem="gtF-B4-nTE" firstAttribute="leading" secondItem="4za-bv-mkl" secondAttribute="leading" constant="48" id="lDX-hi-Az2"/>
                                     <constraint firstItem="pwc-QB-2DG" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" id="nMR-Zz-Y8j"/>
                                     <constraint firstItem="pwc-QB-2DG" firstAttribute="leading" secondItem="4za-bv-mkl" secondAttribute="leading" id="nU4-qd-jlr"/>
                                 </constraints>
@@ -334,14 +314,12 @@
                     <connections>
                         <outlet property="addPopoverView" destination="uJ7-sy-mFc" id="8ds-Af-S4Y"/>
                         <outlet property="collectionView" destination="ji9-mB-grC" id="8dp-Da-Cwu"/>
-                        <outlet property="deleteButton" destination="Hm8-z5-MUh" id="lx8-E9-avW"/>
-                        <outlet property="editingScrollView" destination="zQo-FE-5KK" id="ZDt-B4-CnO"/>
                         <outlet property="playPauseButton" destination="t1W-4M-E0Z" id="6IS-Oc-GdJ"/>
                         <outlet property="recordingDimView" destination="kv4-1W-Q7a" id="cjI-nw-ZZ3"/>
-                        <outlet property="splitButton" destination="gtF-B4-nTE" id="3wT-Jf-J9J"/>
                         <outlet property="timerLabel" destination="sgl-cq-hL5" id="Lab-aH-HAf"/>
                         <outlet property="waveFormViewContainer" destination="pwc-QB-2DG" id="x2G-HZ-Grz"/>
                         <segue destination="2uZ-XV-J6w" kind="presentation" identifier="SigninSegue" id="pR2-pI-Ygd"/>
+                        <segue destination="YAV-e1-9h8" kind="show" identifier="SplitSegue" id="xTI-zN-DZ0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sib-9Z-J3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,12 +372,6 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <viewLayoutGuide key="safeArea" id="QaG-mK-now"/>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="zQo-FE-5KK">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <viewLayoutGuide key="safeArea" id="BzM-Tq-LqR"/>
-                </scrollView>
             </objects>
             <point key="canvasLocation" x="1632.8" y="770.46476761619192"/>
         </scene>
@@ -518,6 +490,79 @@
             </objects>
             <point key="canvasLocation" x="2466" y="1026"/>
         </scene>
+        <!--Split Controller-->
+        <scene sceneID="4FD-mS-ri6">
+            <objects>
+                <viewController id="YAV-e1-9h8" customClass="LUSplitController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MFu-qH-RoV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A30-Uk-Tul">
+                                <rect key="frame" x="0.0" y="503" width="375" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHB-Hi-G7f">
+                                        <rect key="frame" x="159" y="29" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="T3d-TA-kEK"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="56" id="TaV-Vh-Erd"/>
+                                            <constraint firstAttribute="height" constant="56" id="ZQM-Ou-bdn"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="fua-G9-AdR"/>
+                                        </constraints>
+                                        <state key="normal" image="play"/>
+                                        <connections>
+                                            <action selector="play:" destination="t5R-7u-r5x" eventType="touchUpInside" id="Qiu-BI-Qdp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujs-LJ-pGH">
+                                        <rect key="frame" x="48" y="29" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="56" id="1hZ-ul-91m"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="2Bq-qk-gG3"/>
+                                            <constraint firstAttribute="width" constant="56" id="Kul-UM-dYM"/>
+                                            <constraint firstAttribute="height" constant="56" id="rf1-Fl-xfL"/>
+                                        </constraints>
+                                        <state key="normal" image="split"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ujs-LJ-pGH" firstAttribute="leading" secondItem="A30-Uk-Tul" secondAttribute="leading" constant="48" id="5e5-uw-VvX"/>
+                                    <constraint firstItem="ujs-LJ-pGH" firstAttribute="top" secondItem="A30-Uk-Tul" secondAttribute="top" constant="29" id="TdU-E5-99q"/>
+                                    <constraint firstItem="hHB-Hi-G7f" firstAttribute="top" secondItem="A30-Uk-Tul" secondAttribute="top" constant="29" id="Wr8-1s-dUS"/>
+                                    <constraint firstAttribute="height" constant="120" id="gV4-dB-cpS"/>
+                                    <constraint firstItem="hHB-Hi-G7f" firstAttribute="centerX" secondItem="A30-Uk-Tul" secondAttribute="centerX" id="ocP-6u-0mF"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odl-wd-qay">
+                                <rect key="frame" x="0.0" y="64" width="375" height="439"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.94974459134615385" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="A30-Uk-Tul" firstAttribute="bottom" secondItem="I8F-oX-It9" secondAttribute="bottom" id="5J9-eg-7S0"/>
+                            <constraint firstItem="A30-Uk-Tul" firstAttribute="leading" secondItem="I8F-oX-It9" secondAttribute="leading" id="DFZ-Hs-KMZ"/>
+                            <constraint firstItem="odl-wd-qay" firstAttribute="trailing" secondItem="I8F-oX-It9" secondAttribute="trailing" id="E0q-40-xwm"/>
+                            <constraint firstItem="A30-Uk-Tul" firstAttribute="trailing" secondItem="I8F-oX-It9" secondAttribute="trailing" id="Gar-bl-XCx"/>
+                            <constraint firstItem="odl-wd-qay" firstAttribute="leading" secondItem="I8F-oX-It9" secondAttribute="leading" id="HIl-56-CRv"/>
+                            <constraint firstItem="A30-Uk-Tul" firstAttribute="top" secondItem="odl-wd-qay" secondAttribute="bottom" id="UQc-3A-XzZ"/>
+                            <constraint firstItem="odl-wd-qay" firstAttribute="top" secondItem="I8F-oX-It9" secondAttribute="top" id="rF5-sp-5AO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I8F-oX-It9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="a13-Sy-hii">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="cB2-lU-M1O"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="playPauseButton" destination="hHB-Hi-G7f" id="xhi-oB-986"/>
+                        <outlet property="scrollView" destination="odl-wd-qay" id="RZO-wv-Lj9"/>
+                        <outlet property="splitButton" destination="ujs-LJ-pGH" id="Sm4-60-ucv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CuZ-qV-Gc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1632.8" y="1563.8680659670167"/>
+        </scene>
     </scenes>
     <resources>
         <image name="mic" width="16" height="16"/>
@@ -525,6 +570,5 @@
         <image name="play" width="32" height="32"/>
         <image name="publish" width="28" height="22"/>
         <image name="split" width="16" height="16"/>
-        <image name="trash" width="16" height="16"/>
     </resources>
 </document>

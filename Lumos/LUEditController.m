@@ -9,6 +9,7 @@
 #import "LUEditController.h"
 
 #import "LUEpisode.h"
+#import "LUSegment.h"
 #import "LUSegmentCell.h"
 #import "LUAudioClip.h"
 #import "LUAudioRecorder.h"
@@ -36,14 +37,6 @@ static const NSString* kItemStatusContext;
 	UITapGestureRecognizer* double_tap_gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTapCollectionView:)];
 	double_tap_gesture.numberOfTapsRequired = 2;
 	[self.collectionView addGestureRecognizer:double_tap_gesture];
-
-	self.splitButton.layer.cornerRadius = 28.0;
-	self.splitButton.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5].CGColor;
-	self.splitButton.clipsToBounds = YES;
-
-	self.deleteButton.layer.cornerRadius = 28.0;
-	self.deleteButton.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5].CGColor;
-	self.deleteButton.clipsToBounds = YES;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -61,39 +54,13 @@ static const NSString* kItemStatusContext;
 
 - (void) editSegmentAtIndexPath:(NSIndexPath *)indexPath
 {
-	self.navigationItem.rightBarButtonItems = @[ [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeEditing:)] ];
+	NSString* audio_path = [[self.episode audioSegmentPaths] objectAtIndex:indexPath.item];
 
-	CGRect r = self.recordingDimView.frame;
-	self.editingScrollView.alpha = 0.0;
-	[self.view addSubview:self.editingScrollView];
-	self.editingScrollView.frame = r;
-
-	self.splitButton.alpha = 0.0;
-	self.splitButton.hidden = NO;
-	self.deleteButton.alpha = 0.0;
-	self.deleteButton.hidden = NO;
-
-	[UIView animateWithDuration:0.3 animations:^{
-		self.editingScrollView.alpha = 1.0;
-		self.splitButton.alpha = 1.0;
-		self.deleteButton.alpha = 1.0;
-	}];
-}
-
-- (void) closeEditing:(id)sender
-{
-	self.navigationItem.rightBarButtonItems = @[
-		[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"publish"] style:UIBarButtonItemStylePlain target:self action:@selector(publish:)],
-		[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAudio:)]
-	];
-
-	[UIView animateWithDuration:0.3 animations:^{
-		self.editingScrollView.alpha = 0.0;
-		self.splitButton.alpha = 0.0;
-		self.deleteButton.alpha = 0.0;
-	} completion:^(BOOL finished) {
-		[self.editingScrollView removeFromSuperview];
-	}];
+	LUSegment* segment = [[LUSegment alloc] init];
+	segment.path = audio_path;
+	segment.episode = self.episode;
+	
+	[self performSegueWithIdentifier:@"SplitSegue" sender:segment];
 }
 
 - (IBAction) onCancelRecord:(id)sender
