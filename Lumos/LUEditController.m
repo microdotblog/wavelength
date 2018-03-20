@@ -36,6 +36,14 @@ static const NSString* kItemStatusContext;
 	UITapGestureRecognizer* double_tap_gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTapCollectionView:)];
 	double_tap_gesture.numberOfTapsRequired = 2;
 	[self.collectionView addGestureRecognizer:double_tap_gesture];
+
+	self.splitButton.layer.cornerRadius = 28.0;
+	self.splitButton.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5].CGColor;
+	self.splitButton.clipsToBounds = YES;
+
+	self.deleteButton.layer.cornerRadius = 28.0;
+	self.deleteButton.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5].CGColor;
+	self.deleteButton.clipsToBounds = YES;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -60,8 +68,15 @@ static const NSString* kItemStatusContext;
 	[self.view addSubview:self.editingScrollView];
 	self.editingScrollView.frame = r;
 
+	self.splitButton.alpha = 0.0;
+	self.splitButton.hidden = NO;
+	self.deleteButton.alpha = 0.0;
+	self.deleteButton.hidden = NO;
+
 	[UIView animateWithDuration:0.3 animations:^{
 		self.editingScrollView.alpha = 1.0;
+		self.splitButton.alpha = 1.0;
+		self.deleteButton.alpha = 1.0;
 	}];
 }
 
@@ -74,6 +89,8 @@ static const NSString* kItemStatusContext;
 
 	[UIView animateWithDuration:0.3 animations:^{
 		self.editingScrollView.alpha = 0.0;
+		self.splitButton.alpha = 0.0;
+		self.deleteButton.alpha = 0.0;
 	} completion:^(BOOL finished) {
 		[self.editingScrollView removeFromSuperview];
 	}];

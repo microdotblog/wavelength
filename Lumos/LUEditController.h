@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UICollectionView* _Nonnull collectionView;
 @property (strong, nonatomic) IBOutlet UIView* _Nonnull addPopoverView;
 @property (strong, nonatomic) IBOutlet UIButton* _Nonnull playPauseButton;
+@property (strong, nonatomic) IBOutlet UIButton* _Nonnull splitButton;
+@property (strong, nonatomic) IBOutlet UIButton* _Nonnull deleteButton;
 @property (strong, nonatomic) IBOutlet UIView* _Nonnull recordingDimView;
 @property (strong, nonatomic) IBOutlet UILabel* _Nonnull timerLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView* _Nonnull editingScrollView;

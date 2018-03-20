@@ -266,14 +266,34 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hm8-z5-MUh">
+                                        <rect key="frame" x="271" y="32" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="Wye-BX-3eH"/>
+                                            <constraint firstAttribute="width" constant="56" id="w1A-IW-thX"/>
+                                        </constraints>
+                                        <state key="normal" image="trash"/>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtF-B4-nTE">
+                                        <rect key="frame" x="48" y="29" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="lMH-57-f33"/>
+                                            <constraint firstAttribute="width" constant="56" id="vNh-mj-pq0"/>
+                                        </constraints>
+                                        <state key="normal" image="split"/>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="7Or-nu-cTE"/>
+                                    <constraint firstItem="Hm8-z5-MUh" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" constant="32" id="Dcp-LO-fJ8"/>
                                     <constraint firstItem="sgl-cq-hL5" firstAttribute="centerY" secondItem="t1W-4M-E0Z" secondAttribute="centerY" id="Iwe-dz-ms3"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="centerX" secondItem="4za-bv-mkl" secondAttribute="centerX" id="OC6-Bw-TIJ"/>
+                                    <constraint firstItem="gtF-B4-nTE" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" constant="29" id="Sqe-YW-rO4"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hm8-z5-MUh" secondAttribute="trailing" constant="48" id="T7r-pk-FX6"/>
                                     <constraint firstAttribute="trailing" secondItem="pwc-QB-2DG" secondAttribute="trailing" id="Zxq-9g-wtY"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" constant="29" id="ajb-Rh-lpl"/>
                                     <constraint firstAttribute="trailing" secondItem="sgl-cq-hL5" secondAttribute="trailing" constant="8" id="ajr-PH-ckG"/>
+                                    <constraint firstItem="gtF-B4-nTE" firstAttribute="leading" secondItem="4za-bv-mkl" secondAttribute="leading" constant="48" id="lDX-hi-Az2"/>
                                     <constraint firstItem="pwc-QB-2DG" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" id="nMR-Zz-Y8j"/>
                                     <constraint firstItem="pwc-QB-2DG" firstAttribute="leading" secondItem="4za-bv-mkl" secondAttribute="leading" id="nU4-qd-jlr"/>
                                 </constraints>
@@ -314,9 +334,11 @@
                     <connections>
                         <outlet property="addPopoverView" destination="uJ7-sy-mFc" id="8ds-Af-S4Y"/>
                         <outlet property="collectionView" destination="ji9-mB-grC" id="8dp-Da-Cwu"/>
+                        <outlet property="deleteButton" destination="Hm8-z5-MUh" id="lx8-E9-avW"/>
                         <outlet property="editingScrollView" destination="zQo-FE-5KK" id="ZDt-B4-CnO"/>
                         <outlet property="playPauseButton" destination="t1W-4M-E0Z" id="6IS-Oc-GdJ"/>
                         <outlet property="recordingDimView" destination="kv4-1W-Q7a" id="cjI-nw-ZZ3"/>
+                        <outlet property="splitButton" destination="gtF-B4-nTE" id="3wT-Jf-J9J"/>
                         <outlet property="timerLabel" destination="sgl-cq-hL5" id="Lab-aH-HAf"/>
                         <outlet property="waveFormViewContainer" destination="pwc-QB-2DG" id="x2G-HZ-Grz"/>
                         <segue destination="2uZ-XV-J6w" kind="presentation" identifier="SigninSegue" id="pR2-pI-Ygd"/>
@@ -502,5 +524,7 @@
         <image name="mic_small" width="16" height="16"/>
         <image name="play" width="32" height="32"/>
         <image name="publish" width="28" height="22"/>
+        <image name="split" width="16" height="16"/>
+        <image name="trash" width="16" height="16"/>
     </resources>
 </document>
