@@ -16,11 +16,12 @@
 @interface LUEditController : UIViewController <PopoverViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView* _Nonnull collectionView;
-@property (strong, nonatomic) IBOutlet UIView* addPopoverView;
-@property (strong, nonatomic) IBOutlet UIButton* playPauseButton;
+@property (strong, nonatomic) IBOutlet UIView* _Nonnull addPopoverView;
+@property (strong, nonatomic) IBOutlet UIButton* _Nonnull playPauseButton;
+@property (strong, nonatomic) IBOutlet UIView* _Nonnull recordingDimView;
 
-@property (strong, nonatomic) LUEpisode* episode;
-@property (weak, nonatomic) PopoverView* addPopover;
-@property (strong, nonatomic) AVPlayer* player;
+@property (strong, nonatomic) LUEpisode* _Nullable episode;
+@property (weak, nonatomic) PopoverView* _Nullable addPopover;
+@property (strong, nonatomic) AVPlayer* _Nullable player;
 
 @end

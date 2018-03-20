@@ -11,13 +11,16 @@
 #import "LUEpisode.h"
 #import "LUSegmentCell.h"
 #import "LUAudioClip.h"
+#import "LUAudioRecorder.h"
 #import <EZAudio/EZAudio.h>
 
 static CGFloat const kCellPadding = 10.0;
 static const NSString* kItemStatusContext;
 
 @interface LUEditController ()<UICollectionViewDragDelegate, UICollectionViewDropDelegate>
-
+	@property (nonatomic, assign) BOOL isInRecordMode;
+	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
+	@property (nonatomic, strong) IBOutlet UIView* waveFormViewContainer;
 @end
 
 @implementation LUEditController
@@ -35,6 +38,16 @@ static const NSString* kItemStatusContext;
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+}
+
+- (IBAction) onCancelRecord:(id)sender
+{
+	self.isInRecordMode = NO;
+	
+	[UIView animateWithDuration:0.15 animations:^
+	{
+		self.recordingDimView.alpha = 0.0;
+	}];
 }
 
 - (IBAction) addAudio:(id)sender
@@ -56,10 +69,36 @@ static const NSString* kItemStatusContext;
 
 - (IBAction) addRecording:(id)sender
 {
+	self.isInRecordMode = YES;
+	
+	[self.addPopover dismiss];
+	
+	[UIView animateWithDuration:0.15 animations:^
+	{
+		self.recordingDimView.alpha = 1.0;
+	}];
+
+	[self.playPauseButton setImage:[UIImage imageNamed:@"mic"] forState:UIControlStateNormal];
 }
 
 - (IBAction) play:(id)sender
 {
+	// Handle recording a new clip...
+	if (self.isInRecordMode)
+	{
+		if (!self.audioRecorder)
+		{
+			[self startRecording];
+		}
+		else
+		{
+			[self stopRecording];
+		}
+		return;
+	}
+
+
+	// Handle playing back the audio...
 	if (self.player) {
 		[self.player pause];
 		self.player = nil;
@@ -86,6 +125,47 @@ static const NSString* kItemStatusContext;
 	}
 	
 	[self updatePlayButton];
+}
+
+- (void) startRecording
+{
+	NSURL* destination = [LUAudioRecorder generateTimeStampedFileURL];
+	NSString* fileName = destination.path.lastPathComponent;
+	destination = [[NSURL fileURLWithPath:self.episode.path] URLByAppendingPathComponent:fileName];
+	self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:destination];
+
+	UIView* waveFormView = [self.audioRecorder requestAudioInputView];
+	waveFormView.frame = self.waveFormViewContainer.bounds;
+	[self.waveFormViewContainer addSubview:waveFormView];
+
+	[self.audioRecorder record];
+	self.waveFormViewContainer.hidden = NO;
+	[self.playPauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
+}
+
+- (void) stopRecording
+{
+	self.waveFormViewContainer.hidden = YES;
+
+	// Remove the wave form...
+	[[self.audioRecorder requestAudioInputView] removeFromSuperview];
+
+	[self.audioRecorder stop];
+	
+	[self.episode addRecording:self.audioRecorder.destination.path];
+	
+	self.audioRecorder = nil;
+	
+	self.isInRecordMode = NO;
+	
+	[self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+	
+	[UIView animateWithDuration:0.15 animations:^
+	{
+		self.recordingDimView.alpha = 0.0;
+	}];
+	
+	[self.collectionView reloadData];
 }
 
 - (void) playerDidFinishPlaying:(NSNotification *)notification

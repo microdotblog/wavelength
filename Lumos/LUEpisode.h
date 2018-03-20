@@ -18,6 +18,7 @@
 
 - (id) initWithFolder:(NSString *)path;
 - (void) addFile:(NSString *)path;
+- (void) addRecording:(NSString *)path;
 - (void) updateAudioSegmentOrder:(NSArray*)updatedSegmentPaths;
 
 @end

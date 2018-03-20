@@ -117,6 +117,12 @@
 	[clipDictionary writeToFile:clips_info_path atomically:YES];
 }
 
+- (void) addRecording:(NSString *)path
+{
+	[self.audioSegmentPaths addObject:path];	
+	[self saveFileInfo];
+}
+
 - (void) addFile:(NSString *)path
 {
 	NSString* e = [path pathExtension];

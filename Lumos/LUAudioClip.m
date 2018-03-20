@@ -104,7 +104,7 @@
 
 	self.audioPlot = [[EZAudioPlot alloc] init];
     self.audioPlot.color = [UIApplication sharedApplication].windows.firstObject.tintColor;
-    self.audioPlot.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+    self.audioPlot.backgroundColor = [UIColor clearColor];//[UIColor colorWithWhite:0.95 alpha:1.0];
     self.audioPlot.plotType = EZPlotTypeRolling;
     self.audioPlot.shouldFill = YES;
     self.audioPlot.shouldMirror = YES;

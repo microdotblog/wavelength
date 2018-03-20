@@ -212,9 +212,34 @@
                                     <outlet property="delegate" destination="t5R-7u-r5x" id="NmZ-6x-sz2"/>
                                 </connections>
                             </collectionView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kv4-1W-Q7a">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxI-z3-CSe">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                        <connections>
+                                            <action selector="onCancelRecord:" destination="t5R-7u-r5x" eventType="touchUpInside" id="xbW-HG-otn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="RxI-z3-CSe" secondAttribute="bottom" id="09e-b7-fj4"/>
+                                    <constraint firstItem="RxI-z3-CSe" firstAttribute="leading" secondItem="kv4-1W-Q7a" secondAttribute="leading" id="JP4-dp-TU3"/>
+                                    <constraint firstAttribute="trailing" secondItem="RxI-z3-CSe" secondAttribute="trailing" id="U0d-8i-IvO"/>
+                                    <constraint firstItem="RxI-z3-CSe" firstAttribute="top" secondItem="kv4-1W-Q7a" secondAttribute="top" id="tAu-1b-x5J"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4za-bv-mkl">
                                 <rect key="frame" x="0.0" y="503" width="375" height="120"/>
                                 <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwc-QB-2DG">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="KIx-9Z-JNB"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1W-4M-E0Z">
                                         <rect key="frame" x="159" y="29" width="56" height="56"/>
                                         <constraints>
@@ -227,20 +252,28 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="7Or-nu-cTE"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="centerX" secondItem="4za-bv-mkl" secondAttribute="centerX" id="OC6-Bw-TIJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="pwc-QB-2DG" secondAttribute="trailing" id="Zxq-9g-wtY"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" constant="29" id="ajb-Rh-lpl"/>
+                                    <constraint firstItem="pwc-QB-2DG" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" id="nMR-Zz-Y8j"/>
+                                    <constraint firstItem="pwc-QB-2DG" firstAttribute="leading" secondItem="4za-bv-mkl" secondAttribute="leading" id="nU4-qd-jlr"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.95398137019230766" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="4za-bv-mkl" firstAttribute="bottom" secondItem="kv4-1W-Q7a" secondAttribute="bottom" id="04Y-3N-OL8"/>
                             <constraint firstItem="4za-bv-mkl" firstAttribute="trailing" secondItem="pTY-oC-YxB" secondAttribute="trailing" id="3Sp-b1-FxZ"/>
                             <constraint firstItem="ji9-mB-grC" firstAttribute="top" secondItem="pTY-oC-YxB" secondAttribute="top" id="4N3-yI-ZDa"/>
                             <constraint firstItem="pTY-oC-YxB" firstAttribute="bottom" secondItem="4za-bv-mkl" secondAttribute="bottom" id="6Y6-Tx-TCJ"/>
+                            <constraint firstItem="kv4-1W-Q7a" firstAttribute="top" secondItem="R8y-h8-xsW" secondAttribute="top" id="HWE-iu-2yS"/>
+                            <constraint firstItem="kv4-1W-Q7a" firstAttribute="leading" secondItem="pTY-oC-YxB" secondAttribute="leading" id="JxE-Dn-cGr"/>
                             <constraint firstItem="4za-bv-mkl" firstAttribute="leading" secondItem="pTY-oC-YxB" secondAttribute="leading" id="Ne8-rg-3Pm"/>
                             <constraint firstItem="ji9-mB-grC" firstAttribute="trailing" secondItem="pTY-oC-YxB" secondAttribute="trailing" id="NhP-9g-XJj"/>
+                            <constraint firstItem="kv4-1W-Q7a" firstAttribute="trailing" secondItem="pTY-oC-YxB" secondAttribute="trailing" id="UGq-0F-c4k"/>
                             <constraint firstItem="4za-bv-mkl" firstAttribute="top" secondItem="ji9-mB-grC" secondAttribute="bottom" id="WnT-qz-KQA"/>
                             <constraint firstItem="ji9-mB-grC" firstAttribute="leading" secondItem="pTY-oC-YxB" secondAttribute="leading" id="acr-NX-c6l"/>
                         </constraints>
@@ -266,6 +299,8 @@
                         <outlet property="addPopoverView" destination="uJ7-sy-mFc" id="8ds-Af-S4Y"/>
                         <outlet property="collectionView" destination="ji9-mB-grC" id="8dp-Da-Cwu"/>
                         <outlet property="playPauseButton" destination="t1W-4M-E0Z" id="6IS-Oc-GdJ"/>
+                        <outlet property="recordingDimView" destination="kv4-1W-Q7a" id="cjI-nw-ZZ3"/>
+                        <outlet property="waveFormViewContainer" destination="pwc-QB-2DG" id="x2G-HZ-Grz"/>
                         <segue destination="2uZ-XV-J6w" kind="presentation" identifier="SigninSegue" id="pR2-pI-Ygd"/>
                     </connections>
                 </viewController>
