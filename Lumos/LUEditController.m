@@ -13,6 +13,7 @@
 #import "LUSegmentCell.h"
 #import "LUAudioClip.h"
 #import "LUAudioRecorder.h"
+#import "LUSplitController.h"
 #import <EZAudio/EZAudio.h>
 
 static CGFloat const kCellPadding = 10.0;
@@ -41,8 +42,11 @@ static const NSString* kItemStatusContext;
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+	if ([sender isKindOfClass:[LUSegment class]]) {
+		LUSegment* segment = sender;
+		LUSplitController* split_controller = [segue destinationViewController];
+		split_controller.segment = segment;
+	}
 }
 
 - (void) didDoubleTapCollectionView:(UITapGestureRecognizer *)gesture

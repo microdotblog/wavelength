@@ -9,6 +9,7 @@
 #import "LUSplitController.h"
 
 #import "LUSegment.h"
+#import "LUAudioClip.h"
 
 @implementation LUSplitController
 
@@ -17,23 +18,46 @@
 	[super viewDidLoad];
 
 	[self setupButtons];
+	[self setupGraph];
 }
 
 - (void) setupButtons
 {
 	self.splitButton.layer.cornerRadius = 28.0;
-	self.splitButton.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5].CGColor;
+	self.splitButton.layer.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
+	self.splitButton.layer.borderColor = [UIColor colorWithWhite:0.4 alpha:1.0].CGColor;
+	self.splitButton.layer.borderWidth = 0.5;
 	self.splitButton.clipsToBounds = YES;
+}
 
-	self.deleteButton.layer.cornerRadius = 28.0;
-	self.deleteButton.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5].CGColor;
-	self.deleteButton.clipsToBounds = YES;
+- (void) setupGraph
+{
+	NSURL* audio_url = [NSURL fileURLWithPath:self.segment.path];
+	LUAudioClip* clip = [[LUAudioClip alloc] initWithDestination:audio_url];
+
+	CGSize size = CGSizeMake (1500, self.scrollView.bounds.size.height);
+	UIImage* img = [clip renderWaveImage:size];
+	UIImageView* v = [[UIImageView alloc] initWithImage:img];
+	[self.scrollView addSubview:v];
+	[self.scrollView setContentSize:size];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	// Get the new view controller using [segue destinationViewController].
 	// Pass the selected object to the new view controller.
+}
+
+- (IBAction) play:(id)sender
+{
+}
+
+- (IBAction) split:(id)sender
+{
+}
+
+- (IBAction) delete:(id)sender
+{
 }
 
 @end

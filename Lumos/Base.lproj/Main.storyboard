@@ -498,60 +498,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A30-Uk-Tul">
-                                <rect key="frame" x="0.0" y="503" width="375" height="120"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHB-Hi-G7f">
-                                        <rect key="frame" x="159" y="29" width="56" height="56"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="56" id="T3d-TA-kEK"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="56" id="TaV-Vh-Erd"/>
-                                            <constraint firstAttribute="height" constant="56" id="ZQM-Ou-bdn"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="fua-G9-AdR"/>
-                                        </constraints>
-                                        <state key="normal" image="play"/>
-                                        <connections>
-                                            <action selector="play:" destination="t5R-7u-r5x" eventType="touchUpInside" id="Qiu-BI-Qdp"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujs-LJ-pGH">
-                                        <rect key="frame" x="48" y="29" width="56" height="56"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="56" id="1hZ-ul-91m"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="2Bq-qk-gG3"/>
-                                            <constraint firstAttribute="width" constant="56" id="Kul-UM-dYM"/>
-                                            <constraint firstAttribute="height" constant="56" id="rf1-Fl-xfL"/>
-                                        </constraints>
-                                        <state key="normal" image="split"/>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="ujs-LJ-pGH" firstAttribute="leading" secondItem="A30-Uk-Tul" secondAttribute="leading" constant="48" id="5e5-uw-VvX"/>
-                                    <constraint firstItem="ujs-LJ-pGH" firstAttribute="top" secondItem="A30-Uk-Tul" secondAttribute="top" constant="29" id="TdU-E5-99q"/>
-                                    <constraint firstItem="hHB-Hi-G7f" firstAttribute="top" secondItem="A30-Uk-Tul" secondAttribute="top" constant="29" id="Wr8-1s-dUS"/>
-                                    <constraint firstAttribute="height" constant="120" id="gV4-dB-cpS"/>
-                                    <constraint firstItem="hHB-Hi-G7f" firstAttribute="centerX" secondItem="A30-Uk-Tul" secondAttribute="centerX" id="ocP-6u-0mF"/>
-                                </constraints>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odl-wd-qay">
                                 <rect key="frame" x="0.0" y="64" width="375" height="439"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A30-Uk-Tul">
+                                <rect key="frame" x="0.0" y="503" width="375" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujs-LJ-pGH">
+                                        <rect key="frame" x="159" y="32" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="5SA-tO-Lxp"/>
+                                            <constraint firstAttribute="width" constant="56" id="dPy-Ey-0lL"/>
+                                        </constraints>
+                                        <state key="normal" image="split"/>
+                                        <connections>
+                                            <action selector="split:" destination="YAV-e1-9h8" eventType="touchUpInside" id="oln-Ma-ROQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHB-Hi-G7f">
+                                        <rect key="frame" x="42" y="32" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="Qkl-px-qXT"/>
+                                            <constraint firstAttribute="height" constant="56" id="WOH-qA-zUe"/>
+                                        </constraints>
+                                        <state key="normal" image="play"/>
+                                        <connections>
+                                            <action selector="play:" destination="t5R-7u-r5x" eventType="touchUpInside" id="Qiu-BI-Qdp"/>
+                                            <action selector="play:" destination="YAV-e1-9h8" eventType="touchUpInside" id="yGX-5w-Lkk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ujs-LJ-pGH" firstAttribute="top" secondItem="A30-Uk-Tul" secondAttribute="top" constant="32" id="L5E-KU-JGs"/>
+                                    <constraint firstItem="hHB-Hi-G7f" firstAttribute="top" secondItem="A30-Uk-Tul" secondAttribute="top" constant="32" id="Tbf-X4-6Ei"/>
+                                    <constraint firstAttribute="height" constant="120" id="gV4-dB-cpS"/>
+                                    <constraint firstItem="hHB-Hi-G7f" firstAttribute="leading" secondItem="A30-Uk-Tul" secondAttribute="leading" constant="42" id="lJg-h9-kjA"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UY2-UI-kO3">
+                                <rect key="frame" x="187" y="64" width="1" height="472"/>
+                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="dq2-Zm-MfO"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.94974459134615385" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ujs-LJ-pGH" firstAttribute="centerX" secondItem="I8F-oX-It9" secondAttribute="centerX" id="0IH-CA-0IG"/>
                             <constraint firstItem="A30-Uk-Tul" firstAttribute="bottom" secondItem="I8F-oX-It9" secondAttribute="bottom" id="5J9-eg-7S0"/>
                             <constraint firstItem="A30-Uk-Tul" firstAttribute="leading" secondItem="I8F-oX-It9" secondAttribute="leading" id="DFZ-Hs-KMZ"/>
                             <constraint firstItem="odl-wd-qay" firstAttribute="trailing" secondItem="I8F-oX-It9" secondAttribute="trailing" id="E0q-40-xwm"/>
                             <constraint firstItem="A30-Uk-Tul" firstAttribute="trailing" secondItem="I8F-oX-It9" secondAttribute="trailing" id="Gar-bl-XCx"/>
                             <constraint firstItem="odl-wd-qay" firstAttribute="leading" secondItem="I8F-oX-It9" secondAttribute="leading" id="HIl-56-CRv"/>
+                            <constraint firstItem="UY2-UI-kO3" firstAttribute="centerX" secondItem="I8F-oX-It9" secondAttribute="centerX" id="Iui-Ig-yhA"/>
                             <constraint firstItem="A30-Uk-Tul" firstAttribute="top" secondItem="odl-wd-qay" secondAttribute="bottom" id="UQc-3A-XzZ"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="UY2-UI-kO3" secondAttribute="bottom" constant="87" id="hOm-Iy-rBc"/>
                             <constraint firstItem="odl-wd-qay" firstAttribute="top" secondItem="I8F-oX-It9" secondAttribute="top" id="rF5-sp-5AO"/>
+                            <constraint firstItem="UY2-UI-kO3" firstAttribute="top" secondItem="MFu-qH-RoV" secondAttribute="topMargin" id="zsr-Dz-gLW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I8F-oX-It9"/>
                     </view>
                     <navigationItem key="navigationItem" id="a13-Sy-hii">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="cB2-lU-M1O"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="cB2-lU-M1O">
+                            <connections>
+                                <action selector="delete:" destination="YAV-e1-9h8" id="sIu-VR-eh9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="playPauseButton" destination="hHB-Hi-G7f" id="xhi-oB-986"/>

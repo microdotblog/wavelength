@@ -15,7 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIScrollView* _Nonnull scrollView;
 @property (strong, nonatomic) IBOutlet UIButton* _Nonnull playPauseButton;
 @property (strong, nonatomic) IBOutlet UIButton* _Nonnull splitButton;
-@property (strong, nonatomic) IBOutlet UIButton* _Nonnull deleteButton;
 
 @property (strong, nonatomic) LUSegment* _Nullable segment;
 

@@ -157,7 +157,7 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	LUEpisode* episode = sender;
-    LUEditController* edit_controller =  [segue destinationViewController];
+    LUEditController* edit_controller = [segue destinationViewController];
 	edit_controller.episode = episode;
 }
 
