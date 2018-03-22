@@ -13,6 +13,7 @@
 #import "LUEpisode.h"
 #import "LUEpisodeCell.h"
 #import "LUEditController.h"
+#import "LUSettingsViewController.h"
 
 @interface LUMainViewController ()
 	@property (nonatomic, strong) IBOutlet UIButton* recordStopPlayButton;
@@ -156,9 +157,17 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	LUEpisode* episode = sender;
-    LUEditController* edit_controller = [segue destinationViewController];
-	edit_controller.episode = episode;
+	UIViewController* destinationController = segue.destinationViewController;
+	
+	if ([destinationController isKindOfClass:[LUEditController class]])
+	{
+		LUEpisode* episode = sender;
+    	LUEditController* edit_controller = [segue destinationViewController];
+		edit_controller.episode = episode;
+	}
+	else if ([destinationController isKindOfClass:[LUSettingsViewController class]])
+	{
+	}
 }
 
 #pragma mark -

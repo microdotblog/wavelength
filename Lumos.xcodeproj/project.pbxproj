@@ -36,6 +36,7 @@
 		C5DC32AA205774A600D0594B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32A9205774A600D0594B /* main.m */; };
 		C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32B9205780F000D0594B /* LUMainViewController.m */; };
 		C5DC32C020586E8500D0594B /* LUAudioClip.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC32BF20586E8500D0594B /* LUAudioClip.m */; };
+		C5E5A58F20646817006486FB /* LUSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E5A58E20646817006486FB /* LUSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -109,6 +110,8 @@
 		C5DC32B9205780F000D0594B /* LUMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUMainViewController.m; sourceTree = "<group>"; };
 		C5DC32BE20586E8500D0594B /* LUAudioClip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAudioClip.h; sourceTree = "<group>"; };
 		C5DC32BF20586E8500D0594B /* LUAudioClip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAudioClip.m; sourceTree = "<group>"; };
+		C5E5A58D20646817006486FB /* LUSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUSettingsViewController.h; sourceTree = "<group>"; };
+		C5E5A58E20646817006486FB /* LUSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +237,8 @@
 				4B74C8C4205A23D10050A105 /* LUPostController.m */,
 				4B881CA52061492B008A4C13 /* LUSplitController.h */,
 				4B881CA62061492B008A4C13 /* LUSplitController.m */,
+				C5E5A58D20646817006486FB /* LUSettingsViewController.h */,
+				C5E5A58E20646817006486FB /* LUSettingsViewController.m */,
 				C5DC32BD2057810C00D0594B /* Supporting Files */,
 			);
 			path = Lumos;
@@ -400,6 +405,7 @@
 				4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */,
 				C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */,
 				4B74C94F205A39CD0050A105 /* UUHttpResponseHandler.m in Sources */,
+				C5E5A58F20646817006486FB /* LUSettingsViewController.m in Sources */,
 				4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */,
 				4B74C93E205A39990050A105 /* UUColor.m in Sources */,
 				4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */,
