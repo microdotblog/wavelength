@@ -204,8 +204,6 @@
 		
         [client postWithParams:args completion:^(UUHttpResponse* response)
         {
-            //NSLog(@"%@", response);
-			
             if (response.httpResponse.statusCode == 200)
             {
             	dispatch_async(dispatch_get_main_queue(), ^

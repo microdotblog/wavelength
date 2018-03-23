@@ -393,7 +393,7 @@
                         <rightBarButtonItems>
                             <barButtonItem image="publish" id="cCq-cL-sll">
                                 <connections>
-                                    <segue destination="rbR-yE-SLm" kind="show" identifier="PostSegue" id="MQl-4E-6fQ"/>
+                                    <action selector="publish:" destination="t5R-7u-r5x" id="npf-CW-3wk"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="add" id="Kon-KW-Ley">
@@ -487,7 +487,7 @@
         <!--Login-->
         <scene sceneID="bWO-Yi-LUL">
             <objects>
-                <viewController id="amd-cP-OOi" customClass="LULoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="amd-cP-OOi" customClass="LULoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vct-dw-bSd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -508,7 +508,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f4S-Io-k2P">
                                 <rect key="frame" x="0.0" y="209" width="375" height="43"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weblog URL or Micro.blog email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jsy-sZ-f9s">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Micro.blog email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jsy-sZ-f9s">
                                         <rect key="frame" x="12" y="0.0" width="339" height="43"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
@@ -592,14 +592,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSf-pX-uX4">
-                                <rect key="frame" x="-1" y="63" width="377" height="50"/>
+                                <rect key="frame" x="-1" y="19" width="377" height="50"/>
                                 <color key="backgroundColor" white="0.9845552884615385" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="fDP-YR-Ino"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-Os-aMO">
-                                <rect key="frame" x="16" y="73" width="343" height="30"/>
+                                <rect key="frame" x="16" y="29" width="343" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="hoo-Mc-be1"/>
                                 </constraints>
@@ -608,7 +608,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1HZ-QX-Oyy">
-                                <rect key="frame" x="10" y="123" width="355" height="204"/>
+                                <rect key="frame" x="10" y="79" width="355" height="204"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="204" id="4BH-64-0HF"/>

@@ -15,6 +15,7 @@
 #import "LUAudioRecorder.h"
 #import "LUSplitController.h"
 #import <EZAudio/EZAudio.h>
+#import "SSKeychain.h"
 
 static CGFloat const kCellPadding = 10.0;
 static const NSString* kItemStatusContext;
@@ -119,7 +120,19 @@ static const NSString* kItemStatusContext;
 
 - (IBAction) publish:(id)sender
 {
-	[self performSegueWithIdentifier:@"PostSegue" sender:self];
+	NSString* token = [SSKeychain passwordForService:@"ExternalMicropub" account:@"default"];
+	NSDictionary* userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"Micro.blog User Info"];
+	
+	if (!userInfo || !token)
+	{
+		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+		UIViewController* loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
+		[self presentViewController:loginViewController animated:YES completion:nil];
+	}
+	else
+	{
+		[self performSegueWithIdentifier:@"PostSegue" sender:self];
+	}
 }
 
 - (IBAction) play:(id)sender
