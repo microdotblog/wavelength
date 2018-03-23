@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LUSettingsViewController : UIViewController
-
+	@property (nonatomic, strong) IBOutlet UILabel* versionNumber;
+	@property (nonatomic, strong) IBOutlet UILabel* userName;
+	@property (nonatomic, strong) IBOutlet UIButton* loginButton;
 @end

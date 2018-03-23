@@ -8,6 +8,12 @@
 
 #import "LUAppDelegate.h"
 #import <EZAudio/EZAudio.h>
+#import "UUString.h"
+#import "UUAlert.h"
+#import "RFMicropub.h"
+#import "RFClient.h"
+#import "SSKeychain.h"
+#import "LUNotifications.h"
 
 @implementation LUAppDelegate
 
@@ -17,6 +23,11 @@
 	[self setupAppearance];
 	
 	return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation
+{
+	return [self handleLumosAuthorization:url];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -72,6 +83,184 @@
 														  shadow, NSShadowAttributeName,
 														  [UIFont fontWithName:@"AvenirNext-Regular" size:16], NSFontAttributeName, nil]
 												forState:UIControlStateNormal];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void) handleMicropubURL:(NSString *)url
+{
+	NSString* code = [[url uuFindQueryStringArg:@"code"] uuUrlDecoded];
+	NSString* state = [[url uuFindQueryStringArg:@"state"] uuUrlDecoded];
+
+	if (!code || !state) {
+		NSString* msg = [NSString stringWithFormat:@"Authorization \"code\" or \"state\" parameters were missing."];
+		[UUAlertViewController uuShowOneButtonAlert:@"Micropub Error" message:msg button:@"OK" completionHandler:NULL];
+		return;
+	}
+	
+	NSString* saved_me = [[NSUserDefaults standardUserDefaults] objectForKey:@"ExternalMicropubMe"];
+	NSString* saved_state = [[NSUserDefaults standardUserDefaults] objectForKey:@"ExternalMicropubState"];
+	NSString* saved_endpoint = [[NSUserDefaults standardUserDefaults] objectForKey:@"ExternalMicropubTokenEndpoint"];
+	
+	if (![state isEqualToString:saved_state]) {
+		[UUAlertViewController uuShowOneButtonAlert:@"Micropub Error" message:@"Authorization state did not match." button:@"OK" completionHandler:NULL];
+	}
+	else {
+		NSDictionary* info = @{
+			@"grant_type": @"authorization_code",
+			@"me": saved_me,
+			@"code": code,
+			@"redirect_uri": @"https://sunlit.io/micropub/redirect",
+			@"client_id": @"https://sunlit.io/",
+			@"state": state
+		};
+		
+		RFMicropub* mp = [[RFMicropub alloc] initWithURL:saved_endpoint];
+		[mp postWithParams:info completion:^(UUHttpResponse* response) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				if ([response.parsedResponse isKindOfClass:[NSString class]]) {
+					NSString* msg = response.parsedResponse;
+					if (msg.length > 200) {
+						msg = @"";
+					}
+					[UUAlertViewController uuShowOneButtonAlert:@"Micropub Error" message:msg button:@"OK" completionHandler:NULL];
+				}
+				else {
+					NSString* access_token = [response.parsedResponse objectForKey:@"access_token"];
+					if (access_token == nil) {
+						NSString* msg = [response.parsedResponse objectForKey:@"error_description"];
+						[UUAlertViewController uuShowOneButtonAlert:@"Micropub Error" message:msg button:@"OK" completionHandler:NULL];
+					}
+					else {
+						[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ExternalBlogIsPreferred"];
+						[SSKeychain setPassword:access_token forService:@"ExternalMicropub" account:@"default"];
+
+						[self checkMicropubMediaEndpoint];
+					}
+				}
+			});
+		}];
+	}
+}
+
+- (void) checkMicropubMediaEndpoint
+{
+		NSString* media_endpoint = [[NSUserDefaults standardUserDefaults] objectForKey:@"ExternalMicropubMediaEndpoint"];
+		if (media_endpoint.length == 0) {
+			NSString* micropub_endpoint = [[NSUserDefaults standardUserDefaults] objectForKey:@"ExternalMicropubPostingEndpoint"];
+			RFMicropub* client = [[RFMicropub alloc] initWithURL:micropub_endpoint];
+			NSDictionary* args = @{
+				@"q": @"config"
+			};
+			[client getWithQueryArguments:args completion:^(UUHttpResponse* response)
+            {
+				BOOL found = NO;
+				if (response.parsedResponse && [response.parsedResponse isKindOfClass:[NSDictionary class]]) {
+					NSString* new_endpoint = [response.parsedResponse objectForKey:@"media-endpoint"];
+					if (new_endpoint) {
+						[[NSUserDefaults standardUserDefaults] setObject:new_endpoint forKey:@"ExternalMicropubMediaEndpoint"];
+						found = YES;
+					}
+				}
+
+                dispatch_async(dispatch_get_main_queue(), ^
+                {
+                    if (!found)
+                    {
+						[UUAlertViewController uuShowOneButtonAlert:@"Error Checking Server" message:@"Micropub media-endpoint was not found." button:@"OK" completionHandler:NULL];
+                    }
+                    else
+                    {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kMicroblogConfiguredNotification object:nil];
+                    }
+                });
+			}];
+		}
+}
+
+- (BOOL) handleLumosAuthorization:(NSURL*)inURL
+{
+    if ([inURL.absoluteString uuStartsWithSubstring:@"lumos://micropub"])
+    {
+        NSString* action = [inURL resourceSpecifier];
+		NSString* microPubToken = [action uuFindQueryStringArg:@"code"];
+		if (microPubToken)
+			microPubToken = [microPubToken uuUrlDecoded];
+		
+        if (microPubToken)
+        {
+        	[self handleMicropubURL:inURL.absoluteString];
+            return YES;
+        }
+		
+		
+        NSString* token = [inURL lastPathComponent];
+        RFClient* client = [[RFClient alloc] initWithPath:@"/account/verify"];
+        NSDictionary* args = @{
+            @"token": token
+        };
+		
+        [client postWithParams:args completion:^(UUHttpResponse* response)
+        {
+            //NSLog(@"%@", response);
+			
+            if (response.httpResponse.statusCode == 200)
+            {
+            	dispatch_async(dispatch_get_main_queue(), ^
+            	{
+                	NSDictionary* dictionary = response.parsedResponse;
+                	NSString* errorString = [dictionary objectForKey:@"error"];
+					
+                	if (errorString)
+                	{
+                    	[UUAlertViewController uuShowOneButtonAlert:@"Error Verifying Account" message:errorString button:@"Ok" completionHandler:^(NSInteger buttonIndex)
+                    	{
+                    	}];
+                	}
+                	else
+                	{
+                		NSString* new_token = [dictionary objectForKey:@"token"];
+					
+                    	[SSKeychain setPassword:new_token forService:@"ExternalMicropub" account:@"default"];
+                    	[SSKeychain setPassword:new_token forService:@"Snippets" account:@"default"];
+
+                    	[[NSUserDefaults standardUserDefaults] setObject:response.parsedResponse forKey:@"Micro.blog User Info"];
+                    	[[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:@"HasSnippetsBlog"];
+						
+                    	[UUAlertViewController uuShowOneButtonAlert:nil message:@"You have successfully configured Lumos to publish to your Micro.blog!" button:@"OK" completionHandler:^(NSInteger buttonIndex)
+                    	{
+                        	[[NSNotificationCenter defaultCenter] postNotificationName:kMicroblogConfiguredNotification object:nil];
+                    	}];
+                	}
+				});
+            }
+            else if (response.httpError)
+            {
+            	dispatch_async(dispatch_get_main_queue(), ^
+            	{
+                	[UUAlertViewController uuShowOneButtonAlert:@"Error Verifying Account" message:response.httpError.localizedDescription button:@"OK" completionHandler:^(NSInteger buttonIndex)
+                	{
+                	}];
+				});
+            }
+            else
+            {
+            	dispatch_async(dispatch_get_main_queue(), ^
+            	{
+                	NSString* errorString = [NSString stringWithFormat:@"An unknown error was encountered. Please try again later."];
+                	[UUAlertViewController uuShowOneButtonAlert:@"Error Verifying Account" message:errorString button:@"OK" completionHandler:^(NSInteger buttonIndex)
+                	{
+                	}];
+				});
+            }
+        }];
+
+        return YES;
+    }
+	
+    return NO;
 }
 
 @end
