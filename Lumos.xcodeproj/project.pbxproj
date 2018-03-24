@@ -30,6 +30,7 @@
 		C54C8F912065A4A7007F7565 /* UUAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F902065A4A7007F7565 /* UUAlert.m */; };
 		C54C8F942065B192007F7565 /* RFMicropub.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F922065B191007F7565 /* RFMicropub.m */; };
 		C54C8F972065B233007F7565 /* RFSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F962065B233007F7565 /* RFSettings.m */; };
+		C54C8F9B2065D5C8007F7565 /* UUDate.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F9A2065D5C7007F7565 /* UUDate.m */; };
 		C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC329B205774A600D0594B /* LUAppDelegate.m */; };
 		C5DC32A2205774A600D0594B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A0205774A600D0594B /* Main.storyboard */; };
 		C5DC32A4205774A600D0594B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A3205774A600D0594B /* Assets.xcassets */; };
@@ -103,6 +104,8 @@
 		C54C8F952065B233007F7565 /* RFSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFSettings.h; path = shared/Microblog/RFSettings.h; sourceTree = SOURCE_ROOT; };
 		C54C8F962065B233007F7565 /* RFSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFSettings.m; path = shared/Microblog/RFSettings.m; sourceTree = SOURCE_ROOT; };
 		C54C8F982065B2CE007F7565 /* LUNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUNotifications.h; sourceTree = "<group>"; };
+		C54C8F992065D5C7007F7565 /* UUDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UUDate.h; path = shared/UU/UUDate.h; sourceTree = SOURCE_ROOT; };
+		C54C8F9A2065D5C7007F7565 /* UUDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UUDate.m; path = shared/UU/UUDate.m; sourceTree = SOURCE_ROOT; };
 		C5DC3297205774A600D0594B /* Lumos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DC329A205774A600D0594B /* LUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAppDelegate.h; sourceTree = "<group>"; };
 		C5DC329B205774A600D0594B /* LUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAppDelegate.m; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				C54C8F902065A4A7007F7565 /* UUAlert.m */,
 				C54C8F662065A34F007F7565 /* UUColor.h */,
 				C54C8F6F2065A350007F7565 /* UUColor.m */,
+				C54C8F992065D5C7007F7565 /* UUDate.h */,
+				C54C8F9A2065D5C7007F7565 /* UUDate.m */,
 				C54C8F672065A34F007F7565 /* UUDictionary.h */,
 				C54C8F682065A350007F7565 /* UUDictionary.m */,
 				C54C8F6E2065A350007F7565 /* UUHttpResponseHandler.h */,
@@ -451,6 +456,7 @@
 				C54C8F832065A3B3007F7565 /* SSKeychain.m in Sources */,
 				C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */,
 				C5357B2520602B750067413C /* LUAudioRecorder.m in Sources */,
+				C54C8F9B2065D5C8007F7565 /* UUDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
