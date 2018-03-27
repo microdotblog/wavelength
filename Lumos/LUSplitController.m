@@ -18,6 +18,12 @@
 	[super viewDidLoad];
 
 	[self setupButtons];
+}
+
+- (void) viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+	
 	[self setupGraph];
 }
 
@@ -37,9 +43,24 @@
 
 	CGFloat w = [self bestWidthForDuration:clip.duration];
 	CGSize size = CGSizeMake (w, self.scrollView.bounds.size.height);
+
+	CGRect container_r = CGRectMake ([self bestPadding], 50, size.width, size.height - 100);
+	CGRect audio_r = CGRectMake (0, 0, size.width, size.height - 100);
+
 	UIView* v = [clip requestAudioInputView];
-	v.frame = CGRectMake ([self bestPadding], 0, size.width, size.height);
-	[self.scrollView addSubview:v];
+	v.frame = audio_r;
+
+	UIView* container = [[UIView alloc] initWithFrame:container_r];
+	container.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+	container.layer.shadowOpacity = 0.5;
+	container.layer.shadowRadius = 3.0;
+	container.layer.shadowOffset = CGSizeMake (0, 0);
+	container.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:container.bounds cornerRadius:7.0].CGPath;
+	container.layer.backgroundColor = [UIColor whiteColor].CGColor;
+	container.layer.cornerRadius = 7.0;
+	[container addSubview:v];
+	
+	[self.scrollView addSubview:container];
 	[self.scrollView setContentSize:CGSizeMake (size.width + ([self bestPadding] * 2), size.height)];
 }
 
