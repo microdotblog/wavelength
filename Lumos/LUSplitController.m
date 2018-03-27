@@ -35,11 +35,23 @@
 	NSURL* audio_url = [NSURL fileURLWithPath:self.segment.path];
 	LUAudioClip* clip = [[LUAudioClip alloc] initWithDestination:audio_url];
 
-	CGSize size = CGSizeMake (1500, self.scrollView.bounds.size.height);
-	UIImage* img = [clip renderWaveImage:size];
-	UIImageView* v = [[UIImageView alloc] initWithImage:img];
+	CGFloat w = [self bestWidthForDuration:clip.duration];
+	CGSize size = CGSizeMake (w, self.scrollView.bounds.size.height);
+	UIView* v = [clip requestAudioInputView];
+	v.frame = CGRectMake ([self bestPadding], 0, size.width, size.height);
 	[self.scrollView addSubview:v];
-	[self.scrollView setContentSize:size];
+	[self.scrollView setContentSize:CGSizeMake (size.width + ([self bestPadding] * 2), size.height)];
+}
+
+- (CGFloat) bestWidthForDuration:(NSTimeInterval)duration
+{
+	// 300 pixels wide per second of audio
+	return 300.0 * duration;
+}
+
+- (CGFloat) bestPadding
+{
+	return self.view.bounds.size.width / 2.0;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
