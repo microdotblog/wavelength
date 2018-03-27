@@ -13,6 +13,7 @@
 @property (strong) NSString* path;
 @property (strong) NSString* title;
 @property (strong) UIImage* previewImage;
+@property (strong) NSString* exportedPath;
 @property (strong, readonly) NSString* duration;
 @property (strong, readonly) NSMutableArray* audioSegmentPaths;
 

@@ -14,6 +14,7 @@
 #import "LUAudioClip.h"
 #import "LUAudioRecorder.h"
 #import "LUSplitController.h"
+#import "LUPostController.h"
 #import <EZAudio/EZAudio.h>
 #import "SSKeychain.h"
 
@@ -47,6 +48,11 @@ static const NSString* kItemStatusContext;
 		LUSegment* segment = sender;
 		LUSplitController* split_controller = [segue destinationViewController];
 		split_controller.segment = segment;
+	}
+	else if ([sender isKindOfClass:[LUEpisode class]]) {
+		LUEpisode* episode = sender;
+		LUPostController* post_controller = [segue destinationViewController];
+		post_controller.episode = episode;
 	}
 }
 
@@ -131,7 +137,9 @@ static const NSString* kItemStatusContext;
 	}
 	else
 	{
-		[self performSegueWithIdentifier:@"PostSegue" sender:self];
+		self.episode.exportedPath = [self.episode.path stringByAppendingPathComponent:@"exported.m4a"];
+		[self exportCompositionToPath:self.episode.exportedPath];
+		[self performSegueWithIdentifier:@"PostSegue" sender:self.episode];
 	}
 }
 
