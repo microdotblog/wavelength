@@ -15,6 +15,7 @@
 #import "LUAudioRecorder.h"
 #import "LUSplitController.h"
 #import "LUPostController.h"
+#import "LUNotifications.h"
 #import <EZAudio/EZAudio.h>
 #import "SSKeychain.h"
 
@@ -33,10 +34,25 @@ static const NSString* kItemStatusContext;
 {
 	[super viewDidLoad];
 	
+	[self setupNotifications];
+	[self setupCollectionView];
+	[self setupGestures];
+}
+
+- (void) setupNotifications
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(replaceSegmentNotification:) name:kReplaceSegmentNotification object:nil];
+}
+
+- (void) setupCollectionView
+{
 	self.collectionView.dragDelegate = self;
 	self.collectionView.dropDelegate = self;
 	self.collectionView.dragInteractionEnabled = YES;
+}
 
+- (void) setupGestures
+{
 	UITapGestureRecognizer* double_tap_gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTapCollectionView:)];
 	double_tap_gesture.numberOfTapsRequired = 2;
 	[self.collectionView addGestureRecognizer:double_tap_gesture];
@@ -54,6 +70,14 @@ static const NSString* kItemStatusContext;
 		LUPostController* post_controller = [segue destinationViewController];
 		post_controller.episode = episode;
 	}
+}
+
+- (void) replaceSegmentNotification:(NSNotification *)notification
+{
+	LUSegment* segment = [notification.userInfo objectForKey:kReplaceSegmentOriginalKey];
+	NSArray* new_files = [notification.userInfo objectForKey:kReplaceSegmentNewArrayKey];
+	[self.episode replaceFile:segment.path withFiles:new_files];
+	[self.collectionView reloadData];
 }
 
 - (void) didDoubleTapCollectionView:(UITapGestureRecognizer *)gesture

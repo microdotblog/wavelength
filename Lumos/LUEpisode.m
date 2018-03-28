@@ -135,6 +135,23 @@
 	[self saveFileInfo];
 }
 
+- (void) replaceFile:(NSString *)oldPath withFiles:(NSArray *)newPaths
+{
+	for (NSInteger i = 0; i < self.audioSegmentPaths.count; i++) {
+		NSString* s = [self.audioSegmentPaths objectAtIndex:i];
+		if ([s isEqualToString:oldPath]) {
+			NSMutableArray* copy = [NSMutableArray arrayWithArray:self.audioSegmentPaths];
+			[copy removeObjectAtIndex:i];
+			for (NSString* one_file in newPaths) {
+				[copy insertObject:one_file atIndex:i];
+				i++;
+			}
+			[self updateAudioSegmentOrder:copy];
+			break;
+		}
+	}
+}
+
 - (void) updateAudioSegmentOrder:(NSArray*)updatedSegmentPaths
 {
 	self.audioSegmentPaths = [NSMutableArray arrayWithArray:updatedSegmentPaths];
