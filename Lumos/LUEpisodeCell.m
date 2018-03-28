@@ -11,7 +11,6 @@
 #import "LUEpisode.h"
 #import "UUString.h"
 
-
 @implementation LUEpisodeCell
 
 - (void) setupWithEpisode:(LUEpisode *)episode
@@ -22,6 +21,7 @@
 	self.durationField.text = episode.duration;
 
 	self.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	self.previewImageView.layer.cornerRadius = 3.0;
 	self.previewImageView.layer.borderWidth = 0.5;
 }
 
