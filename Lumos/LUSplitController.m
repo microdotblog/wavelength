@@ -54,7 +54,7 @@
 
 	UIView* container = [[UIView alloc] initWithFrame:container_r];
 	container.layer.shadowColor = [UIColor lightGrayColor].CGColor;
-	container.layer.shadowOpacity = 0.5;
+	container.layer.shadowOpacity = 0.3;
 	container.layer.shadowRadius = 3.0;
 	container.layer.shadowOffset = CGSizeMake (0, 0);
 	container.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:container.bounds cornerRadius:7.0].CGPath;
