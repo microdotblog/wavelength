@@ -163,6 +163,15 @@
 	self.splitSeconds = seconds;
 }
 
+- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+	if (self.player) {
+		[self.player pause];
+		self.player = nil;
+		[self updatePlayButton];
+	}
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	// Get the new view controller using [segue destinationViewController].
