@@ -234,7 +234,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Episodes" id="Y0t-ow-Wbo">
                         <barButtonItem key="rightBarButtonItem" image="settings" style="plain" id="lh7-TM-OBd">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="0L5-6a-8xF" kind="show" id="UnS-sk-8tv"/>
                             </connections>
