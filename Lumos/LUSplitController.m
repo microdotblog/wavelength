@@ -11,7 +11,6 @@
 #import "LUSegment.h"
 #import "LUAudioClip.h"
 #import "LUNotifications.h"
-#import <AVFoundation/AVFoundation.h>
 
 @implementation LUSplitController
 
@@ -64,6 +63,19 @@
 	[self.scrollView setContentSize:CGSizeMake (size.width + ([self bestPadding] * 2), size.height)];
 }
 
+- (void) updatePlayButton
+{
+	UIImage* img = nil;
+	if (self.player) {
+		img = [UIImage imageNamed:@"pause"];
+	}
+	else {
+		img = [UIImage imageNamed:@"play"];
+	}
+
+	[self.playPauseButton setImage:img forState:UIControlStateNormal];
+}
+
 - (CGFloat) bestWidthForDuration:(NSTimeInterval)duration
 {
 	// 300 pixels wide per second of audio
@@ -77,7 +89,6 @@
 
 - (NSTimeInterval) timeOffsetForScrollPosition:(CGFloat)x
 {
-//	CGFloat offset_x = x - [self bestPadding];
 	CGFloat w = [self bestWidthForDuration:self.clip.duration];
 	CGFloat fraction = x / w;
 	return fraction * self.clip.duration;
@@ -158,9 +169,47 @@
 	// Pass the selected object to the new view controller.
 }
 
+- (void) playerDidFinishPlaying:(NSNotification *)notification
+{
+	[self play:nil];
+}
+
 - (IBAction) play:(id)sender
 {
+	if (self.player) {
+		[self.player pause];
+		self.player = nil;
+	}
+	else {
+		self.player = [[AVPlayer alloc] initWithURL:[NSURL fileURLWithPath:self.segment.path]];
+
+		AVPlayerItem* item = self.player.currentItem;
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+
+		CMTime interval = CMTimeMakeWithSeconds (0.05, NSEC_PER_SEC);
+		__weak LUSplitController* weak_self = self;
+		[self.player addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
+			dispatch_async (dispatch_get_main_queue(), ^{
+				[weak_self updatePlayback:time];
+			});
+		}];
+
+		[self.player play];
+	}
+	
+	[self updatePlayButton];
 }
+
+- (void) updatePlayback:(CMTime)time
+{
+	Float64 offset = CMTimeGetSeconds (time);
+	CGFloat w = [self bestWidthForDuration:self.clip.duration];
+	CGFloat fraction = offset / self.clip.duration;
+	CGFloat x = fraction * w;
+	[self.scrollView setContentOffset:CGPointMake (x, 0) animated:NO];
+}
+
+#pragma mark -
 
 - (IBAction) split:(id)sender
 {

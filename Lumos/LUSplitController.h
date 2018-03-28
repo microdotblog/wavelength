@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @class LUSegment;
 @class LUAudioClip;
@@ -19,6 +20,7 @@
 
 @property (strong, nonatomic) LUSegment* _Nullable segment;
 @property (strong, nonatomic) LUAudioClip* _Nullable clip;
+@property (strong, nonatomic) AVPlayer* _Nullable player;
 @property (assign, nonatomic) NSTimeInterval splitSeconds;
 @property (strong, nonatomic) NSString* _Nullable part1File;
 @property (strong, nonatomic) NSString* _Nullable part2File;
