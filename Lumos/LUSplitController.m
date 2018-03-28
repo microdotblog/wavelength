@@ -171,6 +171,11 @@
 
 - (IBAction) delete:(id)sender
 {
+	[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:@{
+		kReplaceSegmentOriginalKey: self.segment,
+		kReplaceSegmentNewArrayKey: @[]
+	}];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
