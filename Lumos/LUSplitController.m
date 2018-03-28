@@ -116,12 +116,12 @@
 
 - (void) splitAtSeconds:(NSTimeInterval)seconds
 {
-	CMTime part1_start = CMTimeMake(0, 1);
-	CMTime part1_end = CMTimeMake(seconds, 1);
+	CMTime part1_start = CMTimeMakeWithSeconds (0, NSEC_PER_SEC);
+	CMTime part1_end = CMTimeMakeWithSeconds (seconds, NSEC_PER_SEC);
 	CMTimeRange part1_range = CMTimeRangeFromTimeToTime (part1_start, part1_end);
 
-	CMTime part2_start = CMTimeMake(seconds, 1);
-	CMTime part2_end = CMTimeMake(self.clip.duration, 1);
+	CMTime part2_start = CMTimeMakeWithSeconds (seconds, NSEC_PER_SEC);
+	CMTime part2_end = CMTimeMakeWithSeconds (self.clip.duration, NSEC_PER_SEC);
 	CMTimeRange part2_range = CMTimeRangeFromTimeToTime (part2_start, part2_end);
 	
 	NSString* filename1 = [[[NSProcessInfo processInfo] globallyUniqueString] stringByAppendingPathExtension:@"m4a"];
