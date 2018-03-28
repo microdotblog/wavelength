@@ -37,6 +37,10 @@
 
 - (void) setupGraph
 {
+	if (self.clip) {
+		return;
+	}
+	
 	NSURL* audio_url = [NSURL fileURLWithPath:self.segment.path];
 	self.clip = [[LUAudioClip alloc] initWithDestination:audio_url];
 
