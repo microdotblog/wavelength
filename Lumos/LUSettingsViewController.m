@@ -39,13 +39,13 @@
 	
 	if (!userInfo || !token)
 	{
-		self.userName.text = @"Not logged in";
-		[self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
+		self.userName.text = @"Not signed in";
+		[self.loginButton setTitle:@"Sign In" forState:UIControlStateNormal];
 	}
 	else
 	{
 		self.userName.text = [userInfo objectForKey:@"full_name"];
-		[self.loginButton setTitle:@"Logout" forState:UIControlStateNormal];
+		[self.loginButton setTitle:@"Sign Out" forState:UIControlStateNormal];
 	}
 }
 
