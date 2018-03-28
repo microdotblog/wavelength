@@ -20,8 +20,8 @@
 @property (strong, nonatomic) LUSegment* _Nullable segment;
 @property (strong, nonatomic) LUAudioClip* _Nullable clip;
 @property (assign, nonatomic) NSTimeInterval splitSeconds;
-@property (strong, nonatomic) NSString* part1File;
-@property (strong, nonatomic) NSString* part2File;
+@property (strong, nonatomic) NSString* _Nullable part1File;
+@property (strong, nonatomic) NSString* _Nullable part2File;
 @property (assign) BOOL isExportedPart1;
 @property (assign) BOOL isExportedPart2;
 
