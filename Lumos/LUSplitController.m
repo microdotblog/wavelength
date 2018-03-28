@@ -10,6 +10,8 @@
 
 #import "LUSegment.h"
 #import "LUAudioClip.h"
+#import "LUNotifications.h"
+#import <AVFoundation/AVFoundation.h>
 
 @implementation LUSplitController
 
@@ -39,15 +41,15 @@
 - (void) setupGraph
 {
 	NSURL* audio_url = [NSURL fileURLWithPath:self.segment.path];
-	LUAudioClip* clip = [[LUAudioClip alloc] initWithDestination:audio_url];
+	self.clip = [[LUAudioClip alloc] initWithDestination:audio_url];
 
-	CGFloat w = [self bestWidthForDuration:clip.duration];
+	CGFloat w = [self bestWidthForDuration:self.clip.duration];
 	CGSize size = CGSizeMake (w, self.scrollView.bounds.size.height);
 
 	CGRect container_r = CGRectMake ([self bestPadding], 50, size.width, size.height - 100);
 	CGRect audio_r = CGRectMake (0, 0, size.width, size.height - 100);
 
-	UIView* v = [clip requestAudioInputView];
+	UIView* v = [self.clip requestAudioInputView];
 	v.frame = audio_r;
 
 	UIView* container = [[UIView alloc] initWithFrame:container_r];
@@ -75,6 +77,83 @@
 	return self.view.bounds.size.width / 2.0;
 }
 
+- (NSTimeInterval) timeOffsetForScrollPosition:(CGFloat)x
+{
+//	CGFloat offset_x = x - [self bestPadding];
+	CGFloat w = [self bestWidthForDuration:self.clip.duration];
+	CGFloat fraction = x / w;
+	return fraction * self.clip.duration;
+}
+
+- (void) splitAsset:(AVAsset *)asset withRange:(CMTimeRange)range toFile:(NSString *)path completion:(void (^)(void))handler
+{
+    AVAssetExportSession* exporter = [[AVAssetExportSession alloc] initWithAsset:asset presetName:AVAssetExportPresetAppleM4A];
+    exporter.outputFileType = AVFileTypeAppleM4A;
+    exporter.outputURL = [NSURL fileURLWithPath:path];
+    exporter.timeRange = range;
+	
+    [exporter exportAsynchronouslyWithCompletionHandler:^{
+    	if (exporter.status == AVAssetExportSessionStatusCompleted) {
+			handler();
+		}
+		else if (exporter.status == AVAssetExportSessionStatusFailed) {
+			// ...
+		}
+		else if (exporter.status == AVAssetExportSessionStatusCancelled) {
+			// ...
+		}
+	}];
+}
+
+- (void) splitAtSeconds:(NSTimeInterval)seconds
+{
+	CMTime part1_start = CMTimeMake(0, 1);
+	CMTime part1_end = CMTimeMake(seconds, 1);
+	CMTimeRange part1_range = CMTimeRangeFromTimeToTime (part1_start, part1_end);
+
+	CMTime part2_start = CMTimeMake(seconds, 1);
+	CMTime part2_end = CMTimeMake(self.clip.duration, 1);
+	CMTimeRange part2_range = CMTimeRangeFromTimeToTime (part2_start, part2_end);
+	
+	NSString* filename1 = [[[NSProcessInfo processInfo] globallyUniqueString] stringByAppendingPathExtension:@"m4a"];
+	NSString* filename2 = [[[NSProcessInfo processInfo] globallyUniqueString] stringByAppendingPathExtension:@"m4a"];
+
+	self.part1File = [[self.segment.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:filename1];
+	self.part2File = [[self.segment.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:filename2];
+
+	AVAsset* asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:self.segment.path]];
+	[self splitAsset:asset withRange:part1_range toFile:self.part1File completion:^{
+		self.isExportedPart1 = YES;
+		[self checkFinished];
+	}];
+	[self splitAsset:asset withRange:part2_range toFile:self.part2File completion:^{
+		self.isExportedPart2 = YES;
+		[self checkFinished];
+	}];
+}
+
+- (void) checkFinished
+{
+    dispatch_async (dispatch_get_main_queue(), ^{
+		if (self.isExportedPart1 && self.isExportedPart2) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:@{
+				kReplaceSegmentOriginalKey: self.segment,
+				kReplaceSegmentNewArrayKey: @[
+					self.part1File,
+					self.part2File
+				]
+			}];
+			[self.navigationController popViewControllerAnimated:YES];
+		}
+	});
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	NSTimeInterval seconds = [self timeOffsetForScrollPosition:scrollView.contentOffset.x];
+	self.splitSeconds = seconds;
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	// Get the new view controller using [segue destinationViewController].
@@ -87,6 +166,7 @@
 
 - (IBAction) split:(id)sender
 {
+	[self splitAtSeconds:self.splitSeconds];
 }
 
 - (IBAction) delete:(id)sender

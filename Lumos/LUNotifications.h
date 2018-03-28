@@ -11,4 +11,8 @@
 
 #define kMicroblogConfiguredNotification        @"kMicroblogConfiguredNotification"
 
+static NSString* const kReplaceSegmentNotification = @"ReplaceSegmentNotification";
+static NSString* const kReplaceSegmentOriginalKey = @"original"; // LUSegment
+static NSString* const kReplaceSegmentNewArrayKey = @"new"; // NSArray of m4a paths
+
 #endif /* LUNotifications_h */

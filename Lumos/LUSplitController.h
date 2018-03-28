@@ -9,13 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @class LUSegment;
+@class LUAudioClip;
 
-@interface LUSplitController : UIViewController
+@interface LUSplitController : UIViewController <UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView* _Nonnull scrollView;
 @property (strong, nonatomic) IBOutlet UIButton* _Nonnull playPauseButton;
 @property (strong, nonatomic) IBOutlet UIButton* _Nonnull splitButton;
 
 @property (strong, nonatomic) LUSegment* _Nullable segment;
+@property (strong, nonatomic) LUAudioClip* _Nullable clip;
+@property (assign, nonatomic) NSTimeInterval splitSeconds;
+@property (strong, nonatomic) NSString* part1File;
+@property (strong, nonatomic) NSString* part2File;
+@property (assign) BOOL isExportedPart1;
+@property (assign) BOOL isExportedPart2;
 
 @end
