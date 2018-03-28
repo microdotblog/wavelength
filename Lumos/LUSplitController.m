@@ -172,6 +172,7 @@
 - (void) playerDidFinishPlaying:(NSNotification *)notification
 {
 	[self play:nil];
+	self.splitSeconds = 0.0;
 }
 
 - (IBAction) play:(id)sender
@@ -194,6 +195,8 @@
 			});
 		}];
 
+		CMTime offset = CMTimeMakeWithSeconds (self.splitSeconds, NSEC_PER_SEC);
+		[self.player seekToTime:offset];
 		[self.player play];
 	}
 	
@@ -207,6 +210,8 @@
 	CGFloat fraction = offset / self.clip.duration;
 	CGFloat x = fraction * w;
 	[self.scrollView setContentOffset:CGPointMake (x, 0) animated:NO];
+
+	self.splitSeconds = offset;
 }
 
 #pragma mark -
