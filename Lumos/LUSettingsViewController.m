@@ -20,9 +20,7 @@
 {
     [super viewDidLoad];
 	
-	self.navigationItem.hidesBackButton = YES;
     self.navigationItem.title = @"Settings";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(onDone:)];
 
 	self.versionNumber.text = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
 
@@ -49,13 +47,9 @@
 	}
 }
 
-- (void) onDone:(id)sender
-{
-	[self.navigationController popViewControllerAnimated:YES];
-}
-
 - (IBAction) onLogin:(id)sender
 {
+	[self performSegueWithIdentifier:@"SigninSegue" sender:self];
 }
 
 @end
