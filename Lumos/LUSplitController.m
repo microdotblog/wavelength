@@ -110,10 +110,10 @@
 			handler();
 		}
 		else if (exporter.status == AVAssetExportSessionStatusFailed) {
-			// ...
+			NSLog (@"Export failed");
 		}
 		else if (exporter.status == AVAssetExportSessionStatusCancelled) {
-			// ...
+			NSLog (@"Export cancelled");
 		}
 	}];
 }
@@ -136,12 +136,16 @@
 
 	AVAsset* asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:self.segment.path]];
 	[self splitAsset:asset withRange:part1_range toFile:self.part1File completion:^{
-		self.isExportedPart1 = YES;
-		[self checkFinished];
+		@synchronized (self) {
+			self.isExportedPart1 = YES;
+			[self checkFinished];
+		}
 	}];
 	[self splitAsset:asset withRange:part2_range toFile:self.part2File completion:^{
-		self.isExportedPart2 = YES;
-		[self checkFinished];
+		@synchronized (self) {
+			self.isExportedPart2 = YES;
+			[self checkFinished];
+		}
 	}];
 }
 
