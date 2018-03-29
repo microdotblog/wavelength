@@ -66,9 +66,13 @@ static const NSString* kItemStatusContext;
 		split_controller.segment = segment;
 	}
 	else if ([sender isKindOfClass:[LUEpisode class]]) {
-		LUEpisode* episode = sender;
-		LUPostController* post_controller = [segue destinationViewController];
-		post_controller.episode = episode;
+		if ([segue.identifier isEqualToString:@"PostSegue"]) {
+			LUEpisode* episode = sender;
+			LUPostController* post_controller = [segue destinationViewController];
+			post_controller.episode = episode;
+		}
+		else if ([segue.identifier isEqualToString:@"SigninSegue"]) {
+		}
 	}
 }
 
@@ -155,9 +159,7 @@ static const NSString* kItemStatusContext;
 	
 	if (!userInfo || !token)
 	{
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-		UIViewController* loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
-		[self presentViewController:loginViewController animated:YES completion:nil];
+		[self performSegueWithIdentifier:@"SigninSegue" sender:self.episode];
 	}
 	else
 	{
