@@ -332,7 +332,7 @@ static const NSString* kItemStatusContext;
 - (CGSize) bestCellSize
 {
 	CGFloat w = floor ((self.view.bounds.size.width / 2.0) - kCellPadding - (kCellPadding / 2.0));
-	CGFloat h = 90.0;
+	CGFloat h = 110.0;
 	
 	return CGSizeMake (w, h);
 }
