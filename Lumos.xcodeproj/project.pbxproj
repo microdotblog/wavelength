@@ -106,7 +106,7 @@
 		C54C8F982065B2CE007F7565 /* LUNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUNotifications.h; sourceTree = "<group>"; };
 		C54C8F992065D5C7007F7565 /* UUDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UUDate.h; path = shared/UU/UUDate.h; sourceTree = SOURCE_ROOT; };
 		C54C8F9A2065D5C7007F7565 /* UUDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UUDate.m; path = shared/UU/UUDate.m; sourceTree = SOURCE_ROOT; };
-		C5DC3297205774A600D0594B /* Lumos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5DC3297205774A600D0594B /* Wavelength.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wavelength.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DC329A205774A600D0594B /* LUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAppDelegate.h; sourceTree = "<group>"; };
 		C5DC329B205774A600D0594B /* LUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAppDelegate.m; sourceTree = "<group>"; };
 		C5DC32A1205774A600D0594B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		C5DC3298205774A600D0594B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C5DC3297205774A600D0594B /* Lumos.app */,
+				C5DC3297205774A600D0594B /* Wavelength.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -299,9 +299,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C5DC3296205774A600D0594B /* Lumos */ = {
+		C5DC3296205774A600D0594B /* Wavelength */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C5DC32AD205774A600D0594B /* Build configuration list for PBXNativeTarget "Lumos" */;
+			buildConfigurationList = C5DC32AD205774A600D0594B /* Build configuration list for PBXNativeTarget "Wavelength" */;
 			buildPhases = (
 				39106CE54FE2870431EDD396 /* [CP] Check Pods Manifest.lock */,
 				C5DC3293205774A600D0594B /* Sources */,
@@ -315,9 +315,9 @@
 			);
 			dependencies = (
 			);
-			name = Lumos;
+			name = Wavelength;
 			productName = Lumos;
-			productReference = C5DC3297205774A600D0594B /* Lumos.app */;
+			productReference = C5DC3297205774A600D0594B /* Wavelength.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -348,7 +348,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C5DC3296205774A600D0594B /* Lumos */,
+				C5DC3296205774A600D0594B /* Wavelength */,
 			);
 		};
 /* End PBXProject section */
@@ -595,7 +595,7 @@
 				DEVELOPMENT_TEAM = 3F9MDJ6K4E;
 				INFOPLIST_FILE = Lumos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.Lumos;
+				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.wavelength;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -610,7 +610,7 @@
 				DEVELOPMENT_TEAM = 3F9MDJ6K4E;
 				INFOPLIST_FILE = Lumos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.Lumos;
+				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.wavelength;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -628,7 +628,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C5DC32AD205774A600D0594B /* Build configuration list for PBXNativeTarget "Lumos" */ = {
+		C5DC32AD205774A600D0594B /* Build configuration list for PBXNativeTarget "Wavelength" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C5DC32AE205774A600D0594B /* Debug */,
