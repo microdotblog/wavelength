@@ -335,7 +335,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C5DC3292205774A600D0594B /* Build configuration list for PBXProject "Lumos" */;
+			buildConfigurationList = C5DC3292205774A600D0594B /* Build configuration list for PBXProject "Wavelength" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -619,7 +619,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C5DC3292205774A600D0594B /* Build configuration list for PBXProject "Lumos" */ = {
+		C5DC3292205774A600D0594B /* Build configuration list for PBXProject "Wavelength" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C5DC32AB205774A600D0594B /* Debug */,
