@@ -82,8 +82,8 @@
 	
 	if (!userInfo || !token)
 	{
-		self.userName.text = @"Not signed in";
 		self.blogName.text = @"";
+		self.userName.text = @"Not signed in to Micro.blog";
 		[self.loginButton setTitle:@"Sign In" forState:UIControlStateNormal];
 	}
 	else

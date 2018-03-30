@@ -8,6 +8,8 @@
 
 #import "LUAuphonicController.h"
 
+#import "LUAuphonic.h"
+
 @implementation LUAuphonicController
 
 - (void) viewDidLoad
@@ -22,6 +24,7 @@
 
 - (IBAction) signIn:(id)sender
 {
+	[self.progressSpinner startAnimating];
 }
 
 @end
