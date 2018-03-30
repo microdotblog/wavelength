@@ -135,17 +135,15 @@
 	self.part2File = [[self.segment.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:filename2];
 
 	AVAsset* asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:self.segment.path]];
-	[self splitAsset:asset withRange:part1_range toFile:self.part1File completion:^{
-		@synchronized (self) {
-			self.isExportedPart1 = YES;
-			[self checkFinished];
-		}
-	}];
-	[self splitAsset:asset withRange:part2_range toFile:self.part2File completion:^{
-		@synchronized (self) {
+	[self splitAsset:asset withRange:part1_range toFile:self.part1File completion:^
+	{
+		self.isExportedPart1 = YES;
+		
+		[self splitAsset:asset withRange:part2_range toFile:self.part2File completion:^
+		{
 			self.isExportedPart2 = YES;
 			[self checkFinished];
-		}
+		}];
 	}];
 }
 
