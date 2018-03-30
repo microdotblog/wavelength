@@ -137,30 +137,21 @@
 	AVAsset* asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:self.segment.path]];
 	[self splitAsset:asset withRange:part1_range toFile:self.part1File completion:^
 	{
-		self.isExportedPart1 = YES;
-		
 		[self splitAsset:asset withRange:part2_range toFile:self.part2File completion:^
 		{
-			self.isExportedPart2 = YES;
-			[self checkFinished];
+    		dispatch_async (dispatch_get_main_queue(), ^
+    		{
+    			NSDictionary* userInfo = @{
+					kReplaceSegmentOriginalKey: self.segment,
+					kReplaceSegmentNewArrayKey: @[ self.part1File, self.part2File ]
+				};
+				
+				[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:userInfo];
+				
+				[self.navigationController popViewControllerAnimated:YES];
+			});
 		}];
 	}];
-}
-
-- (void) checkFinished
-{
-    dispatch_async (dispatch_get_main_queue(), ^{
-		if (self.isExportedPart1 && self.isExportedPart2) {
-			[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:@{
-				kReplaceSegmentOriginalKey: self.segment,
-				kReplaceSegmentNewArrayKey: @[
-					self.part1File,
-					self.part2File
-				]
-			}];
-			[self.navigationController popViewControllerAnimated:YES];
-		}
-	});
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView

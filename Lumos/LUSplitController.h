@@ -24,7 +24,5 @@
 @property (assign, nonatomic) NSTimeInterval splitSeconds;
 @property (strong, nonatomic) NSString* _Nullable part1File;
 @property (strong, nonatomic) NSString* _Nullable part2File;
-@property (assign) BOOL isExportedPart1;
-@property (assign) BOOL isExportedPart2;
 
 @end
