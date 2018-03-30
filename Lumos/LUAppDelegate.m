@@ -227,10 +227,24 @@
                     	[[NSUserDefaults standardUserDefaults] setObject:response.parsedResponse forKey:@"Micro.blog User Info"];
                     	[[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:@"HasSnippetsBlog"];
 						
-                    	[UUAlertViewController uuShowOneButtonAlert:nil message:@"You have successfully configured Wavelength to publish to your Micro.blog!" button:@"OK" completionHandler:^(NSInteger buttonIndex)
-                    	{
-                        	[[NSNotificationCenter defaultCenter] postNotificationName:kMicroblogConfiguredNotification object:nil];
-                    	}];
+						RFClient* client = [[RFClient alloc] initWithPath:@"/micropub?q=config"];
+						[client getWithQueryArguments:nil completion:^(UUHttpResponse *response)
+						{
+							dispatch_async(dispatch_get_main_queue(), ^
+            				{
+								if (!response.httpError)
+								{
+									[[NSNotificationCenter defaultCenter] postNotificationName:kMicroblogConfiguredNotification object:response.parsedResponse];
+								}
+								else
+								{
+									[UUAlertViewController uuShowOneButtonAlert:@"Error Verifying Account" message:errorString button:@"Ok" completionHandler:^(NSInteger buttonIndex)
+                    				{
+                    				}];
+								}
+							});
+						}];
+
                 	}
 				});
             }
