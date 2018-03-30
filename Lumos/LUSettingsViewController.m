@@ -52,4 +52,9 @@
 	[self performSegueWithIdentifier:@"SigninSegue" sender:self];
 }
 
+- (IBAction) onAuphonic:(id)sender
+{
+	[self performSegueWithIdentifier:@"AuphonicSegue" sender:self];
+}
+
 @end

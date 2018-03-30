@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		03D7B2EF1AE083BA2B0F0D88 /* libPods-Lumos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E28A020DCE8EB80280E4E2 /* libPods-Lumos.a */; };
+		4B18F1BD206E0E6100A91731 /* LUAuphonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BC206E0E6100A91731 /* LUAuphonic.m */; };
+		4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BF206E951200A91731 /* LUAuphonicController.m */; };
 		4B74C8C2205A23A40050A105 /* LUEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C1205A23A40050A105 /* LUEditController.m */; };
 		4B74C8C5205A23D10050A105 /* LUPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C4205A23D10050A105 /* LUPostController.m */; };
 		4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C7205A26180050A105 /* LUEpisode.m */; };
@@ -57,6 +59,10 @@
 
 /* Begin PBXFileReference section */
 		34E28A020DCE8EB80280E4E2 /* libPods-Lumos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lumos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B18F1BB206E0E6100A91731 /* LUAuphonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonic.h; sourceTree = "<group>"; };
+		4B18F1BC206E0E6100A91731 /* LUAuphonic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAuphonic.m; sourceTree = "<group>"; };
+		4B18F1BE206E951200A91731 /* LUAuphonicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonicController.h; sourceTree = "<group>"; };
+		4B18F1BF206E951200A91731 /* LUAuphonicController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAuphonicController.m; sourceTree = "<group>"; };
 		4B74C8C0205A23A40050A105 /* LUEditController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUEditController.h; sourceTree = "<group>"; };
 		4B74C8C1205A23A40050A105 /* LUEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUEditController.m; sourceTree = "<group>"; };
 		4B74C8C3205A23D10050A105 /* LUPostController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUPostController.h; sourceTree = "<group>"; };
@@ -279,6 +285,10 @@
 				C5E5A58E20646817006486FB /* LUSettingsViewController.m */,
 				C5E5A5902064708E006486FB /* LULoginViewController.h */,
 				C5E5A5912064708E006486FB /* LULoginViewController.m */,
+				4B18F1BB206E0E6100A91731 /* LUAuphonic.h */,
+				4B18F1BC206E0E6100A91731 /* LUAuphonic.m */,
+				4B18F1BE206E951200A91731 /* LUAuphonicController.h */,
+				4B18F1BF206E951200A91731 /* LUAuphonicController.m */,
 				C5DC32BD2057810C00D0594B /* Supporting Files */,
 			);
 			path = Lumos;
@@ -439,12 +449,14 @@
 				C54C8F882065A3C4007F7565 /* PopoverView.m in Sources */,
 				4B881CA72061492C008A4C13 /* LUSplitController.m in Sources */,
 				C5DC32C020586E8500D0594B /* LUAudioClip.m in Sources */,
+				4B18F1BD206E0E6100A91731 /* LUAuphonic.m in Sources */,
 				C54C8F742065A350007F7565 /* UUColor.m in Sources */,
 				4B74C959205A3F4A0050A105 /* LUSegmentCell.m in Sources */,
 				4B74C8C5205A23D10050A105 /* LUPostController.m in Sources */,
 				C54C8F822065A3B3007F7565 /* SSKeychainQuery.m in Sources */,
 				4B74C8C2205A23A40050A105 /* LUEditController.m in Sources */,
 				4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */,
+				4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */,
 				C54C8F8E2065A466007F7565 /* NSString+Extras.m in Sources */,
 				C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */,
 				C54C8F712065A350007F7565 /* UUHttpResponseHandler.m in Sources */,
