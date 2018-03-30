@@ -56,7 +56,7 @@
 	
 	[client postWithParams:args completion:^(UUHttpResponse* response)
     {
-        [UUAlertViewController uuShowOneButtonAlert:nil message:@"Email sent! Check your email on this device and tap the \"Open with Lumos\" button." button:@"OK" completionHandler:^(NSInteger buttonIndex)
+        [UUAlertViewController uuShowOneButtonAlert:nil message:@"Email sent! Check your email on this device and tap the \"Open with Wavelength\" button." button:@"OK" completionHandler:^(NSInteger buttonIndex)
         {
 			[self onCancel:self];
         }];

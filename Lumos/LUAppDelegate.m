@@ -182,7 +182,7 @@
 
 - (BOOL) handleLumosAuthorization:(NSURL*)inURL
 {
-    if ([inURL.absoluteString uuStartsWithSubstring:@"lumos://micropub"])
+    if ([inURL.absoluteString uuStartsWithSubstring:@"wavelength://micropub"])
     {
         NSString* action = [inURL resourceSpecifier];
 		NSString* microPubToken = [action uuFindQueryStringArg:@"code"];
@@ -227,7 +227,7 @@
                     	[[NSUserDefaults standardUserDefaults] setObject:response.parsedResponse forKey:@"Micro.blog User Info"];
                     	[[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:@"HasSnippetsBlog"];
 						
-                    	[UUAlertViewController uuShowOneButtonAlert:nil message:@"You have successfully configured Lumos to publish to your Micro.blog!" button:@"OK" completionHandler:^(NSInteger buttonIndex)
+                    	[UUAlertViewController uuShowOneButtonAlert:nil message:@"You have successfully configured Wavelength to publish to your Micro.blog!" button:@"OK" completionHandler:^(NSInteger buttonIndex)
                     	{
                         	[[NSNotificationCenter defaultCenter] postNotificationName:kMicroblogConfiguredNotification object:nil];
                     	}];
