@@ -82,20 +82,66 @@
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auphonic.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjn-Wk-9tF">
+                                <rect key="frame" x="16" y="269" width="202" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="SJE-fn-OOT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZSF-Wg-7ef">
+                                <rect key="frame" x="312" y="265" width="47" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="7f2-32-64w"/>
+                                    <constraint firstAttribute="height" constant="30" id="DYG-0c-fgt"/>
+                                </constraints>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="onAuphonic:" destination="0L5-6a-8xF" eventType="touchUpInside" id="Vxz-6S-6id"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with an Auphonic account to post-process your audio." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDU-aU-gJJ">
+                                <rect key="frame" x="16" y="298" width="209" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="209" id="9ZY-LB-cS4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41n-9B-KlM">
+                                <rect key="frame" x="0.0" y="243" width="375" height="1"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Ua1-v8-Z2K"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ZSF-Wg-7ef" firstAttribute="leading" secondItem="xjn-Wk-9tF" secondAttribute="trailing" constant="94" id="32c-S6-UUi"/>
                             <constraint firstItem="cJA-pf-jbG" firstAttribute="trailing" secondItem="UDG-q4-IEV" secondAttribute="trailing" constant="16" id="3xZ-Va-eic"/>
                             <constraint firstItem="qS3-7T-1MA" firstAttribute="top" secondItem="cJA-pf-jbG" secondAttribute="top" constant="32" id="6sb-UQ-VAB"/>
+                            <constraint firstItem="cJA-pf-jbG" firstAttribute="trailing" secondItem="ZSF-Wg-7ef" secondAttribute="trailing" constant="16" id="AKM-Y7-OjO"/>
+                            <constraint firstItem="ZSF-Wg-7ef" firstAttribute="top" secondItem="41n-9B-KlM" secondAttribute="bottom" constant="21" id="D5H-lJ-T0b"/>
                             <constraint firstItem="qS3-7T-1MA" firstAttribute="leading" secondItem="cJA-pf-jbG" secondAttribute="leading" constant="16" id="Dae-Sh-mQi"/>
+                            <constraint firstItem="SDU-aU-gJJ" firstAttribute="top" secondItem="xjn-Wk-9tF" secondAttribute="bottom" constant="8" id="H2j-fZ-adS"/>
                             <constraint firstItem="cJA-pf-jbG" firstAttribute="trailing" secondItem="RUB-24-JuF" secondAttribute="trailing" constant="16" id="Ir3-l1-Vkt"/>
+                            <constraint firstItem="xjn-Wk-9tF" firstAttribute="leading" secondItem="cJA-pf-jbG" secondAttribute="leading" constant="16" id="Kjv-JV-6Re"/>
                             <constraint firstItem="UDG-q4-IEV" firstAttribute="centerY" secondItem="qS3-7T-1MA" secondAttribute="centerY" id="PBY-kA-N29"/>
                             <constraint firstItem="lt5-II-AIL" firstAttribute="top" secondItem="T9g-DJ-tEb" secondAttribute="bottom" constant="32" id="Uz6-pF-ts5"/>
                             <constraint firstItem="RUB-24-JuF" firstAttribute="centerY" secondItem="lt5-II-AIL" secondAttribute="centerY" id="Zay-mU-8RN"/>
+                            <constraint firstItem="41n-9B-KlM" firstAttribute="top" secondItem="RUB-24-JuF" secondAttribute="bottom" constant="33" id="bBy-Zd-9nk"/>
                             <constraint firstItem="T9g-DJ-tEb" firstAttribute="top" secondItem="qS3-7T-1MA" secondAttribute="bottom" constant="32" id="dvT-wT-DGY"/>
                             <constraint firstAttribute="trailing" secondItem="T9g-DJ-tEb" secondAttribute="trailing" id="knP-pv-Vm9"/>
                             <constraint firstItem="lt5-II-AIL" firstAttribute="leading" secondItem="cJA-pf-jbG" secondAttribute="leading" constant="16" id="nN8-Fu-IDI"/>
+                            <constraint firstItem="xjn-Wk-9tF" firstAttribute="top" secondItem="41n-9B-KlM" secondAttribute="bottom" constant="25" id="qe6-8Q-TQt"/>
+                            <constraint firstItem="SDU-aU-gJJ" firstAttribute="leading" secondItem="cJA-pf-jbG" secondAttribute="leading" constant="16" id="r5a-Rf-qxs"/>
+                            <constraint firstItem="41n-9B-KlM" firstAttribute="leading" secondItem="9bq-gR-AoX" secondAttribute="leading" id="riZ-JX-Loy"/>
                             <constraint firstItem="T9g-DJ-tEb" firstAttribute="leading" secondItem="9bq-gR-AoX" secondAttribute="leading" id="wFH-Z1-PJG"/>
+                            <constraint firstAttribute="trailing" secondItem="41n-9B-KlM" secondAttribute="trailing" id="weG-Et-RAB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cJA-pf-jbG"/>
                     </view>
@@ -104,11 +150,12 @@
                         <outlet property="userName" destination="lt5-II-AIL" id="HP7-SB-7XW"/>
                         <outlet property="versionNumber" destination="UDG-q4-IEV" id="M2u-h2-f8J"/>
                         <segue destination="2uZ-XV-J6w" kind="presentation" identifier="SigninSegue" id="k0j-Kr-gI3"/>
+                        <segue destination="4yr-hy-J8I" kind="presentation" identifier="AuphonicSegue" id="met-sj-JLb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWu-jW-hls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1873" y="933"/>
+            <point key="canvasLocation" x="1872.8" y="932.38380809595208"/>
         </scene>
         <!--Wavelength-->
         <scene sceneID="Ynp-2P-NAL">
@@ -482,6 +529,98 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ol6-XK-P2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3300" y="933"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hGf-SS-bvl">
+            <objects>
+                <navigationController id="4yr-hy-J8I" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TUg-Di-Dxt">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wqu-9m-yDZ" kind="relationship" relationship="rootViewController" id="83G-dD-AbJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bTC-Hb-yL0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1873" y="1684"/>
+        </scene>
+        <!--Auphonic-->
+        <scene sceneID="Ktd-hd-3vn">
+            <objects>
+                <viewController id="wqu-9m-yDZ" customClass="LUAuphonicController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IGg-mU-wKI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to an existing account on Auphonic.com and Wavelength will send your audio files to Auphonic for post-processing:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQG-5v-EIM">
+                                <rect key="frame" x="40" y="100" width="295" height="21"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wavelength does not store your password after sending it securely to Auphonic." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeG-MU-etK">
+                                <rect key="frame" x="40" y="272" width="295" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="aiQ-tM-4Yf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PXN-BF-0dI">
+                                <rect key="frame" x="40" y="150" width="295" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="H49-zo-kN2"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ao-Hi-W5t">
+                                <rect key="frame" x="40" y="206" width="295" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Hyx-pj-6gw"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YQG-5v-EIM" firstAttribute="top" secondItem="wSe-XW-K2C" secondAttribute="top" constant="36" id="Gd6-iW-6R3"/>
+                            <constraint firstItem="PXN-BF-0dI" firstAttribute="top" secondItem="YQG-5v-EIM" secondAttribute="bottom" constant="29" id="Mn0-e5-S2O"/>
+                            <constraint firstItem="wSe-XW-K2C" firstAttribute="trailing" secondItem="PXN-BF-0dI" secondAttribute="trailing" constant="40" id="QaS-zT-vCf"/>
+                            <constraint firstItem="wSe-XW-K2C" firstAttribute="trailing" secondItem="YQG-5v-EIM" secondAttribute="trailing" constant="40" id="V3o-Vh-FH5"/>
+                            <constraint firstItem="wSe-XW-K2C" firstAttribute="trailing" secondItem="MeG-MU-etK" secondAttribute="trailing" constant="40" id="eAc-Nq-5ji"/>
+                            <constraint firstItem="0ao-Hi-W5t" firstAttribute="top" secondItem="PXN-BF-0dI" secondAttribute="bottom" constant="26" id="hwb-mx-Po5"/>
+                            <constraint firstItem="MeG-MU-etK" firstAttribute="leading" secondItem="wSe-XW-K2C" secondAttribute="leading" constant="40" id="pJk-I5-R2J"/>
+                            <constraint firstItem="MeG-MU-etK" firstAttribute="top" secondItem="0ao-Hi-W5t" secondAttribute="bottom" constant="36" id="pkO-yQ-11k"/>
+                            <constraint firstItem="PXN-BF-0dI" firstAttribute="leading" secondItem="wSe-XW-K2C" secondAttribute="leading" constant="40" id="rKD-Pa-3jB"/>
+                            <constraint firstItem="YQG-5v-EIM" firstAttribute="leading" secondItem="wSe-XW-K2C" secondAttribute="leading" constant="40" id="s6c-Cm-tYU"/>
+                            <constraint firstItem="wSe-XW-K2C" firstAttribute="trailing" secondItem="0ao-Hi-W5t" secondAttribute="trailing" constant="40" id="sb2-jW-94e"/>
+                            <constraint firstItem="0ao-Hi-W5t" firstAttribute="leading" secondItem="wSe-XW-K2C" secondAttribute="leading" constant="40" id="tdm-qG-gn6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wSe-XW-K2C"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Auphonic" id="nid-1l-HKk">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="HRe-GM-UfH">
+                            <connections>
+                                <action selector="cancel:" destination="wqu-9m-yDZ" id="ozG-KZ-owY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Sign In" id="sbw-Dd-u0I">
+                            <connections>
+                                <action selector="signIn:" destination="wqu-9m-yDZ" id="nZV-ID-wSk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="shL-Ue-saG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1872.8" y="2408.5457271364321"/>
         </scene>
         <!--Sign In-->
         <scene sceneID="bWO-Yi-LUL">
