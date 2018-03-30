@@ -50,8 +50,8 @@
 	NSDictionary* args = @
     {
 		@"email": self.loginField.text,
-        @"app_name" : @"Coastal",
-        @"redirect_url" : @"https://sunlit.io/microblog/redirect/"
+        @"app_name" : @"Wavelength",
+        @"redirect_url" : @"https://micro.blog/wavelength/redirect/"
 	};
 	
 	[client postWithParams:args completion:^(UUHttpResponse* response)
