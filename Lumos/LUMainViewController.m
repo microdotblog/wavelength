@@ -123,9 +123,9 @@
 		self.isRecording = NO;
 		[self updateRecordButton];
 		
-		[self.audioRecorder stop];
+		//[self.audioRecorder stop];
 
-		self.waveFormViewContainer.hidden = YES;
+		//self.waveFormViewContainer.hidden = YES;
 		//[self.audioRecorder stop];
 		
 		CGSize preview_size = CGSizeMake (150, 54);
