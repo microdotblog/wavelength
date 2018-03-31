@@ -14,12 +14,15 @@
 #import "RFClient.h"
 #import "SSKeychain.h"
 #import "LUNotifications.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation LUAppDelegate
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[EZAudioUtilities setShouldExitOnCheckResultFail:NO];
+	[self setupFabric];
 	[self setupAppearance];
 	
 	return YES;
@@ -54,6 +57,11 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void) setupFabric
+{
+    [Fabric with:@[[Crashlytics class]]];
 }
 
 - (void) setupAppearance
