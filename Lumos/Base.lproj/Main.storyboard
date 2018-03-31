@@ -159,6 +159,8 @@
                         <viewLayoutGuide key="safeArea" id="cJA-pf-jbG"/>
                     </view>
                     <connections>
+                        <outlet property="auphonicButton" destination="ZSF-Wg-7ef" id="kL5-QC-OMV"/>
+                        <outlet property="auphonicName" destination="xjn-Wk-9tF" id="nR7-Qk-8Pe"/>
                         <outlet property="blogName" destination="ufL-Nk-o0g" id="dl9-hu-ebn"/>
                         <outlet property="loginButton" destination="RUB-24-JuF" id="w4G-rF-Zn7"/>
                         <outlet property="userName" destination="lt5-II-AIL" id="HP7-SB-7XW"/>

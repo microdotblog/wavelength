@@ -10,6 +10,8 @@
 
 @interface LUAuphonic : NSObject
 
-- (void) signInWithUsername:(NSString *)username password:(NSString *)password;
++ (NSString *) savedUsername;
+
+- (void) signInWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSError* error))handler;
 
 @end

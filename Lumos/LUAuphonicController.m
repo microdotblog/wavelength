@@ -25,6 +25,16 @@
 - (IBAction) signIn:(id)sender
 {
 	[self.progressSpinner startAnimating];
+	
+	LUAuphonic* client = [[LUAuphonic alloc] init];
+	[client signInWithUsername:self.usernameField.text password:self.passwordField.text completion:^(NSError* error) {
+		if (error) {
+			// TODO: show alert
+		}
+		else {
+			[self dismissViewControllerAnimated:YES completion:NULL];
+		}
+	}];
 }
 
 @end

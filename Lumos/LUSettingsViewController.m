@@ -7,6 +7,8 @@
 //
 
 #import "LUSettingsViewController.h"
+
+#import "LUAuphonic.h"
 #import "SSKeychain.h"
 #import "LUNotifications.h"
 #import "UUAlert.h"
@@ -92,6 +94,16 @@
 		self.userName.text = [userInfo objectForKey:@"full_name"];
 		[self.loginButton setTitle:@"Sign Out" forState:UIControlStateNormal];
 	}
+	
+	NSString* auphonic_username = [LUAuphonic savedUsername];
+	if (auphonic_username) {
+		self.auphonicName.text = [NSString stringWithFormat:@"Auphonic.com: %@", auphonic_username];
+		[self.auphonicButton setTitle:@"Sign Out" forState:UIControlStateNormal];
+	}
+	else {
+		self.auphonicName.text = @"Auphonic.com";
+		[self.auphonicButton setTitle:@"Sign In" forState:UIControlStateNormal];
+	}
 }
 
 - (IBAction) onLogin:(id)sender
@@ -123,7 +135,12 @@
 
 - (IBAction) onAuphonic:(id)sender
 {
+	NSString* auphonic_username = [LUAuphonic savedUsername];
+	if (auphonic_username == nil) {
 	[self performSegueWithIdentifier:@"AuphonicSegue" sender:self];
+	}
+	else {
+	}
 }
 
 @end
