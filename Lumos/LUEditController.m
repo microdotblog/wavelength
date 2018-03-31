@@ -15,6 +15,7 @@
 #import "LUAudioRecorder.h"
 #import "LUSplitController.h"
 #import "LUPostController.h"
+#import "LUExportController.h"
 #import "LUNotifications.h"
 #import <EZAudio/EZAudio.h>
 #import "SSKeychain.h"
@@ -72,6 +73,11 @@ static const NSString* kItemStatusContext;
 			LUEpisode* episode = sender;
 			LUPostController* post_controller = [segue destinationViewController];
 			post_controller.episode = episode;
+		}
+		else if ([segue.identifier isEqualToString:@"ExportSegue"]) {
+			LUEpisode* episode = sender;
+			LUExportController* export_controller = [segue destinationViewController];
+			export_controller.episode = episode;
 		}
 		else if ([segue.identifier isEqualToString:@"SigninSegue"]) {
 		}
@@ -206,12 +212,15 @@ static const NSString* kItemStatusContext;
 	}
 	else
 	{
-		// TODO: show progress overlay
-		// ...
-	
 		self.episode.exportedPath = [self.episode.path stringByAppendingPathComponent:@"exported.m4a"];
-		[self exportCompositionToPath:self.episode.exportedPath completion:^{
-			[self performSegueWithIdentifier:@"PostSegue" sender:self.episode];
+		self.episode.exportedComposition = [self makeComposition];
+
+		[self performSegueWithIdentifier:@"ExportSegue" sender:self.episode];
+		
+		[self exportWithCompletion:^{
+			[self dismissViewControllerAnimated:YES completion:^{
+				[self performSegueWithIdentifier:@"PostSegue" sender:self.episode];
+			}];
 		}];
 	}
 }
@@ -387,11 +396,12 @@ static const NSString* kItemStatusContext;
 	return composition;
 }
 
-- (void) exportCompositionToPath:(NSString *)path completion:(void (^)(void))handler
+- (void) exportWithCompletion:(void (^)(void))handler
 {
+	NSString* path = self.episode.exportedPath;
 	[[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
 
-	AVMutableComposition* composition = [self makeComposition];
+	AVMutableComposition* composition = self.episode.exportedComposition;
 	AVAssetExportSession* exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
 	exporter.outputURL = [NSURL fileURLWithPath:path];
 	exporter.outputFileType = AVFileTypeAppleM4A;

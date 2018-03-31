@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface LUEpisode : NSObject
 
@@ -14,6 +15,7 @@
 @property (strong) NSString* title;
 @property (strong) UIImage* previewImage;
 @property (strong) NSString* exportedPath;
+@property (strong) AVMutableComposition* exportedComposition;
 @property (strong, readonly) NSString* duration;
 @property (strong, readonly) NSMutableArray* audioSegmentPaths;
 

@@ -10,6 +10,9 @@
 		03D7B2EF1AE083BA2B0F0D88 /* libPods-Lumos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E28A020DCE8EB80280E4E2 /* libPods-Lumos.a */; };
 		4B18F1BD206E0E6100A91731 /* LUAuphonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BC206E0E6100A91731 /* LUAuphonic.m */; };
 		4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BF206E951200A91731 /* LUAuphonicController.m */; };
+		4B18F1C4206FECAB00A91731 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */; };
+		4B18F1C7206FECB000A91731 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B18F1C6206FECB000A91731 /* libmp3lame.a */; };
+		4B18F1CA206FEEDA00A91731 /* LUExportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1C9206FEEDA00A91731 /* LUExportController.m */; };
 		4B74C8C2205A23A40050A105 /* LUEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C1205A23A40050A105 /* LUEditController.m */; };
 		4B74C8C5205A23D10050A105 /* LUPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C4205A23D10050A105 /* LUPostController.m */; };
 		4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C7205A26180050A105 /* LUEpisode.m */; };
@@ -63,6 +66,12 @@
 		4B18F1BC206E0E6100A91731 /* LUAuphonic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAuphonic.m; sourceTree = "<group>"; };
 		4B18F1BE206E951200A91731 /* LUAuphonicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonicController.h; sourceTree = "<group>"; };
 		4B18F1BF206E951200A91731 /* LUAuphonicController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAuphonicController.m; sourceTree = "<group>"; };
+		4B18F1C2206FECAA00A91731 /* ExtAudioConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtAudioConverter.h; path = shared/ExtAudioFileConverter/ExtAudioConverter/ExtAudioConverter/ExtAudioConverter.h; sourceTree = SOURCE_ROOT; };
+		4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtAudioConverter.m; path = shared/ExtAudioFileConverter/ExtAudioConverter/ExtAudioConverter/ExtAudioConverter.m; sourceTree = SOURCE_ROOT; };
+		4B18F1C5206FECB000A91731 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lame.h; path = shared/ExtAudioFileConverter/ExtAudioConverter/lame.h; sourceTree = SOURCE_ROOT; };
+		4B18F1C6206FECB000A91731 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = shared/ExtAudioFileConverter/ExtAudioConverter/libmp3lame.a; sourceTree = SOURCE_ROOT; };
+		4B18F1C8206FEEDA00A91731 /* LUExportController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUExportController.h; sourceTree = "<group>"; };
+		4B18F1C9206FEEDA00A91731 /* LUExportController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUExportController.m; sourceTree = "<group>"; };
 		4B74C8C0205A23A40050A105 /* LUEditController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUEditController.h; sourceTree = "<group>"; };
 		4B74C8C1205A23A40050A105 /* LUEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUEditController.m; sourceTree = "<group>"; };
 		4B74C8C3205A23D10050A105 /* LUPostController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUPostController.h; sourceTree = "<group>"; };
@@ -136,12 +145,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				03D7B2EF1AE083BA2B0F0D88 /* libPods-Lumos.a in Frameworks */,
+				4B18F1C7206FECB000A91731 /* libmp3lame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B18F1C1206FEC9500A91731 /* ExtAudioConverter */ = {
+			isa = PBXGroup;
+			children = (
+				4B18F1C2206FECAA00A91731 /* ExtAudioConverter.h */,
+				4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */,
+				4B18F1C5206FECB000A91731 /* lame.h */,
+				4B18F1C6206FECB000A91731 /* libmp3lame.a */,
+			);
+			path = ExtAudioConverter;
+			sourceTree = "<group>";
+		};
 		4B74C963205D758B0050A105 /* Music */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +183,7 @@
 		C54C8F642065A328007F7565 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4B18F1C1206FEC9500A91731 /* ExtAudioConverter */,
 				C54C8F842065A3B6007F7565 /* PopoverView */,
 				C54C8F7D2065A39E007F7565 /* SSKeychain */,
 				C54C8F7C2065A38C007F7565 /* Microblog */,
@@ -277,6 +299,8 @@
 				C5DC32B9205780F000D0594B /* LUMainViewController.m */,
 				4B74C8C0205A23A40050A105 /* LUEditController.h */,
 				4B74C8C1205A23A40050A105 /* LUEditController.m */,
+				4B18F1C8206FEEDA00A91731 /* LUExportController.h */,
+				4B18F1C9206FEEDA00A91731 /* LUExportController.m */,
 				4B74C8C3205A23D10050A105 /* LUPostController.h */,
 				4B74C8C4205A23D10050A105 /* LUPostController.m */,
 				4B881CA52061492B008A4C13 /* LUSplitController.h */,
@@ -458,8 +482,10 @@
 				4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */,
 				4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */,
 				C54C8F8E2065A466007F7565 /* NSString+Extras.m in Sources */,
+				4B18F1C4206FECAB00A91731 /* ExtAudioConverter.m in Sources */,
 				C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */,
 				C54C8F712065A350007F7565 /* UUHttpResponseHandler.m in Sources */,
+				4B18F1CA206FEEDA00A91731 /* LUExportController.m in Sources */,
 				C5E5A58F20646817006486FB /* LUSettingsViewController.m in Sources */,
 				C54C8F912065A4A7007F7565 /* UUAlert.m in Sources */,
 				C5E5A5922064708E006486FB /* LULoginViewController.m in Sources */,
@@ -526,6 +552,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -581,6 +608,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -607,6 +635,10 @@
 				DEVELOPMENT_TEAM = 3F9MDJ6K4E;
 				INFOPLIST_FILE = Lumos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/shared/ExtAudioFileConverter/ExtAudioConverter",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.wavelength;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -622,6 +654,10 @@
 				DEVELOPMENT_TEAM = 3F9MDJ6K4E;
 				INFOPLIST_FILE = Lumos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/shared/ExtAudioFileConverter/ExtAudioConverter",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.wavelength;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
