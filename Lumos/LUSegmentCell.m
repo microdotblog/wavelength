@@ -16,9 +16,11 @@
 	
 	if (selected) {
 		self.previewImageView.layer.borderColor = [UIColor blackColor].CGColor;
+		self.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
 	}
 	else {
 		self.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		self.backgroundColor = nil;
 	}
 }
 

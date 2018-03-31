@@ -50,6 +50,7 @@ static const NSString* kItemStatusContext;
 	self.collectionView.dragDelegate = self;
 	self.collectionView.dropDelegate = self;
 	self.collectionView.dragInteractionEnabled = YES;
+	self.collectionView.allowsMultipleSelection = YES;
 }
 
 - (void) setupGestures
@@ -83,13 +84,34 @@ static const NSString* kItemStatusContext;
 	NSArray* new_files = [notification.userInfo objectForKey:kReplaceSegmentNewArrayKey];
 	[self.episode replaceFile:segment.path withFiles:new_files];
 	[self.collectionView reloadData];
+	
+	for (NSString* selected_file in new_files) {
+		for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
+			NSString* segment_file = [self.episode.audioSegmentPaths objectAtIndex:i];
+			if ([segment_file isEqualToString:selected_file]) {
+				NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
+				[self.collectionView selectItemAtIndexPath:index_path animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+			}
+		}
+	}
 }
 
 - (void) didDoubleTapCollectionView:(UITapGestureRecognizer *)gesture
 {
 	CGPoint pt = [gesture locationInView:self.collectionView];
 	NSIndexPath* index_path = [self.collectionView indexPathForItemAtPoint:pt];
+	[self clearSelection];
 	[self editSegmentAtIndexPath:index_path];
+}
+
+- (void) clearSelection
+{
+	NSArray* index_paths = self.collectionView.indexPathsForSelectedItems;
+	if (index_paths) {
+		for (NSIndexPath* index_path in index_paths) {
+			[self.collectionView deselectItemAtIndexPath:index_path animated:NO];
+		}
+	}
 }
 
 - (void) editSegmentAtIndexPath:(NSIndexPath *)indexPath
@@ -405,11 +427,14 @@ static const NSString* kItemStatusContext;
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
+	[self clearSelection];
 	[self editSegmentAtIndexPath:indexPath];
 }
 
 - (void) collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
+	[self clearSelection];
+	[self editSegmentAtIndexPath:indexPath];
 }
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
