@@ -24,6 +24,7 @@ static const NSString* kItemStatusContext;
 
 @interface LUEditController ()<UICollectionViewDragDelegate, UICollectionViewDropDelegate>
 	@property (nonatomic, assign) BOOL isInRecordMode;
+	@property (nonatomic, assign) BOOL isRecording;
 	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
 	@property (nonatomic, strong) IBOutlet UIView* waveFormViewContainer;
 @end
@@ -105,6 +106,8 @@ static const NSString* kItemStatusContext;
 - (IBAction) onCancelRecord:(id)sender
 {
 	self.isInRecordMode = NO;
+	
+	self.waveFormViewContainer.hidden = YES;
 
 	self.playPauseButton.layer.cornerRadius = 0.0;
 	self.playPauseButton.layer.backgroundColor = nil;
@@ -150,6 +153,24 @@ static const NSString* kItemStatusContext;
 	self.playPauseButton.clipsToBounds = YES;
 
 	[self.playPauseButton setImage:[UIImage imageNamed:@"mic"] forState:UIControlStateNormal];
+	
+	NSURL* destination = [LUAudioRecorder generateTimeStampedFileURL];
+	NSString* fileName = destination.path.lastPathComponent;
+	destination = [[NSURL fileURLWithPath:self.episode.path] URLByAppendingPathComponent:fileName];
+	self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:destination];
+	self.timerLabel.hidden = NO;
+	self.timerLabel.text = @"00:00";
+
+	__weak LUEditController* weakSelf = self;
+	self.audioRecorder.recordProgressCallback = ^(NSString* timeString)
+	{
+		weakSelf.timerLabel.text = timeString;
+	};
+	
+	UIView* waveFormView = [self.audioRecorder requestAudioInputView];
+	waveFormView.frame = self.waveFormViewContainer.bounds;
+	[self.waveFormViewContainer addSubview:waveFormView];
+	self.waveFormViewContainer.hidden = NO;
 }
 
 - (IBAction) publish:(id)sender
@@ -174,7 +195,7 @@ static const NSString* kItemStatusContext;
 	// Handle recording a new clip...
 	if (self.isInRecordMode)
 	{
-		if (!self.audioRecorder)
+		if (!self.isRecording)
 		{
 			[self startRecording];
 		}
@@ -217,31 +238,16 @@ static const NSString* kItemStatusContext;
 
 - (void) startRecording
 {
-	NSURL* destination = [LUAudioRecorder generateTimeStampedFileURL];
-	NSString* fileName = destination.path.lastPathComponent;
-	destination = [[NSURL fileURLWithPath:self.episode.path] URLByAppendingPathComponent:fileName];
-	self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:destination];
-	self.timerLabel.hidden = NO;
-	self.timerLabel.text = @"00:00";
-
-	__weak LUEditController* weakSelf = self;
-	self.audioRecorder.recordProgressCallback = ^(NSString* timeString)
-	{
-		weakSelf.timerLabel.text = timeString;
-	};
-	
-	UIView* waveFormView = [self.audioRecorder requestAudioInputView];
-	waveFormView.frame = self.waveFormViewContainer.bounds;
-	[self.waveFormViewContainer addSubview:waveFormView];
-
+	self.isRecording = YES;
 	[self.audioRecorder record];
-	self.waveFormViewContainer.hidden = NO;
 
 	[self.playPauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
 }
 
 - (void) stopRecording
 {
+	self.isRecording = NO;
+	
 	self.waveFormViewContainer.hidden = YES;
 	self.timerLabel.hidden = YES;
 	

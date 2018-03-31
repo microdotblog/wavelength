@@ -149,6 +149,12 @@
 	
 	[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
 
+	self.audioPlot.plotType = EZPlotTypeBuffer;
+	//self.audioPlot.color = [UIColor whiteColor];
+	self.audioPlot.shouldFill = YES;
+	self.audioPlot.shouldMirror = YES;
+	self.audioPlot.gain = 3.0;
+
 	return true;
 }
 

@@ -35,6 +35,8 @@
 	[self setupEpisodes];
 	
 	[self updateRecordButton];
+	
+	[self setupAudio];
 }
 
 - (void) viewDidLayoutSubviews
