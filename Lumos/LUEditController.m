@@ -44,6 +44,7 @@ static const NSString* kItemStatusContext;
 - (void) setupNotifications
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(replaceSegmentNotification:) name:kReplaceSegmentNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishedExportNotification:) name:kFinishedExportNotification object:nil];
 }
 
 - (void) setupCollectionView
@@ -78,6 +79,7 @@ static const NSString* kItemStatusContext;
 			LUEpisode* episode = sender;
 			LUExportController* export_controller = [segue destinationViewController];
 			export_controller.episode = episode;
+			export_controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 		}
 		else if ([segue.identifier isEqualToString:@"SigninSegue"]) {
 		}
@@ -100,6 +102,16 @@ static const NSString* kItemStatusContext;
 			}
 		}
 	}
+}
+
+- (void) finishedExportNotification:(NSNotification *)notification
+{
+	NSString* mp3_path = [notification.userInfo objectForKey:kFinishedExportFileKey];
+
+	[self dismissViewControllerAnimated:YES completion:^{
+		self.episode.exportedPath = mp3_path;
+		[self performSegueWithIdentifier:@"PostSegue" sender:self.episode];
+	}];
 }
 
 - (void) didDoubleTapCollectionView:(UITapGestureRecognizer *)gesture
@@ -215,13 +227,7 @@ static const NSString* kItemStatusContext;
 		self.episode.exportedPath = [self.episode.path stringByAppendingPathComponent:@"exported.m4a"];
 		self.episode.exportedComposition = [self makeComposition];
 
-		[self performSegueWithIdentifier:@"ExportSegue" sender:self.episode];
-		
-		[self exportWithCompletion:^{
-			[self dismissViewControllerAnimated:YES completion:^{
-				[self performSegueWithIdentifier:@"PostSegue" sender:self.episode];
-			}];
-		}];
+		[self performSegueWithIdentifier:@"ExportSegue" sender:self.episode];		
 	}
 }
 
@@ -394,24 +400,6 @@ static const NSString* kItemStatusContext;
 	}
 	
 	return composition;
-}
-
-- (void) exportWithCompletion:(void (^)(void))handler
-{
-	NSString* path = self.episode.exportedPath;
-	[[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
-
-	AVMutableComposition* composition = self.episode.exportedComposition;
-	AVAssetExportSession* exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
-	exporter.outputURL = [NSURL fileURLWithPath:path];
-	exporter.outputFileType = AVFileTypeAppleM4A;
-	[exporter exportAsynchronouslyWithCompletionHandler:^{
-		dispatch_async(dispatch_get_main_queue(), ^{
-			if (exporter.status == AVAssetExportSessionStatusCompleted) {
-				handler();
-			}
-		});
-	}];
 }
 
 #pragma mark -

@@ -15,4 +15,7 @@ static NSString* const kReplaceSegmentNotification = @"ReplaceSegmentNotificatio
 static NSString* const kReplaceSegmentOriginalKey = @"original"; // LUSegment
 static NSString* const kReplaceSegmentNewArrayKey = @"new"; // NSArray of m4a paths
 
+static NSString* const kFinishedExportNotification = @"FinishedExportNotification";
+static NSString* const kFinishedExportFileKey = @"mp3_path";
+
 #endif /* LUNotifications_h */
