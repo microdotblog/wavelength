@@ -865,7 +865,11 @@
                         <viewLayoutGuide key="safeArea" id="DNk-ns-fm0"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ziy-3L-i6F">
-                        <barButtonItem key="rightBarButtonItem" title="Post" id="4xg-h5-vEp"/>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="4xg-h5-vEp">
+                            <connections>
+                                <action selector="post:" destination="rbR-yE-SLm" id="3WV-Bm-Brm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomConstraint" destination="dxB-6v-n06" id="LCC-T2-JQM"/>

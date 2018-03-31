@@ -10,6 +10,7 @@
 
 #import "LUAudioClip.h"
 #import "LUEpisode.h"
+#import "RFClient.h"
 
 @implementation LUPostController
 
@@ -62,6 +63,8 @@
     // Pass the selected object to the new view controller.
 }
 
+#pragma mark -
+
 - (void) keyboardWillShowNotification:(NSNotification*)notification
 {
     NSDictionary* info = [notification userInfo];
@@ -84,6 +87,30 @@
 - (void) playerDidFinishPlaying:(NSNotification *)notification
 {
 	[self playOrPause:nil];
+}
+
+#pragma mark -
+
+- (IBAction) post:(id)sender
+{
+	NSData* d = nil;
+	NSDictionary* args = @{
+		@"mp-destination": @""
+	};
+	
+	RFClient* client = [[RFClient alloc] initWithPath:@"/micropub/media"];
+	[client uploadAudioData:d named:@"audio.mp3" httpMethod:@"POST" queryArguments:args completion:^(UUHttpResponse* response) {
+		if (response.httpResponse.statusCode == 201) {
+			NSDictionary* params = @{
+				@"name": @"",
+				@"text": @"",
+				@"audio": @""
+			};
+			[client postWithParams:params completion:^(UUHttpResponse* response) {
+				[self dismissViewControllerAnimated:YES completion:NULL];
+			}];
+		}
+	}];
 }
 
 - (IBAction) playOrPause:(id)sender
