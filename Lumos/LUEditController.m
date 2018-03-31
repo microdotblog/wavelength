@@ -206,9 +206,13 @@ static const NSString* kItemStatusContext;
 	}
 	else
 	{
+		// TODO: show progress overlay
+		// ...
+	
 		self.episode.exportedPath = [self.episode.path stringByAppendingPathComponent:@"exported.m4a"];
-		[self exportCompositionToPath:self.episode.exportedPath];
-		[self performSegueWithIdentifier:@"PostSegue" sender:self.episode];
+		[self exportCompositionToPath:self.episode.exportedPath completion:^{
+			[self performSegueWithIdentifier:@"PostSegue" sender:self.episode];
+		}];
 	}
 }
 
@@ -383,15 +387,16 @@ static const NSString* kItemStatusContext;
 	return composition;
 }
 
-- (void) exportCompositionToPath:(NSString *)path
+- (void) exportCompositionToPath:(NSString *)path completion:(void (^)(void))handler
 {
 	AVMutableComposition* composition = [self makeComposition];
-	AVAssetExportSession* exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+	AVAssetExportSession* exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
 	exporter.outputURL = [NSURL fileURLWithPath:path];
-	exporter.outputFileType = AVFileTypeMPEGLayer3;
+	exporter.outputFileType = AVFileTypeAppleM4A;
 	[exporter exportAsynchronouslyWithCompletionHandler:^{
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (exporter.status == AVAssetExportSessionStatusCompleted) {
+				handler();
 			}
 		});
 	}];

@@ -8,9 +8,8 @@
 
 #import "LUPostController.h"
 
-@interface LUPostController ()
-
-@end
+#import "LUAudioClip.h"
+#import "LUEpisode.h"
 
 @implementation LUPostController
 
@@ -18,8 +17,7 @@
 {
 	[super viewDidLoad];
 	
-	self.titleContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
-	self.titleContainer.layer.borderWidth = 0.5;
+	[self setupFields];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -27,6 +25,27 @@
 	[super viewDidAppear:animated];
 	
 	[self.titleField becomeFirstResponder];
+}
+
+- (void) viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+	
+	[self setupWaveform];
+}
+
+- (void) setupFields
+{
+	self.titleContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	self.titleContainer.layer.borderWidth = 0.5;
+}
+
+- (void) setupWaveform
+{
+	LUAudioClip* clip = [[LUAudioClip alloc] initWithDestination:self.episode.exportedPath];
+	UIView* v = [clip requestAudioInputView];
+	v.frame = self.waveformView.bounds;
+	[self.waveformView addSubview:v];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
