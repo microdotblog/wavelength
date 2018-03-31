@@ -81,8 +81,73 @@
 	}];
 }
 
+- (void) playerDidFinishPlaying:(NSNotification *)notification
+{
+	[self playOrPause:nil];
+}
+
 - (IBAction) playOrPause:(id)sender
 {
+	if (self.player) {
+		[self.player pause];
+		self.player = nil;
+	}
+	else {
+		self.player = [[AVPlayer alloc] initWithURL:[NSURL fileURLWithPath:self.episode.exportedPath]];
+
+		AVPlayerItem* item = self.player.currentItem;
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+
+		CMTime interval = CMTimeMakeWithSeconds (0.05, NSEC_PER_SEC);
+		__weak LUPostController* weak_self = self;
+		[self.player addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
+			dispatch_async (dispatch_get_main_queue(), ^{
+				[weak_self updatePlayback:time];
+			});
+		}];
+
+		[self.player play];
+	}
+	
+	[self updatePlayButton];
+}
+
+- (void) updatePlayback:(CMTime)time
+{
+	if (self.player == nil) {
+		self.positionLine.hidden = YES;
+		return;
+	}
+	
+	Float64 offset = CMTimeGetSeconds (time);
+	Float64 duration = CMTimeGetSeconds (self.player.currentItem.duration);
+	CGFloat w = self.waveformView.bounds.size.width;
+	CGFloat fraction = offset / duration;
+
+	if (fraction == 0.0) {
+		self.positionLine.hidden = YES;
+	}
+	else {
+		CGRect bar_frame = self.waveformView.frame;
+		CGFloat x = fraction * w;
+		CGRect r = self.positionLine.frame;
+		r.origin.x = bar_frame.origin.x + x;
+		self.positionLine.frame = r;
+		self.positionLine.hidden = NO;
+	}
+}
+
+- (void) updatePlayButton
+{
+	UIImage* img = nil;
+	if (self.player) {
+		img = [UIImage imageNamed:@"pause"];
+	}
+	else {
+		img = [UIImage imageNamed:@"play"];
+	}
+
+	[self.playPauseButton setImage:img forState:UIControlStateNormal];
 }
 
 @end

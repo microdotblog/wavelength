@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @class LUEpisode;
 
@@ -18,7 +19,9 @@
 @property (strong, nonatomic) IBOutlet UIButton* playPauseButton;
 @property (strong, nonatomic) IBOutlet UIView* waveformView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint* bottomConstraint;
+@property (strong, nonatomic) IBOutlet UIView* positionLine;
 
 @property (strong, nonatomic) LUEpisode* episode;
+@property (strong, nonatomic) AVPlayer* _Nullable player;
 
 @end

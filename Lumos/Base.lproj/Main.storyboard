@@ -793,8 +793,15 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TB4-ZF-HVb">
-                                <rect key="frame" x="0.0" y="583" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="583" width="365" height="40"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-qP-RHr">
+                                        <rect key="frame" x="35" y="0.0" width="330" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="XKF-zS-11H"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPW-ZF-le3">
                                         <rect key="frame" x="8" y="10" width="20" height="20"/>
                                         <constraints>
@@ -806,20 +813,22 @@
                                             <action selector="playOrPause:" destination="rbR-yE-SLm" eventType="touchUpInside" id="m7X-WK-aZR"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-qP-RHr">
-                                        <rect key="frame" x="35" y="0.0" width="340" height="40"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gy-kn-cky">
+                                        <rect key="frame" x="67" y="0.0" width="1" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="XKF-zS-11H"/>
+                                            <constraint firstAttribute="width" constant="1" id="Cbd-tJ-v6y"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="2Gy-kn-cky" secondAttribute="bottom" id="1sI-ac-p6l"/>
                                     <constraint firstItem="leJ-qP-RHr" firstAttribute="top" secondItem="TB4-ZF-HVb" secondAttribute="top" id="409-iv-Lre"/>
                                     <constraint firstItem="leJ-qP-RHr" firstAttribute="leading" secondItem="JPW-ZF-le3" secondAttribute="trailing" constant="7" id="D0u-dG-hdF"/>
                                     <constraint firstAttribute="trailing" secondItem="leJ-qP-RHr" secondAttribute="trailing" id="E2e-ok-rtk"/>
+                                    <constraint firstItem="2Gy-kn-cky" firstAttribute="top" secondItem="TB4-ZF-HVb" secondAttribute="top" id="EOB-js-qVf"/>
                                     <constraint firstAttribute="height" constant="40" id="ET7-H0-NKs"/>
+                                    <constraint firstItem="2Gy-kn-cky" firstAttribute="leading" secondItem="JPW-ZF-le3" secondAttribute="trailing" constant="39" id="Hnw-pP-ccP"/>
                                     <constraint firstItem="JPW-ZF-le3" firstAttribute="leading" secondItem="TB4-ZF-HVb" secondAttribute="leading" constant="8" id="WM9-Ye-hMP"/>
                                     <constraint firstItem="JPW-ZF-le3" firstAttribute="top" secondItem="TB4-ZF-HVb" secondAttribute="top" constant="10" id="cPI-Zl-ewt"/>
                                 </constraints>
@@ -828,7 +837,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kP6-Os-aMO" firstAttribute="leading" secondItem="DNk-ns-fm0" secondAttribute="leading" constant="16" id="8tr-IH-Dpn"/>
-                            <constraint firstItem="TB4-ZF-HVb" firstAttribute="trailing" secondItem="DNk-ns-fm0" secondAttribute="trailing" id="D0G-ak-x1j"/>
+                            <constraint firstItem="DNk-ns-fm0" firstAttribute="trailing" secondItem="TB4-ZF-HVb" secondAttribute="trailing" constant="10" id="D0G-ak-x1j"/>
                             <constraint firstItem="1HZ-QX-Oyy" firstAttribute="leading" secondItem="DNk-ns-fm0" secondAttribute="leading" constant="10" id="Dh8-qT-W7a"/>
                             <constraint firstItem="DNk-ns-fm0" firstAttribute="trailing" secondItem="kP6-Os-aMO" secondAttribute="trailing" constant="16" id="Eyg-VV-eSd"/>
                             <constraint firstItem="XSf-pX-uX4" firstAttribute="leading" secondItem="wbd-Zx-YQW" secondAttribute="leading" constant="-1" id="HKr-Ew-L5c"/>
@@ -849,6 +858,7 @@
                     <connections>
                         <outlet property="bottomConstraint" destination="dxB-6v-n06" id="LCC-T2-JQM"/>
                         <outlet property="playPauseButton" destination="JPW-ZF-le3" id="mWG-lk-Srf"/>
+                        <outlet property="positionLine" destination="2Gy-kn-cky" id="NeS-Ii-prW"/>
                         <outlet property="textView" destination="1HZ-QX-Oyy" id="Ubn-Te-rpt"/>
                         <outlet property="titleContainer" destination="XSf-pX-uX4" id="kvy-hW-hiK"/>
                         <outlet property="titleField" destination="kP6-Os-aMO" id="dXV-Mf-yse"/>

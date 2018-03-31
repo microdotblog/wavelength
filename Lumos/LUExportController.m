@@ -59,9 +59,10 @@
 	converter.inputFile = self.episode.exportedPath;
 	converter.outputFile = mp3_path;
 
-	converter.outputSampleRate = 44100;
-	converter.outputNumberChannels = 1;
-	converter.outputBitDepth = BitDepth_16;
+//	converter.outputSampleRate = 44100;
+//	converter.outputNumberChannels = 1;
+//	converter.outputBitDepth = BitDepth_16;
+
 	converter.outputFormatID = kAudioFormatMPEGLayer3;
 	converter.outputFileType = kAudioFileMP3Type;
 
