@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITextView* textView;
 @property (strong, nonatomic) IBOutlet UIButton* playPauseButton;
 @property (strong, nonatomic) IBOutlet UIView* waveformView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint* bottomConstraint;
 
 @property (strong, nonatomic) LUEpisode* episode;
 

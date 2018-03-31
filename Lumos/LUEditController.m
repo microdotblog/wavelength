@@ -389,6 +389,8 @@ static const NSString* kItemStatusContext;
 
 - (void) exportCompositionToPath:(NSString *)path completion:(void (^)(void))handler
 {
+	[[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+
 	AVMutableComposition* composition = [self makeComposition];
 	AVAssetExportSession* exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
 	exporter.outputURL = [NSURL fileURLWithPath:path];
