@@ -25,7 +25,7 @@
 {
 	[super viewDidAppear:animated];
 	
-	[self.titleField becomeFirstResponder];
+	[self.textView becomeFirstResponder];
 }
 
 - (void) viewDidLayoutSubviews
