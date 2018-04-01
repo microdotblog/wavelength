@@ -57,9 +57,9 @@ static const NSString* kItemStatusContext;
 
 - (void) setupGestures
 {
-	UITapGestureRecognizer* double_tap_gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTapCollectionView:)];
-	double_tap_gesture.numberOfTapsRequired = 2;
-	[self.collectionView addGestureRecognizer:double_tap_gesture];
+//	UITapGestureRecognizer* double_tap_gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTapCollectionView:)];
+//	double_tap_gesture.numberOfTapsRequired = 2;
+//	[self.collectionView addGestureRecognizer:double_tap_gesture];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
