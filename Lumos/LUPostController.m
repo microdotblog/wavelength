@@ -11,6 +11,7 @@
 #import "LUAudioClip.h"
 #import "LUEpisode.h"
 #import "RFClient.h"
+#import "UUAlert.h"
 
 @implementation LUPostController
 
@@ -93,22 +94,37 @@
 
 - (IBAction) post:(id)sender
 {
-	NSData* d = nil;
+	NSString* blog_uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"Wavelength:blog:uid"];
+
+	NSData* d = [NSData dataWithContentsOfFile:self.episode.exportedPath];
 	NSDictionary* args = @{
-		@"mp-destination": @""
+		@"mp-destination": blog_uid
 	};
+	
+	NSString* title = self.titleField.text;
+	NSString* text = self.textView.text;
+	
+	if (text.length == 0) {
+		[UUAlertViewController uuShowOneButtonAlert:@"Missing Post Text" message:@"The post text should not be blank. This text will be used for the show notes for your microcast." button:@"OK" completionHandler:NULL];
+		return;
+	}
 	
 	RFClient* client = [[RFClient alloc] initWithPath:@"/micropub/media"];
 	[client uploadAudioData:d named:@"audio.mp3" httpMethod:@"POST" queryArguments:args completion:^(UUHttpResponse* response) {
-		if (response.httpResponse.statusCode == 201) {
+		if (response.httpResponse.statusCode == 202) {
+			NSString* audio_url = [response.httpResponse.allHeaderFields objectForKey:@"Location"];
 			NSDictionary* params = @{
-				@"name": @"",
-				@"text": @"",
-				@"audio": @""
+				@"name": title,
+				@"text": text,
+				@"audio": audio_url
 			};
 			[client postWithParams:params completion:^(UUHttpResponse* response) {
 				[self dismissViewControllerAnimated:YES completion:NULL];
 			}];
+		}
+		else {
+			NSString* msg = [response.httpError description];
+			[UUAlertViewController uuShowOneButtonAlert:@"Error Uploading Audio" message:msg button:@"OK" completionHandler:NULL];
 		}
 	}];
 }
