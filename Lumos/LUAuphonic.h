@@ -20,5 +20,6 @@
 - (void) sendAudio:(NSData *)data toProduction:(NSString *)productionUUID withCompletion:(void (^)(NSError* error))handler;
 - (void) startProduction:(NSString *)productionUUID withCompletion:(void (^)(NSError* error))handler;
 - (void) getDetailsForProduction:(NSString *)productionUUID withCompletion:(void (^)(NSString* outputURL, NSError* error))handler;
+- (void) downloadURL:(NSString *)audioURL toFile:(NSString *)path withCompletion:(void (^)(NSError* error))handler;
 
 @end

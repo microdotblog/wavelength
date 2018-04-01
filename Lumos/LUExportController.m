@@ -96,8 +96,18 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 			[self showError:error];
 		}
 		else if (outputURL.length > 0) {
-			// TODO: download the audio
-			// ...
+			NSString* mp3_path = [self.episode.exportedPath stringByDeletingLastPathComponent];
+			mp3_path = [mp3_path stringByAppendingPathComponent:@"exported.mp3"];
+			[[NSFileManager defaultManager] removeItemAtPath:mp3_path error:NULL];
+
+			[client downloadURL:outputURL toFile:@"" withCompletion:^(NSError *error) {
+				if (error) {
+					[self showError:error];
+				}
+				else {
+					[[NSNotificationCenter defaultCenter] postNotificationName:kFinishedExportNotification object:self userInfo:@{ kFinishedExportFileKey: mp3_path }];
+				}
+			}];
 		}
 		else {
 			[NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(checkProductionFromTimer:) userInfo:@{ kAuphonicProductionTimerKey: productionUUID } repeats:NO];

@@ -175,4 +175,19 @@ static NSInteger const kAuphonicStatusDone = 3;
 	}];
 }
 
+- (void) downloadURL:(NSString *)audioURL toFile:(NSString *)path withCompletion:(void (^)(NSError* error))handler
+{
+	self.url = audioURL;
+	[self getWithQueryArguments:nil completion:^(UUHttpResponse* response) {
+		if (response.httpError) {
+			handler (response.httpError);
+		}
+		else {
+			NSData* d = response.rawResponse;
+			[d writeToFile:path atomically:NO];
+			handler (nil);
+		}
+	}];
+}
+
 @end
