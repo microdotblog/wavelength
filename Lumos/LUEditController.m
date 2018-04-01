@@ -143,6 +143,28 @@ static const NSString* kItemStatusContext;
 	[self performSegueWithIdentifier:@"SplitSegue" sender:segment];
 }
 
+- (void) skipToSegmentAtIndexPath:(NSIndexPath *)indexPath
+{
+	Float64 current_offset = 0;
+
+	for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
+		NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
+
+		NSString* path = [self.episode.audioSegmentPaths objectAtIndex:i];
+		NSURL* url = [NSURL fileURLWithPath:path];
+		AVAsset* asset = [AVAsset assetWithURL:url];
+		Float64 segment_duration = CMTimeGetSeconds (asset.duration);
+
+		if ([index_path isEqual:indexPath]) {
+			CMTime segment_offset = CMTimeMakeWithSeconds (current_offset, NSEC_PER_SEC);
+			[self.player seekToTime:segment_offset];
+			break;
+		}
+
+		current_offset = current_offset + segment_duration;
+	}
+}
+
 - (IBAction) onCancelRecord:(id)sender
 {
 	self.isInRecordMode = NO;
@@ -433,13 +455,23 @@ static const NSString* kItemStatusContext;
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
 	[self clearSelection];
-	[self editSegmentAtIndexPath:indexPath];
+	if (self.player) {
+		[self skipToSegmentAtIndexPath:indexPath];
+	}
+	else {
+		[self editSegmentAtIndexPath:indexPath];
+	}
 }
 
 - (void) collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
 	[self clearSelection];
-	[self editSegmentAtIndexPath:indexPath];
+	if (self.player) {
+		[self skipToSegmentAtIndexPath:indexPath];
+	}
+	else {
+		[self editSegmentAtIndexPath:indexPath];
+	}
 }
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
