@@ -123,7 +123,7 @@
 		self.isRecording = NO;
 		[self updateRecordButton];
 		
-		//[self.audioRecorder stop];
+		[self.audioRecorder stop];
 
 		//self.waveFormViewContainer.hidden = YES;
 		//[self.audioRecorder stop];
