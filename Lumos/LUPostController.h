@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIView* waveformView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint* bottomConstraint;
 @property (strong, nonatomic) IBOutlet UIView* positionLine;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView* progressSpinner;
 
 @property (strong, nonatomic) LUEpisode* episode;
 @property (strong, nonatomic) AVPlayer* _Nullable player;

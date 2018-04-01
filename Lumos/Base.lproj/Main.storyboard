@@ -796,7 +796,7 @@
                                 <rect key="frame" x="0.0" y="579" width="365" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-qP-RHr">
-                                        <rect key="frame" x="35" y="0.0" width="330" height="44"/>
+                                        <rect key="frame" x="35" y="0.0" width="292" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="XKF-zS-11H"/>
@@ -829,20 +829,29 @@
                                             <constraint firstAttribute="width" constant="1" id="Cbd-tJ-v6y"/>
                                         </constraints>
                                     </view>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dx4-Ht-PvP">
+                                        <rect key="frame" x="337" y="12" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="Lel-Y2-jN9"/>
+                                            <constraint firstAttribute="height" constant="20" id="orP-OZ-oH3"/>
+                                        </constraints>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="2Gy-kn-cky" secondAttribute="bottom" id="1sI-ac-p6l"/>
                                     <constraint firstItem="leJ-qP-RHr" firstAttribute="top" secondItem="TB4-ZF-HVb" secondAttribute="top" id="409-iv-Lre"/>
                                     <constraint firstItem="leJ-qP-RHr" firstAttribute="leading" secondItem="JPW-ZF-le3" secondAttribute="trailing" constant="7" id="D0u-dG-hdF"/>
-                                    <constraint firstAttribute="trailing" secondItem="leJ-qP-RHr" secondAttribute="trailing" id="E2e-ok-rtk"/>
                                     <constraint firstItem="2Gy-kn-cky" firstAttribute="top" secondItem="TB4-ZF-HVb" secondAttribute="top" id="EOB-js-qVf"/>
                                     <constraint firstAttribute="height" constant="44" id="ET7-H0-NKs"/>
                                     <constraint firstAttribute="bottom" secondItem="XFQ-vx-JHe" secondAttribute="bottom" id="HYK-ND-be8"/>
                                     <constraint firstItem="2Gy-kn-cky" firstAttribute="leading" secondItem="JPW-ZF-le3" secondAttribute="trailing" constant="39" id="Hnw-pP-ccP"/>
                                     <constraint firstItem="XFQ-vx-JHe" firstAttribute="leading" secondItem="TB4-ZF-HVb" secondAttribute="leading" id="KTY-BN-i4C"/>
                                     <constraint firstItem="XFQ-vx-JHe" firstAttribute="top" secondItem="TB4-ZF-HVb" secondAttribute="top" id="PMp-Ar-DxU"/>
+                                    <constraint firstItem="dx4-Ht-PvP" firstAttribute="leading" secondItem="leJ-qP-RHr" secondAttribute="trailing" constant="10" id="Rjl-fB-20r"/>
                                     <constraint firstItem="JPW-ZF-le3" firstAttribute="leading" secondItem="TB4-ZF-HVb" secondAttribute="leading" constant="8" id="WM9-Ye-hMP"/>
                                     <constraint firstItem="JPW-ZF-le3" firstAttribute="top" secondItem="TB4-ZF-HVb" secondAttribute="top" constant="12" id="cPI-Zl-ewt"/>
+                                    <constraint firstItem="dx4-Ht-PvP" firstAttribute="top" secondItem="TB4-ZF-HVb" secondAttribute="top" constant="12" id="cQ8-fP-wYf"/>
+                                    <constraint firstAttribute="trailing" secondItem="dx4-Ht-PvP" secondAttribute="trailing" constant="8" id="lbU-c6-zei"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -875,6 +884,7 @@
                         <outlet property="bottomConstraint" destination="dxB-6v-n06" id="LCC-T2-JQM"/>
                         <outlet property="playPauseButton" destination="JPW-ZF-le3" id="mWG-lk-Srf"/>
                         <outlet property="positionLine" destination="2Gy-kn-cky" id="NeS-Ii-prW"/>
+                        <outlet property="progressSpinner" destination="dx4-Ht-PvP" id="dqn-AL-Nhv"/>
                         <outlet property="textView" destination="1HZ-QX-Oyy" id="Ubn-Te-rpt"/>
                         <outlet property="titleContainer" destination="XSf-pX-uX4" id="kvy-hW-hiK"/>
                         <outlet property="titleField" destination="kP6-Os-aMO" id="dXV-Mf-yse"/>

@@ -94,6 +94,8 @@
 
 - (IBAction) post:(id)sender
 {
+	[self.progressSpinner startAnimating];
+	
 	NSString* blog_uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"Wavelength:blog:uid"];
 
 	NSData* d = [NSData dataWithContentsOfFile:self.episode.exportedPath];
@@ -109,22 +111,36 @@
 		return;
 	}
 	
-	RFClient* client = [[RFClient alloc] initWithPath:@"/micropub/media"];
-	[client uploadAudioData:d named:@"audio.mp3" httpMethod:@"POST" queryArguments:args completion:^(UUHttpResponse* response) {
+	RFClient* media_client = [[RFClient alloc] initWithPath:@"/micropub/media"];
+	[media_client uploadAudioData:d named:@"file" httpMethod:@"POST" queryArguments:args completion:^(UUHttpResponse* response) {
 		if (response.httpResponse.statusCode == 202) {
 			NSString* audio_url = [response.httpResponse.allHeaderFields objectForKey:@"Location"];
 			NSDictionary* params = @{
 				@"name": title,
-				@"text": text,
-				@"audio": audio_url
+				@"content": text,
+				@"audio": audio_url,
+				@"mp-destination": blog_uid
 			};
-			[client postWithParams:params completion:^(UUHttpResponse* response) {
-				[self dismissViewControllerAnimated:YES completion:NULL];
+			RFClient* post_client = [[RFClient alloc] initWithPath:@"/micropub"];
+			[post_client postWithParams:params completion:^(UUHttpResponse* response) {
+    			dispatch_async (dispatch_get_main_queue(), ^{
+    				if (response.httpError) {
+						NSString* msg = [response.httpError localizedDescription];
+						[self.progressSpinner stopAnimating];
+						[UUAlertViewController uuShowOneButtonAlert:@"Error Sending Post" message:msg button:@"OK" completionHandler:NULL];
+    				}
+    				else {
+						[self.navigationController popViewControllerAnimated:YES];
+					}
+				});
 			}];
 		}
 		else {
-			NSString* msg = [response.httpError localizedDescription];
-			[UUAlertViewController uuShowOneButtonAlert:@"Error Uploading Audio" message:msg button:@"OK" completionHandler:NULL];
+    		dispatch_async (dispatch_get_main_queue(), ^{
+				NSString* msg = [response.httpError localizedDescription];
+				[self.progressSpinner stopAnimating];
+				[UUAlertViewController uuShowOneButtonAlert:@"Error Uploading Audio" message:msg button:@"OK" completionHandler:NULL];
+			});
 		}
 	}];
 }
