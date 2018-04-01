@@ -27,7 +27,7 @@
 {
 	[super viewDidAppear:animated];
 	
-	[self.textView becomeFirstResponder];
+	[self.titleField becomeFirstResponder];
 }
 
 - (void) viewDidLayoutSubviews
@@ -41,6 +41,9 @@
 {
 	self.titleContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
 	self.titleContainer.layer.borderWidth = 0.5;
+
+	NSString* blog_name = [[NSUserDefaults standardUserDefaults] objectForKey:@"Wavelength:blog:name"];
+	self.hostnameField.text = blog_name;
 }
 
 - (void) setupNotifications
@@ -51,11 +54,13 @@
 
 - (void) setupWaveform
 {
-	NSURL* url = [NSURL fileURLWithPath:self.episode.exportedPath];
-	LUAudioClip* clip = [[LUAudioClip alloc] initWithDestination:url];
-	UIView* v = [clip requestAudioInputView];
-	v.frame = self.waveformView.bounds;
-	[self.waveformView addSubview:v];
+	if (self.waveformView.subviews.count == 0) {
+		NSURL* url = [NSURL fileURLWithPath:self.episode.exportedPath];
+		LUAudioClip* clip = [[LUAudioClip alloc] initWithDestination:url];
+		UIView* v = [clip requestAudioInputView];
+		v.frame = self.waveformView.bounds;
+		[self.waveformView addSubview:v];
+	}
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -107,6 +112,7 @@
 	NSString* text = self.textView.text;
 	
 	if (text.length == 0) {
+		[self.progressSpinner stopAnimating];
 		[UUAlertViewController uuShowOneButtonAlert:@"Missing Post Text" message:@"The post text should not be blank. This text will be used for the show notes for your microcast." button:@"OK" completionHandler:NULL];
 		return;
 	}
@@ -125,8 +131,8 @@
 			[post_client postWithParams:params completion:^(UUHttpResponse* response) {
     			dispatch_async (dispatch_get_main_queue(), ^{
     				if (response.httpError) {
-						NSString* msg = [response.httpError localizedDescription];
 						[self.progressSpinner stopAnimating];
+						NSString* msg = [response.httpError localizedDescription];
 						[UUAlertViewController uuShowOneButtonAlert:@"Error Sending Post" message:msg button:@"OK" completionHandler:NULL];
     				}
     				else {
@@ -137,8 +143,8 @@
 		}
 		else {
     		dispatch_async (dispatch_get_main_queue(), ^{
-				NSString* msg = [response.httpError localizedDescription];
 				[self.progressSpinner stopAnimating];
+				NSString* msg = [response.httpError localizedDescription];
 				[UUAlertViewController uuShowOneButtonAlert:@"Error Uploading Audio" message:msg button:@"OK" completionHandler:NULL];
 			});
 		}
@@ -204,6 +210,7 @@
 	}
 	else {
 		img = [UIImage imageNamed:@"play"];
+		self.positionLine.hidden = YES;
 	}
 
 	[self.playPauseButton setImage:img forState:UIControlStateNormal];
