@@ -123,7 +123,7 @@
 			}];
 		}
 		else {
-			NSString* msg = [response.httpError description];
+			NSString* msg = [response.httpError localizedDescription];
 			[UUAlertViewController uuShowOneButtonAlert:@"Error Uploading Audio" message:msg button:@"OK" completionHandler:NULL];
 		}
 	}];

@@ -137,9 +137,11 @@
 {
 	NSString* auphonic_username = [LUAuphonic savedUsername];
 	if (auphonic_username == nil) {
-	[self performSegueWithIdentifier:@"AuphonicSegue" sender:self];
+		[self performSegueWithIdentifier:@"AuphonicSegue" sender:self];
 	}
 	else {
+		[LUAuphonic clearSignin];
+		[self updateAppearance];
 	}
 }
 

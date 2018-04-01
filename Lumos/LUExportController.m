@@ -11,7 +11,11 @@
 #import "LUEpisode.h"
 #import "LUNotifications.h"
 #import "ExtAudioConverter.h"
+#import "LUAuphonic.h"
+#import "UUAlert.h"
 #import <AVFoundation/AVFoundation.h>
+
+static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 
 @implementation LUExportController
 
@@ -27,7 +31,77 @@
 	[super viewDidAppear:animated];
 
 	[self exportWithCompletion:^{
-		[self convertToMP3];
+		NSString* auphonic_username = [LUAuphonic savedUsername];
+		if (auphonic_username) {
+			self.messageField.text = @"Creating Auphonic production...";
+			LUAuphonic* client = [[LUAuphonic alloc] init];
+			[client createProductionWithCompletion:^(NSString* productionUUID, NSError* error) {
+				if (error) {
+					[self showError:error];
+				}
+				else {
+					self.messageField.text = @"Uploading audio...";
+					NSData* d = [NSData dataWithContentsOfFile:self.episode.exportedPath];
+					[client sendAudio:d toProduction:productionUUID withCompletion:^(NSError* error) {
+						if (error) {
+							[self showError:error];
+						}
+						else {
+							self.messageField.text = @"Waiting on Auphonic...";
+							[client startProduction:productionUUID withCompletion:^(NSError *error) {
+								if (error) {
+									[self showError:error];
+								}
+								else {
+									[NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(checkProductionFromTimer:) userInfo:@{ kAuphonicProductionTimerKey: productionUUID } repeats:NO];
+									[self checkProduction:productionUUID];
+								}
+							}];
+						}
+					}];
+				}
+			}];
+		}
+		else {
+			[self convertToMP3];
+		}
+	}];
+}
+
+- (IBAction) cancel:(id)sender
+{
+}
+
+#pragma mark -
+
+- (void) showError:(NSError *)error
+{
+	NSString* msg = [error localizedDescription];
+	[UUAlertViewController uuShowOneButtonAlert:@"Error Exporting Audio" message:msg button:@"OK" completionHandler:^(NSInteger buttonIndex) {
+		[self dismissViewControllerAnimated:YES completion:NULL];
+	}];
+}
+
+- (void) checkProductionFromTimer:(NSTimer *)timer
+{
+	NSString* production_uuid = [timer.userInfo objectForKey:kAuphonicProductionTimerKey];
+	[self checkProduction:production_uuid];
+}
+
+- (void) checkProduction:(NSString *)productionUUID
+{
+	LUAuphonic* client = [[LUAuphonic alloc] init];
+	[client getDetailsForProduction:productionUUID withCompletion:^(NSString* outputURL, NSError* error) {
+		if (error) {
+			[self showError:error];
+		}
+		else if (outputURL.length > 0) {
+			// TODO: download the audio
+			// ...
+		}
+		else {
+			[NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(checkProductionFromTimer:) userInfo:@{ kAuphonicProductionTimerKey: productionUUID } repeats:NO];
+		}
 	}];
 }
 

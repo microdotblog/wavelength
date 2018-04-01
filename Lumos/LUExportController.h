@@ -13,6 +13,7 @@
 @interface LUExportController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIView* containerView;
+@property (strong, nonatomic) IBOutlet UILabel* messageField;
 
 @property (strong, nonatomic) LUEpisode* episode;
 
