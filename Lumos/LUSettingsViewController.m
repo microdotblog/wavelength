@@ -32,6 +32,13 @@
 	[self updateAppearance];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	[self updateAppearance];
+}
+
 - (void) selectBlog:(NSDictionary*)blogInfo
 {
 	NSString* uid = [blogInfo objectForKey:@"uid"];

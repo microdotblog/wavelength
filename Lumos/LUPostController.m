@@ -118,7 +118,7 @@
 	}
 	
 	RFClient* media_client = [[RFClient alloc] initWithPath:@"/micropub/media"];
-	[media_client uploadAudioData:d named:@"file" httpMethod:@"POST" queryArguments:args completion:^(UUHttpResponse* response) {
+	[media_client uploadAudioData:d named:@"file" fileExtension:@"mp3" httpMethod:@"POST" queryArguments:args completion:^(UUHttpResponse* response) {
 		if (response.httpResponse.statusCode == 202) {
 			NSString* audio_url = [response.httpResponse.allHeaderFields objectForKey:@"Location"];
 			NSDictionary* params = @{

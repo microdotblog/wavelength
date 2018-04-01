@@ -100,7 +100,7 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 			mp3_path = [mp3_path stringByAppendingPathComponent:@"exported.mp3"];
 			[[NSFileManager defaultManager] removeItemAtPath:mp3_path error:NULL];
 
-			[client downloadURL:outputURL toFile:@"" withCompletion:^(NSError *error) {
+			[client downloadURL:outputURL toFile:mp3_path withCompletion:^(NSError *error) {
 				if (error) {
 					[self showError:error];
 				}

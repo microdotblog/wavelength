@@ -184,7 +184,7 @@ static NSString* const kServerSchemeAndHostname = @"https://micro.blog";
 	return [UUHttpSession executeRequest:request completionHandler:handler];
 }
 
-- (UUHttpRequest *) uploadAudioData:(NSData *)imageData named:(NSString *)imageName httpMethod:(NSString *)method queryArguments:(NSDictionary *)args completion:(void (^)(UUHttpResponse* response))handler
+- (UUHttpRequest *) uploadAudioData:(NSData *)imageData named:(NSString *)imageName fileExtension:(NSString *)extension httpMethod:(NSString *)method queryArguments:(NSDictionary *)args completion:(void (^)(UUHttpResponse* response))handler
 {
 	NSString* boundary = [[NSProcessInfo processInfo] globallyUniqueString];
 	NSMutableData* d = [NSMutableData data];
@@ -198,7 +198,7 @@ static NSString* const kServerSchemeAndHostname = @"https://micro.blog";
 
 	if (imageData) {
 		[d appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-		[d appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"audio.mp3\"\r\n", imageName] dataUsingEncoding:NSUTF8StringEncoding]];
+		[d appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"audio.%@\"\r\n", imageName, extension] dataUsingEncoding:NSUTF8StringEncoding]];
 		[d appendData:[@"Content-Type: audio/mpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
 		[d appendData:imageData];
 		[d appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];

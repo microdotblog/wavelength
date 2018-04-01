@@ -78,34 +78,43 @@ static NSInteger const kAuphonicStatusDone = 3;
 	NSString* url = @"https://auphonic.com/oauth2/token/";
 	UUHttpRequest* request = [UUHttpRequest postRequest:url queryArguments:nil body:post_d contentType:@"application/x-www-form-urlencoded" user:kAuphonicClientID password:kAuphonicClientSecret];
 	[UUHttpSession executeRequest:request completionHandler:^(UUHttpResponse* response) {
-		if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
-			NSString* access_token = [response.parsedResponse objectForKey:@"access_token"];
-			NSString* returned_username = [response.parsedResponse objectForKey:@"user_name"];
-			NSNumber* expires_in = [response.parsedResponse objectForKey:@"expires_in"];
+		dispatch_async (dispatch_get_main_queue(), ^{
+			if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
+				NSString* error_msg = [response.parsedResponse objectForKey:@"error_description"];
+				if (error_msg) {
+					NSError* e = [NSError errorWithDomain:@"WavelengthErrorDomain" code:0 userInfo:@{ NSLocalizedDescriptionKey: error_msg }];
+					handler (e);
+				}
+				else {
+					NSString* access_token = [response.parsedResponse objectForKey:@"access_token"];
+					NSString* returned_username = [response.parsedResponse objectForKey:@"user_name"];
+					NSNumber* expires_in = [response.parsedResponse objectForKey:@"expires_in"];
 
-			[SSKeychain setPassword:access_token forService:kAuphonicKeychainServiceName account:returned_username];
-			[[NSUserDefaults standardUserDefaults] setObject:returned_username forKey:kAuphonicUsernamePrefKey];
-			[[NSUserDefaults standardUserDefaults] setObject:expires_in forKey:kAuphonicExpiresPrefKey];
+					[SSKeychain setPassword:access_token forService:kAuphonicKeychainServiceName account:returned_username];
+					[[NSUserDefaults standardUserDefaults] setObject:returned_username forKey:kAuphonicUsernamePrefKey];
+					[[NSUserDefaults standardUserDefaults] setObject:expires_in forKey:kAuphonicExpiresPrefKey];
 
-			handler (nil);
-		}
-		else {
-			NSLog (@"Auphonic HTTP error");
-			handler (nil);
-		}
+					handler (nil);
+				}
+			}
+			else {
+				NSLog (@"Auphonic HTTP error");
+				handler (nil);
+			}
+		});
 	}];
 }
 
-- (void) getPresets
-{
-	NSString* url = @"https://auphonic.com/api/presets.json";
-	UUHttpRequest* request = [UUHttpRequest getRequest:url queryArguments:nil];
-	[self setupRequest:request];
-	[UUHttpSession executeRequest:request completionHandler:^(UUHttpResponse* response) {
-		if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
-		}
-	}];
-}
+//- (void) getPresets
+//{
+//	NSString* url = @"https://auphonic.com/api/presets.json";
+//	UUHttpRequest* request = [UUHttpRequest getRequest:url queryArguments:nil];
+//	[self setupRequest:request];
+//	[UUHttpSession executeRequest:request completionHandler:^(UUHttpResponse* response) {
+//		if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
+//		}
+//	}];
+//}
 
 - (void) createProductionWithCompletion:(void (^)(NSString* productionUUID, NSError* error))handler
 {
@@ -113,7 +122,15 @@ static NSInteger const kAuphonicStatusDone = 3;
 	NSInteger production_i = [production_number integerValue] + 1;
 	
 	NSDictionary* info = @{
-		@"output_basename": [NSString stringWithFormat:@"Wavelength-%ld", (long)production_i]
+		@"output_basename": [NSString stringWithFormat:@"Wavelength-%ld", (long)production_i],
+		@"output_files": @[
+			@{
+				@"format": @"mp3",
+				@"bitrate": @"96",
+				@"mono_mixdown": [NSNumber numberWithBool:YES]
+			}
+		]
+		// metadata: { title: "" }
 	};
 	NSData* post_d = [NSJSONSerialization dataWithJSONObject:info options:0 error:nil];;
 
@@ -123,22 +140,26 @@ static NSInteger const kAuphonicStatusDone = 3;
 	UUHttpRequest* request = [UUHttpRequest postRequest:url queryArguments:nil body:post_d contentType:@"application/json"];
 	[self setupRequest:request];
 	[UUHttpSession executeRequest:request completionHandler:^(UUHttpResponse* response) {
-		if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
-			NSString* production_uuid = [[response.parsedResponse objectForKey:@"data"] objectForKey:@"uuid"];
-			handler (production_uuid, nil);
-		}
-		else {
-			handler (nil, response.httpError);
-		}
+		dispatch_async (dispatch_get_main_queue(), ^{
+			if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
+				NSString* production_uuid = [[response.parsedResponse objectForKey:@"data"] objectForKey:@"uuid"];
+				handler (production_uuid, nil);
+			}
+			else {
+				handler (nil, response.httpError);
+			}
+		});
 	}];
 }
 
 - (void) sendAudio:(NSData *)data toProduction:(NSString *)productionUUID withCompletion:(void (^)(NSError* error))handler
 {
 	self.url = [NSString stringWithFormat:@"https://auphonic.com/api/production/%@/upload.json", productionUUID];
-	[self uploadAudioData:data named:@"input_file" httpMethod:@"POST" queryArguments:nil completion:^(UUHttpResponse* response) {
-		[[NSUserDefaults standardUserDefaults] setObject:productionUUID forKey:kAuphonicWaitingProductionPrefKey];
-		handler (response.httpError);
+	[self uploadAudioData:data named:@"input_file" fileExtension:@"m4a" httpMethod:@"POST" queryArguments:nil completion:^(UUHttpResponse* response) {
+		dispatch_async (dispatch_get_main_queue(), ^{
+			[[NSUserDefaults standardUserDefaults] setObject:productionUUID forKey:kAuphonicWaitingProductionPrefKey];
+			handler (response.httpError);
+		});
 	}];
 }
 
@@ -146,7 +167,9 @@ static NSInteger const kAuphonicStatusDone = 3;
 {
 	self.url = [NSString stringWithFormat:@"https://auphonic.com/api/production/%@/start.json", productionUUID];
 	[self postWithParams:nil completion:^(UUHttpResponse* response) {
-		handler (response.httpError);
+		dispatch_async (dispatch_get_main_queue(), ^{
+			handler (response.httpError);
+		});
 	}];
 }
 
@@ -154,24 +177,26 @@ static NSInteger const kAuphonicStatusDone = 3;
 {
 	self.url = [NSString stringWithFormat:@"https://auphonic.com/api/production/%@.json", productionUUID];
 	[self getWithQueryArguments:nil completion:^(UUHttpResponse* response) {
-		if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
-			NSString* output_url = @"";
-			NSNumber* status = [[response.parsedResponse objectForKey:@"data"] objectForKey:@"status"];
-			if (status.integerValue == kAuphonicStatusDone) {
-				[[NSUserDefaults standardUserDefaults] removeObjectForKey:kAuphonicWaitingProductionPrefKey];
-				NSArray* output_files = [[response.parsedResponse objectForKey:@"data"] objectForKey:@"output_files"];
-				for (NSDictionary* info in output_files) {
-					if ([[info objectForKey:@"format"] isEqualToString:@"mp3"]) {
-						output_url = [info objectForKey:@"download_url"];
-						break;
+		dispatch_async (dispatch_get_main_queue(), ^{
+			if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
+				NSString* output_url = @"";
+				NSNumber* status = [[response.parsedResponse objectForKey:@"data"] objectForKey:@"status"];
+				if (status.integerValue == kAuphonicStatusDone) {
+					[[NSUserDefaults standardUserDefaults] removeObjectForKey:kAuphonicWaitingProductionPrefKey];
+					NSArray* output_files = [[response.parsedResponse objectForKey:@"data"] objectForKey:@"output_files"];
+					for (NSDictionary* info in output_files) {
+						if ([[info objectForKey:@"format"] isEqualToString:@"mp3"]) {
+							output_url = [info objectForKey:@"download_url"];
+							break;
+						}
 					}
 				}
+				handler (output_url, nil);
 			}
-			handler (output_url, nil);
-		}
-		else {
-			handler (nil, response.httpError);
-		}
+			else {
+				handler (nil, response.httpError);
+			}
+		});
 	}];
 }
 
@@ -179,14 +204,16 @@ static NSInteger const kAuphonicStatusDone = 3;
 {
 	self.url = audioURL;
 	[self getWithQueryArguments:nil completion:^(UUHttpResponse* response) {
-		if (response.httpError) {
-			handler (response.httpError);
-		}
-		else {
-			NSData* d = response.rawResponse;
-			[d writeToFile:path atomically:NO];
-			handler (nil);
-		}
+		dispatch_async (dispatch_get_main_queue(), ^{
+			if (response.httpError) {
+				handler (response.httpError);
+			}
+			else {
+				NSData* d = response.rawResponse;
+				[d writeToFile:path atomically:NO];
+				handler (nil);
+			}
+		});
 	}];
 }
 

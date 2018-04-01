@@ -9,6 +9,7 @@
 #import "LUAuphonicController.h"
 
 #import "LUAuphonic.h"
+#import "UUAlert.h"
 
 @implementation LUAuphonicController
 
@@ -28,12 +29,15 @@
 	
 	LUAuphonic* client = [[LUAuphonic alloc] init];
 	[client signInWithUsername:self.usernameField.text password:self.passwordField.text completion:^(NSError* error) {
-		if (error) {
-			// TODO: show alert
-		}
-		else {
-			[self dismissViewControllerAnimated:YES completion:NULL];
-		}
+		dispatch_async (dispatch_get_main_queue(), ^{
+			if (error) {
+				NSString* msg = [error localizedDescription];
+				[UUAlertViewController uuShowOneButtonAlert:@"Error Signing In" message:msg button:@"OK" completionHandler:NULL];
+			}
+			else {
+				[self dismissViewControllerAnimated:YES completion:NULL];
+			}
+		});
 	}];
 }
 
