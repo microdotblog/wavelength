@@ -28,6 +28,7 @@ static const NSString* kItemStatusContext;
 	@property (nonatomic, assign) BOOL isRecording;
 	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
 	@property (nonatomic, strong) IBOutlet UIView* waveFormViewContainer;
+	@property (strong, nonatomic) IBOutlet NSLayoutConstraint* waveFormViewContainerBottomConstraint;
 @end
 
 @implementation LUEditController
@@ -186,7 +187,15 @@ static const NSString* kItemStatusContext;
 {
 	self.isInRecordMode = NO;
 	
-	self.waveFormViewContainer.hidden = YES;
+	[UIView animateWithDuration:0.25 animations:^
+	{
+		self.waveFormViewContainerBottomConstraint.constant = -self.waveFormViewContainer.bounds.size.height;
+		[self.view layoutIfNeeded];
+	}
+	completion:^(BOOL finished)
+	{
+		self.waveFormViewContainer.hidden = YES;
+	}];
 
 	self.playPauseButton.layer.cornerRadius = 0.0;
 	self.playPauseButton.layer.backgroundColor = nil;
@@ -249,7 +258,6 @@ static const NSString* kItemStatusContext;
 	UIView* waveFormView = [self.audioRecorder requestAudioInputView];
 	waveFormView.frame = self.waveFormViewContainer.bounds;
 	[self.waveFormViewContainer addSubview:waveFormView];
-	self.waveFormViewContainer.hidden = NO;
 }
 
 - (IBAction) publish:(id)sender
@@ -318,6 +326,17 @@ static const NSString* kItemStatusContext;
 
 - (void) startRecording
 {
+	self.waveFormViewContainer.hidden = NO;
+
+	self.waveFormViewContainerBottomConstraint.constant = -self.waveFormViewContainer.bounds.size.height;
+	[self.view layoutIfNeeded];
+
+	[UIView animateWithDuration:0.25 animations:^
+	{
+		self.waveFormViewContainerBottomConstraint.constant = 0.0;
+		[self.view layoutIfNeeded];
+	}];
+
 	self.isRecording = YES;
 	[self.audioRecorder record];
 
@@ -326,9 +345,19 @@ static const NSString* kItemStatusContext;
 
 - (void) stopRecording
 {
+	[UIView animateWithDuration:0.25 animations:^
+	{
+		self.waveFormViewContainerBottomConstraint.constant = -self.waveFormViewContainer.bounds.size.height;
+		[self.view layoutIfNeeded];
+	}
+	completion:^(BOOL finished)
+	{
+		self.waveFormViewContainer.hidden = YES;
+	}];
+
+
 	self.isRecording = NO;
 	
-	self.waveFormViewContainer.hidden = YES;
 	self.timerLabel.hidden = YES;
 	
 	// Remove the wave form...

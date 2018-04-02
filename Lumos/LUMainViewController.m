@@ -20,6 +20,7 @@
 	@property (nonatomic, strong) IBOutlet UIView* waveFormViewContainer;
 	@property (nonatomic, strong) IBOutlet UITableView* tableView;
 	@property (strong, nonatomic) IBOutlet UILabel* _Nonnull timerLabel;
+	@property (strong, nonatomic) IBOutlet NSLayoutConstraint* waveFormViewContainerBottomConstraint;
 
 	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
 	@property (nonatomic, strong) NSMutableArray* episodes; // LUEpisode
@@ -107,6 +108,16 @@
 
 	if (!self.isRecording)
 	{
+		self.waveFormViewContainerBottomConstraint.constant = -self.waveFormViewContainer.bounds.size.height;
+		[self.view layoutIfNeeded];
+
+		[UIView animateWithDuration:0.25 animations:^
+		{
+			self.waveFormViewContainerBottomConstraint.constant = 0.0;
+			[self.view layoutIfNeeded];
+		}];
+		
+		self.waveFormViewContainer.hidden = NO;
 		self.timerLabel.hidden = NO;
 		self.timerLabel.text = @"00:00";
 		
@@ -119,7 +130,8 @@
 	else
 	{
 		self.timerLabel.hidden = YES;
-		
+		self.waveFormViewContainer.hidden = YES;
+
 		self.isRecording = NO;
 		[self updateRecordButton];
 		
