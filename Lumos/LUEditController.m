@@ -23,7 +23,7 @@
 static CGFloat const kCellPadding = 10.0;
 static const NSString* kItemStatusContext;
 
-@interface LUEditController ()<UICollectionViewDragDelegate, UICollectionViewDropDelegate>
+@interface LUEditController ()<UICollectionViewDragDelegate, UICollectionViewDropDelegate, UIDocumentPickerDelegate>
 	@property (nonatomic, assign) BOOL isInRecordMode;
 	@property (nonatomic, assign) BOOL isRecording;
 	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
@@ -220,9 +220,15 @@ static const NSString* kItemStatusContext;
 {
 	[self.addPopover dismiss];
 	
-	NSString* test_file = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"m4a" inDirectory:@"Music"];
-	[self.episode addFile:test_file];
-	[self.collectionView reloadData];
+	NSArray* supportedAudioTypes = @[ @"m4a", @"aac", @"aif", @"aiff", @"caf", @"mp3", @"mp4", @"wav" ];
+	
+	UIDocumentPickerViewController* documentProviderMenu = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:supportedAudioTypes inMode:UIDocumentPickerModeImport];
+	documentProviderMenu.delegate = self;
+	[self presentViewController:documentProviderMenu animated:YES completion:nil];
+	
+	//NSString* test_file = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"m4a" inDirectory:@"Music"];
+	//[self.episode addFile:test_file];
+	//[self.collectionView reloadData];
 }
 
 - (IBAction) addRecording:(id)sender
@@ -583,5 +589,42 @@ static const NSString* kItemStatusContext;
 	{
 	}];
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray <NSURL *>*)urls
+{
+	//NSURL* destination = [LUAudioRecorder generateTimeStampedFileURL];
+	//NSString* fileName = destination.path.lastPathComponent;
+	
+	//NSURL* destination = self.episode.path;
+	//destination = [[NSURL fileURLWithPath:self.episode.path] URLByAppendingPathComponent:fileName];
+
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^
+	{
+		for (NSURL* url in urls)
+		{
+			NSString* fileName = url.lastPathComponent;
+			NSURL* destination = destination = [[NSURL fileURLWithPath:self.episode.path] URLByAppendingPathComponent:fileName];
+			NSData* audioData = [NSData dataWithContentsOfURL:url];
+			[audioData writeToURL:destination atomically:YES];
+		
+			[self.episode addFile:destination.path];
+		}
+	
+		dispatch_async(dispatch_get_main_queue(), ^
+		{
+			[self.collectionView reloadData];
+		});
+	});
+
+}
+
+- (void)documentPickerWasCancelled:(UIDocumentPickerViewController *)controller
+{
+}
+
 
 @end
