@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03D7B2EF1AE083BA2B0F0D88 /* libPods-Lumos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E28A020DCE8EB80280E4E2 /* libPods-Lumos.a */; };
 		4B18F1BD206E0E6100A91731 /* LUAuphonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BC206E0E6100A91731 /* LUAuphonic.m */; };
 		4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BF206E951200A91731 /* LUAuphonicController.m */; };
 		4B18F1C4206FECAB00A91731 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */; };
@@ -23,6 +22,7 @@
 		4B74C966205D75CB0050A105 /* test.m4a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B74C962205D75860050A105 /* test.m4a */; };
 		4B881CA72061492C008A4C13 /* LUSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA62061492B008A4C13 /* LUSplitController.m */; };
 		4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA920614AA2008A4C13 /* LUSegment.m */; };
+		8D7DF7F9B981B1804FE51B5B /* libPods-Wavelength.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BF02616C547DCF0280214F /* libPods-Wavelength.a */; };
 		C5357B2520602B750067413C /* LUAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C5357B2420602B750067413C /* LUAudioRecorder.m */; };
 		C54C8F702065A350007F7565 /* UUDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F682065A350007F7565 /* UUDictionary.m */; };
 		C54C8F712065A350007F7565 /* UUHttpResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F692065A350007F7565 /* UUHttpResponseHandler.m */; };
@@ -63,7 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		34E28A020DCE8EB80280E4E2 /* libPods-Lumos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lumos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43BF02616C547DCF0280214F /* libPods-Wavelength.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wavelength.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B18F1BB206E0E6100A91731 /* LUAuphonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonic.h; sourceTree = "<group>"; };
 		4B18F1BC206E0E6100A91731 /* LUAuphonic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAuphonic.m; sourceTree = "<group>"; };
 		4B18F1BE206E951200A91731 /* LUAuphonicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonicController.h; sourceTree = "<group>"; };
@@ -91,8 +91,8 @@
 		4B881CA62061492B008A4C13 /* LUSplitController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSplitController.m; sourceTree = "<group>"; };
 		4B881CA820614AA2008A4C13 /* LUSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUSegment.h; sourceTree = "<group>"; };
 		4B881CA920614AA2008A4C13 /* LUSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSegment.m; sourceTree = "<group>"; };
-		7C13C85763A56F0C388DEA20 /* Pods-Lumos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lumos/Pods-Lumos.release.xcconfig"; sourceTree = "<group>"; };
-		9CA3ED3895EE9FE2D946DF9D /* Pods-Lumos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lumos/Pods-Lumos.debug.xcconfig"; sourceTree = "<group>"; };
+		72D64F0F55BA1C4E6EE623FE /* Pods-Wavelength.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wavelength.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wavelength/Pods-Wavelength.debug.xcconfig"; sourceTree = "<group>"; };
+		7DC51672ED26F0506433970B /* Pods-Wavelength.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wavelength.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wavelength/Pods-Wavelength.release.xcconfig"; sourceTree = "<group>"; };
 		C5357B2320602B750067413C /* LUAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAudioRecorder.h; sourceTree = "<group>"; };
 		C5357B2420602B750067413C /* LUAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAudioRecorder.m; sourceTree = "<group>"; };
 		C54C8F662065A34F007F7565 /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UUColor.h; path = shared/UU/UUColor.h; sourceTree = SOURCE_ROOT; };
@@ -148,10 +148,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03D7B2EF1AE083BA2B0F0D88 /* libPods-Lumos.a in Frameworks */,
 				4B18F1C7206FECB000A91731 /* libmp3lame.a in Frameworks */,
 				4B18F1CF2070164800A91731 /* Crashlytics.framework in Frameworks */,
 				4B18F1CE2070164800A91731 /* Fabric.framework in Frameworks */,
+				8D7DF7F9B981B1804FE51B5B /* libPods-Wavelength.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,8 +180,8 @@
 		5259634BBEA440FE73DE2B63 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9CA3ED3895EE9FE2D946DF9D /* Pods-Lumos.debug.xcconfig */,
-				7C13C85763A56F0C388DEA20 /* Pods-Lumos.release.xcconfig */,
+				72D64F0F55BA1C4E6EE623FE /* Pods-Wavelength.debug.xcconfig */,
+				7DC51672ED26F0506433970B /* Pods-Wavelength.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -260,7 +260,7 @@
 			children = (
 				4B18F1CD2070164800A91731 /* Crashlytics.framework */,
 				4B18F1CC2070164700A91731 /* Fabric.framework */,
-				34E28A020DCE8EB80280E4E2 /* libPods-Lumos.a */,
+				43BF02616C547DCF0280214F /* libPods-Wavelength.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -422,7 +422,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lumos/Pods-Lumos-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wavelength/Pods-Wavelength-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		34E40EBB3B3C20497D6EBE2B /* [CP] Embed Pods Frameworks */ = {
@@ -444,7 +444,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lumos/Pods-Lumos-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wavelength/Pods-Wavelength-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		39106CE54FE2870431EDD396 /* [CP] Check Pods Manifest.lock */ = {
@@ -458,7 +458,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Lumos-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Wavelength-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -650,7 +650,7 @@
 		};
 		C5DC32AE205774A600D0594B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CA3ED3895EE9FE2D946DF9D /* Pods-Lumos.debug.xcconfig */;
+			baseConfigurationReference = 72D64F0F55BA1C4E6EE623FE /* Pods-Wavelength.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -673,7 +673,7 @@
 		};
 		C5DC32AF205774A600D0594B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C13C85763A56F0C388DEA20 /* Pods-Lumos.release.xcconfig */;
+			baseConfigurationReference = 7DC51672ED26F0506433970B /* Pods-Wavelength.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

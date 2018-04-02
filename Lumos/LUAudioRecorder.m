@@ -10,6 +10,11 @@
 #import <EZAudio/EZAudio.h>
 #import "UUDate.h"
 #import "UUString.h"
+#import "UUColor.h"
+
+#import "DPMainEqualizerView.h"
+#import "DPCircleWaveEqualizer.h"
+#import "DPWaveEqualizerView.h"
 
 @import AVFoundation;
 
@@ -21,6 +26,7 @@
 @interface LUAudioRecorder()<EZMicrophoneDelegate, EZRecorderDelegate>
 	@property (nonatomic, strong) EZMicrophone* microphone;
 	@property (nonatomic, strong) EZRecorder* recorder;
+	@property (nonatomic, strong) DPWaveEqualizerView* visualizationView;
 @end
 
 
@@ -154,6 +160,18 @@
 	self.audioPlot.shouldFill = YES;
 	self.audioPlot.shouldMirror = YES;
 	self.audioPlot.gain = 3.0;
+	
+	DPEqualizerSettings* settings = [DPEqualizerSettings createByType: DPCircleWave];
+	
+    settings.equalizerBinColors = [[NSMutableArray alloc] initWithObjects:[UIColor clearColor], nil];
+    settings.lowFrequencyColors = [[NSMutableArray alloc] initWithObjects:[UIApplication sharedApplication].windows.firstObject.tintColor, nil];
+    settings.hightFrequencyColors = [[NSMutableArray alloc] initWithObjects:[UIApplication sharedApplication].windows.firstObject.tintColor, nil];
+    settings.equalizerBackgroundColors = [[NSMutableArray alloc] initWithObjects:[UIColor clearColor], nil];
+    settings.fillGraph = NO;
+
+	self.visualizationView = [[DPWaveEqualizerView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 120) andSettings:settings];
+	//self.visualizationView.equalizerBinColor = [UIColor redColor];
+	//self.visualizationView.equalizerBackgroundColor = [UIColor greenColor];
 
 	return true;
 }
@@ -180,7 +198,8 @@
 
 - (UIView*) requestAudioInputView
 {
-	return self.audioPlot;
+	return self.visualizationView;
+	//return self.audioPlot;
 }
 
 
@@ -207,7 +226,8 @@
         // history management, and freeing its own resources.
         // Hence, one badass line of code gets you a pretty plot :)
         //
-        [weakSelf.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
+        //[weakSelf.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
+		[weakSelf.visualizationView updateBuffer:buffer[0] withBufferSize:bufferSize];
 		
         if (weakSelf.recordProgressCallback)
         {
