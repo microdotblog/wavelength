@@ -45,6 +45,7 @@ static const NSString* kItemStatusContext;
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(replaceSegmentNotification:) name:kReplaceSegmentNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishedExportNotification:) name:kFinishedExportNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(seekAudioSegmentNotification:) name:kSeekAudioSegmentNotification object:nil];
 }
 
 - (void) setupCollectionView
@@ -114,6 +115,21 @@ static const NSString* kItemStatusContext;
 	}];
 }
 
+- (void) seekAudioSegmentNotification:(NSNotification *)notification
+{
+	NSString* audio_path = [notification.userInfo objectForKey:kSeekAudioSegmentFileKey];
+	CGFloat fraction = [[notification.userInfo objectForKey:kSeekAudioSegmentPercent] floatValue];
+
+	for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
+		NSString* segment_path = [self.episode.audioSegmentPaths objectAtIndex:i];
+		if ([segment_path isEqualToString:audio_path]) {
+			NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
+			[self skipToSegmentAtIndexPath:index_path withinSegmentPercent:fraction];
+			break;
+		}
+	}
+}
+
 - (void) didDoubleTapCollectionView:(UITapGestureRecognizer *)gesture
 {
 	CGPoint pt = [gesture locationInView:self.collectionView];
@@ -143,7 +159,7 @@ static const NSString* kItemStatusContext;
 	[self performSegueWithIdentifier:@"SplitSegue" sender:segment];
 }
 
-- (void) skipToSegmentAtIndexPath:(NSIndexPath *)indexPath
+- (void) skipToSegmentAtIndexPath:(NSIndexPath *)indexPath withinSegmentPercent:(CGFloat)segmentFraction
 {
 	Float64 current_offset = 0;
 
@@ -154,8 +170,9 @@ static const NSString* kItemStatusContext;
 		NSURL* url = [NSURL fileURLWithPath:path];
 		AVAsset* asset = [AVAsset assetWithURL:url];
 		Float64 segment_duration = CMTimeGetSeconds (asset.duration);
-
+		
 		if ([index_path isEqual:indexPath]) {
+			current_offset = current_offset + (segment_duration * segmentFraction);
 			CMTime segment_offset = CMTimeMakeWithSeconds (current_offset, NSEC_PER_SEC);
 			[self.player seekToTime:segment_offset];
 			break;
@@ -438,16 +455,7 @@ static const NSString* kItemStatusContext;
 	//CGSize size = [self bestCellSize];
 	
 	NSString* audio_path = [[self.episode audioSegmentPaths] objectAtIndex:indexPath.item];
-	NSURL* audio_url = [NSURL fileURLWithPath:audio_path];
-	
-	LUAudioClip* audioData = [[LUAudioClip alloc] initWithDestination:audio_url];
-	cell.previewImageView.image = audioData.waveFormImage;//[audioData renderWaveImage:size];
-	
-	cell.durationField.text = audioData.durationString;
-	cell.previewImageView.layer.cornerRadius = 3.0;
-	cell.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-	cell.previewImageView.layer.borderWidth = 0.5;
-	cell.positionLine.hidden = YES;
+	[cell setupWithFile:audio_path];
 	
 	return cell;
 }
@@ -456,7 +464,7 @@ static const NSString* kItemStatusContext;
 {
 	[self clearSelection];
 	if (self.player) {
-		[self skipToSegmentAtIndexPath:indexPath];
+		[self skipToSegmentAtIndexPath:indexPath withinSegmentPercent:0.0];
 	}
 	else {
 		[self editSegmentAtIndexPath:indexPath];
@@ -467,7 +475,7 @@ static const NSString* kItemStatusContext;
 {
 	[self clearSelection];
 	if (self.player) {
-		[self skipToSegmentAtIndexPath:indexPath];
+		[self skipToSegmentAtIndexPath:indexPath withinSegmentPercent:0.0];
 	}
 	else {
 		[self editSegmentAtIndexPath:indexPath];

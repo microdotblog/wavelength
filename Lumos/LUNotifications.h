@@ -18,4 +18,8 @@ static NSString* const kReplaceSegmentNewArrayKey = @"new"; // NSArray of m4a pa
 static NSString* const kFinishedExportNotification = @"FinishedExportNotification";
 static NSString* const kFinishedExportFileKey = @"mp3_path";
 
+static NSString* const kSeekAudioSegmentNotification = @"SeekAudioSegmentNotification";
+static NSString* const kSeekAudioSegmentFileKey = @"path";
+static NSString* const kSeekAudioSegmentPercent = @"fraction";
+
 #endif /* LUNotifications_h */

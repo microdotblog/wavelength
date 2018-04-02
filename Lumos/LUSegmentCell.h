@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class LUAudioClip;
+
 @interface LUSegmentCell : UICollectionViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView* previewImageView;
 @property (strong, nonatomic) IBOutlet UIView* positionLine;
 @property (strong, nonatomic) IBOutlet UILabel* durationField;
 
+@property (strong, nonatomic) UIPanGestureRecognizer* panGesture;
+@property (strong, nonatomic) NSString* path;
+
+- (void) setupWithFile:(NSString *)path;
 - (void) updatePercentComplete:(CGFloat)value;
 
 @end
