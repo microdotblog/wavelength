@@ -19,6 +19,7 @@
 #import "LUNotifications.h"
 #import <EZAudio/EZAudio.h>
 #import "SSKeychain.h"
+@import MobileCoreServices;
 
 static CGFloat const kCellPadding = 10.0;
 static const NSString* kItemStatusContext;
@@ -220,7 +221,11 @@ static const NSString* kItemStatusContext;
 {
 	[self.addPopover dismiss];
 	
-	NSArray* supportedAudioTypes = @[ @"m4a", @"aac", @"aif", @"aiff", @"caf", @"mp3", @"mp4", @"wav" ];
+	NSArray* supportedAudioTypes = @[ 	(NSString*)kUTTypeAudio,
+										(NSString*)kUTTypeMP3,
+										(NSString*)kUTTypeWaveformAudio,
+										(NSString*)kUTTypeAudioInterchangeFileFormat
+	 								];
 	
 	UIDocumentPickerViewController* documentProviderMenu = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:supportedAudioTypes inMode:UIDocumentPickerModeImport];
 	documentProviderMenu.delegate = self;
