@@ -77,9 +77,17 @@
 		{
 		}];
 	}
-	else
+	else if (blogList.count == 1)
 	{
 		[self selectBlog:blogList.firstObject];
+	}
+	else {
+		[UUAlertViewController uuShowTwoButtonAlert:@"No Microblogs" message:@"There are no Micro.blog-hosted microblogs on your account." buttonOne:@"Learn More" buttonTwo:@"OK" completionHandler:^(NSInteger buttonIndex) {
+			if (buttonIndex == 0) {
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://micro.blog/new/site"] options:@{} completionHandler:^(BOOL success) {
+				}];
+			}
+		}];
 	}
 }
 
