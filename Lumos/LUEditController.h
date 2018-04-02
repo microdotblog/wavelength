@@ -13,7 +13,7 @@
 
 @class LUEpisode;
 
-@interface LUEditController : UIViewController <PopoverViewDelegate>
+@interface LUEditController : LUViewController <PopoverViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView* _Nonnull collectionView;
 @property (strong, nonatomic) IBOutlet UIView* _Nonnull addPopoverView;

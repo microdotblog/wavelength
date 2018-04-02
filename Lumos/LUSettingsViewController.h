@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LUSettingsViewController : UIViewController
+@interface LUSettingsViewController : LUViewController
 	@property (nonatomic, strong) IBOutlet UILabel* versionNumber;
 	@property (nonatomic, strong) IBOutlet UILabel* userName;
 	@property (nonatomic, strong) IBOutlet UILabel* blogName;

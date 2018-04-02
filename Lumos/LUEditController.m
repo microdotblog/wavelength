@@ -6,8 +6,8 @@
 //  Copyright © 2018 Jonathan Hays. All rights reserved.
 //
 
+#import "LUViewController.h"
 #import "LUEditController.h"
-
 #import "LUEpisode.h"
 #import "LUSegment.h"
 #import "LUSegmentCell.h"
@@ -19,6 +19,9 @@
 #import "LUNotifications.h"
 #import <EZAudio/EZAudio.h>
 #import "SSKeychain.h"
+#import "LUNotifications.h"
+#import "UUAlert.h"
+
 @import MobileCoreServices;
 
 static CGFloat const kCellPadding = 10.0;

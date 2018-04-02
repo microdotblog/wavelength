@@ -39,6 +39,7 @@
 		C54C8F972065B233007F7565 /* RFSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F962065B233007F7565 /* RFSettings.m */; };
 		C54C8F9B2065D5C8007F7565 /* UUDate.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F9A2065D5C7007F7565 /* UUDate.m */; };
 		C58A2EBA20729B8E00DB0E04 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C58A2EB920729B8E00DB0E04 /* CloudKit.framework */; };
+		C58A2EBD2072A29900DB0E04 /* LUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C58A2EBC2072A29900DB0E04 /* LUViewController.m */; };
 		C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC329B205774A600D0594B /* LUAppDelegate.m */; };
 		C5DC32A2205774A600D0594B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A0205774A600D0594B /* Main.storyboard */; };
 		C5DC32A4205774A600D0594B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A3205774A600D0594B /* Assets.xcassets */; };
@@ -128,6 +129,8 @@
 		C54C8F9A2065D5C7007F7565 /* UUDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UUDate.m; path = shared/UU/UUDate.m; sourceTree = SOURCE_ROOT; };
 		C58A2EB820729B5A00DB0E04 /* Wavelength.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wavelength.entitlements; sourceTree = "<group>"; };
 		C58A2EB920729B8E00DB0E04 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		C58A2EBB2072A29900DB0E04 /* LUViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUViewController.h; sourceTree = "<group>"; };
+		C58A2EBC2072A29900DB0E04 /* LUViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUViewController.m; sourceTree = "<group>"; };
 		C5DC3297205774A600D0594B /* Wavelength.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wavelength.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DC329A205774A600D0594B /* LUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAppDelegate.h; sourceTree = "<group>"; };
 		C5DC329B205774A600D0594B /* LUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAppDelegate.m; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 				4B74C8CA205A27E90050A105 /* LUEpisodeCell.m */,
 				4B74C957205A3F4A0050A105 /* LUSegmentCell.h */,
 				4B74C958205A3F4A0050A105 /* LUSegmentCell.m */,
+				C58A2EBB2072A29900DB0E04 /* LUViewController.h */,
+				C58A2EBC2072A29900DB0E04 /* LUViewController.m */,
 				C5DC32B8205780F000D0594B /* LUMainViewController.h */,
 				C5DC32B9205780F000D0594B /* LUMainViewController.m */,
 				4B74C8C0205A23A40050A105 /* LUEditController.h */,
@@ -519,6 +524,7 @@
 				C54C8F742065A350007F7565 /* UUColor.m in Sources */,
 				4B74C959205A3F4A0050A105 /* LUSegmentCell.m in Sources */,
 				4B74C8C5205A23D10050A105 /* LUPostController.m in Sources */,
+				C58A2EBD2072A29900DB0E04 /* LUViewController.m in Sources */,
 				C54C8F822065A3B3007F7565 /* SSKeychainQuery.m in Sources */,
 				4B74C8C2205A23A40050A105 /* LUEditController.m in Sources */,
 				4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */,
