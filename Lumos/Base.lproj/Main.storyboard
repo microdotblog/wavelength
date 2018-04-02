@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uko-jZ-yR3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uko-jZ-yR3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Medium</string>
+            <string>AvenirNext-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="mtT-3m-K2L">
@@ -301,7 +310,7 @@
                             <constraint firstItem="p5R-ab-qc2" firstAttribute="leading" secondItem="mfT-lC-gUt" secondAttribute="leading" id="GBD-oL-TBw"/>
                             <constraint firstItem="p5R-ab-qc2" firstAttribute="trailing" secondItem="mfT-lC-gUt" secondAttribute="trailing" id="LmW-mt-cdx"/>
                             <constraint firstItem="Wvl-IB-D5a" firstAttribute="top" secondItem="mfT-lC-gUt" secondAttribute="top" id="MdC-Tp-tsg"/>
-                            <constraint firstItem="p5R-ab-qc2" firstAttribute="bottom" secondItem="UdG-Sy-qPT" secondAttribute="bottom" id="SAZ-NS-2cS"/>
+                            <constraint firstItem="p5R-ab-qc2" firstAttribute="bottom" secondItem="mfT-lC-gUt" secondAttribute="bottom" id="SAZ-NS-2cS"/>
                             <constraint firstItem="uXV-JR-Aq4" firstAttribute="leading" secondItem="mfT-lC-gUt" secondAttribute="leading" id="evm-39-RRf"/>
                             <constraint firstItem="p5R-ab-qc2" firstAttribute="top" secondItem="uXV-JR-Aq4" secondAttribute="bottom" constant="-50" id="jvb-s7-Pjr"/>
                             <constraint firstItem="p5R-ab-qc2" firstAttribute="top" secondItem="Wvl-IB-D5a" secondAttribute="bottom" id="mrn-Fb-zZI"/>
