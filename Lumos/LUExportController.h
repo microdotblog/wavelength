@@ -14,7 +14,10 @@
 
 @property (strong, nonatomic) IBOutlet UIView* containerView;
 @property (strong, nonatomic) IBOutlet UILabel* messageField;
+@property (strong, nonatomic) IBOutlet UILabel* subtitleField;
 
 @property (strong, nonatomic) LUEpisode* episode;
+@property (strong, nonatomic) NSTimer* checkProductionTimer;
+@property (assign) BOOL isCancelled;
 
 @end

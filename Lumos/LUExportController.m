@@ -23,6 +23,8 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 {
 	[super viewDidLoad];
 	
+	self.messageField.text = @"Preparing episode...";
+	self.subtitleField.text = @"Combining audio segments.";
 	self.containerView.layer.cornerRadius = 10.0;
 }
 
@@ -33,27 +35,39 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 	[self exportWithCompletion:^{
 		NSString* auphonic_username = [LUAuphonic savedUsername];
 		if (auphonic_username) {
-			self.messageField.text = @"Creating Auphonic production...";
+			self.messageField.text = @"Uploading to Auphonic...";
+			self.subtitleField.text = @"Creating Auphonic production.";
 			LUAuphonic* client = [[LUAuphonic alloc] init];
 			[client createProductionWithCompletion:^(NSString* productionUUID, NSError* error) {
-				if (error) {
+				if (self.isCancelled) {
+					[self dismissViewControllerAnimated:YES completion:NULL];
+				}
+				else if (error) {
 					[self showError:error];
 				}
 				else {
-					self.messageField.text = @"Uploading audio...";
+					self.messageField.text = @"Uploading to Auphonic...";
+					self.subtitleField.text = @"Sending audio data.";
 					NSData* d = [NSData dataWithContentsOfFile:self.episode.exportedPath];
 					[client sendAudio:d toProduction:productionUUID withCompletion:^(NSError* error) {
-						if (error) {
+						if (self.isCancelled) {
+							[self dismissViewControllerAnimated:YES completion:NULL];
+						}
+						else if (error) {
 							[self showError:error];
 						}
 						else {
 							self.messageField.text = @"Waiting on Auphonic...";
+							self.subtitleField.text = @"This may take a few minutes.";
 							[client startProduction:productionUUID withCompletion:^(NSError *error) {
-								if (error) {
+								if (self.isCancelled) {
+									[self dismissViewControllerAnimated:YES completion:NULL];
+								}
+								else if (error) {
 									[self showError:error];
 								}
 								else {
-									[NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(checkProductionFromTimer:) userInfo:@{ kAuphonicProductionTimerKey: productionUUID } repeats:NO];
+									self.checkProductionTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(checkProductionFromTimer:) userInfo:@{ kAuphonicProductionTimerKey: productionUUID } repeats:NO];
 									[self checkProduction:productionUUID];
 								}
 							}];
@@ -63,6 +77,8 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 			}];
 		}
 		else {
+			self.messageField.text = @"Preparing episode...";
+			self.subtitleField.text = @"Converting to MP3 format.";
 			[self convertToMP3];
 		}
 	}];
@@ -70,6 +86,11 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 
 - (IBAction) cancel:(id)sender
 {
+	self.isCancelled = YES;
+	if (self.checkProductionTimer) {
+		[self.checkProductionTimer invalidate];
+		[self dismissViewControllerAnimated:YES completion:NULL];
+	}
 }
 
 #pragma mark -
@@ -84,8 +105,10 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 
 - (void) checkProductionFromTimer:(NSTimer *)timer
 {
-	NSString* production_uuid = [timer.userInfo objectForKey:kAuphonicProductionTimerKey];
-	[self checkProduction:production_uuid];
+	if (!self.isCancelled) {
+		NSString* production_uuid = [timer.userInfo objectForKey:kAuphonicProductionTimerKey];
+		[self checkProduction:production_uuid];
+	}
 }
 
 - (void) checkProduction:(NSString *)productionUUID
@@ -110,7 +133,7 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 			}];
 		}
 		else {
-			[NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(checkProductionFromTimer:) userInfo:@{ kAuphonicProductionTimerKey: productionUUID } repeats:NO];
+			self.checkProductionTimer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(checkProductionFromTimer:) userInfo:@{ kAuphonicProductionTimerKey: productionUUID } repeats:NO];
 		}
 	}];
 }
