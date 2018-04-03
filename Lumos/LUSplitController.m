@@ -41,12 +41,10 @@
 
 - (void) setupGraph
 {
-	if (self.clip) {
-		return;
+	if (!self.clip) {
+		NSURL* audio_url = [NSURL fileURLWithPath:self.segment.path];
+		self.clip = [[LUAudioClip alloc] initWithDestination:audio_url];
 	}
-	
-	NSURL* audio_url = [NSURL fileURLWithPath:self.segment.path];
-	self.clip = [[LUAudioClip alloc] initWithDestination:audio_url];
 
 	CGFloat w = [self bestWidthForDuration:self.clip.duration];
 	CGSize size = CGSizeMake (w, self.scrollView.bounds.size.height);
@@ -56,19 +54,27 @@
 
 	UIView* v = [self.clip requestAudioInputView];
 	v.frame = audio_r;
-
-	UIView* container = [[UIView alloc] initWithFrame:container_r];
-	container.layer.shadowColor = [UIColor lightGrayColor].CGColor;
-	container.layer.shadowOpacity = 0.3;
-	container.layer.shadowRadius = 3.0;
-	container.layer.shadowOffset = CGSizeMake (0, 0);
-	container.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:container.bounds cornerRadius:7.0].CGPath;
-	container.layer.backgroundColor = [UIColor whiteColor].CGColor;
-	container.layer.cornerRadius = 7.0;
-	[container addSubview:v];
 	
-	[self.scrollView addSubview:container];
+	if (self.scrollingContainer == nil) {
+		self.scrollingContainer = [[UIView alloc] initWithFrame:container_r];
+		self.scrollingContainer.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+		self.scrollingContainer.layer.shadowOpacity = 0.3;
+		self.scrollingContainer.layer.shadowRadius = 3.0;
+		self.scrollingContainer.layer.shadowOffset = CGSizeMake (0, 0);
+		self.scrollingContainer.layer.backgroundColor = [UIColor whiteColor].CGColor;
+		self.scrollingContainer.layer.cornerRadius = 7.0;
+		[self.scrollingContainer addSubview:v];
+		[self.scrollView addSubview:self.scrollingContainer];
+	}
+	else {
+		self.scrollingContainer.frame = container_r;
+	}
+
+	self.scrollingContainer.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.scrollingContainer.bounds cornerRadius:7.0].CGPath;
+
+	NSTimeInterval preserve_offset = self.splitSeconds;
 	[self.scrollView setContentSize:CGSizeMake (size.width + ([self bestPadding] * 2), size.height)];
+	self.splitSeconds = preserve_offset;
 }
 
 - (void) updatePlayButton
@@ -86,8 +92,13 @@
 
 - (CGFloat) bestWidthForDuration:(NSTimeInterval)duration
 {
-	// 300 pixels wide per second of audio
-	return 300.0 * duration;
+	// 300 points wide per second of audio (or 900 zoomed)
+	if (self.isZoomed) {
+		return 900.0 * duration;
+	}
+	else {
+		return 300.0 * duration;
+	}
 }
 
 - (CGFloat) bestPadding
@@ -201,7 +212,7 @@
 		__weak LUSplitController* weak_self = self;
 		[self.player addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
 			dispatch_async (dispatch_get_main_queue(), ^{
-				[weak_self updatePlayback:time];
+				[weak_self updatePlaybackForTime:time];
 			});
 		}];
 
@@ -213,9 +224,14 @@
 	[self updatePlayButton];
 }
 
-- (void) updatePlayback:(CMTime)time
+- (void) updatePlaybackForTime:(CMTime)time
 {
 	Float64 offset = CMTimeGetSeconds (time);
+	[self updatePlaybackForSeconds:offset];
+}
+
+- (void) updatePlaybackForSeconds:(NSTimeInterval)offset
+{
 	CGFloat w = [self bestWidthForDuration:self.clip.duration];
 	CGFloat fraction = offset / self.clip.duration;
 	CGFloat x = fraction * w;
@@ -234,6 +250,17 @@
 
 - (IBAction) zoom:(id)sender
 {
+	if (self.isZoomed) {
+		self.isZoomed = NO;
+		[self.zoomButton setImage:[UIImage imageNamed:@"zoom_in"] forState:UIControlStateNormal];
+	}
+	else {
+		self.isZoomed = YES;
+		[self.zoomButton setImage:[UIImage imageNamed:@"zoom_out"] forState:UIControlStateNormal];
+	}
+	
+	[self setupGraph];
+	[self updatePlaybackForSeconds:self.splitSeconds];
 }
 
 - (IBAction) delete:(id)sender
