@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) UIPanGestureRecognizer* panGesture;
 @property (strong, nonatomic) NSString* path;
+@property (assign, nonatomic) BOOL isEpisodePlaying;
 
 - (void) setupWithFile:(NSString *)path;
 - (void) updatePercentComplete:(CGFloat)value;

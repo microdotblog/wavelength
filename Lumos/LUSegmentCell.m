@@ -16,6 +16,7 @@
 - (void) setupWithFile:(NSString *)path
 {
 	self.path = path;
+	self.isEpisodePlaying = NO;
 	
 	NSURL* audio_url = [NSURL fileURLWithPath:path];
 	LUAudioClip* clip = [[LUAudioClip alloc] initWithDestination:audio_url];
@@ -48,15 +49,17 @@
 
 - (void) pan:(UIPanGestureRecognizer *)gesture
 {
-	CGPoint pt = [gesture locationInView:self];
-	CGFloat fraction = pt.x / self.bounds.size.width;
-	[self updatePercentComplete:fraction];
-	
-	if (gesture.state == UIGestureRecognizerStateEnded) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:kSeekAudioSegmentNotification object:self userInfo:@{
-			kSeekAudioSegmentFileKey: self.path,
-			kSeekAudioSegmentPercent: @(fraction)
-		}];
+	if (self.isEpisodePlaying) {
+		CGPoint pt = [gesture locationInView:self];
+		CGFloat fraction = pt.x / self.bounds.size.width;
+		[self updatePercentComplete:fraction];
+		
+		if (gesture.state == UIGestureRecognizerStateEnded) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:kSeekAudioSegmentNotification object:self userInfo:@{
+				kSeekAudioSegmentFileKey: self.path,
+				kSeekAudioSegmentPercent: @(fraction)
+			}];
+		}
 	}
 }
 

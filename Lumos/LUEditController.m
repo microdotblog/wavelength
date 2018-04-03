@@ -317,6 +317,10 @@ static const NSString* kItemStatusContext;
 	if (self.player) {
 		[self.player pause];
 		self.player = nil;
+		
+		for (LUSegmentCell* cell in [self allCells]) {
+			cell.isEpisodePlaying = NO;
+		}
 	}
 	else {
 		AVMutableComposition* composition = [self makeComposition];
@@ -337,6 +341,10 @@ static const NSString* kItemStatusContext;
 		}];
 
 		[self.player play];
+
+		for (LUSegmentCell* cell in [self allCells]) {
+			cell.isEpisodePlaying = YES;
+		}
 	}
 	
 	[self updatePlayButton];
@@ -486,6 +494,18 @@ static const NSString* kItemStatusContext;
 	}
 	
 	return composition;
+}
+
+- (NSArray *) allCells
+{
+	NSMutableArray* cells = [NSMutableArray array];
+
+	for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
+		NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
+		[cells addObject:[self.collectionView cellForItemAtIndexPath:index_path]];
+	}
+
+	return cells;
 }
 
 #pragma mark -
