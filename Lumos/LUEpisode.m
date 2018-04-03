@@ -9,6 +9,7 @@
 #import "LUEpisode.h"
 #import <EZAudio/EZAudio.h>
 #import "UUString.h"
+#import "UUDate.h"
 
 @interface LUEpisode()
 	@property (strong, nonatomic) NSMutableArray* audioSegmentPaths;
@@ -51,7 +52,18 @@
 	if (self) {
 		self.path = path;
 		
-		self.title = [path lastPathComponent];
+		NSDate* date = [NSDate uuDateFromIso8601String:[path lastPathComponent]];
+		
+		NSString* timeStampString = [NSString stringWithFormat:@"%@ %@ %@, %@:%@:%@ %@",
+																[date uuShortMonthOfYear],
+																[date uuDayOfMonth],
+																[date uuLongYear],
+																[date uuHour],
+																[date uuMinute],
+																[date uuSecond],
+																[date uuIsEvening] ? @"pm" : @"am" ];
+
+		self.title = timeStampString;//[path lastPathComponent];
 
 		self.audioSegmentPaths = [NSMutableArray array];
 		

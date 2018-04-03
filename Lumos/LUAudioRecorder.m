@@ -74,10 +74,7 @@
 	
 	NSDate* now = [NSDate date];
 	
-	NSString* timeStampString = [NSString stringWithFormat:@"%@-%@.%@.%@", [now uuIso8601DateString],
-																		   [now uuHour],
-																		   [now uuMinute],
-																		   [now uuSecond]];
+	NSString* timeStampString = [now uuIso8601DateTimeString];
 	
 	NSString* episodeName = [NSString stringWithString:timeStampString];
 	NSString* fileName = [timeStampString stringByAppendingString:@".caf"];

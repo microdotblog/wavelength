@@ -47,6 +47,12 @@
 	[super viewDidLayoutSubviews];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self setupEpisodes];
+}
+
 - (void) setupAudio
 {
 	if (self.audioRecorder == nil) {
@@ -94,6 +100,8 @@
 		
 		return [episode2.path compare:episode1.path];
 	}];
+	
+	[self.tableView reloadData];
 }
 
 - (void) updateRecordButton
