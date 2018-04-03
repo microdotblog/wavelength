@@ -72,7 +72,7 @@
 	self.episodes = [NSMutableArray array];
 
 	NSURL* documentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-;
+
 	NSArray* contents = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:documentsDirectory includingPropertiesForKeys:nil options:0 error:NULL];
 	for (NSURL* url in contents) {
 		BOOL is_dir = NO;
@@ -86,6 +86,14 @@
 			}
 		}
 	}
+	
+	[self.episodes sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2)
+	{
+		LUEpisode* episode1 = obj1;
+		LUEpisode* episode2 = obj2;
+		
+		return [episode2.path compare:episode1.path];
+	}];
 }
 
 - (void) updateRecordButton
@@ -160,6 +168,14 @@
 		
 		[self.episodes addObject:episode];
 		
+		[self.episodes sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2)
+		{
+			LUEpisode* episode1 = obj1;
+			LUEpisode* episode2 = obj2;
+		
+			return [episode2.path compare:episode1.path];
+		}];
+
 		[self.tableView reloadData];
 		[self performSegueWithIdentifier:@"EditSegue" sender:episode];
 	}
