@@ -24,5 +24,6 @@
 @property (strong, nonatomic) LUEpisode* _Nullable episode;
 @property (weak, nonatomic) PopoverView* _Nullable addPopover;
 @property (strong, nonatomic) AVPlayer* _Nullable player;
+@property (strong, nonatomic) id _Nullable exportTransition;
 
 @end

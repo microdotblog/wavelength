@@ -16,6 +16,7 @@
 #import "LUSplitController.h"
 #import "LUPostController.h"
 #import "LUExportController.h"
+#import "LUExportTransition.h"
 #import "LUNotifications.h"
 #import <EZAudio/EZAudio.h>
 #import "SSKeychain.h"
@@ -40,6 +41,8 @@ static const NSString* kItemStatusContext;
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
+	
+	self.exportTransition = [[LUExportTransition alloc] init];
 	
 	[self setupNotifications];
 	[self setupCollectionView];
@@ -85,7 +88,8 @@ static const NSString* kItemStatusContext;
 			LUEpisode* episode = sender;
 			LUExportController* export_controller = [segue destinationViewController];
 			export_controller.episode = episode;
-			export_controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+			export_controller.modalPresentationStyle = UIModalPresentationCustom;
+			export_controller.transitioningDelegate = self.exportTransition;
 		}
 		else if ([segue.identifier isEqualToString:@"SigninSegue"]) {
 		}

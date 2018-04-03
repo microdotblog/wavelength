@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B01D4E12073DC2600FD8A00 /* LUExportTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B01D4E02073DC2600FD8A00 /* LUExportTransition.m */; };
 		4B18F1BD206E0E6100A91731 /* LUAuphonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BC206E0E6100A91731 /* LUAuphonic.m */; };
 		4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BF206E951200A91731 /* LUAuphonicController.m */; };
 		4B18F1C4206FECAB00A91731 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */; };
@@ -66,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		43BF02616C547DCF0280214F /* libPods-Wavelength.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wavelength.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B01D4DF2073DC2600FD8A00 /* LUExportTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUExportTransition.h; sourceTree = "<group>"; };
+		4B01D4E02073DC2600FD8A00 /* LUExportTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUExportTransition.m; sourceTree = "<group>"; };
 		4B18F1BB206E0E6100A91731 /* LUAuphonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonic.h; sourceTree = "<group>"; };
 		4B18F1BC206E0E6100A91731 /* LUAuphonic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAuphonic.m; sourceTree = "<group>"; };
 		4B18F1BE206E951200A91731 /* LUAuphonicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonicController.h; sourceTree = "<group>"; };
@@ -320,6 +323,8 @@
 				4B74C8C1205A23A40050A105 /* LUEditController.m */,
 				4B18F1C8206FEEDA00A91731 /* LUExportController.h */,
 				4B18F1C9206FEEDA00A91731 /* LUExportController.m */,
+				4B01D4DF2073DC2600FD8A00 /* LUExportTransition.h */,
+				4B01D4E02073DC2600FD8A00 /* LUExportTransition.m */,
 				4B74C8C3205A23D10050A105 /* LUPostController.h */,
 				4B74C8C4205A23D10050A105 /* LUPostController.m */,
 				4B881CA52061492B008A4C13 /* LUSplitController.h */,
@@ -537,6 +542,7 @@
 				C5E5A58F20646817006486FB /* LUSettingsViewController.m in Sources */,
 				C54C8F912065A4A7007F7565 /* UUAlert.m in Sources */,
 				C5E5A5922064708E006486FB /* LULoginViewController.m in Sources */,
+				4B01D4E12073DC2600FD8A00 /* LUExportTransition.m in Sources */,
 				4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */,
 				4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */,
 				C54C8F832065A3B3007F7565 /* SSKeychain.m in Sources */,
