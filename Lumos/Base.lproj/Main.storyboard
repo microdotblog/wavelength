@@ -998,10 +998,23 @@
                                             <action selector="play:" destination="YAV-e1-9h8" eventType="touchUpInside" id="yGX-5w-Lkk"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2u7-p3-3ju">
+                                        <rect key="frame" x="277" y="32" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="BPi-EF-5nT"/>
+                                            <constraint firstAttribute="height" constant="56" id="ir9-s1-a3h"/>
+                                        </constraints>
+                                        <state key="normal" image="zoom_in"/>
+                                        <connections>
+                                            <action selector="zoom:" destination="YAV-e1-9h8" eventType="touchUpInside" id="InQ-aN-UvX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2u7-p3-3ju" secondAttribute="trailing" constant="42" id="Exs-27-7Yd"/>
                                     <constraint firstItem="ujs-LJ-pGH" firstAttribute="top" secondItem="A30-Uk-Tul" secondAttribute="top" constant="32" id="L5E-KU-JGs"/>
                                     <constraint firstItem="hHB-Hi-G7f" firstAttribute="top" secondItem="A30-Uk-Tul" secondAttribute="top" constant="32" id="Tbf-X4-6Ei"/>
+                                    <constraint firstItem="2u7-p3-3ju" firstAttribute="top" secondItem="A30-Uk-Tul" secondAttribute="top" constant="32" id="fck-e4-27i"/>
                                     <constraint firstAttribute="height" constant="120" id="gV4-dB-cpS"/>
                                     <constraint firstItem="hHB-Hi-G7f" firstAttribute="leading" secondItem="A30-Uk-Tul" secondAttribute="leading" constant="42" id="lJg-h9-kjA"/>
                                 </constraints>
@@ -1041,6 +1054,7 @@
                         <outlet property="playPauseButton" destination="hHB-Hi-G7f" id="xhi-oB-986"/>
                         <outlet property="scrollView" destination="odl-wd-qay" id="RZO-wv-Lj9"/>
                         <outlet property="splitButton" destination="ujs-LJ-pGH" id="Sm4-60-ucv"/>
+                        <outlet property="zoomButton" destination="2u7-p3-3ju" id="zfH-1Q-hrZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CuZ-qV-Gc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1123,6 +1137,7 @@
         <image name="publish" width="28" height="22"/>
         <image name="settings" width="24" height="24"/>
         <image name="split" width="16" height="16"/>
+        <image name="zoom_in" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cCQ-T0-tZd"/>
