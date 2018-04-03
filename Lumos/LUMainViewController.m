@@ -240,14 +240,18 @@
 
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	// TODO: prompt to confirm deletion
-	// ...
+	[UUAlertViewController uuShowTwoButtonAlert:nil message:@"Are you sure you want to delete this podcast?" buttonOne:@"Cancel" buttonTwo:@"Delete" completionHandler:^(NSInteger buttonIndex)
+	{
+		if (buttonIndex == 1)
+		{
+			LUEpisode* episode = [self.episodes objectAtIndex:indexPath.row];
+			[[NSFileManager defaultManager] removeItemAtPath:episode.path error:NULL];
+			[self setupEpisodes];
 	
-	LUEpisode* episode = [self.episodes objectAtIndex:indexPath.row];
-	[[NSFileManager defaultManager] removeItemAtPath:episode.path error:NULL];
-	[self setupEpisodes];
+			//[self.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationFade];
+		}
+	}];
 	
-	[self.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end
