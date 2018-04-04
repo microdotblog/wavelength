@@ -49,8 +49,13 @@
 	CGFloat w = [self bestWidthForDuration:self.clip.duration];
 	CGSize size = CGSizeMake (w, self.scrollView.bounds.size.height);
 
-	CGRect container_r = CGRectMake ([self bestPadding], 50, size.width, size.height - 100);
-	CGRect audio_r = CGRectMake (0, 0, size.width, size.height - 100);
+	CGFloat vertical_padding = 50;
+	if (self.isZoomed) {
+		vertical_padding = -100;
+	}
+
+	CGRect container_r = CGRectMake ([self bestPadding], vertical_padding, size.width, size.height - (vertical_padding * 2));
+	CGRect audio_r = CGRectMake (0, 0, size.width, size.height - (vertical_padding * 2));
 
 	UIView* v = [self.clip requestAudioInputView];
 	v.frame = audio_r;
