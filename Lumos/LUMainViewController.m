@@ -240,7 +240,7 @@
 
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[UUAlertViewController uuShowTwoButtonAlert:nil message:@"Are you sure you want to delete this podcast?" buttonOne:@"Cancel" buttonTwo:@"Delete" completionHandler:^(NSInteger buttonIndex)
+	[UUAlertViewController uuShowTwoButtonAlert:nil message:@"Are you sure you want to delete this episode?" buttonOne:@"Cancel" buttonTwo:@"Delete" completionHandler:^(NSInteger buttonIndex)
 	{
 		if (buttonIndex == 1)
 		{
