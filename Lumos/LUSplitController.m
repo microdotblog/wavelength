@@ -11,6 +11,7 @@
 #import "LUSegment.h"
 #import "LUAudioClip.h"
 #import "LUNotifications.h"
+#import "UUAlert.h"
 
 @implementation LUSplitController
 
@@ -270,11 +271,15 @@
 
 - (IBAction) delete:(id)sender
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:@{
-		kReplaceSegmentOriginalKey: self.segment,
-		kReplaceSegmentNewArrayKey: @[]
+	[UUAlertViewController uuShowTwoButtonAlert:nil message:@"Are you sure you want to delete this segment?" buttonOne:@"Cancel" buttonTwo:@"Delete" completionHandler:^(NSInteger buttonIndex) {
+		if (buttonIndex == 1) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:@{
+				kReplaceSegmentOriginalKey: self.segment,
+				kReplaceSegmentNewArrayKey: @[]
+			}];
+			[self.navigationController popViewControllerAnimated:YES];
+		}
 	}];
-	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
