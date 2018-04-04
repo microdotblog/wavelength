@@ -54,13 +54,13 @@
 		
 		NSDate* date = [NSDate uuDateFromIso8601String:[path lastPathComponent]];
 		
-		NSString* timeStampString = [NSString stringWithFormat:@"%@ %@ %@, %@:%@:%@ %@",
+		NSString* timeStampString = [NSString stringWithFormat:@"%@ %@ %@, %@:%@ %@",
 																[date uuShortMonthOfYear],
 																[date uuDayOfMonth],
 																[date uuLongYear],
 																[date uuHour],
 																[date uuMinute],
-																[date uuSecond],
+																//[date uuSecond],
 																[date uuIsEvening] ? @"pm" : @"am" ];
 
 		self.title = timeStampString;//[path lastPathComponent];
