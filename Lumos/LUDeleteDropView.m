@@ -32,7 +32,7 @@
 
 - (void) dropInteraction:(UIDropInteraction *)interaction sessionDidEnter:(id<UIDropSession>)session
 {
-	self.layer.backgroundColor = [UIColor colorWithWhite:0.3 alpha:1.0].CGColor;
+	self.layer.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1.0].CGColor;
 }
 
 - (void) dropInteraction:(UIDropInteraction *)interaction sessionDidExit:(id<UIDropSession>)session
