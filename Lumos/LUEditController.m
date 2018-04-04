@@ -44,9 +44,15 @@ static const NSString* kItemStatusContext;
 	
 	self.exportTransition = [[LUExportTransition alloc] init];
 	
+	[self setupDropView];
 	[self setupNotifications];
 	[self setupCollectionView];
 	[self setupGestures];
+}
+
+- (void) setupDropView
+{
+	self.deleteDropView.alpha = 0.0;
 }
 
 - (void) setupNotifications
@@ -70,6 +76,8 @@ static const NSString* kItemStatusContext;
 //	double_tap_gesture.numberOfTapsRequired = 2;
 //	[self.collectionView addGestureRecognizer:double_tap_gesture];
 }
+
+#pragma mark -
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -510,6 +518,23 @@ static const NSString* kItemStatusContext;
 
 #pragma mark -
 
+- (void) showDropView
+{
+	self.deleteDropView.layer.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
+	[UIView animateWithDuration:0.3 animations:^{
+		self.deleteDropView.alpha = 1.0;
+	}];
+}
+
+- (void) hideDropView
+{
+	[UIView animateWithDuration:0.3 animations:^{
+		self.deleteDropView.alpha = 0.0;
+	}];
+}
+
+#pragma mark -
+
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 	return [self.episode audioSegmentPaths].count;
@@ -582,6 +607,8 @@ static const NSString* kItemStatusContext;
 	UIDragItem* item = [[UIDragItem alloc] initWithItemProvider:provider];
 	item.localObject = audio_path;
 	
+	[self showDropView];
+	
 	return @[ item ];
 }
 
@@ -620,6 +647,11 @@ static const NSString* kItemStatusContext;
 	completion:^(BOOL finished)
 	{
 	}];
+}
+
+- (void) collectionView:(UICollectionView *)collectionView dropSessionDidEnd:(id<UIDropSession>)session
+{
+	[self hideDropView];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

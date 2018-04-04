@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B01D4E12073DC2600FD8A00 /* LUExportTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B01D4E02073DC2600FD8A00 /* LUExportTransition.m */; };
+		4B01D4E42074648900FD8A00 /* LUDeleteDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B01D4E32074648900FD8A00 /* LUDeleteDropView.m */; };
 		4B18F1BD206E0E6100A91731 /* LUAuphonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BC206E0E6100A91731 /* LUAuphonic.m */; };
 		4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BF206E951200A91731 /* LUAuphonicController.m */; };
 		4B18F1C4206FECAB00A91731 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */; };
@@ -69,6 +70,8 @@
 		43BF02616C547DCF0280214F /* libPods-Wavelength.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wavelength.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B01D4DF2073DC2600FD8A00 /* LUExportTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUExportTransition.h; sourceTree = "<group>"; };
 		4B01D4E02073DC2600FD8A00 /* LUExportTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUExportTransition.m; sourceTree = "<group>"; };
+		4B01D4E22074648900FD8A00 /* LUDeleteDropView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUDeleteDropView.h; sourceTree = "<group>"; };
+		4B01D4E32074648900FD8A00 /* LUDeleteDropView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUDeleteDropView.m; sourceTree = "<group>"; };
 		4B18F1BB206E0E6100A91731 /* LUAuphonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonic.h; sourceTree = "<group>"; };
 		4B18F1BC206E0E6100A91731 /* LUAuphonic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAuphonic.m; sourceTree = "<group>"; };
 		4B18F1BE206E951200A91731 /* LUAuphonicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonicController.h; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 				C5DC32B9205780F000D0594B /* LUMainViewController.m */,
 				4B74C8C0205A23A40050A105 /* LUEditController.h */,
 				4B74C8C1205A23A40050A105 /* LUEditController.m */,
+				4B01D4E22074648900FD8A00 /* LUDeleteDropView.h */,
+				4B01D4E32074648900FD8A00 /* LUDeleteDropView.m */,
 				4B18F1C8206FEEDA00A91731 /* LUExportController.h */,
 				4B18F1C9206FEEDA00A91731 /* LUExportController.m */,
 				4B01D4DF2073DC2600FD8A00 /* LUExportTransition.h */,
@@ -534,6 +539,7 @@
 				4B74C8C2205A23A40050A105 /* LUEditController.m in Sources */,
 				4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */,
 				4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */,
+				4B01D4E42074648900FD8A00 /* LUDeleteDropView.m in Sources */,
 				C54C8F8E2065A466007F7565 /* NSString+Extras.m in Sources */,
 				4B18F1C4206FECAB00A91731 /* ExtAudioConverter.m in Sources */,
 				C5DC32BB205780F000D0594B /* LUMainViewController.m in Sources */,

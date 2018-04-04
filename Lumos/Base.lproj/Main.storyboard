@@ -473,12 +473,29 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zIf-T2-fex" customClass="LUDeleteDropView">
+                                        <rect key="frame" x="279" y="22" width="56" height="56"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash" translatesAutoresizingMaskIntoConstraints="NO" id="pqR-7L-rTk">
+                                                <rect key="frame" x="20" y="20" width="16" height="16"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="EAU-Gt-S4R"/>
+                                            <constraint firstAttribute="height" constant="56" id="O2A-wU-RAV"/>
+                                            <constraint firstItem="pqR-7L-rTk" firstAttribute="centerX" secondItem="zIf-T2-fex" secondAttribute="centerX" id="QtT-XA-LTs"/>
+                                            <constraint firstItem="pqR-7L-rTk" firstAttribute="centerY" secondItem="zIf-T2-fex" secondAttribute="centerY" id="lSb-Bv-DFs"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="7Or-nu-cTE"/>
+                                    <constraint firstAttribute="trailing" secondItem="zIf-T2-fex" secondAttribute="trailing" constant="40" id="C0m-33-mq3"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="centerX" secondItem="4za-bv-mkl" secondAttribute="centerX" id="KR7-YU-8zw"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="centerX" secondItem="4za-bv-mkl" secondAttribute="centerX" id="OC6-Bw-TIJ"/>
+                                    <constraint firstItem="zIf-T2-fex" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" constant="22" id="RcV-v3-36h"/>
                                     <constraint firstAttribute="trailing" secondItem="sgl-cq-hL5" secondAttribute="trailing" constant="8" id="ajr-PH-ckG"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="centerY" secondItem="4za-bv-mkl" secondAttribute="centerY" id="sTC-sc-F1y"/>
                                     <constraint firstItem="sgl-cq-hL5" firstAttribute="centerY" secondItem="4za-bv-mkl" secondAttribute="centerY" id="x2c-Oz-vEp"/>
@@ -523,6 +540,7 @@
                     <connections>
                         <outlet property="addPopoverView" destination="uJ7-sy-mFc" id="8ds-Af-S4Y"/>
                         <outlet property="collectionView" destination="ji9-mB-grC" id="8dp-Da-Cwu"/>
+                        <outlet property="deleteDropView" destination="zIf-T2-fex" id="vqd-Sk-BwP"/>
                         <outlet property="playPauseButton" destination="t1W-4M-E0Z" id="6IS-Oc-GdJ"/>
                         <outlet property="recordingDimView" destination="kv4-1W-Q7a" id="cjI-nw-ZZ3"/>
                         <outlet property="timerLabel" destination="sgl-cq-hL5" id="Lab-aH-HAf"/>
@@ -584,7 +602,7 @@
                     <viewLayoutGuide key="safeArea" id="QaG-mK-now"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1874" y="-412"/>
+            <point key="canvasLocation" x="1872.8" y="-412.44377811094455"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nJT-sk-bWh">
@@ -1137,6 +1155,7 @@
         <image name="publish" width="28" height="22"/>
         <image name="settings" width="24" height="24"/>
         <image name="split" width="16" height="16"/>
+        <image name="trash" width="16" height="16"/>
         <image name="zoom_in" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
