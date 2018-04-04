@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uko-jZ-yR3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uko-jZ-yR3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Avenir.ttc">
-            <string>Avenir-Book</string>
-        </array>
-        <array key="AvenirNext.ttc">
-            <string>AvenirNext-Medium</string>
-            <string>AvenirNext-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="mtT-3m-K2L">
@@ -74,8 +65,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDG-q4-IEV">
-                                <rect key="frame" x="319" y="84" width="40" height="24"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDG-q4-IEV">
+                                <rect key="frame" x="78" y="84" width="24.5" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="t82-9A-Uec"/>
                                 </constraints>
@@ -129,14 +120,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeK-lY-1iN">
+                                <rect key="frame" x="309" y="81" width="50" height="30"/>
+                                <state key="normal" title="Credits"/>
+                                <connections>
+                                    <segue destination="w2H-Ph-DDD" kind="show" id="Nyc-BP-Nq2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ZSF-Wg-7ef" firstAttribute="leading" secondItem="xjn-Wk-9tF" secondAttribute="trailing" constant="72" id="32c-S6-UUi"/>
-                            <constraint firstItem="cJA-pf-jbG" firstAttribute="trailing" secondItem="UDG-q4-IEV" secondAttribute="trailing" constant="16" id="3xZ-Va-eic"/>
                             <constraint firstItem="ufL-Nk-o0g" firstAttribute="leading" secondItem="cJA-pf-jbG" secondAttribute="leading" constant="16" id="6R6-6H-BsC"/>
                             <constraint firstItem="qS3-7T-1MA" firstAttribute="top" secondItem="cJA-pf-jbG" secondAttribute="top" constant="20" id="6sb-UQ-VAB"/>
                             <constraint firstItem="cJA-pf-jbG" firstAttribute="trailing" secondItem="ZSF-Wg-7ef" secondAttribute="trailing" constant="16" id="AKM-Y7-OjO"/>
+                            <constraint firstItem="RUB-24-JuF" firstAttribute="trailing" secondItem="CeK-lY-1iN" secondAttribute="trailing" id="BCg-ge-AsR"/>
                             <constraint firstItem="ZSF-Wg-7ef" firstAttribute="top" secondItem="41n-9B-KlM" secondAttribute="bottom" constant="15" id="D5H-lJ-T0b"/>
                             <constraint firstItem="qS3-7T-1MA" firstAttribute="leading" secondItem="cJA-pf-jbG" secondAttribute="leading" constant="16" id="Dae-Sh-mQi"/>
                             <constraint firstItem="SDU-aU-gJJ" firstAttribute="top" secondItem="xjn-Wk-9tF" secondAttribute="bottom" constant="8" id="H2j-fZ-adS"/>
@@ -153,6 +151,8 @@
                             <constraint firstItem="xjn-Wk-9tF" firstAttribute="top" secondItem="41n-9B-KlM" secondAttribute="bottom" constant="20" id="qe6-8Q-TQt"/>
                             <constraint firstItem="SDU-aU-gJJ" firstAttribute="leading" secondItem="cJA-pf-jbG" secondAttribute="leading" constant="16" id="r5a-Rf-qxs"/>
                             <constraint firstItem="41n-9B-KlM" firstAttribute="leading" secondItem="9bq-gR-AoX" secondAttribute="leading" id="riZ-JX-Loy"/>
+                            <constraint firstItem="UDG-q4-IEV" firstAttribute="leading" secondItem="qS3-7T-1MA" secondAttribute="trailing" constant="4" id="sls-w2-MzP"/>
+                            <constraint firstItem="CeK-lY-1iN" firstAttribute="centerY" secondItem="qS3-7T-1MA" secondAttribute="centerY" id="vJq-fH-kOS"/>
                             <constraint firstItem="T9g-DJ-tEb" firstAttribute="leading" secondItem="9bq-gR-AoX" secondAttribute="leading" id="wFH-Z1-PJG"/>
                             <constraint firstAttribute="trailing" secondItem="41n-9B-KlM" secondAttribute="trailing" id="weG-Et-RAB"/>
                         </constraints>
@@ -172,6 +172,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWu-jW-hls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1872.8" y="932.38380809595208"/>
+        </scene>
+        <!--Credits View Controller-->
+        <scene sceneID="dKt-RJ-e8z">
+            <objects>
+                <viewController id="w2H-Ph-DDD" customClass="LUCreditsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ibm-Yr-MAL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tns-if-QQj">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tns-if-QQj" firstAttribute="bottom" secondItem="aNM-2D-v51" secondAttribute="bottom" id="2l0-Ok-lh5"/>
+                            <constraint firstItem="tns-if-QQj" firstAttribute="trailing" secondItem="aNM-2D-v51" secondAttribute="trailing" id="Wbv-g1-dwT"/>
+                            <constraint firstItem="tns-if-QQj" firstAttribute="leading" secondItem="aNM-2D-v51" secondAttribute="leading" id="rao-3u-F9t"/>
+                            <constraint firstItem="tns-if-QQj" firstAttribute="top" secondItem="aNM-2D-v51" secondAttribute="top" id="uTj-ix-Dyh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aNM-2D-v51"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="tns-if-QQj" id="eaB-km-If5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hew-ax-2UG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2656.8000000000002" y="1303.8980509745129"/>
         </scene>
         <!--Wavelength-->
         <scene sceneID="Ynp-2P-NAL">
@@ -1160,6 +1194,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cCQ-T0-tZd"/>
-        <segue reference="pR2-pI-Ygd"/>
+        <segue reference="k0j-Kr-gI3"/>
     </inferredMetricsTieBreakers>
 </document>

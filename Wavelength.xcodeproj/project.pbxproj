@@ -21,7 +21,6 @@
 		4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C7205A26180050A105 /* LUEpisode.m */; };
 		4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8CA205A27E90050A105 /* LUEpisodeCell.m */; };
 		4B74C959205A3F4A0050A105 /* LUSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C958205A3F4A0050A105 /* LUSegmentCell.m */; };
-		4B74C966205D75CB0050A105 /* test.m4a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B74C962205D75860050A105 /* test.m4a */; };
 		4B881CA72061492C008A4C13 /* LUSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA62061492B008A4C13 /* LUSplitController.m */; };
 		4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA920614AA2008A4C13 /* LUSegment.m */; };
 		8D7DF7F9B981B1804FE51B5B /* libPods-Wavelength.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BF02616C547DCF0280214F /* libPods-Wavelength.a */; };
@@ -42,6 +41,11 @@
 		C54C8F9B2065D5C8007F7565 /* UUDate.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F9A2065D5C7007F7565 /* UUDate.m */; };
 		C58A2EBA20729B8E00DB0E04 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C58A2EB920729B8E00DB0E04 /* CloudKit.framework */; };
 		C58A2EBD2072A29900DB0E04 /* LUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C58A2EBC2072A29900DB0E04 /* LUViewController.m */; };
+		C58A2EDB2075347A00DB0E04 /* LUCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C58A2EDA2075347A00DB0E04 /* LUCreditsViewController.m */; };
+		C58A2EDD2075368500DB0E04 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C58A2EDC2075368500DB0E04 /* WebKit.framework */; };
+		C58A2EE02075370000DB0E04 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = C58A2EDE2075370000DB0E04 /* credits.html */; };
+		C58A2EE12075370000DB0E04 /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C58A2EDF2075370000DB0E04 /* test.m4a */; };
+		C58A2EE32075393D00DB0E04 /* olive.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C58A2EE22075393D00DB0E04 /* olive.jpg */; };
 		C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DC329B205774A600D0594B /* LUAppDelegate.m */; };
 		C5DC32A2205774A600D0594B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A0205774A600D0594B /* Main.storyboard */; };
 		C5DC32A4205774A600D0594B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DC32A3205774A600D0594B /* Assets.xcassets */; };
@@ -60,7 +64,6 @@
 			dstPath = Music;
 			dstSubfolderSpec = 7;
 			files = (
-				4B74C966205D75CB0050A105 /* test.m4a in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +97,6 @@
 		4B74C8CA205A27E90050A105 /* LUEpisodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUEpisodeCell.m; sourceTree = "<group>"; };
 		4B74C957205A3F4A0050A105 /* LUSegmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUSegmentCell.h; sourceTree = "<group>"; };
 		4B74C958205A3F4A0050A105 /* LUSegmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSegmentCell.m; sourceTree = "<group>"; };
-		4B74C962205D75860050A105 /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.m4a; path = Music/test.m4a; sourceTree = "<group>"; };
 		4B881CA52061492B008A4C13 /* LUSplitController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUSplitController.h; sourceTree = "<group>"; };
 		4B881CA62061492B008A4C13 /* LUSplitController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSplitController.m; sourceTree = "<group>"; };
 		4B881CA820614AA2008A4C13 /* LUSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUSegment.h; sourceTree = "<group>"; };
@@ -137,6 +139,12 @@
 		C58A2EB920729B8E00DB0E04 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C58A2EBB2072A29900DB0E04 /* LUViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUViewController.h; sourceTree = "<group>"; };
 		C58A2EBC2072A29900DB0E04 /* LUViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUViewController.m; sourceTree = "<group>"; };
+		C58A2ED92075347A00DB0E04 /* LUCreditsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUCreditsViewController.h; sourceTree = "<group>"; };
+		C58A2EDA2075347A00DB0E04 /* LUCreditsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUCreditsViewController.m; sourceTree = "<group>"; };
+		C58A2EDC2075368500DB0E04 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C58A2EDE2075370000DB0E04 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = credits.html; path = Files/credits.html; sourceTree = "<group>"; };
+		C58A2EDF2075370000DB0E04 /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.m4a; path = Files/test.m4a; sourceTree = "<group>"; };
+		C58A2EE22075393D00DB0E04 /* olive.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = olive.jpg; path = Files/olive.jpg; sourceTree = "<group>"; };
 		C5DC3297205774A600D0594B /* Wavelength.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wavelength.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DC329A205774A600D0594B /* LUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAppDelegate.h; sourceTree = "<group>"; };
 		C5DC329B205774A600D0594B /* LUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAppDelegate.m; sourceTree = "<group>"; };
@@ -160,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C58A2EDD2075368500DB0E04 /* WebKit.framework in Frameworks */,
 				C58A2EBA20729B8E00DB0E04 /* CloudKit.framework in Frameworks */,
 				4B18F1C7206FECB000A91731 /* libmp3lame.a in Frameworks */,
 				4B18F1CF2070164800A91731 /* Crashlytics.framework in Frameworks */,
@@ -182,12 +191,14 @@
 			path = ExtAudioConverter;
 			sourceTree = "<group>";
 		};
-		4B74C963205D758B0050A105 /* Music */ = {
+		4B74C963205D758B0050A105 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				4B74C962205D75860050A105 /* test.m4a */,
+				C58A2EE22075393D00DB0E04 /* olive.jpg */,
+				C58A2EDE2075370000DB0E04 /* credits.html */,
+				C58A2EDF2075370000DB0E04 /* test.m4a */,
 			);
-			name = Music;
+			name = Files;
 			sourceTree = "<group>";
 		};
 		5259634BBEA440FE73DE2B63 /* Pods */ = {
@@ -271,6 +282,7 @@
 		C5735FFE13F5B9B465C3FF2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C58A2EDC2075368500DB0E04 /* WebKit.framework */,
 				C58A2EB920729B8E00DB0E04 /* CloudKit.framework */,
 				4B18F1CD2070164800A91731 /* Crashlytics.framework */,
 				4B18F1CC2070164700A91731 /* Fabric.framework */,
@@ -284,7 +296,7 @@
 			children = (
 				C58A2EB820729B5A00DB0E04 /* Wavelength.entitlements */,
 				C5DC3299205774A600D0594B /* Lumos */,
-				4B74C963205D758B0050A105 /* Music */,
+				4B74C963205D758B0050A105 /* Files */,
 				C54C8F642065A328007F7565 /* Shared */,
 				C5DC3298205774A600D0594B /* Products */,
 				5259634BBEA440FE73DE2B63 /* Pods */,
@@ -342,6 +354,8 @@
 				4B18F1BC206E0E6100A91731 /* LUAuphonic.m */,
 				4B18F1BE206E951200A91731 /* LUAuphonicController.h */,
 				4B18F1BF206E951200A91731 /* LUAuphonicController.m */,
+				C58A2ED92075347A00DB0E04 /* LUCreditsViewController.h */,
+				C58A2EDA2075347A00DB0E04 /* LUCreditsViewController.m */,
 				C5DC32BD2057810C00D0594B /* Supporting Files */,
 			);
 			path = Lumos;
@@ -437,7 +451,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5DC32A7205774A600D0594B /* LaunchScreen.storyboard in Resources */,
+				C58A2EE32075393D00DB0E04 /* olive.jpg in Resources */,
+				C58A2EE02075370000DB0E04 /* credits.html in Resources */,
 				C5DC32A4205774A600D0594B /* Assets.xcassets in Resources */,
+				C58A2EE12075370000DB0E04 /* test.m4a in Resources */,
 				C5DC32A2205774A600D0594B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +567,7 @@
 				C5E5A5922064708E006486FB /* LULoginViewController.m in Sources */,
 				4B01D4E12073DC2600FD8A00 /* LUExportTransition.m in Sources */,
 				4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */,
+				C58A2EDB2075347A00DB0E04 /* LUCreditsViewController.m in Sources */,
 				4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */,
 				C54C8F832065A3B3007F7565 /* SSKeychain.m in Sources */,
 				C5DC329C205774A600D0594B /* LUAppDelegate.m in Sources */,
