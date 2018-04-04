@@ -18,7 +18,8 @@
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
-
+	
+	[self setupDefaults];
 	[self setupButtons];
 }
 
@@ -27,6 +28,11 @@
 	[super viewDidLayoutSubviews];
 	
 	[self setupGraph];
+}
+
+- (void) setupDefaults
+{
+	self.splitSeconds = 0.0;
 }
 
 - (void) setupButtons
@@ -115,7 +121,10 @@
 - (NSTimeInterval) timeOffsetForScrollPosition:(CGFloat)x
 {
 	CGFloat w = [self bestWidthForDuration:self.clip.duration];
-	CGFloat fraction = x / w;
+	CGFloat fraction = 0.0;
+	if (x > 0.0) {
+		fraction = x / w;
+	}
 	return fraction * self.clip.duration;
 }
 
