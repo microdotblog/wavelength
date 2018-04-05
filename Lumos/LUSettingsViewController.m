@@ -113,4 +113,11 @@
 	}
 }
 
+- (IBAction) onSwitchSite:(id)sender
+{
+	UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Blogs" bundle:nil];
+	UIViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"BlogsNavigation"];
+	[self presentViewController:controller animated:YES completion:NULL];
+}
+
 @end
