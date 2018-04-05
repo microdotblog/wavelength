@@ -10,6 +10,7 @@
 
 #import "LUBlogCell.h"
 #import "RFClient.h"
+#import "UUAlert.h"
 
 @interface LUSelectBlogController ()
 
@@ -86,7 +87,20 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//	NSDictionary* info = [self.blogs objectAtIndex:indexPath.row];
+	if (indexPath.row < self.blogs.count) {
+		NSDictionary* info = [self.blogs objectAtIndex:indexPath.row];
+		if ([[info objectForKey:@"microblog-audio"] boolValue]) {
+			// TODO: ...
+		}
+		else {
+			NSString* msg = [NSString stringWithFormat:@"%@ will be upgraded to the $10/month plan to support podcasting.", [info objectForKey:@"name"]];
+			[UUAlertViewController uuShowTwoButtonAlert:@"Upgrade Subscription" message:msg buttonOne:@"Cancel" buttonTwo:@"Upgrade" completionHandler:^(NSInteger buttonIndex) {
+			}];
+		}
+	}
+	else {
+		[self performSegueWithIdentifier:@"NewBlogSegue" sender:self];
+	}
 }
 
 @end
