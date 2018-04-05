@@ -23,6 +23,7 @@
 	@property (nonatomic, strong) IBOutlet UITableView* tableView;
 	@property (strong, nonatomic) IBOutlet UILabel* _Nonnull timerLabel;
 	@property (strong, nonatomic) IBOutlet NSLayoutConstraint* waveFormViewContainerBottomConstraint;
+	@property (strong, nonatomic) IBOutlet UILabel* recordDeviceField;
 
 	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
 	@property (nonatomic, strong) NSMutableArray* episodes; // LUEpisode
@@ -70,6 +71,13 @@
 		[self.waveFormViewContainer addSubview:waveFormView];
 
 		[self.audioRecorder requestAudioInputView].frame = self.waveFormViewContainer.bounds;
+	}
+
+	if (self.audioRecorder.customDeviceName) {
+		self.recordDeviceField.text = self.audioRecorder.customDeviceName;
+	}
+	else {
+		self.recordDeviceField.text = @"";
 	}
 }
 

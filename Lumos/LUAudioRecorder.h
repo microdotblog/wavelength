@@ -22,5 +22,6 @@
 	- (void) stop;
 
 	@property (nonatomic, copy) void (^recordProgressCallback)(NSString* timeString);
+	@property (nonatomic, strong) NSString* customDeviceName;
 
 @end

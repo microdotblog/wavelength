@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uko-jZ-yR3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uko-jZ-yR3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Medium</string>
+            <string>AvenirNext-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="mtT-3m-K2L">
@@ -309,8 +318,8 @@
                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>
                                 <subviews>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgH-es-3c3">
-                                        <rect key="frame" x="301" y="39.5" width="66" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="305.5" y="40" width="61.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -326,14 +335,26 @@
                                             <action selector="onRecord:" destination="7vi-7i-8Kg" eventType="touchUpInside" id="xFZ-2h-ilu"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Microphone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvA-qE-zAw">
+                                        <rect key="frame" x="97" y="78" width="181" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="Dq4-dZ-KPQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="11"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="xgH-es-3c3" secondAttribute="trailing" constant="8" id="9CI-v5-Xit"/>
+                                    <constraint firstItem="vvA-qE-zAw" firstAttribute="leading" secondItem="p5R-ab-qc2" secondAttribute="leading" constant="97" id="EcF-4R-CHc"/>
                                     <constraint firstAttribute="height" constant="100" id="KWZ-JT-zN3"/>
                                     <constraint firstItem="xgH-es-3c3" firstAttribute="centerY" secondItem="p5R-ab-qc2" secondAttribute="centerY" id="OOB-be-AFh"/>
                                     <constraint firstItem="DzR-pJ-bnh" firstAttribute="centerX" secondItem="p5R-ab-qc2" secondAttribute="centerX" id="UR5-MD-DSF"/>
                                     <constraint firstItem="DzR-pJ-bnh" firstAttribute="centerY" secondItem="p5R-ab-qc2" secondAttribute="centerY" id="XQv-De-kj0"/>
+                                    <constraint firstAttribute="bottom" secondItem="vvA-qE-zAw" secondAttribute="bottom" constant="1" id="YtS-gh-G5F"/>
+                                    <constraint firstAttribute="trailing" secondItem="vvA-qE-zAw" secondAttribute="trailing" constant="97" id="k66-EJ-Gw1"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -360,6 +381,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="recordDeviceField" destination="vvA-qE-zAw" id="3em-ps-c88"/>
                         <outlet property="recordStopPlayButton" destination="DzR-pJ-bnh" id="Wp3-Qq-tWz"/>
                         <outlet property="tableView" destination="Wvl-IB-D5a" id="4EE-mG-ULb"/>
                         <outlet property="timerLabel" destination="xgH-es-3c3" id="JuO-bZ-vdx"/>

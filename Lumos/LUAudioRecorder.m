@@ -11,6 +11,7 @@
 #import "UUDate.h"
 #import "UUString.h"
 #import "UUColor.h"
+#import "UUAlert.h"
 
 #import "DPMainEqualizerView.h"
 #import "DPCircleWaveEqualizer.h"
@@ -148,8 +149,17 @@
     //
     self.microphone = [EZMicrophone microphoneWithDelegate:self];
 	self.microphone.delegate = self;
-	[self.microphone startFetchingAudio];
 	
+	NSArray* devices = [EZAudioDevice inputDevices];
+	for (EZAudioDevice* device in devices) {
+		if ([device.port.portType isEqualToString:AVAudioSessionPortUSBAudio]) {
+			self.customDeviceName = device.port.portName;
+			[self.microphone setDevice:device];
+		}
+	}
+
+	[self.microphone startFetchingAudio];
+
 	[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
 
 	self.audioPlot.plotType = EZPlotTypeBuffer;
