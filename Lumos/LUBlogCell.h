@@ -11,5 +11,6 @@
 @interface LUBlogCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel* nameField;
+@property (strong, nonatomic) IBOutlet UILabel* subtitleField;
 
 @end

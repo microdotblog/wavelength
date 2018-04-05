@@ -7,8 +7,8 @@
 //
 
 #import "LUViewController.h"
-#import "LUSettingsViewController.h"
 
+#import "LUSettingsViewController.h"
 #import "LUAuphonic.h"
 #import "SSKeychain.h"
 #import "LUNotifications.h"

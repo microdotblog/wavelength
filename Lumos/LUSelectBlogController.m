@@ -9,6 +9,7 @@
 #import "LUSelectBlogController.h"
 
 #import "LUBlogCell.h"
+#import "RFClient.h"
 
 @interface LUSelectBlogController ()
 
@@ -20,7 +21,33 @@
 {
 	[super viewDidLoad];
 	
-	self.blogs = @[ @{ @"name": @"testing" } ];
+	[self setupTable];
+	[self fetchBlogs];
+}
+
+- (void) setupTable
+{
+	self.tableView.layer.cornerRadius = 8.0;
+}
+
+- (void) fetchBlogs
+{
+	[self.progressSpinner startAnimating];
+
+	RFClient* client = [[RFClient alloc] initWithPath:@"/micropub?q=config"];
+	[client getWithQueryArguments:nil completion:^(UUHttpResponse* response) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if (response.httpError) {
+				// ...
+			}
+			else {
+				self.blogs = [response.parsedResponse objectForKey:@"destination"];
+				[self.tableView reloadData];
+			}
+
+			[self.progressSpinner stopAnimating];
+		});
+	}];
 }
 
 - (IBAction) cancel:(id)sender
@@ -32,15 +59,27 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return self.blogs.count;
+	return self.blogs.count + 1;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	LUBlogCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"BlogCell"];
 	
-	NSDictionary* info = [self.blogs objectAtIndex:indexPath.row];
-	cell.nameField.text = [info objectForKey:@"name"];
+	if (indexPath.row < self.blogs.count) {
+		NSDictionary* info = [self.blogs objectAtIndex:indexPath.row];
+		cell.nameField.text = [info objectForKey:@"name"];
+		if ([[info objectForKey:@"microblog-audio"] boolValue]) {
+			cell.subtitleField.text = @"This microblog is ready for podcasting.";
+		}
+		else {
+			cell.subtitleField.text = @"Tap to upgrade this microblog for podcasting.";
+		}
+	}
+	else {
+		cell.nameField.text = @"New Blog + Microcast";
+		cell.subtitleField.text = @"Create a new microblog for podcasting.";
+	}
 	
 	return cell;
 }

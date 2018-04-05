@@ -11,6 +11,7 @@
 @interface LUSelectBlogController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView* tableView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView* progressSpinner;
 
 @property (strong, nonatomic) NSArray* blogs; // NSDictionary (uid, name)
 
