@@ -58,6 +58,10 @@
 
 - (IBAction) finish:(id)sender
 {
+	[UUAlertViewController uuShowOneButtonAlert:@"Disabled For Beta" message:@"Not in the beta yet." button:@"OK" completionHandler:NULL];
+
+	return;
+
 	NSString* sitename = self.sitenameField.text;
 	if (sitename.length > 0) {
 		NSDictionary* info = @{

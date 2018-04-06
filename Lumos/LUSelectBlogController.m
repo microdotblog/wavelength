@@ -51,6 +51,20 @@
 	}];
 }
 
+- (void) selectBlog:(NSDictionary*)blogInfo
+{
+	NSString* uid = [blogInfo objectForKey:@"uid"];
+	NSString* name = [blogInfo objectForKey:@"name"];
+	
+	[[NSUserDefaults standardUserDefaults] setObject:uid forKey:@"Wavelength:blog:uid"];
+	[[NSUserDefaults standardUserDefaults] setObject:name forKey:@"Wavelength:blog:name"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
+	[UUAlertViewController uuShowOneButtonAlert:nil message:@"You have successfully configured Wavelength to publish to your microblog!" button:@"OK" completionHandler:^(NSInteger buttonIndex) {
+		[self dismissViewControllerAnimated:YES completion:NULL];
+	}];
+}
+
 - (IBAction) cancel:(id)sender
 {
 	[self dismissViewControllerAnimated:YES completion:NULL];
@@ -90,11 +104,10 @@
 	if (indexPath.row < self.blogs.count) {
 		NSDictionary* info = [self.blogs objectAtIndex:indexPath.row];
 		if ([[info objectForKey:@"microblog-audio"] boolValue]) {
-			// TODO: set the blog in prefs
-			// ...
+			[self selectBlog:info];
 		}
 		else {
-			NSString* msg = [NSString stringWithFormat:@"%@ will be upgraded to the $10/month plan to support podcasting.", [info objectForKey:@"name"]];
+			NSString* msg = [NSString stringWithFormat:@"%@ will be upgraded to the $10/month plan to support podcasting. (Disabled for the beta.)", [info objectForKey:@"name"]];
 			[UUAlertViewController uuShowTwoButtonAlert:@"Upgrade Subscription" message:msg buttonOne:@"Cancel" buttonTwo:@"Upgrade" completionHandler:^(NSInteger buttonIndex) {
 			}];
 		}
