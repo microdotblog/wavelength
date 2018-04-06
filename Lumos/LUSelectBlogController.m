@@ -90,7 +90,8 @@
 	if (indexPath.row < self.blogs.count) {
 		NSDictionary* info = [self.blogs objectAtIndex:indexPath.row];
 		if ([[info objectForKey:@"microblog-audio"] boolValue]) {
-			// TODO: ...
+			// TODO: set the blog in prefs
+			// ...
 		}
 		else {
 			NSString* msg = [NSString stringWithFormat:@"%@ will be upgraded to the $10/month plan to support podcasting.", [info objectForKey:@"name"]];

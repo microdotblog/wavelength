@@ -11,5 +11,6 @@
 @interface LUNewBlogController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField* sitenameField;
+@property (strong, nonatomic) IBOutlet UILabel* summaryField;
 
 @end
