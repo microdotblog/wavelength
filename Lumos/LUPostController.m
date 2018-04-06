@@ -99,6 +99,11 @@
 
 - (IBAction) post:(id)sender
 {
+	if (self.isPosting) {
+		return;
+	}
+	
+	self.isPosting = YES;
 	[self.progressSpinner startAnimating];
 	
 	NSString* blog_uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"Wavelength:blog:uid"];
@@ -112,6 +117,7 @@
 	NSString* text = self.textView.text;
 	
 	if (text.length == 0) {
+		self.isPosting = NO;
 		[self.progressSpinner stopAnimating];
 		[UUAlertViewController uuShowOneButtonAlert:@"Missing Post Text" message:@"The post text should not be blank. This text will be used for the show notes for your microcast." button:@"OK" completionHandler:NULL];
 		return;
@@ -131,6 +137,7 @@
 			[post_client postWithParams:params completion:^(UUHttpResponse* response) {
     			dispatch_async (dispatch_get_main_queue(), ^{
     				if (response.httpError) {
+						self.isPosting = NO;
 						[self.progressSpinner stopAnimating];
 						NSString* msg = [response.httpError localizedDescription];
 						[UUAlertViewController uuShowOneButtonAlert:@"Error Sending Post" message:msg button:@"OK" completionHandler:NULL];
@@ -143,6 +150,7 @@
 		}
 		else {
     		dispatch_async (dispatch_get_main_queue(), ^{
+				self.isPosting = NO;
 				[self.progressSpinner stopAnimating];
 				NSString* msg = [response.httpError localizedDescription];
 				[UUAlertViewController uuShowOneButtonAlert:@"Error Uploading Audio" message:msg button:@"OK" completionHandler:NULL];

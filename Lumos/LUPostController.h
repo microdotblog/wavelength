@@ -25,5 +25,6 @@
 
 @property (strong, nonatomic) LUEpisode* episode;
 @property (strong, nonatomic) AVPlayer* _Nullable player;
+@property (assign, nonatomic) BOOL isPosting;
 
 @end
