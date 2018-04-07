@@ -30,7 +30,9 @@
 
 - (void) microblogConfigured:(NSNotification*)notification
 {
-	// ...
+	UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Blogs" bundle:nil];
+	UIViewController* controller = [storyboard instantiateViewControllerWithIdentifier:@"BlogsNavigation"];
+	[self presentViewController:controller animated:YES completion:NULL];
 }
 
 

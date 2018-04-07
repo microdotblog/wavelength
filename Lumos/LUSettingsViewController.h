@@ -13,6 +13,7 @@
 	@property (nonatomic, strong) IBOutlet UILabel* userName;
 	@property (nonatomic, strong) IBOutlet UILabel* blogName;
 	@property (nonatomic, strong) IBOutlet UIButton* loginButton;
+	@property (nonatomic, strong) IBOutlet UIButton* switchButton;
 	@property (nonatomic, strong) IBOutlet UILabel* auphonicName;
 	@property (nonatomic, strong) IBOutlet UIButton* auphonicButton;
 @end

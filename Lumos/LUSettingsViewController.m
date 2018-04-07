@@ -38,12 +38,6 @@
 	[self updateAppearance];
 }
 
-- (void) selectBlog:(NSDictionary*)blogInfo
-{
-	[super selectBlog:blogInfo];
-	[self updateAppearance];
-}
-
 - (void) updateAppearance
 {
 	NSString* token = [SSKeychain passwordForService:@"ExternalMicropub" account:@"default"];
@@ -52,14 +46,16 @@
 	
 	if (!userInfo || !token)
 	{
-		self.blogName.text = @"";
+		self.blogName.text = @"Sign in to set your microblog.";
 		self.userName.text = @"Not signed in to Micro.blog";
+		self.switchButton.hidden = YES;
 		[self.loginButton setTitle:@"Sign In" forState:UIControlStateNormal];
 	}
 	else
 	{
 		self.blogName.text = blogName;
 		self.userName.text = [userInfo objectForKey:@"full_name"];
+		self.switchButton.hidden = NO;
 		[self.loginButton setTitle:@"Sign Out" forState:UIControlStateNormal];
 	}
 	
