@@ -6,6 +6,8 @@
 //  Copyright © 2018 Jonathan Hays. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+#import "LUNotifications.h"
 #import "LUAudioRecorder.h"
 #import <EZAudio/EZAudio.h>
 #import "UUDate.h"
@@ -28,6 +30,8 @@
 	@property (nonatomic, strong) EZMicrophone* microphone;
 	@property (nonatomic, strong) EZRecorder* recorder;
 	@property (nonatomic, strong) DPWaveEqualizerView* visualizationView;
+	@property (nonatomic, assign) BOOL usingExternalMicrophone;
+	@property (nonatomic, strong) NSTimer* checkForUnplugMicrophoneTimer;
 @end
 
 
@@ -117,10 +121,33 @@
 	self = [super initWithDestination:destinationUrl];
 	if (self)
 	{
+		NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+		[notificationCenter addObserver:self selector:@selector(accessoryDidConnect:) name:AVAudioSessionRouteChangeNotification object:nil];
+		[notificationCenter addObserver:self selector:@selector(accessoryDidConnect:) name:AVAudioSessionMediaServicesWereLostNotification object:nil];
+		
 		[self setupRecorder];
 	}
 	
 	return self;
+}
+
+- (void) accessoryDidConnect:(NSNotification*)notification
+{
+	NSNumber* reason = [notification.userInfo objectForKey:@"AVAudioSessionRouteChangeReasonKey"];
+	if (reason.integerValue == AVAudioSessionRouteChangeReasonNewDeviceAvailable)
+	{
+		dispatch_async(dispatch_get_main_queue(), ^
+		{
+			[[NSNotificationCenter defaultCenter] postNotificationName:kRecordingDeviceChangedNotification object:nil];
+		});
+	}
+	else if (reason.integerValue == AVAudioSessionRouteChangeReasonOldDeviceUnavailable)
+	{
+		dispatch_async(dispatch_get_main_queue(), ^
+		{
+			[[NSNotificationCenter defaultCenter] postNotificationName:kRecordingDeviceChangedNotification object:nil];
+		});
+	}
 }
 
 - (BOOL) setupRecorder
@@ -136,14 +163,6 @@
     	return FALSE;
 	}
 
-	[audioSession setActive:YES error:&err];
-	err = nil;
-	if(err)
-	{
-		NSLog(@"audioSession: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
-    	return FALSE;
-	}
-
     //
     // Create the microphone
     //
@@ -152,10 +171,22 @@
 	
 	NSArray* devices = [EZAudioDevice inputDevices];
 	for (EZAudioDevice* device in devices) {
-		if ([device.port.portType isEqualToString:AVAudioSessionPortUSBAudio]) {
+		if ([device.port.portType isEqualToString:AVAudioSessionPortUSBAudio] ||
+			[device.port.portType isEqualToString:AVAudioSessionPortBluetoothHFP])
+		{
 			self.customDeviceName = device.port.portName;
 			[self.microphone setDevice:device];
+			self.usingExternalMicrophone = YES;
+			self.checkForUnplugMicrophoneTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimerForExternalMicrophone) userInfo:nil repeats:YES];
 		}
+	}
+
+	[audioSession setActive:YES error:&err];
+	err = nil;
+	if(err)
+	{
+		NSLog(@"audioSession: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
+    	return FALSE;
 	}
 
 	[self.microphone startFetchingAudio];
@@ -181,6 +212,31 @@
 	//self.visualizationView.equalizerBackgroundColor = [UIColor greenColor];
 
 	return true;
+}
+
+- (void) handleTimerForExternalMicrophone
+{
+	self.usingExternalMicrophone = NO;
+	NSArray* devices = [EZAudioDevice inputDevices];
+	for (EZAudioDevice* device in devices)
+	{
+		if ([device.port.portType isEqualToString:AVAudioSessionPortUSBAudio] ||
+			[device.port.portType isEqualToString:AVAudioSessionPortBluetoothHFP])
+		{
+			self.usingExternalMicrophone = YES;
+		}
+	}
+	
+	if (!self.usingExternalMicrophone)
+	{
+		[self.checkForUnplugMicrophoneTimer invalidate];
+		self.checkForUnplugMicrophoneTimer = nil;
+
+		dispatch_async(dispatch_get_main_queue(), ^
+		{
+			[[NSNotificationCenter defaultCenter] postNotificationName:kRecordingDeviceChangedNotification object:nil];
+		});
+	}
 }
 
 - (void) record

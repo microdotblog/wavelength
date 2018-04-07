@@ -22,4 +22,6 @@ static NSString* const kSeekAudioSegmentNotification = @"SeekAudioSegmentNotific
 static NSString* const kSeekAudioSegmentFileKey = @"path";
 static NSString* const kSeekAudioSegmentPercent = @"fraction";
 
+static NSString* const kRecordingDeviceChangedNotification = @"kRecordingDeviceChangedNotification";
+
 #endif /* LUNotifications_h */

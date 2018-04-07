@@ -50,6 +50,33 @@ static const NSString* kItemStatusContext;
 	[self setupGestures];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMicrophoneChangedNotification:) name:kRecordingDeviceChangedNotification object:nil];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kRecordingDeviceChangedNotification object:nil];
+}
+
+- (void) handleMicrophoneChangedNotification:(NSNotification*)notification
+{
+	if (self.isInRecordMode)
+	{
+		if (!self.isRecording)
+		{
+			[self onCancelRecord:self];
+		}
+		else
+		{
+			[self play:self];
+		}
+	}
+}
+
 - (void) setupDropView
 {
 	self.deleteDropView.alpha = 0.0;

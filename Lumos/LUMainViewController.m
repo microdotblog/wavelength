@@ -52,6 +52,33 @@
 {
 	[super viewWillAppear:animated];
 	[self setupEpisodes];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRecordingDeviceChangedNotification:) name:kRecordingDeviceChangedNotification object:nil];
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+	[super viewDidDisappear:animated];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kRecordingDeviceChangedNotification object:nil];
+}
+
+- (void) handleRecordingDeviceChangedNotification:(NSNotification*)notification
+{
+	if (self.isRecording)
+	{
+		[self onRecord:self];
+	}
+	else
+	{
+		if (self.audioRecorder)
+		{
+			UIView* waveFormView = [self.audioRecorder requestAudioInputView];
+			[waveFormView removeFromSuperview];
+		}
+		
+		self.audioRecorder = nil;
+		[self setupAudio];
+	}
 }
 
 - (void) setupAudio
