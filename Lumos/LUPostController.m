@@ -128,6 +128,14 @@
 		return;
 	}
 	
+	NSInteger max_upload_filesize = 1024 * 1024 * 30; // 30 MB
+	if (d.length > max_upload_filesize) {
+		self.isPosting = NO;
+		[self.progressSpinner stopAnimating];
+		[UUAlertViewController uuShowOneButtonAlert:@"Audio Size Limit" message:@"Your microcast episodes can be a few minutes up to 20 minutes. There is a 30 MB upload size limit." button:@"OK" completionHandler:NULL];
+		return;
+	}
+	
 	RFClient* media_client = [[RFClient alloc] initWithPath:@"/micropub/media"];
 	[media_client uploadAudioData:d named:@"file" fileExtension:@"mp3" httpMethod:@"POST" queryArguments:args completion:^(UUHttpResponse* response) {
 		if (response.httpResponse.statusCode == 202) {
