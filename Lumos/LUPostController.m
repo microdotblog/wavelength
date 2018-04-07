@@ -116,6 +116,11 @@
 	NSString* title = self.titleField.text;
 	NSString* text = self.textView.text;
 	
+	if (title.length > 0) {
+		self.episode.title = title;
+		[self.episode saveFileInfo];
+	}
+		
 	if (text.length == 0) {
 		self.isPosting = NO;
 		[self.progressSpinner stopAnimating];

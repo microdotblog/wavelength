@@ -632,6 +632,7 @@
                         <segue destination="2uZ-XV-J6w" kind="presentation" identifier="SigninSegue" id="pR2-pI-Ygd"/>
                         <segue destination="YAV-e1-9h8" kind="show" identifier="SplitSegue" id="xTI-zN-DZ0"/>
                         <segue destination="rbR-yE-SLm" kind="show" identifier="PostSegue" id="cCQ-T0-tZd"/>
+                        <segue destination="dfF-ag-p3p" kind="presentation" identifier="ExportSegue" id="Psv-ZM-Tne"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sib-9Z-J3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
