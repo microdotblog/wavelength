@@ -24,5 +24,6 @@
 - (void) addRecording:(NSString *)path;
 - (void) replaceFile:(NSString *)oldPath withFiles:(NSArray *)newPaths;
 - (void) updateAudioSegmentOrder:(NSArray*)updatedSegmentPaths;
+- (void) saveFileInfo;
 
 @end

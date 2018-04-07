@@ -91,6 +91,11 @@
 	NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:clips_info_path];
 	NSArray* foundArray = [dictionary objectForKey:@"clips"];
 	
+	NSString* title = [dictionary objectForKey:@"title"];
+	if (title) {
+		self.title = title;
+	}
+	
 	if (foundArray)
 	{
 		self.audioSegmentPaths = [NSMutableArray array];
@@ -130,7 +135,10 @@
 		[relativePaths addObject:fileName];
 	}
 	
-	NSDictionary* clipDictionary = @{ @"clips" : relativePaths };
+	NSDictionary* clipDictionary = @{
+		@"title": self.title,
+		@"clips": relativePaths
+	};
 	[clipDictionary writeToFile:clips_info_path atomically:YES];
 }
 

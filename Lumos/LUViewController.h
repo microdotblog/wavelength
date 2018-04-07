@@ -10,6 +10,4 @@
 
 @interface LUViewController : UIViewController
 
-	//Needed to override for the settings screen...
-	- (void) selectBlog:(NSDictionary*)blogInfo;
 @end

@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UIView* _Nonnull deleteDropView;
 @property (strong, nonatomic) IBOutlet UIView* _Nonnull recordingDimView;
 @property (strong, nonatomic) IBOutlet UILabel* _Nonnull timerLabel;
+@property (strong, nonatomic) IBOutlet UILabel* _Nonnull recordDeviceField;
 
 @property (strong, nonatomic) LUEpisode* _Nullable episode;
 @property (weak, nonatomic) PopoverView* _Nullable addPopover;

@@ -28,9 +28,13 @@
 	self.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 	self.previewImageView.layer.borderWidth = 0.5;
 	self.positionLine.hidden = YES;
+	
+	[self setupGesture];
+}
 
+- (void) setupGesture
+{
 	self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-	[self addGestureRecognizer:self.panGesture];
 }
 
 - (void) setSelected:(BOOL)selected
@@ -74,6 +78,18 @@
 		r.origin.x = x;
 		self.positionLine.frame = r;
 		self.positionLine.hidden = NO;
+	}
+}
+
+- (void) setPlaying:(BOOL)isPlaying
+{
+	self.isEpisodePlaying = isPlaying;
+	
+	if (self.isEpisodePlaying) {
+		[self addGestureRecognizer:self.panGesture];
+	}
+	else {
+		[self removeGestureRecognizer:self.panGesture];
 	}
 }
 

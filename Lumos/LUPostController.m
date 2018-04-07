@@ -116,10 +116,23 @@
 	NSString* title = self.titleField.text;
 	NSString* text = self.textView.text;
 	
+	if (title.length > 0) {
+		self.episode.title = title;
+		[self.episode saveFileInfo];
+	}
+		
 	if (text.length == 0) {
 		self.isPosting = NO;
 		[self.progressSpinner stopAnimating];
 		[UUAlertViewController uuShowOneButtonAlert:@"Missing Post Text" message:@"The post text should not be blank. This text will be used for the show notes for your microcast." button:@"OK" completionHandler:NULL];
+		return;
+	}
+	
+	NSInteger max_upload_filesize = 1024 * 1024 * 30; // 30 MB
+	if (d.length > max_upload_filesize) {
+		self.isPosting = NO;
+		[self.progressSpinner stopAnimating];
+		[UUAlertViewController uuShowOneButtonAlert:@"Audio Size Limit" message:@"Your microcast episodes can be a few minutes up to 20 minutes. There is a 30 MB upload size limit." button:@"OK" completionHandler:NULL];
 		return;
 	}
 	

@@ -60,9 +60,7 @@
 	[[NSUserDefaults standardUserDefaults] setObject:name forKey:@"Wavelength:blog:name"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	
-	[UUAlertViewController uuShowOneButtonAlert:nil message:@"You have successfully configured Wavelength to publish to your microblog!" button:@"OK" completionHandler:^(NSInteger buttonIndex) {
-		[self dismissViewControllerAnimated:YES completion:NULL];
-	}];
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction) cancel:(id)sender

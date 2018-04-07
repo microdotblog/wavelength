@@ -43,7 +43,8 @@ static const NSString* kItemStatusContext;
 	[super viewDidLoad];
 	
 	self.exportTransition = [[LUExportTransition alloc] init];
-	
+	self.recordDeviceField.text = @"";
+
 	[self setupDropView];
 	[self setupNotifications];
 	[self setupCollectionView];
@@ -302,6 +303,13 @@ static const NSString* kItemStatusContext;
 	self.timerLabel.hidden = NO;
 	self.timerLabel.text = @"00:00";
 
+	if (self.audioRecorder.customDeviceName) {
+		self.recordDeviceField.text = self.audioRecorder.customDeviceName;
+	}
+	else {
+		self.recordDeviceField.text = @"";
+	}
+
 	__weak LUEditController* weakSelf = self;
 	self.audioRecorder.recordProgressCallback = ^(NSString* timeString)
 	{
@@ -354,7 +362,7 @@ static const NSString* kItemStatusContext;
 		self.player = nil;
 		
 		for (LUSegmentCell* cell in [self allCells]) {
-			cell.isEpisodePlaying = NO;
+			[cell setPlaying:NO];
 		}
 	}
 	else {
@@ -378,7 +386,7 @@ static const NSString* kItemStatusContext;
 		[self.player play];
 
 		for (LUSegmentCell* cell in [self allCells]) {
-			cell.isEpisodePlaying = YES;
+			[cell setPlaying:YES];
 		}
 	}
 	
@@ -436,7 +444,9 @@ static const NSString* kItemStatusContext;
 	self.playPauseButton.layer.backgroundColor = nil;
 
 	[self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
-	
+
+	self.recordDeviceField.text = @"";
+
 	[UIView animateWithDuration:0.3 animations:^
 	{
 		self.recordingDimView.alpha = 0.0;
@@ -537,7 +547,10 @@ static const NSString* kItemStatusContext;
 
 	for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
 		NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
-		[cells addObject:[self.collectionView cellForItemAtIndexPath:index_path]];
+		id cell = [self.collectionView cellForItemAtIndexPath:index_path];
+		if (cell) {
+			[cells addObject:cell];
+		}
 	}
 
 	return cells;
