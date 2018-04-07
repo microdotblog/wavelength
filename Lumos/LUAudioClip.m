@@ -88,7 +88,7 @@
 	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
 
 	NSError *err = nil;
-	[audioSession setCategory :AVAudioSessionCategoryPlayAndRecord error:&err];
+	[audioSession setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionAllowBluetooth | AVAudioSessionCategoryOptionAllowBluetoothA2DP  error:&err];
 
 	if(err)
 	{
@@ -124,8 +124,6 @@
 		self.duration = audioFile.duration;
 		self.durationString = audioFile.formattedDuration;
 	}
-
-	[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
 
 	return true;
 }

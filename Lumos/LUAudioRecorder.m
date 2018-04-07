@@ -152,17 +152,6 @@
 
 - (BOOL) setupRecorder
 {
-	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-
-	NSError *err = nil;
-	[audioSession setCategory :AVAudioSessionCategoryPlayAndRecord error:&err];
-
-	if(err)
-	{
-		NSLog(@"audioSession: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
-    	return FALSE;
-	}
-
     //
     // Create the microphone
     //
@@ -170,28 +159,35 @@
 	self.microphone.delegate = self;
 	
 	NSArray* devices = [EZAudioDevice inputDevices];
+	EZAudioDevice* usbDevice = nil;
+	EZAudioDevice* btDevice = nil;
 	for (EZAudioDevice* device in devices) {
-		if ([device.port.portType isEqualToString:AVAudioSessionPortUSBAudio] ||
-			[device.port.portType isEqualToString:AVAudioSessionPortBluetoothHFP])
+		NSLog(@"%@", device.port.portName);
+		if ([device.port.portType isEqualToString:AVAudioSessionPortUSBAudio])
 		{
-			self.customDeviceName = device.port.portName;
-			[self.microphone setDevice:device];
-			self.usingExternalMicrophone = YES;
-			self.checkForUnplugMicrophoneTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimerForExternalMicrophone) userInfo:nil repeats:YES];
+			usbDevice = device;
+		}
+		if ([device.port.portType isEqualToString:AVAudioSessionPortBluetoothHFP])
+		{
+			btDevice = device;
 		}
 	}
-
-	[audioSession setActive:YES error:&err];
-	err = nil;
-	if(err)
+	
+	// If there is a device other than the built in mic, choose that...
+	if (usbDevice || btDevice)
 	{
-		NSLog(@"audioSession: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
-    	return FALSE;
+		// Prioritize USB over Bluetooth
+		EZAudioDevice* device = usbDevice;
+		if (!device)
+			device = btDevice;
+			
+		self.customDeviceName = device.port.portName;
+		[self.microphone setDevice:device];
+		self.usingExternalMicrophone = YES;
+		self.checkForUnplugMicrophoneTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimerForExternalMicrophone) userInfo:nil repeats:YES];
 	}
-
+	
 	[self.microphone startFetchingAudio];
-
-	[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
 
 	self.audioPlot.plotType = EZPlotTypeBuffer;
 	//self.audioPlot.color = [UIColor whiteColor];
