@@ -140,7 +140,7 @@
 			handler();
 		}
 		else if (exporter.status == AVAssetExportSessionStatusFailed) {
-			NSLog (@"Export failed");
+			[UUAlertViewController uuShowOneButtonAlert:@"Split Failed" message:@"The audio file could not be split." button:@"OK" completionHandler:NULL];
 		}
 		else if (exporter.status == AVAssetExportSessionStatusCancelled) {
 			NSLog (@"Export cancelled");
@@ -164,23 +164,23 @@
 	self.part1File = [[self.segment.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:filename1];
 	self.part2File = [[self.segment.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:filename2];
 
-	AVAsset* asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:self.segment.path]];
-	[self splitAsset:asset withRange:part1_range toFile:self.part1File completion:^
-	{
-		[self splitAsset:asset withRange:part2_range toFile:self.part2File completion:^
-		{
-    		dispatch_async (dispatch_get_main_queue(), ^
-    		{
-    			NSDictionary* userInfo = @{
-					kReplaceSegmentOriginalKey: self.segment,
-					kReplaceSegmentNewArrayKey: @[ self.part1File, self.part2File ]
-				};
-				
-				[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:userInfo];
-				
-				[self.navigationController popViewControllerAnimated:YES];
-			});
-		}];
+	AVAsset* asset1 = [AVAsset assetWithURL:[NSURL fileURLWithPath:self.segment.path]];
+	[self splitAsset:asset1 withRange:part1_range toFile:self.part1File completion:^{
+		dispatch_async (dispatch_get_main_queue(), ^{
+			AVAsset* asset2 = [AVAsset assetWithURL:[NSURL fileURLWithPath:self.segment.path]];
+			[self splitAsset:asset2 withRange:part2_range toFile:self.part2File completion:^{
+				dispatch_async (dispatch_get_main_queue(), ^{
+					NSDictionary* userInfo = @{
+						kReplaceSegmentOriginalKey: self.segment,
+						kReplaceSegmentNewArrayKey: @[ self.part1File, self.part2File ]
+					};
+					
+					[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:userInfo];
+					
+					[self.navigationController popViewControllerAnimated:YES];
+				});
+			}];
+		});
 	}];
 }
 
