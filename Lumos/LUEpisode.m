@@ -24,10 +24,13 @@
     NSInteger minutes = (ti / 60) % 60;
     NSInteger hours = (ti / 3600);
     if (hours > 0) {
-    	return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hours, (long)minutes, (long)seconds];
+    	return [NSString stringWithFormat:@"%d hours, %d minutes %d seconds", (int)hours, (int)minutes, (int)seconds];
     }
+    else if (minutes > 0) {
+    	return [NSString stringWithFormat:@"%d minutes %d seconds", (int)minutes, (int)seconds];
+	}
     else {
-    	return [NSString stringWithFormat:@"%02ld:%02ld", (long)minutes, (long)seconds];
+    	return [NSString stringWithFormat:@"%d seconds", (int)seconds];
 	}
 }
 

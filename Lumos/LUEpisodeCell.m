@@ -18,7 +18,7 @@
 	self.titleField.text = [episode.title uuUrlDecoded];
 	self.previewImageView.image = episode.previewImage;
 
-	self.durationField.text = [NSString stringWithFormat:@"Length: %@", episode.duration];
+	self.durationField.text = [NSString stringWithFormat:@"%@", episode.duration];
 
 	self.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 	self.previewImageView.layer.cornerRadius = 3.0;
