@@ -249,6 +249,9 @@
 {
 	CGFloat w = [self bestWidthForDuration:self.clip.duration];
 	CGFloat fraction = offset / self.clip.duration;
+	if (fraction > 1.0) {
+		fraction = 1.0;
+	}
 	CGFloat x = fraction * w;
 	[self.scrollView setContentOffset:CGPointMake (x, 0) animated:NO];
 
