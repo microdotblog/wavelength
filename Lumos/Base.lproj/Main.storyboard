@@ -483,7 +483,6 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="523"/>
                                         <connections>
                                             <action selector="onCancelRecord:" destination="t5R-7u-r5x" eventType="touchUpInside" id="xbW-HG-otn"/>
-                                            <segue destination="dfF-ag-p3p" kind="presentation" identifier="ExportSegue" id="z2P-22-2Yb"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -559,15 +558,27 @@
                                             <constraint firstItem="pqR-7L-rTk" firstAttribute="centerY" secondItem="zIf-T2-fex" secondAttribute="centerY" id="lSb-Bv-DFs"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Microphone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVd-20-clL">
+                                        <rect key="frame" x="100" y="78" width="175" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="YAO-MT-KsI"/>
+                                            <constraint firstAttribute="width" constant="175" id="p6Y-2O-dFf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="11"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="7Or-nu-cTE"/>
                                     <constraint firstAttribute="trailing" secondItem="zIf-T2-fex" secondAttribute="trailing" constant="40" id="C0m-33-mq3"/>
+                                    <constraint firstItem="WVd-20-clL" firstAttribute="centerX" secondItem="t1W-4M-E0Z" secondAttribute="centerX" id="G2e-cf-kW4"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="centerX" secondItem="4za-bv-mkl" secondAttribute="centerX" id="KR7-YU-8zw"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="centerX" secondItem="4za-bv-mkl" secondAttribute="centerX" id="OC6-Bw-TIJ"/>
                                     <constraint firstItem="zIf-T2-fex" firstAttribute="top" secondItem="4za-bv-mkl" secondAttribute="top" constant="22" id="RcV-v3-36h"/>
                                     <constraint firstAttribute="trailing" secondItem="sgl-cq-hL5" secondAttribute="trailing" constant="8" id="ajr-PH-ckG"/>
+                                    <constraint firstAttribute="bottom" secondItem="WVd-20-clL" secondAttribute="bottom" constant="1" id="ijv-ws-Qu9"/>
                                     <constraint firstItem="t1W-4M-E0Z" firstAttribute="centerY" secondItem="4za-bv-mkl" secondAttribute="centerY" id="sTC-sc-F1y"/>
                                     <constraint firstItem="sgl-cq-hL5" firstAttribute="centerY" secondItem="4za-bv-mkl" secondAttribute="centerY" id="x2c-Oz-vEp"/>
                                 </constraints>
@@ -613,6 +624,7 @@
                         <outlet property="collectionView" destination="ji9-mB-grC" id="8dp-Da-Cwu"/>
                         <outlet property="deleteDropView" destination="zIf-T2-fex" id="vqd-Sk-BwP"/>
                         <outlet property="playPauseButton" destination="t1W-4M-E0Z" id="6IS-Oc-GdJ"/>
+                        <outlet property="recordDeviceField" destination="WVd-20-clL" id="tmt-JN-MAJ"/>
                         <outlet property="recordingDimView" destination="kv4-1W-Q7a" id="cjI-nw-ZZ3"/>
                         <outlet property="timerLabel" destination="sgl-cq-hL5" id="Lab-aH-HAf"/>
                         <outlet property="waveFormViewContainer" destination="pwc-QB-2DG" id="x2G-HZ-Grz"/>
@@ -1230,7 +1242,7 @@
         <image name="zoom_in" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fbK-IJ-eUI"/>
-        <segue reference="k0j-Kr-gI3"/>
+        <segue reference="cCQ-T0-tZd"/>
+        <segue reference="pR2-pI-Ygd"/>
     </inferredMetricsTieBreakers>
 </document>

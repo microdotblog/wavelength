@@ -43,7 +43,8 @@ static const NSString* kItemStatusContext;
 	[super viewDidLoad];
 	
 	self.exportTransition = [[LUExportTransition alloc] init];
-	
+	self.recordDeviceField.text = @"";
+
 	[self setupDropView];
 	[self setupNotifications];
 	[self setupCollectionView];
@@ -302,6 +303,13 @@ static const NSString* kItemStatusContext;
 	self.timerLabel.hidden = NO;
 	self.timerLabel.text = @"00:00";
 
+	if (self.audioRecorder.customDeviceName) {
+		self.recordDeviceField.text = self.audioRecorder.customDeviceName;
+	}
+	else {
+		self.recordDeviceField.text = @"";
+	}
+
 	__weak LUEditController* weakSelf = self;
 	self.audioRecorder.recordProgressCallback = ^(NSString* timeString)
 	{
@@ -436,7 +444,9 @@ static const NSString* kItemStatusContext;
 	self.playPauseButton.layer.backgroundColor = nil;
 
 	[self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
-	
+
+	self.recordDeviceField.text = @"";
+
 	[UIView animateWithDuration:0.3 animations:^
 	{
 		self.recordingDimView.alpha = 0.0;
