@@ -362,7 +362,7 @@ static const NSString* kItemStatusContext;
 		self.player = nil;
 		
 		for (LUSegmentCell* cell in [self allCells]) {
-			cell.isEpisodePlaying = NO;
+			[cell setPlaying:NO];
 		}
 	}
 	else {
@@ -386,7 +386,7 @@ static const NSString* kItemStatusContext;
 		[self.player play];
 
 		for (LUSegmentCell* cell in [self allCells]) {
-			cell.isEpisodePlaying = YES;
+			[cell setPlaying:YES];
 		}
 	}
 	
@@ -547,7 +547,10 @@ static const NSString* kItemStatusContext;
 
 	for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
 		NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
-		[cells addObject:[self.collectionView cellForItemAtIndexPath:index_path]];
+		id cell = [self.collectionView cellForItemAtIndexPath:index_path];
+		if (cell) {
+			[cells addObject:cell];
+		}
 	}
 
 	return cells;

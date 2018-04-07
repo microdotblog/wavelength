@@ -22,5 +22,6 @@
 
 - (void) setupWithFile:(NSString *)path;
 - (void) updatePercentComplete:(CGFloat)value;
+- (void) setPlaying:(BOOL)isPlaying;
 
 @end
