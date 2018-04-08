@@ -63,14 +63,14 @@
 	if (sitename.length > 0) {
 		[self.progressSpinner startAnimating];
 	
-		NSDictionary* info = @{
+		NSDictionary* params = @{
 			@"sitename": sitename,
 			@"theme": @"default",
 			@"plan": @"site10"
 		};
 		
 		RFClient* client = [[RFClient alloc] initWithPath:@"/account/charge/site"];
-		[client postWithObject:info queryArguments:nil completion:^(UUHttpResponse *response) {
+		[client postWithParams:params completion:^(UUHttpResponse *response) {
 			dispatch_async (dispatch_get_main_queue(), ^{
 				if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
 					NSString* error = [response.parsedResponse objectForKey:@"error"];

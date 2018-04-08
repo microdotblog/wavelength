@@ -116,14 +116,14 @@
 				if (buttonIndex == 1) {
 					NSString* uid = [info objectForKey:@"uid"];
 					NSString* sitename = [uid stringByReplacingOccurrencesOfString:@".micro.blog" withString:@""];
-					NSDictionary* obj = @{
+					NSDictionary* params = @{
 						@"sitename": sitename,
 						@"theme": @"default",
 						@"plan": @"site10"
 					};
 				
 					RFClient* client = [[RFClient alloc] initWithPath:@"/account/charge/site"];
-					[client postWithObject:obj queryArguments:nil completion:^(UUHttpResponse* response) {
+					[client postWithParams:params completion:^(UUHttpResponse* response) {
 						dispatch_async (dispatch_get_main_queue(), ^{
 							if (response.httpError) {
 								[self showError:[response.httpError localizedDescription]];
