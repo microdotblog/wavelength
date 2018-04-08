@@ -25,6 +25,7 @@
 
 - (IBAction) signIn:(id)sender
 {
+	[self.passwordField endEditing:NO];
 	[self.progressSpinner startAnimating];
 	
 	LUAuphonic* client = [[LUAuphonic alloc] init];
