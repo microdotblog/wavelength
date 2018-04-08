@@ -53,17 +53,16 @@
 
 - (void) showError:(NSString *)error
 {
+	[self.progressSpinner stopAnimating];
 	[UUAlertViewController uuShowOneButtonAlert:@"Error Creating Microblog" message:error button:@"OK" completionHandler:NULL];
 }
 
 - (IBAction) finish:(id)sender
 {
-	[UUAlertViewController uuShowOneButtonAlert:@"Disabled For Beta" message:@"Not in the beta yet." button:@"OK" completionHandler:NULL];
-
-	return;
-
 	NSString* sitename = self.sitenameField.text;
 	if (sitename.length > 0) {
+		[self.progressSpinner startAnimating];
+	
 		NSDictionary* info = @{
 			@"sitename": sitename,
 			@"theme": @"default",
@@ -79,11 +78,18 @@
 						[self showError:error];
 					}
 					else {
-						// TODO: set the new blog in prefs
-						// ...
+						NSString* uid = [NSString stringWithFormat:@"https://%@.micro.blog/", sitename];
+						NSString* name = [NSString stringWithFormat:@"%@.micro.blog", sitename];
 						
+						[[NSUserDefaults standardUserDefaults] setObject:uid forKey:@"Wavelength:blog:uid"];
+						[[NSUserDefaults standardUserDefaults] setObject:name forKey:@"Wavelength:blog:name"];
+						[[NSUserDefaults standardUserDefaults] synchronize];
+
 						[self dismissViewControllerAnimated:YES completion:NULL];
 					}
+				}
+				else if (response.httpError) {
+					[self showError:[response.httpError localizedDescription]];
 				}
 			});
 		}];

@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet UITextField* sitenameField;
 @property (strong, nonatomic) IBOutlet UILabel* summaryField;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView* progressSpinner;
 
 @end

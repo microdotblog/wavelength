@@ -39,7 +39,7 @@
 	[client getWithQueryArguments:nil completion:^(UUHttpResponse* response) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (response.httpError) {
-				// ...
+				[self showError:[response.httpError localizedDescription]];
 			}
 			else {
 				self.blogs = [response.parsedResponse objectForKey:@"destination"];
@@ -61,6 +61,12 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	
 	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void) showError:(NSString *)error
+{
+	[self.progressSpinner stopAnimating];
+	[UUAlertViewController uuShowOneButtonAlert:@"Error Creating Microblog" message:error button:@"OK" completionHandler:NULL];
 }
 
 - (IBAction) cancel:(id)sender
@@ -105,8 +111,29 @@
 			[self selectBlog:info];
 		}
 		else {
-			NSString* msg = [NSString stringWithFormat:@"%@ will be upgraded to the $10/month plan to support podcasting. (Disabled for the beta.)", [info objectForKey:@"name"]];
+			NSString* msg = [NSString stringWithFormat:@"%@ will be upgraded to the $10/month plan to support podcasting.", [info objectForKey:@"name"]];
 			[UUAlertViewController uuShowTwoButtonAlert:@"Upgrade Subscription" message:msg buttonOne:@"Cancel" buttonTwo:@"Upgrade" completionHandler:^(NSInteger buttonIndex) {
+				if (buttonIndex == 1) {
+					NSString* uid = [info objectForKey:@"uid"];
+					NSString* sitename = [uid stringByReplacingOccurrencesOfString:@".micro.blog" withString:@""];
+					NSDictionary* obj = @{
+						@"sitename": sitename,
+						@"theme": @"default",
+						@"plan": @"site10"
+					};
+				
+					RFClient* client = [[RFClient alloc] initWithPath:@"/account/charge/site"];
+					[client postWithObject:obj queryArguments:nil completion:^(UUHttpResponse* response) {
+						dispatch_async (dispatch_get_main_queue(), ^{
+							if (response.httpError) {
+								[self showError:[response.httpError localizedDescription]];
+							}
+							else {
+								[self selectBlog:info];
+							}
+						});
+					}];
+				}
 			}];
 		}
 	}
