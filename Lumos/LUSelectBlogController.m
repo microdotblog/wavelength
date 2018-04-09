@@ -116,6 +116,11 @@
 				if (buttonIndex == 1) {
 					NSString* uid = [info objectForKey:@"uid"];
 					NSString* sitename = [uid stringByReplacingOccurrencesOfString:@".micro.blog" withString:@""];
+
+					sitename = [sitename stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+					sitename = [sitename stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+					sitename = [sitename stringByReplacingOccurrencesOfString:@"/" withString:@""];
+
 					NSDictionary* params = @{
 						@"sitename": sitename,
 						@"theme": @"default",
@@ -129,7 +134,18 @@
 								[self showError:[response.httpError localizedDescription]];
 							}
 							else {
-								[self selectBlog:info];
+								if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
+									NSString* error = [response.parsedResponse objectForKey:@"error"];
+									if (error) {
+										[self showError:error];
+									}
+									else {
+										[self selectBlog:info];
+									}
+								}
+								else {
+									[self showError:@"Unknown error upgrading microblog."];
+								}
 							}
 						});
 					}];
