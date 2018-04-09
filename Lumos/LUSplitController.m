@@ -58,7 +58,7 @@
 
 	CGFloat vertical_padding = 50;
 	if (self.isZoomed) {
-		vertical_padding = -100;
+		vertical_padding = -200;
 	}
 
 	CGRect container_r = CGRectMake ([self bestPadding], vertical_padding, size.width, size.height - (vertical_padding * 2));
