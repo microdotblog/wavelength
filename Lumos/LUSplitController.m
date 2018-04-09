@@ -140,6 +140,7 @@
 			handler();
 		}
 		else if (exporter.status == AVAssetExportSessionStatusFailed) {
+			NSLog (@"Error: %@", [exporter.error localizedDescription]);
 			[UUAlertViewController uuShowOneButtonAlert:@"Split Failed" message:@"The audio file could not be split." button:@"OK" completionHandler:NULL];
 		}
 		else if (exporter.status == AVAssetExportSessionStatusCancelled) {
