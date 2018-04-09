@@ -28,6 +28,7 @@
 	@property (nonatomic, strong) LUAudioRecorder* audioRecorder;
 	@property (nonatomic, strong) NSMutableArray* episodes; // LUEpisode
 	@property (nonatomic, assign) BOOL isRecording;
+	@property (nonatomic, assign) BOOL isRecordingRecentlyStarted;
 @end
 
 @implementation LUMainViewController
@@ -157,10 +158,19 @@
 
 - (IBAction) onRecord:(id)sender
 {
+	if (self.isRecordingRecentlyStarted) {
+		return;
+	}
+
 	[self setupAudio];
 
 	if (!self.isRecording)
 	{
+		self.isRecordingRecentlyStarted = YES;
+		dispatch_after (dispatch_time (DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+			self.isRecordingRecentlyStarted = NO;
+		});
+
 		self.waveFormViewContainerBottomConstraint.constant = -self.waveFormViewContainer.bounds.size.height;
 		[self.view layoutIfNeeded];
 
