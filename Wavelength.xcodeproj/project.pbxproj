@@ -13,10 +13,10 @@
 		4B01D4EA2075E5C100FD8A00 /* LUBlogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B01D4E92075E5C100FD8A00 /* LUBlogCell.m */; };
 		4B01D4ED2075F6DC00FD8A00 /* Blogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B01D4EB2075F6DC00FD8A00 /* Blogs.storyboard */; };
 		4B01D4F02076766D00FD8A00 /* LUNewBlogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B01D4EF2076766D00FD8A00 /* LUNewBlogController.m */; };
+		4B0BB176207ABD5A00A16FDD /* lame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0BB175207ABD5A00A16FDD /* lame.framework */; };
 		4B18F1BD206E0E6100A91731 /* LUAuphonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BC206E0E6100A91731 /* LUAuphonic.m */; };
 		4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BF206E951200A91731 /* LUAuphonicController.m */; };
 		4B18F1C4206FECAB00A91731 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */; };
-		4B18F1C7206FECB000A91731 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B18F1C6206FECB000A91731 /* libmp3lame.a */; };
 		4B18F1CA206FEEDA00A91731 /* LUExportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1C9206FEEDA00A91731 /* LUExportController.m */; };
 		4B18F1CE2070164800A91731 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B18F1CC2070164700A91731 /* Fabric.framework */; };
 		4B18F1CF2070164800A91731 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B18F1CD2070164800A91731 /* Crashlytics.framework */; };
@@ -86,14 +86,13 @@
 		4B01D4EC2075F6DC00FD8A00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Blogs.storyboard; sourceTree = "<group>"; };
 		4B01D4EE2076766D00FD8A00 /* LUNewBlogController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUNewBlogController.h; sourceTree = "<group>"; };
 		4B01D4EF2076766D00FD8A00 /* LUNewBlogController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUNewBlogController.m; sourceTree = "<group>"; };
+		4B0BB175207ABD5A00A16FDD /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = lame.framework; path = shared/lame.framework; sourceTree = "<group>"; };
 		4B18F1BB206E0E6100A91731 /* LUAuphonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonic.h; sourceTree = "<group>"; };
 		4B18F1BC206E0E6100A91731 /* LUAuphonic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAuphonic.m; sourceTree = "<group>"; };
 		4B18F1BE206E951200A91731 /* LUAuphonicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonicController.h; sourceTree = "<group>"; };
 		4B18F1BF206E951200A91731 /* LUAuphonicController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAuphonicController.m; sourceTree = "<group>"; };
 		4B18F1C2206FECAA00A91731 /* ExtAudioConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtAudioConverter.h; path = shared/ExtAudioFileConverter/ExtAudioConverter/ExtAudioConverter/ExtAudioConverter.h; sourceTree = SOURCE_ROOT; };
 		4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtAudioConverter.m; path = shared/ExtAudioFileConverter/ExtAudioConverter/ExtAudioConverter/ExtAudioConverter.m; sourceTree = SOURCE_ROOT; };
-		4B18F1C5206FECB000A91731 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lame.h; path = shared/ExtAudioFileConverter/ExtAudioConverter/lame.h; sourceTree = SOURCE_ROOT; };
-		4B18F1C6206FECB000A91731 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = shared/ExtAudioFileConverter/ExtAudioConverter/libmp3lame.a; sourceTree = SOURCE_ROOT; };
 		4B18F1C8206FEEDA00A91731 /* LUExportController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUExportController.h; sourceTree = "<group>"; };
 		4B18F1C9206FEEDA00A91731 /* LUExportController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUExportController.m; sourceTree = "<group>"; };
 		4B18F1CC2070164700A91731 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -180,8 +179,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C58A2EDD2075368500DB0E04 /* WebKit.framework in Frameworks */,
+				4B0BB176207ABD5A00A16FDD /* lame.framework in Frameworks */,
 				C58A2EBA20729B8E00DB0E04 /* CloudKit.framework in Frameworks */,
-				4B18F1C7206FECB000A91731 /* libmp3lame.a in Frameworks */,
 				4B18F1CF2070164800A91731 /* Crashlytics.framework in Frameworks */,
 				4B18F1CE2070164800A91731 /* Fabric.framework in Frameworks */,
 				8D7DF7F9B981B1804FE51B5B /* libPods-Wavelength.a in Frameworks */,
@@ -196,8 +195,6 @@
 			children = (
 				4B18F1C2206FECAA00A91731 /* ExtAudioConverter.h */,
 				4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */,
-				4B18F1C5206FECB000A91731 /* lame.h */,
-				4B18F1C6206FECB000A91731 /* libmp3lame.a */,
 			);
 			path = ExtAudioConverter;
 			sourceTree = "<group>";
@@ -297,6 +294,7 @@
 				C58A2EB920729B8E00DB0E04 /* CloudKit.framework */,
 				4B18F1CD2070164800A91731 /* Crashlytics.framework */,
 				4B18F1CC2070164700A91731 /* Fabric.framework */,
+				4B0BB175207ABD5A00A16FDD /* lame.framework */,
 				43BF02616C547DCF0280214F /* libPods-Wavelength.a */,
 			);
 			name = Frameworks;
@@ -745,6 +743,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/shared",
 				);
 				INFOPLIST_FILE = Lumos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -769,6 +768,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/shared",
 				);
 				INFOPLIST_FILE = Lumos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
