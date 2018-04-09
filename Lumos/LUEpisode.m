@@ -26,6 +26,9 @@
     if (hours > 0) {
     	return [NSString stringWithFormat:@"%d hours, %d minutes %d seconds", (int)hours, (int)minutes, (int)seconds];
     }
+    else if (minutes == 1) {
+    	return [NSString stringWithFormat:@"%d minute %d seconds", (int)minutes, (int)seconds];
+	}
     else if (minutes > 0) {
     	return [NSString stringWithFormat:@"%d minutes %d seconds", (int)minutes, (int)seconds];
 	}
