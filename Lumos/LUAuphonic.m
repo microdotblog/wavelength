@@ -126,7 +126,7 @@ static NSInteger const kAuphonicStatusDone = 3;
 		@"output_files": @[
 			@{
 				@"format": @"mp3",
-				@"bitrate": @"96",
+				@"bitrate": @"128",
 				@"mono_mixdown": [NSNumber numberWithBool:YES]
 			}
 		]
