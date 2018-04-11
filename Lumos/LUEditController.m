@@ -296,9 +296,8 @@ static const NSString* kItemStatusContext;
 
 	[self.playPauseButton setImage:[UIImage imageNamed:@"mic"] forState:UIControlStateNormal];
 	
-	NSURL* destination = [LUAudioRecorder generateTimeStampedFileURL];
-	NSString* fileName = destination.path.lastPathComponent;
-	destination = [[NSURL fileURLWithPath:self.episode.path] URLByAppendingPathComponent:fileName];
+	NSString* fileName = [[[NSProcessInfo processInfo] globallyUniqueString] stringByAppendingPathExtension:@"m4a"];
+	NSURL* destination = [[NSURL fileURLWithPath:self.episode.path] URLByAppendingPathComponent:fileName];
 	self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:destination];
 	self.timerLabel.hidden = NO;
 	self.timerLabel.text = @"00:00";
