@@ -452,20 +452,34 @@
                                                         <constraint firstAttribute="width" constant="1" id="lls-ni-5aA"/>
                                                     </constraints>
                                                 </view>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7L-tn-Y7s">
+                                                    <rect key="frame" x="4" y="4" width="26" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="26" id="EoE-A5-g68"/>
+                                                        <constraint firstAttribute="height" constant="26" id="HD4-0e-T2F"/>
+                                                    </constraints>
+                                                    <state key="normal" image="trash_small"/>
+                                                    <connections>
+                                                        <action selector="delete:" destination="B4C-6Z-ioP" eventType="touchUpInside" id="yBI-DR-UbJ"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="EFA-Ea-Blr" secondAttribute="bottom" id="1yS-Gu-ldj"/>
                                             <constraint firstItem="xEZ-AP-8yw" firstAttribute="leading" secondItem="B4C-6Z-ioP" secondAttribute="leading" constant="20" id="7Fx-Y7-SDp"/>
                                             <constraint firstItem="EFA-Ea-Blr" firstAttribute="top" secondItem="B4C-6Z-ioP" secondAttribute="top" id="A6k-6v-GMN"/>
+                                            <constraint firstItem="O7L-tn-Y7s" firstAttribute="leading" secondItem="B4C-6Z-ioP" secondAttribute="leading" constant="4" id="CEI-1K-Qpf"/>
                                             <constraint firstAttribute="trailing" secondItem="a7x-G7-hOu" secondAttribute="trailing" constant="4" id="CHW-pH-pup"/>
                                             <constraint firstItem="xEZ-AP-8yw" firstAttribute="top" secondItem="B4C-6Z-ioP" secondAttribute="top" id="H1R-k4-A7E"/>
                                             <constraint firstAttribute="bottom" secondItem="xEZ-AP-8yw" secondAttribute="bottom" id="NKV-SS-67H"/>
+                                            <constraint firstItem="O7L-tn-Y7s" firstAttribute="top" secondItem="B4C-6Z-ioP" secondAttribute="top" constant="4" id="Phq-MC-v7m"/>
                                             <constraint firstItem="EFA-Ea-Blr" firstAttribute="leading" secondItem="B4C-6Z-ioP" secondAttribute="leading" id="aoY-O9-L2h"/>
                                             <constraint firstAttribute="trailing" secondItem="EFA-Ea-Blr" secondAttribute="trailing" id="jom-Yb-7hq"/>
                                             <constraint firstAttribute="bottom" secondItem="a7x-G7-hOu" secondAttribute="bottom" constant="2" id="pPv-ph-rmW"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="deleteButton" destination="O7L-tn-Y7s" id="mUk-EF-RfF"/>
                                             <outlet property="durationField" destination="a7x-G7-hOu" id="oRg-tW-ctP"/>
                                             <outlet property="positionLine" destination="xEZ-AP-8yw" id="q50-PV-9vH"/>
                                             <outlet property="previewImageView" destination="EFA-Ea-Blr" id="hie-gI-EJG"/>
@@ -1237,6 +1251,7 @@
         <image name="settings" width="24" height="24"/>
         <image name="split" width="16" height="16"/>
         <image name="trash" width="16" height="16"/>
+        <image name="trash_small" width="12" height="12"/>
         <image name="zoom_in" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>

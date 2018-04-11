@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView* previewImageView;
 @property (strong, nonatomic) IBOutlet UIView* positionLine;
 @property (strong, nonatomic) IBOutlet UILabel* durationField;
+@property (strong, nonatomic) IBOutlet UIButton* deleteButton;
 
 @property (strong, nonatomic) UIPanGestureRecognizer* panGesture;
 @property (strong, nonatomic) NSString* path;

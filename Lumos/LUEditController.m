@@ -137,14 +137,28 @@ static const NSString* kItemStatusContext;
 	LUSegment* segment = [notification.userInfo objectForKey:kReplaceSegmentOriginalKey];
 	NSArray* new_files = [notification.userInfo objectForKey:kReplaceSegmentNewArrayKey];
 	[self.episode replaceFile:segment.path withFiles:new_files];
-	[self.collectionView reloadData];
 	
-	for (NSString* selected_file in new_files) {
+	if (new_files.count == 0) {
 		for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
 			NSString* segment_file = [self.episode.audioSegmentPaths objectAtIndex:i];
-			if ([segment_file isEqualToString:selected_file]) {
+			if ([segment_file isEqualToString:segment.path]) {
 				NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
-				[self.collectionView selectItemAtIndexPath:index_path animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+				[UIView animateWithDuration:0.3 animations:^{
+					[self.collectionView deleteItemsAtIndexPaths:@[ index_path ]];
+				}];
+			}
+		}
+	}
+	else {
+		[self.collectionView reloadData];
+
+		for (NSString* selected_file in new_files) {
+			for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
+				NSString* segment_file = [self.episode.audioSegmentPaths objectAtIndex:i];
+				if ([segment_file isEqualToString:selected_file]) {
+					NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
+					[self.collectionView selectItemAtIndexPath:index_path animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+				}
 			}
 		}
 	}

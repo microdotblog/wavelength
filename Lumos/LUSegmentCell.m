@@ -8,6 +8,7 @@
 
 #import "LUSegmentCell.h"
 
+#import "LUSegment.h"
 #import "LUAudioClip.h"
 #import "LUNotifications.h"
 
@@ -28,7 +29,11 @@
 	self.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 	self.previewImageView.layer.borderWidth = 0.5;
 	self.positionLine.hidden = YES;
-	
+
+	self.deleteButton.layer.cornerRadius = self.deleteButton.bounds.size.width / 2.0;
+	self.deleteButton.layer.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1.0].CGColor;
+	self.deleteButton.clipsToBounds = YES;
+
 	[self setupGesture];
 }
 
@@ -44,11 +49,25 @@
 	if (selected) {
 		self.previewImageView.layer.borderColor = [UIColor blackColor].CGColor;
 		self.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+		self.deleteButton.hidden = NO;
 	}
 	else {
 		self.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 		self.backgroundColor = nil;
+		self.deleteButton.hidden = YES;
 	}
+}
+
+- (IBAction) delete:(id)sender
+{
+	LUSegment* segment = [[LUSegment alloc] init];
+	segment.path = self.path;
+	segment.episode = nil;
+
+	[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:@{
+		kReplaceSegmentOriginalKey: segment,
+		kReplaceSegmentNewArrayKey: @[]
+	}];
 }
 
 - (void) pan:(UIPanGestureRecognizer *)gesture

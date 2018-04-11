@@ -178,6 +178,7 @@
 				i++;
 			}
 			[self updateAudioSegmentOrder:copy];
+			[[NSFileManager defaultManager] removeItemAtPath:oldPath error:NULL];			
 			break;
 		}
 	}
