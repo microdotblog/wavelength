@@ -13,7 +13,6 @@
 @import AVFoundation;
 
 @interface LUAudioClip()<EZAudioPlayerDelegate>
-	@property (nonatomic, strong) NSURL* destination;
 	@property (nonatomic, strong) EZAudioPlot* audioPlot;
 	@property (nonatomic, strong) EZAudioPlayer *player;
 	@property (nonatomic, strong) UIImage* thumbnailImage;

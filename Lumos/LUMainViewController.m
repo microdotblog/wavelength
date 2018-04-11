@@ -85,8 +85,8 @@
 - (void) setupAudio
 {
 	if (self.audioRecorder == nil) {
-		NSURL* path = [LUAudioRecorder generateTimeStampedFileURL];
-		self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:path];
+//		NSURL* path = [LUAudioRecorder generateTimeStampedFileURL];
+		self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:nil];
 		
 		__weak LUMainViewController* weakSelf = self;
 		self.audioRecorder.recordProgressCallback = ^(NSString* timeString)
@@ -166,6 +166,9 @@
 
 	if (!self.isRecording)
 	{
+		NSURL* path = [LUAudioRecorder generateTimeStampedFileURL];
+		self.audioRecorder.destination = path;
+
 		self.isRecordingRecentlyStarted = YES;
 		dispatch_after (dispatch_time (DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
 			self.isRecordingRecentlyStarted = NO;
