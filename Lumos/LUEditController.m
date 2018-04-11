@@ -136,17 +136,26 @@ static const NSString* kItemStatusContext;
 {
 	LUSegment* segment = [notification.userInfo objectForKey:kReplaceSegmentOriginalKey];
 	NSArray* new_files = [notification.userInfo objectForKey:kReplaceSegmentNewArrayKey];
-	[self.episode replaceFile:segment.path withFiles:new_files];
-	
+
+	NSIndexPath* index_path = nil;
+
 	if (new_files.count == 0) {
 		for (NSInteger i = 0; i < self.episode.audioSegmentPaths.count; i++) {
 			NSString* segment_file = [self.episode.audioSegmentPaths objectAtIndex:i];
 			if ([segment_file isEqualToString:segment.path]) {
-				NSIndexPath* index_path = [NSIndexPath indexPathForItem:i inSection:0];
-				[UIView animateWithDuration:0.3 animations:^{
-					[self.collectionView deleteItemsAtIndexPaths:@[ index_path ]];
-				}];
+				index_path = [NSIndexPath indexPathForItem:i inSection:0];
 			}
+		}
+	}
+
+	[self.episode replaceFile:segment.path withFiles:new_files];
+	
+	if (new_files.count == 0) {
+		if (index_path) {
+			[UIView animateWithDuration:0.3 animations:^{
+				[self.collectionView deleteItemsAtIndexPaths:@[ index_path ]];
+				[self clearSelection];
+			}];
 		}
 	}
 	else {

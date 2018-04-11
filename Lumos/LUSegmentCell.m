@@ -11,6 +11,7 @@
 #import "LUSegment.h"
 #import "LUAudioClip.h"
 #import "LUNotifications.h"
+#import "UUAlert.h"
 
 @implementation LUSegmentCell
 
@@ -64,9 +65,13 @@
 	segment.path = self.path;
 	segment.episode = nil;
 
-	[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:@{
-		kReplaceSegmentOriginalKey: segment,
-		kReplaceSegmentNewArrayKey: @[]
+	[UUAlertViewController uuShowTwoButtonAlert:nil message:@"Are you sure you want to delete this segment?" buttonOne:@"Cancel" buttonTwo:@"Delete" completionHandler:^(NSInteger buttonIndex) {
+		if (buttonIndex == 1) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:@{
+				kReplaceSegmentOriginalKey: segment,
+				kReplaceSegmentNewArrayKey: @[]
+			}];
+		}
 	}];
 }
 
