@@ -26,6 +26,13 @@
 	[self fetchBlogs];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	[self clearSelection];
+}
+
 - (void) setupTable
 {
 	self.tableView.layer.cornerRadius = 8.0;
@@ -49,6 +56,14 @@
 			[self.progressSpinner stopAnimating];
 		});
 	}];
+}
+
+- (void) clearSelection
+{
+	NSIndexPath* index_path = self.tableView.indexPathForSelectedRow;
+	if (index_path) {
+		[self.tableView deselectRowAtIndexPath:index_path animated:NO];
+	}
 }
 
 - (void) selectBlog:(NSDictionary*)blogInfo
@@ -111,9 +126,12 @@
 			[self selectBlog:info];
 		}
 		else {
-			NSString* msg = [NSString stringWithFormat:@"%@ will be upgraded to the $10/month plan to support podcasting.", [info objectForKey:@"name"]];
+			NSString* msg = [NSString stringWithFormat:@"%@ will be upgraded to the $10/month plan to support both podcast and microblog hosting.", [info objectForKey:@"name"]];
 			[UUAlertViewController uuShowTwoButtonAlert:@"Upgrade Subscription" message:msg buttonOne:@"Cancel" buttonTwo:@"Upgrade" completionHandler:^(NSInteger buttonIndex) {
-				if (buttonIndex == 1) {
+				if (buttonIndex == 0) {
+					[self clearSelection];
+				}
+				else if (buttonIndex == 1) {
 					NSString* uid = [info objectForKey:@"uid"];
 					NSString* sitename = [uid stringByReplacingOccurrencesOfString:@".micro.blog" withString:@""];
 
