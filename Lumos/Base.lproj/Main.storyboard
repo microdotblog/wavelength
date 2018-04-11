@@ -1094,7 +1094,6 @@
                                         </constraints>
                                         <state key="normal" image="play"/>
                                         <connections>
-                                            <action selector="play:" destination="t5R-7u-r5x" eventType="touchUpInside" id="Qiu-BI-Qdp"/>
                                             <action selector="play:" destination="YAV-e1-9h8" eventType="touchUpInside" id="yGX-5w-Lkk"/>
                                         </connections>
                                     </button>
@@ -1242,6 +1241,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cCQ-T0-tZd"/>
-        <segue reference="k0j-Kr-gI3"/>
+        <segue reference="pR2-pI-Ygd"/>
     </inferredMetricsTieBreakers>
 </document>
