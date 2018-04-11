@@ -14,6 +14,7 @@
 		4B01D4ED2075F6DC00FD8A00 /* Blogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B01D4EB2075F6DC00FD8A00 /* Blogs.storyboard */; };
 		4B01D4F02076766D00FD8A00 /* LUNewBlogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B01D4EF2076766D00FD8A00 /* LUNewBlogController.m */; };
 		4B0BB176207ABD5A00A16FDD /* lame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0BB175207ABD5A00A16FDD /* lame.framework */; };
+		4B0BB179207DCB6A00A16FDD /* LUNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BB178207DCB6A00A16FDD /* LUNavigationController.m */; };
 		4B18F1BD206E0E6100A91731 /* LUAuphonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BC206E0E6100A91731 /* LUAuphonic.m */; };
 		4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BF206E951200A91731 /* LUAuphonicController.m */; };
 		4B18F1C4206FECAB00A91731 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */; };
@@ -87,6 +88,8 @@
 		4B01D4EE2076766D00FD8A00 /* LUNewBlogController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUNewBlogController.h; sourceTree = "<group>"; };
 		4B01D4EF2076766D00FD8A00 /* LUNewBlogController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUNewBlogController.m; sourceTree = "<group>"; };
 		4B0BB175207ABD5A00A16FDD /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = lame.framework; path = shared/lame.framework; sourceTree = "<group>"; };
+		4B0BB177207DCB6A00A16FDD /* LUNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUNavigationController.h; sourceTree = "<group>"; };
+		4B0BB178207DCB6A00A16FDD /* LUNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUNavigationController.m; sourceTree = "<group>"; };
 		4B18F1BB206E0E6100A91731 /* LUAuphonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonic.h; sourceTree = "<group>"; };
 		4B18F1BC206E0E6100A91731 /* LUAuphonic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUAuphonic.m; sourceTree = "<group>"; };
 		4B18F1BE206E951200A91731 /* LUAuphonicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonicController.h; sourceTree = "<group>"; };
@@ -371,6 +374,8 @@
 				4B18F1BF206E951200A91731 /* LUAuphonicController.m */,
 				C58A2ED92075347A00DB0E04 /* LUCreditsViewController.h */,
 				C58A2EDA2075347A00DB0E04 /* LUCreditsViewController.m */,
+				4B0BB177207DCB6A00A16FDD /* LUNavigationController.h */,
+				4B0BB178207DCB6A00A16FDD /* LUNavigationController.m */,
 				C5DC32BD2057810C00D0594B /* Supporting Files */,
 			);
 			path = Lumos;
@@ -560,6 +565,7 @@
 				C54C8F702065A350007F7565 /* UUDictionary.m in Sources */,
 				C54C8F972065B233007F7565 /* RFSettings.m in Sources */,
 				C54C8F942065B192007F7565 /* RFMicropub.m in Sources */,
+				4B0BB179207DCB6A00A16FDD /* LUNavigationController.m in Sources */,
 				4B01D4E72075E24D00FD8A00 /* LUSelectBlogController.m in Sources */,
 				C54C8F722065A350007F7565 /* UUString.m in Sources */,
 				C54C8F882065A3C4007F7565 /* PopoverView.m in Sources */,

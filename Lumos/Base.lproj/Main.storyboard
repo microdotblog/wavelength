@@ -23,7 +23,7 @@
         <!--Navigation Controller-->
         <scene sceneID="mtT-3m-K2L">
             <objects>
-                <navigationController id="Uko-jZ-yR3" sceneMemberID="viewController">
+                <navigationController id="Uko-jZ-yR3" customClass="LUNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i2j-18-qT7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
