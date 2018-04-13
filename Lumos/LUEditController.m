@@ -347,8 +347,9 @@ static const NSString* kItemStatusContext;
 {
 	NSString* token = [SSKeychain passwordForService:@"ExternalMicropub" account:@"default"];
 	NSDictionary* userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"Micro.blog User Info"];
-	
-	if (!userInfo || !token)
+	NSString* blogUid = [[NSUserDefaults standardUserDefaults] objectForKey:@"Wavelength:blog:uid"];
+
+	if (!userInfo || !token || !blogUid)
 	{
 		[self performSegueWithIdentifier:@"SigninSegue" sender:self.episode];
 	}
