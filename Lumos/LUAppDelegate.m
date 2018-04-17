@@ -21,7 +21,7 @@
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	//[EZAudioUtilities setShouldExitOnCheckResultFail:NO];
+	[EZAudioUtilities setShouldExitOnCheckResultFail:NO];
 	[self setupFabric];
 	[self setupAppearance];
 	
