@@ -181,6 +181,8 @@
 	else {
 		self.player = [[AVPlayer alloc] initWithURL:[NSURL fileURLWithPath:self.episode.exportedPath]];
 
+		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
+
 		AVPlayerItem* item = self.player.currentItem;
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
 

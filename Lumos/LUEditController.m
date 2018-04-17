@@ -398,6 +398,8 @@ static const NSString* kItemStatusContext;
 
 		self.player = [AVPlayer playerWithPlayerItem:item];
 
+		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
+
 		CMTime interval = CMTimeMakeWithSeconds (0.1, NSEC_PER_SEC);
 		__weak LUEditController* weak_self = self;
 		[self.player addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
