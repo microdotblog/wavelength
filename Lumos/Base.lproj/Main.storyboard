@@ -764,7 +764,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" textContentType="username"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ao-Hi-W5t">
                                 <rect key="frame" x="20" y="228.5" width="335" height="30"/>
@@ -1256,6 +1256,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cCQ-T0-tZd"/>
-        <segue reference="pR2-pI-Ygd"/>
+        <segue reference="k0j-Kr-gI3"/>
     </inferredMetricsTieBreakers>
 </document>
