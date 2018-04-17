@@ -31,7 +31,7 @@
 	@property (nonatomic, strong) EZRecorder* recorder;
 	@property (nonatomic, strong) DPWaveEqualizerView* visualizationView;
 	@property (nonatomic, assign) BOOL usingExternalMicrophone;
-	@property (nonatomic, strong) NSTimer* checkForUnplugMicrophoneTimer;
+	//@property (nonatomic, strong) NSTimer* checkForUnplugMicrophoneTimer;
 @end
 
 
@@ -184,7 +184,7 @@
 		self.customDeviceName = device.port.portName;
 		[self.microphone setDevice:device];
 		self.usingExternalMicrophone = YES;
-		[self setupMicrophoneTimer];
+		//[self setupMicrophoneTimer];
 	}
 	
 	[self.microphone startFetchingAudio];
@@ -210,44 +210,10 @@
 	return true;
 }
 
-- (void) setupMicrophoneTimer
-{
-	self.checkForUnplugMicrophoneTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimerForExternalMicrophone) userInfo:nil repeats:YES];
-}
-
-- (void) cancelMicrophoneTimer
-{
-	[self.checkForUnplugMicrophoneTimer invalidate];
-	self.checkForUnplugMicrophoneTimer = nil;
-}
-
-- (void) handleTimerForExternalMicrophone
-{
-	self.usingExternalMicrophone = NO;
-	NSArray* devices = [EZAudioDevice inputDevices];
-	for (EZAudioDevice* device in devices)
-	{
-		if ([device.port.portType isEqualToString:AVAudioSessionPortUSBAudio] ||
-			[device.port.portType isEqualToString:AVAudioSessionPortBluetoothHFP])
-		{
-			self.usingExternalMicrophone = YES;
-		}
-	}
-	
-	if (!self.usingExternalMicrophone)
-	{
-		[self cancelMicrophoneTimer];
-
-		dispatch_async(dispatch_get_main_queue(), ^
-		{
-			[[NSNotificationCenter defaultCenter] postNotificationName:kRecordingDeviceChangedNotification object:nil];
-		});
-	}
-}
 
 - (void) record
 {
-	[self cancelMicrophoneTimer];
+	//[self cancelMicrophoneTimer];
 	
 	self.recorder = [EZRecorder recorderWithURL:self.destination
                                        clientFormat:[self.microphone audioStreamBasicDescription]
@@ -264,7 +230,7 @@
 	[self.recorder closeAudioFile];
 	self.recorder.delegate = nil;
 	
-	[self setupMicrophoneTimer];
+	//[self setupMicrophoneTimer];
 	
 	[super stop];
 }
@@ -324,5 +290,43 @@
                                  withBufferSize:bufferSize];
     }
 }
+
+
+/*
+- (void) setupMicrophoneTimer
+{
+	self.checkForUnplugMicrophoneTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimerForExternalMicrophone) userInfo:nil repeats:YES];
+}
+
+- (void) cancelMicrophoneTimer
+{
+	[self.checkForUnplugMicrophoneTimer invalidate];
+	self.checkForUnplugMicrophoneTimer = nil;
+}
+
+- (void) handleTimerForExternalMicrophone
+{
+	self.usingExternalMicrophone = NO;
+	NSArray* devices = [EZAudioDevice inputDevices];
+	for (EZAudioDevice* device in devices)
+	{
+		if ([device.port.portType isEqualToString:AVAudioSessionPortUSBAudio] ||
+			[device.port.portType isEqualToString:AVAudioSessionPortBluetoothHFP])
+		{
+			self.usingExternalMicrophone = YES;
+		}
+	}
+ 
+	if (!self.usingExternalMicrophone)
+	{
+		[self cancelMicrophoneTimer];
+
+		dispatch_async(dispatch_get_main_queue(), ^
+		{
+			[[NSNotificationCenter defaultCenter] postNotificationName:kRecordingDeviceChangedNotification object:nil];
+		});
+	}
+}
+*/
 
 @end
