@@ -56,10 +56,12 @@
 	
 	[client postWithParams:args completion:^(UUHttpResponse* response)
     {
-        [UUAlertViewController uuShowOneButtonAlert:@"Email Sent" message:@"Check your email on this device and tap the \"Open with Wavelength\" button." button:@"OK" completionHandler:^(NSInteger buttonIndex)
-        {
-			[self onCancel:self];
-        }];
+		dispatch_async (dispatch_get_main_queue(), ^{
+			[UUAlertViewController uuShowOneButtonAlert:@"Email Sent" message:@"Check your email on this device and tap the \"Open with Wavelength\" button." button:@"OK" completionHandler:^(NSInteger buttonIndex)
+			{
+				[self onCancel:self];
+			}];
+		});
     }];
 
 }
