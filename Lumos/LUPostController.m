@@ -159,7 +159,15 @@
     				if (response.httpError) {
 						self.isPosting = NO;
 						[self.progressSpinner stopAnimating];
-						NSString* msg = [response.httpError localizedDescription];
+						NSString* msg = nil;
+						if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
+							msg = [response.parsedResponse objectForKey:@"error_description"];
+						}
+						
+						if (msg == nil) {
+							msg = [response.httpError localizedDescription];
+						}
+						
 						[UUAlertViewController uuShowOneButtonAlert:@"Error Sending Post" message:msg button:@"OK" completionHandler:NULL];
     				}
     				else {

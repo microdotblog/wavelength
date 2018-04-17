@@ -167,9 +167,9 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 	converter.outputFile = mp3_path;
 
 //	converter.outputSampleRate = 44100;
-//	converter.outputNumberChannels = 1;
 //	converter.outputBitDepth = BitDepth_16;
 
+//	converter.outputNumberChannels = 1;
 	converter.outputFormatID = kAudioFormatMPEGLayer3;
 	converter.outputFileType = kAudioFileMP3Type;
 

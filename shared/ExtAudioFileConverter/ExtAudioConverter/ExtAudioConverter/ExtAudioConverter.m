@@ -79,6 +79,7 @@ void startConvertMP3(ExtAudioConverterSettings* settings){
     lame_set_num_channels(lame, settings->inputPCMFormat.mChannelsPerFrame);
 
 	lame_set_VBR(lame, vbr_off);
+	lame_set_mode(lame, MONO);
 	lame_set_brate(lame, 128);
 
     lame_init_params(lame);
