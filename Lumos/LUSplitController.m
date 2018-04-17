@@ -12,6 +12,7 @@
 #import "LUAudioClip.h"
 #import "LUNotifications.h"
 #import "UUAlert.h"
+#import "UUString.h"
 
 @implementation LUSplitController
 
@@ -159,8 +160,8 @@
 	CMTime part2_end = CMTimeMakeWithSeconds (self.clip.duration, NSEC_PER_SEC);
 	CMTimeRange part2_range = CMTimeRangeFromTimeToTime (part2_start, part2_end);
 	
-	NSString* filename1 = [[[NSProcessInfo processInfo] globallyUniqueString] stringByAppendingPathExtension:@"m4a"];
-	NSString* filename2 = [[[NSProcessInfo processInfo] globallyUniqueString] stringByAppendingPathExtension:@"m4a"];
+	NSString* filename1 = [[NSString uuGenerateUUIDString] stringByAppendingPathExtension:@"m4a"];
+	NSString* filename2 = [[NSString uuGenerateUUIDString] stringByAppendingPathExtension:@"m4a"];
 
 	self.part1File = [[self.segment.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:filename1];
 	self.part2File = [[self.segment.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:filename2];
