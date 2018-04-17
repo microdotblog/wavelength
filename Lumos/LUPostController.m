@@ -127,7 +127,14 @@
 		[UUAlertViewController uuShowOneButtonAlert:@"Missing Post Text" message:@"The post text should not be blank. This text will be used for the show notes for your microcast." button:@"OK" completionHandler:NULL];
 		return;
 	}
-	
+
+	if (d.length == 0) {
+		self.isPosting = NO;
+		[self.progressSpinner stopAnimating];
+		[UUAlertViewController uuShowOneButtonAlert:@"Missing Audio Data" message:@"The episode audio file is not valid." button:@"OK" completionHandler:NULL];
+		return;
+	}
+
 	NSInteger max_upload_filesize = 1024 * 1024 * 30; // 30 MB
 	if (d.length > max_upload_filesize) {
 		self.isPosting = NO;
@@ -210,7 +217,10 @@
 	Float64 offset = CMTimeGetSeconds (time);
 	Float64 duration = CMTimeGetSeconds (self.player.currentItem.duration);
 	CGFloat w = self.waveformView.bounds.size.width;
-	CGFloat fraction = offset / duration;
+	CGFloat fraction = 0.0;
+	if ((offset > 0.0) && (duration > 0.0)) {
+		fraction = offset / duration;
+	}
 
 	if (fraction == 0.0) {
 		self.positionLine.hidden = YES;
