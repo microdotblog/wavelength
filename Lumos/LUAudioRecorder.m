@@ -184,7 +184,7 @@
 		self.customDeviceName = device.port.portName;
 		[self.microphone setDevice:device];
 		self.usingExternalMicrophone = YES;
-		self.checkForUnplugMicrophoneTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimerForExternalMicrophone) userInfo:nil repeats:YES];
+		[self setupMicrophoneTimer];
 	}
 	
 	[self.microphone startFetchingAudio];
@@ -210,6 +210,17 @@
 	return true;
 }
 
+- (void) setupMicrophoneTimer
+{
+	self.checkForUnplugMicrophoneTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimerForExternalMicrophone) userInfo:nil repeats:YES];
+}
+
+- (void) cancelMicrophoneTimer
+{
+	[self.checkForUnplugMicrophoneTimer invalidate];
+	self.checkForUnplugMicrophoneTimer = nil;
+}
+
 - (void) handleTimerForExternalMicrophone
 {
 	self.usingExternalMicrophone = NO;
@@ -225,8 +236,7 @@
 	
 	if (!self.usingExternalMicrophone)
 	{
-		[self.checkForUnplugMicrophoneTimer invalidate];
-		self.checkForUnplugMicrophoneTimer = nil;
+		[self cancelMicrophoneTimer];
 
 		dispatch_async(dispatch_get_main_queue(), ^
 		{
@@ -237,6 +247,8 @@
 
 - (void) record
 {
+	[self cancelMicrophoneTimer];
+	
 	self.recorder = [EZRecorder recorderWithURL:self.destination
                                        clientFormat:[self.microphone audioStreamBasicDescription]
                                            fileType:EZRecorderFileTypeM4A
@@ -251,6 +263,8 @@
 
 	[self.recorder closeAudioFile];
 	self.recorder.delegate = nil;
+	
+	[self setupMicrophoneTimer];
 	
 	[super stop];
 }
