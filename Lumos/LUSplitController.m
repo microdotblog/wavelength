@@ -137,27 +137,29 @@
     exporter.timeRange = range;
 	
     [exporter exportAsynchronouslyWithCompletionHandler:^{
-    	if (exporter.status == AVAssetExportSessionStatusCompleted) {
-			handler();
-		}
-		else if (exporter.status == AVAssetExportSessionStatusFailed) {
-			NSLog (@"Error: %@", [exporter.error localizedDescription]);
-			[UUAlertViewController uuShowOneButtonAlert:@"Split Failed" message:@"The audio file could not be split." button:@"OK" completionHandler:NULL];
-		}
-		else if (exporter.status == AVAssetExportSessionStatusCancelled) {
-			NSLog (@"Export cancelled");
-		}
+		dispatch_async (dispatch_get_main_queue(), ^{
+			if (exporter.status == AVAssetExportSessionStatusCompleted) {
+				handler();
+			}
+			else if (exporter.status == AVAssetExportSessionStatusFailed) {
+				NSLog (@"Error: %@", [exporter.error localizedDescription]);
+				[UUAlertViewController uuShowOneButtonAlert:@"Split Failed" message:@"The audio file could not be split." button:@"OK" completionHandler:NULL];
+			}
+			else if (exporter.status == AVAssetExportSessionStatusCancelled) {
+				NSLog (@"Export cancelled");
+			}
+		});
 	}];
 }
 
 - (void) splitAtSeconds:(NSTimeInterval)seconds
 {
-	CMTime part1_start = CMTimeMakeWithSeconds (0, NSEC_PER_SEC);
-	CMTime part1_end = CMTimeMakeWithSeconds (seconds, NSEC_PER_SEC);
+	CMTime part1_start = CMTimeMakeWithSeconds (0, NSEC_PER_MSEC);
+	CMTime part1_end = CMTimeMakeWithSeconds (seconds, NSEC_PER_MSEC);
 	CMTimeRange part1_range = CMTimeRangeFromTimeToTime (part1_start, part1_end);
 
-	CMTime part2_start = CMTimeMakeWithSeconds (seconds, NSEC_PER_SEC);
-	CMTime part2_end = CMTimeMakeWithSeconds (self.clip.duration, NSEC_PER_SEC);
+	CMTime part2_start = CMTimeMakeWithSeconds (seconds, NSEC_PER_MSEC);
+	CMTime part2_end = CMTimeMakeWithSeconds (self.clip.duration, NSEC_PER_MSEC);
 	CMTimeRange part2_range = CMTimeRangeFromTimeToTime (part2_start, part2_end);
 	
 	NSString* filename1 = [[NSString uuGenerateUUIDString] stringByAppendingPathExtension:@"m4a"];
@@ -166,35 +168,18 @@
 	self.part1File = [[self.segment.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:filename1];
 	self.part2File = [[self.segment.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:filename2];
 
-
-	NSLog(@"=================================================");
-	NSLog(@"File 1: %@", filename1);
-	NSLog(@"File 2: %@", filename2);
-	NSLog(@"Split location: %f", seconds);
-	NSLog(@"Duration: %f", self.clip.duration);
-	NSLog(@"=================================================");
-
-	NSDictionary* options = @{ AVURLAssetPreferPreciseDurationAndTimingKey : @(YES) };
-	AVAsset* asset1 = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.segment.path] options:options];
-	//AVAsset* asset1 = [AVAsset assetWithURL:[NSURL fileURLWithPath:tempFilePath]];
+	AVAsset* asset1 = [AVAsset assetWithURL:[NSURL fileURLWithPath:self.segment.path]];
 	[self splitAsset:asset1 withRange:part1_range toFile:self.part1File completion:^{
-	
-		dispatch_async (dispatch_get_main_queue(), ^{
-			//AVAsset* asset2 = [AVAsset assetWithURL:[NSURL fileURLWithPath:tempFilePath]];
-			//AVAsset* asset2 = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:tempFilePath] options:options];
-			[self splitAsset:asset1 withRange:part2_range toFile:self.part2File completion:^{
-				dispatch_async (dispatch_get_main_queue(), ^{
-					NSDictionary* userInfo = @{
-						kReplaceSegmentOriginalKey: self.segment,
-						kReplaceSegmentNewArrayKey: @[ self.part1File, self.part2File ]
-					};
-					
-					
-					[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:userInfo];					
-					[self.navigationController popViewControllerAnimated:YES];
-				});
-			}];
-		});
+		AVAsset* asset2 = [AVAsset assetWithURL:[NSURL fileURLWithPath:self.segment.path]];
+		[self splitAsset:asset2 withRange:part2_range toFile:self.part2File completion:^{
+			NSDictionary* userInfo = @{
+				kReplaceSegmentOriginalKey: self.segment,
+				kReplaceSegmentNewArrayKey: @[ self.part1File, self.part2File ]
+			};
+			
+			[[NSNotificationCenter defaultCenter] postNotificationName:kReplaceSegmentNotification object:self userInfo:userInfo];
+			[self.navigationController popViewControllerAnimated:YES];
+		}];
 	}];
 }
 
