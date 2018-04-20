@@ -554,13 +554,25 @@ static const NSString* kItemStatusContext;
 {
 	AVMutableComposition* composition = [AVMutableComposition composition];
 	AVMutableCompositionTrack* audio_track = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+	AVMutableCompositionTrack* music_track = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
 
 	CMTime offset = kCMTimeZero;
+	NSInteger i = 0;
 	for (NSString* audio_path in [self.episode audioSegmentPaths]) {
 		AVAsset* asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:audio_path]];
 		AVAssetTrack* asset_track = [[asset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
-		[audio_track insertTimeRange:CMTimeRangeMake(kCMTimeZero, asset_track.timeRange.duration) ofTrack:asset_track atTime:offset error:nil];
-		offset = CMTimeAdd (offset, asset_track.timeRange.duration);
+		CMTimeRange r = CMTimeRangeMake (kCMTimeZero, asset_track.timeRange.duration);
+		if (i == 2) {
+			// experiment: if there are 3 clips, start the 3rd one early so it overlaps intro music
+			CMTime five_seconds = CMTimeMakeWithSeconds (5.0, NSEC_PER_MSEC);
+			offset = CMTimeSubtract (offset, five_seconds);
+			[music_track insertTimeRange:r ofTrack:asset_track atTime:offset error:nil];
+		}
+		else {
+			[audio_track insertTimeRange:r ofTrack:asset_track atTime:offset error:nil];
+			offset = CMTimeAdd (offset, asset_track.timeRange.duration);
+		}
+		i++;
 	}
 	
 	return composition;
