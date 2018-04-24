@@ -213,7 +213,8 @@
 
 - (void) record
 {
-	//[self cancelMicrophoneTimer];
+	// Don't let the phone to to sleep...
+	[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 	
 	self.recorder = [EZRecorder recorderWithURL:self.destination
                                        clientFormat:[self.microphone audioStreamBasicDescription]
@@ -225,6 +226,9 @@
 
 - (void) stop
 {
+	// Ok, done recording. We can sleep now...
+	[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+	
     [self.microphone stopFetchingAudio];
 
 	[self.recorder closeAudioFile];
