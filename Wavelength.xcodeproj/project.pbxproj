@@ -406,8 +406,6 @@
 				C5DC3294205774A600D0594B /* Frameworks */,
 				C5DC3295205774A600D0594B /* Resources */,
 				4B74C965205D75BB0050A105 /* CopyFiles */,
-				34E40EBB3B3C20497D6EBE2B /* [CP] Embed Pods Frameworks */,
-				220FF789046631370E8FB582 /* [CP] Copy Pods Resources */,
 				4B18F1CB2070162300A91731 /* ShellScript */,
 			);
 			buildRules = (
@@ -484,43 +482,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		220FF789046631370E8FB582 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wavelength/Pods-Wavelength-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		34E40EBB3B3C20497D6EBE2B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Lumos/Pods-Lumos-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/EZAudio/EZAudio.framework",
-				"${BUILT_PRODUCTS_DIR}/FDWaveformView/FDWaveformView.framework",
-				"${BUILT_PRODUCTS_DIR}/TPCircularBuffer/TPCircularBuffer.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZAudio.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDWaveformView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPCircularBuffer.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wavelength/Pods-Wavelength-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		39106CE54FE2870431EDD396 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
