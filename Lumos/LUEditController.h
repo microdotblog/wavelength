@@ -23,6 +23,10 @@
 @property (strong, nonatomic) IBOutlet UILabel* _Nonnull timerLabel;
 @property (strong, nonatomic) IBOutlet UILabel* _Nonnull recordDeviceField;
 
+@property (strong, nonatomic) IBOutlet UIView* _Nonnull exportStatusContainerView;
+@property (strong, nonatomic) IBOutlet UILabel* _Nonnull exportStatusLabel;
+@property (strong, nonatomic) IBOutlet UIView* _Nonnull busyView;
+
 @property (strong, nonatomic) LUEpisode* _Nullable episode;
 @property (weak, nonatomic) PopoverView* _Nullable addPopover;
 @property (strong, nonatomic) AVPlayer* _Nullable player;

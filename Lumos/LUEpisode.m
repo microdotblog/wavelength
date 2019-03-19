@@ -10,6 +10,7 @@
 #import <EZAudio/EZAudio.h>
 #import "UUString.h"
 #import "UUDate.h"
+#import "ExtAudioConverter.h"
 
 @interface LUEpisode()
 	@property (strong, nonatomic) NSMutableArray* audioSegmentPaths;
@@ -204,5 +205,49 @@
 
 	return [LUEpisode stringFromTimeInterval:duration];
 }
+
+- (void) exportWithCompletion:(void (^)(void))handler
+{
+	self.exportedPath = [self.path stringByAppendingPathComponent:@"exported.m4a"];
+
+	[[NSFileManager defaultManager] removeItemAtPath:self.exportedPath error:NULL];
+	
+	AVMutableComposition* composition = self.exportedComposition;
+	AVAssetExportSession* exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
+	exporter.outputURL = [NSURL fileURLWithPath:self.exportedPath];
+	exporter.outputFileType = AVFileTypeAppleM4A;
+	[exporter exportAsynchronouslyWithCompletionHandler:^{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if (exporter.status == AVAssetExportSessionStatusCompleted) {
+				handler();
+			}
+		});
+	}];
+}
+
+- (void) convertToMP3WithCompletion:(void(^)(NSString* pathToFile))handler
+{
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		NSString* mp3_path = [self.exportedPath stringByDeletingLastPathComponent];
+		mp3_path = [mp3_path stringByAppendingPathComponent:@"exported.mp3"];
+		[[NSFileManager defaultManager] removeItemAtPath:mp3_path error:NULL];
+		
+		ExtAudioConverter* converter = [[ExtAudioConverter alloc] init];
+		converter.inputFile = self.exportedPath;
+		converter.outputFile = mp3_path;
+		
+		//	converter.outputSampleRate = 44100;
+		//	converter.outputBitDepth = BitDepth_16;
+		
+		//	converter.outputNumberChannels = 1;
+		converter.outputFormatID = kAudioFormatMPEGLayer3;
+		converter.outputFileType = kAudioFileMP3Type;
+		
+		[converter convert];
+		
+		handler(mp3_path);
+	});
+}
+
 
 @end

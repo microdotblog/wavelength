@@ -44,6 +44,8 @@ static const NSString* kItemStatusContext;
 	
 	self.exportTransition = [[LUExportTransition alloc] init];
 	self.recordDeviceField.text = @"";
+	
+	self.exportStatusContainerView.layer.cornerRadius = 10.0;
 
 	[self setupDropView];
 	[self setupNotifications];
@@ -248,6 +250,38 @@ static const NSString* kItemStatusContext;
 
 		current_offset = current_offset + segment_duration;
 	}
+}
+
+- (IBAction) onExport:(id)sender
+{
+	UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil message:@"Are you sure you want to export this as an MP3? This operation can take some time." preferredStyle:UIAlertControllerStyleAlert];
+	[alert addAction:[UIAlertAction actionWithTitle:@"Export" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		
+		self.busyView.hidden = NO;
+		
+		self.exportStatusLabel.text = @"Combining segments";
+		self.episode.exportedComposition = [self makeComposition];
+		
+		[self.episode exportWithCompletion:^{
+			self.exportStatusLabel.text = @"Converting to MP3";
+			[self.episode convertToMP3WithCompletion:^(NSString *pathToFile) {
+				dispatch_async(dispatch_get_main_queue(), ^
+							   {
+								   self.busyView.hidden = YES;
+								   
+								   NSURL* url = [NSURL fileURLWithPath:pathToFile];
+								   UIActivityViewController* sharingController = [[UIActivityViewController alloc] initWithActivityItems:@[ url ] applicationActivities:nil];
+								   [self presentViewController:sharingController animated:YES completion:nil];
+							   });
+			}];
+		}];
+	}]];
+	
+	[alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+		
+	}]];
+	
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction) onCancelRecord:(id)sender

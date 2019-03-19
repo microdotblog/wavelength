@@ -25,5 +25,8 @@
 - (void) replaceFile:(NSString *)oldPath withFiles:(NSArray *)newPaths;
 - (void) updateAudioSegmentOrder:(NSArray*)updatedSegmentPaths;
 - (void) saveFileInfo;
+- (void) exportWithCompletion:(void (^)(void))handler;
+- (void) convertToMP3WithCompletion:(void(^)(NSString* pathToFile))handler;
+
 
 @end

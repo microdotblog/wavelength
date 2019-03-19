@@ -32,7 +32,7 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 {
 	[super viewDidAppear:animated];
 
-	[self exportWithCompletion:^{
+	[self.episode exportWithCompletion:^{
 		NSString* auphonic_username = [LUAuphonic savedUsername];
 		if (auphonic_username) {
 			self.messageField.text = @"Uploading to Auphonic...";
@@ -138,44 +138,13 @@ static NSString* const kAuphonicProductionTimerKey = @"production_uuid";
 	}];
 }
 
-- (void) exportWithCompletion:(void (^)(void))handler
-{
-	NSString* path = self.episode.exportedPath;
-	[[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
-
-	AVMutableComposition* composition = self.episode.exportedComposition;
-	AVAssetExportSession* exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
-	exporter.outputURL = [NSURL fileURLWithPath:path];
-	exporter.outputFileType = AVFileTypeAppleM4A;
-	[exporter exportAsynchronouslyWithCompletionHandler:^{
-		dispatch_async(dispatch_get_main_queue(), ^{
-			if (exporter.status == AVAssetExportSessionStatusCompleted) {
-				handler();
-			}
-		});
-	}];
-}
-
 - (void) convertToMP3
 {
-	NSString* mp3_path = [self.episode.exportedPath stringByDeletingLastPathComponent];
-	mp3_path = [mp3_path stringByAppendingPathComponent:@"exported.mp3"];
-	[[NSFileManager defaultManager] removeItemAtPath:mp3_path error:NULL];
-	
-	ExtAudioConverter* converter = [[ExtAudioConverter alloc] init];
-	converter.inputFile = self.episode.exportedPath;
-	converter.outputFile = mp3_path;
-
-//	converter.outputSampleRate = 44100;
-//	converter.outputBitDepth = BitDepth_16;
-
-//	converter.outputNumberChannels = 1;
-	converter.outputFormatID = kAudioFormatMPEGLayer3;
-	converter.outputFileType = kAudioFileMP3Type;
-
-	[converter convert];
-
-	[[NSNotificationCenter defaultCenter] postNotificationName:kFinishedExportNotification object:self userInfo:@{ kFinishedExportFileKey: mp3_path }];
+	[self.episode convertToMP3WithCompletion:^(NSString *pathToFile) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[[NSNotificationCenter defaultCenter] postNotificationName:kFinishedExportNotification object:self userInfo:@{ kFinishedExportFileKey: pathToFile }];
+		});
+	}];
 }
 
 @end
