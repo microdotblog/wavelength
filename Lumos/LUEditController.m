@@ -584,6 +584,7 @@ static const NSString* kItemStatusContext;
 	return CGSizeMake (w, h);
 }
 
+/*
 - (AVMutableComposition *) makeComposition
 {
 	AVMutableComposition* composition = [AVMutableComposition composition];
@@ -610,6 +611,23 @@ static const NSString* kItemStatusContext;
 	}
 	
 	return composition;
+}
+ */
+
+- (AVMutableComposition *) makeComposition
+{
+    AVMutableComposition* composition = [AVMutableComposition composition];
+    AVMutableCompositionTrack* audio_track = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    CMTime offset = kCMTimeZero;
+    for (NSString* audio_path in [self.episode audioSegmentPaths]) {
+        AVAsset* asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:audio_path]];
+        AVAssetTrack* asset_track = [[asset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
+        [audio_track insertTimeRange:CMTimeRangeMake(kCMTimeZero, asset_track.timeRange.duration) ofTrack:asset_track atTime:offset error:nil];
+        offset = CMTimeAdd (offset, asset_track.timeRange.duration);
+    }
+    
+    return composition;
 }
 
 - (NSArray *) allCells
