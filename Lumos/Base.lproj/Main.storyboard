@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uko-jZ-yR3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uko-jZ-yR3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -552,7 +552,7 @@
                                         <rect key="frame" x="279" y="22" width="56" height="56"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash" translatesAutoresizingMaskIntoConstraints="NO" id="pqR-7L-rTk">
-                                                <rect key="frame" x="16" y="16" width="24" height="24"/>
+                                                <rect key="frame" x="20" y="20" width="16" height="16"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -666,11 +666,6 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="F1A-Og-LWF">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="action" id="1Ro-0b-U7F">
-                                <connections>
-                                    <action selector="onExport:" destination="t5R-7u-r5x" id="Zag-lp-YPY"/>
-                                </connections>
-                            </barButtonItem>
                             <barButtonItem image="publish" id="cCq-cL-sll">
                                 <connections>
                                     <action selector="publish:" destination="t5R-7u-r5x" id="npf-CW-3wk"/>
@@ -1296,16 +1291,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MicroBlogIcon" width="128" height="128"/>
-        <image name="mic" width="24" height="24"/>
-        <image name="mic_small" width="24" height="24"/>
-        <image name="play" width="48" height="48"/>
+        <image name="MicroBlogIcon" width="64" height="64"/>
+        <image name="mic" width="16" height="16"/>
+        <image name="mic_small" width="16" height="16"/>
+        <image name="play" width="32" height="32"/>
         <image name="publish" width="28" height="22"/>
-        <image name="settings" width="36" height="36"/>
-        <image name="split" width="24" height="24"/>
-        <image name="trash" width="24" height="24"/>
-        <image name="trash_small" width="18" height="18"/>
-        <image name="zoom_in" width="24" height="24"/>
+        <image name="settings" width="24" height="24"/>
+        <image name="split" width="16" height="16"/>
+        <image name="trash" width="16" height="16"/>
+        <image name="trash_small" width="12" height="12"/>
+        <image name="zoom_in" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cCQ-T0-tZd"/>

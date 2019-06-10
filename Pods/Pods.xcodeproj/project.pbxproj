@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -126,7 +126,7 @@
 		2AD66DB6249F66A30F1915664C5F0DFD /* DPCircleWaveEqualizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DPCircleWaveEqualizer.h; path = "DisPlayers-Audio-Visualizers/Classes/DPCircleWaveEqualizer.h"; sourceTree = "<group>"; };
 		2CEC2782897010DC83AC5CA07BEE3334 /* Pods-Wavelength-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Wavelength-acknowledgements.plist"; sourceTree = "<group>"; };
 		2F11AF8C61FCC1C32EF1337AFE81F918 /* EZAudio-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EZAudio-dummy.m"; sourceTree = "<group>"; };
-		2FF4A2DB5C0C8D28FBBEAB77B4BC193E /* TPCircularBuffer+AudioBufferList.c */ = {isa = PBXFileReference; includeInIndex = 1; path = "TPCircularBuffer+AudioBufferList.c"; sourceTree = "<group>"; };
+		2FF4A2DB5C0C8D28FBBEAB77B4BC193E /* TPCircularBuffer+AudioBufferList.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = "TPCircularBuffer+AudioBufferList.c"; sourceTree = "<group>"; };
 		37961475AAE9132C774642C2B4BDA572 /* EZAudioDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioDevice.h; path = EZAudio/EZAudioDevice.h; sourceTree = "<group>"; };
 		3BD0F30090F29DF82259BB0251C72516 /* EZOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZOutput.h; path = EZAudio/EZOutput.h; sourceTree = "<group>"; };
 		3DB69D1F8CCB4B0E710983EF70145797 /* EZAudio.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EZAudio.xcconfig; sourceTree = "<group>"; };
@@ -136,10 +136,10 @@
 		55EC853995F65233A7CC8554D9323A55 /* DPHistogramEqualizerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DPHistogramEqualizerView.m; path = "DisPlayers-Audio-Visualizers/Classes/DPHistogramEqualizerView.m"; sourceTree = "<group>"; };
 		565997D2F9CC7480A63AB2C258622789 /* DPRollingEqualizerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DPRollingEqualizerView.h; path = "DisPlayers-Audio-Visualizers/Classes/DPRollingEqualizerView.h"; sourceTree = "<group>"; };
 		58BE8054FB92BFDE284257D193AC130A /* DPMainEqualizerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DPMainEqualizerView.h; path = "DisPlayers-Audio-Visualizers/Classes/DPMainEqualizerView.h"; sourceTree = "<group>"; };
-		5B400E55E790D14CCBA56BE269FE49B4 /* libTPCircularBuffer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libTPCircularBuffer.a; path = libTPCircularBuffer.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B400E55E790D14CCBA56BE269FE49B4 /* libTPCircularBuffer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTPCircularBuffer.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B007B7E48B4C66867EBA4F25F61FCA /* DPHistogramEqualizerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DPHistogramEqualizerView.h; path = "DisPlayers-Audio-Visualizers/Classes/DPHistogramEqualizerView.h"; sourceTree = "<group>"; };
 		69E3A4CD248C5E3B3E380CD01BAB17A2 /* DPConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DPConstants.h; path = "DisPlayers-Audio-Visualizers/Classes/DPConstants.h"; sourceTree = "<group>"; };
-		741FF4032E1B3A0ED25551F37DB80785 /* TPCircularBuffer.c */ = {isa = PBXFileReference; includeInIndex = 1; name = TPCircularBuffer.c; path = EZAudio/TPCircularBuffer.c; sourceTree = "<group>"; };
+		741FF4032E1B3A0ED25551F37DB80785 /* TPCircularBuffer.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = TPCircularBuffer.c; path = EZAudio/TPCircularBuffer.c; sourceTree = "<group>"; };
 		75C2D528C0188F21BEEC0DDAFF3C69BE /* TPCircularBuffer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TPCircularBuffer-dummy.m"; sourceTree = "<group>"; };
 		7857B7BB0D46ADF1766F6F09D7658F05 /* EZAudioDisplayLink.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EZAudioDisplayLink.m; path = EZAudio/EZAudioDisplayLink.m; sourceTree = "<group>"; };
 		7E31F01EB56ABCFB787213D6D38124B0 /* EZAudioOSX.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioOSX.h; path = EZAudio/EZAudioOSX.h; sourceTree = "<group>"; };
@@ -155,9 +155,9 @@
 		95022C8AB1E35C7EA7103A5460EA533F /* DisPlayers-Audio-Visualizers-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DisPlayers-Audio-Visualizers-dummy.m"; sourceTree = "<group>"; };
 		96A59FF2947C6C513D07464F26CF7BA2 /* EZAudioFFT.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFFT.h; path = EZAudio/EZAudioFFT.h; sourceTree = "<group>"; };
 		9A58DB792B460FFB412EB1DB2156BA3E /* EZAudioiOS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioiOS.h; path = EZAudio/EZAudioiOS.h; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E5A0218E35C32E6927F2F19A37DC95D /* EZAudioFloatConverter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EZAudioFloatConverter.m; path = EZAudio/EZAudioFloatConverter.m; sourceTree = "<group>"; };
-		A03193B62E724145598F243AE9A717CF /* libDisPlayers-Audio-Visualizers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libDisPlayers-Audio-Visualizers.a"; path = "libDisPlayers-Audio-Visualizers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A03193B62E724145598F243AE9A717CF /* libDisPlayers-Audio-Visualizers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libDisPlayers-Audio-Visualizers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A35179F0112683F9E3E0790491766270 /* Pods-Wavelength-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Wavelength-dummy.m"; sourceTree = "<group>"; };
 		A613817418299D344F03ECEE92C1D0A0 /* EZMicrophone.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZMicrophone.h; path = EZAudio/EZMicrophone.h; sourceTree = "<group>"; };
 		AB7471D12D99FCB46059F026DAAA62B9 /* DPAudioService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DPAudioService.h; path = "DisPlayers-Audio-Visualizers/Classes/DPAudioService.h"; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		BC1AAE04D7E97A1BBAA7E0BEC1E6C7F2 /* EZAudioUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EZAudioUtilities.m; path = EZAudio/EZAudioUtilities.m; sourceTree = "<group>"; };
 		BFF191D14E292CED93FB30865DC9687C /* TPCircularBuffer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TPCircularBuffer.xcconfig; sourceTree = "<group>"; };
 		C1C1D61CD5D56520AADF84E90235E25F /* EZPlot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZPlot.h; path = EZAudio/EZPlot.h; sourceTree = "<group>"; };
-		C59C277DCDDB366DCD366FB9B182F64C /* TPCircularBuffer.c */ = {isa = PBXFileReference; includeInIndex = 1; path = TPCircularBuffer.c; sourceTree = "<group>"; };
+		C59C277DCDDB366DCD366FB9B182F64C /* TPCircularBuffer.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
 		C8B95891B980C6492606775F3A33F765 /* DPMainEqualizerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DPMainEqualizerView.m; path = "DisPlayers-Audio-Visualizers/Classes/DPMainEqualizerView.m"; sourceTree = "<group>"; };
 		CA0EBCDC2E06686D37755F4E81D2430E /* EZOutput.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EZOutput.m; path = EZAudio/EZOutput.m; sourceTree = "<group>"; };
 		CC3F73C2B67CACBD19489E1BF7EA8800 /* TPCircularBuffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = EZAudio/TPCircularBuffer.h; sourceTree = "<group>"; };
@@ -174,13 +174,13 @@
 		D4E0B295A1AC8061B9D69CE923D5A281 /* EZAudioFloatConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatConverter.h; path = EZAudio/EZAudioFloatConverter.h; sourceTree = "<group>"; };
 		D9378B0947C7A4C0D722FEF7EB979353 /* EZAudioFloatData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatData.h; path = EZAudio/EZAudioFloatData.h; sourceTree = "<group>"; };
 		DD8B7A1E57FAB4A67BA09158EE18E624 /* DPEqualizerSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DPEqualizerSettings.h; path = "DisPlayers-Audio-Visualizers/Classes/DPEqualizerSettings.h"; sourceTree = "<group>"; };
-		E290D5D6823743006385765068BFF642 /* libPods-Wavelength.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Wavelength.a"; path = "libPods-Wavelength.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E290D5D6823743006385765068BFF642 /* libPods-Wavelength.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wavelength.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAFA6386024EFC0991D0E88DB541196 /* EZAudioFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFile.h; path = EZAudio/EZAudioFile.h; sourceTree = "<group>"; };
 		EE89C12C834FF005D11AF16779AC466F /* DPRollingEqualizerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DPRollingEqualizerView.m; path = "DisPlayers-Audio-Visualizers/Classes/DPRollingEqualizerView.m"; sourceTree = "<group>"; };
 		F1FE654A92C46DA89A2CED1518CBE1B6 /* EZAudio.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EZAudio.m; path = EZAudio/EZAudio.m; sourceTree = "<group>"; };
 		F3B32440E0BB72FBFB075A331CF27F7D /* Pods-Wavelength.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Wavelength.release.xcconfig"; sourceTree = "<group>"; };
 		F7B8145E057F4CC9CBA075185D9C7769 /* EZAudioFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EZAudioFile.m; path = EZAudio/EZAudioFile.m; sourceTree = "<group>"; };
-		FA3DF55AD699259B07C32C7D219B97CE /* libEZAudio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libEZAudio.a; path = libEZAudio.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3DF55AD699259B07C32C7D219B97CE /* libEZAudio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZAudio.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC70CB0639B33770000F9428C2F24D87 /* EZAudioDevice.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EZAudioDevice.m; path = EZAudio/EZAudioDevice.m; sourceTree = "<group>"; };
 		FEBD7BB744C7C0F1AE1D3D6C3D9F1DE7 /* EZAudioPlot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioPlot.h; path = EZAudio/EZAudioPlot.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -226,7 +226,6 @@
 				8FD6C2DB5A5F3DC4830124766A3660E2 /* TPCircularBuffer+AudioBufferList.h */,
 				3BD2C85F09424F1F75D1BB7F455CDEDB /* Support Files */,
 			);
-			name = TPCircularBuffer;
 			path = TPCircularBuffer;
 			sourceTree = "<group>";
 		};
@@ -285,7 +284,6 @@
 				23CCFA5B760F9EE16D7AEC500FF45B29 /* UIImage+DPGradientImage.m */,
 				C7A8B6933A96A51A71FC14EB58566C42 /* Support Files */,
 			);
-			name = "DisPlayers-Audio-Visualizers";
 			path = "DisPlayers-Audio-Visualizers";
 			sourceTree = "<group>";
 		};
@@ -397,7 +395,6 @@
 				C79FDB83A76594D46695B1F08F2EC3F3 /* Core */,
 				AA813AFC4D0F9D0250367F913D39313C /* Support Files */,
 			);
-			name = EZAudio;
 			path = EZAudio;
 			sourceTree = "<group>";
 		};
@@ -551,6 +548,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
@@ -731,6 +729,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -740,8 +739,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -817,6 +815,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
