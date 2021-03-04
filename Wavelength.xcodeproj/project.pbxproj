@@ -190,7 +190,7 @@
 				4B18F1C2206FECAA00A91731 /* ExtAudioConverter.h */,
 				4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */,
 			);
-			path = ExtAudioConverter;
+			name = ExtAudioConverter;
 			sourceTree = "<group>";
 		};
 		4B74C963205D758B0050A105 /* Files */ = {
@@ -242,7 +242,7 @@
 				C54C8F6C2065A350007F7565 /* UUString.h */,
 				C54C8F6B2065A350007F7565 /* UUString.m */,
 			);
-			path = UU;
+			name = UU;
 			sourceTree = "<group>";
 		};
 		C54C8F7C2065A38C007F7565 /* Microblog */ = {
@@ -257,7 +257,7 @@
 				C54C8F8A2065A3F6007F7565 /* RFClient.h */,
 				C54C8F892065A3F6007F7565 /* RFClient.m */,
 			);
-			path = Microblog;
+			name = Microblog;
 			sourceTree = "<group>";
 		};
 		C54C8F7D2065A39E007F7565 /* SSKeychain */ = {
@@ -268,7 +268,7 @@
 				C54C8F7E2065A3B3007F7565 /* SSKeychainQuery.h */,
 				C54C8F802065A3B3007F7565 /* SSKeychainQuery.m */,
 			);
-			path = SSKeychain;
+			name = SSKeychain;
 			sourceTree = "<group>";
 		};
 		C54C8F842065A3B6007F7565 /* PopoverView */ = {
@@ -278,7 +278,7 @@
 				C54C8F872065A3C4007F7565 /* PopoverView.h */,
 				C54C8F852065A3C4007F7565 /* PopoverView.m */,
 			);
-			path = PopoverView;
+			name = PopoverView;
 			sourceTree = "<group>";
 		};
 		C5735FFE13F5B9B465C3FF2F /* Frameworks */ = {
