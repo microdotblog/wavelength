@@ -126,53 +126,19 @@
 			[self selectBlog:info];
 		}
 		else {
-			NSString* msg = [NSString stringWithFormat:@"%@ will be upgraded to the $10/month plan to support both podcast and microblog hosting.", [info objectForKey:@"name"]];
-			[UUAlertViewController uuShowTwoButtonAlert:@"Upgrade Subscription" message:msg buttonOne:@"Cancel" buttonTwo:@"Upgrade" completionHandler:^(NSInteger buttonIndex) {
+			NSString* msg = [NSString stringWithFormat:@"%@ can be upgraded to Micro.blog Premium ($10/month) to support both podcast and microblog hosting.", [info objectForKey:@"name"]];
+			[UUAlertViewController uuShowTwoButtonAlert:@"Upgrade Subscription" message:msg buttonOne:@"Cancel" buttonTwo:@"Learn More" completionHandler:^(NSInteger buttonIndex) {
 				if (buttonIndex == 0) {
 					[self clearSelection];
 				}
 				else if (buttonIndex == 1) {
-					NSString* uid = [info objectForKey:@"uid"];
-					NSString* sitename = [uid stringByReplacingOccurrencesOfString:@".micro.blog" withString:@""];
-
-					sitename = [sitename stringByReplacingOccurrencesOfString:@"http://" withString:@""];
-					sitename = [sitename stringByReplacingOccurrencesOfString:@"https://" withString:@""];
-					sitename = [sitename stringByReplacingOccurrencesOfString:@"/" withString:@""];
-
-					NSDictionary* params = @{
-						@"sitename": sitename,
-						@"theme": @"default",
-						@"plan": @"site10"
-					};
-				
-					RFClient* client = [[RFClient alloc] initWithPath:@"/account/charge/site"];
-					[client postWithParams:params completion:^(UUHttpResponse* response) {
-						dispatch_async (dispatch_get_main_queue(), ^{
-							if (response.httpError) {
-								[self showError:[response.httpError localizedDescription]];
-							}
-							else {
-								if ([response.parsedResponse isKindOfClass:[NSDictionary class]]) {
-									NSString* error = [response.parsedResponse objectForKey:@"error"];
-									if (error) {
-										[self showError:error];
-									}
-									else {
-										[self selectBlog:info];
-									}
-								}
-								else {
-									[self showError:@"Unknown error upgrading microblog."];
-								}
-							}
-						});
-					}];
+					[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://micro.blog/account/plans"] options:@{} completionHandler:NULL];
 				}
 			}];
 		}
 	}
 	else {
-		[self performSegueWithIdentifier:@"NewBlogSegue" sender:self];
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://micro.blog/new/premium"] options:@{} completionHandler:NULL];
 	}
 }
 
