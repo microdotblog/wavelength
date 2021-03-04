@@ -19,8 +19,6 @@
 		4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BF206E951200A91731 /* LUAuphonicController.m */; };
 		4B18F1C4206FECAB00A91731 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */; };
 		4B18F1CA206FEEDA00A91731 /* LUExportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1C9206FEEDA00A91731 /* LUExportController.m */; };
-		4B18F1CE2070164800A91731 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B18F1CC2070164700A91731 /* Fabric.framework */; };
-		4B18F1CF2070164800A91731 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B18F1CD2070164800A91731 /* Crashlytics.framework */; };
 		4B74C8C2205A23A40050A105 /* LUEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C1205A23A40050A105 /* LUEditController.m */; };
 		4B74C8C5205A23D10050A105 /* LUPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C4205A23D10050A105 /* LUPostController.m */; };
 		4B74C8C8205A26180050A105 /* LUEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C8C7205A26180050A105 /* LUEpisode.m */; };
@@ -98,8 +96,6 @@
 		4B18F1C3206FECAB00A91731 /* ExtAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtAudioConverter.m; path = shared/ExtAudioFileConverter/ExtAudioConverter/ExtAudioConverter/ExtAudioConverter.m; sourceTree = SOURCE_ROOT; };
 		4B18F1C8206FEEDA00A91731 /* LUExportController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUExportController.h; sourceTree = "<group>"; };
 		4B18F1C9206FEEDA00A91731 /* LUExportController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUExportController.m; sourceTree = "<group>"; };
-		4B18F1CC2070164700A91731 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		4B18F1CD2070164800A91731 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		4B74C8C0205A23A40050A105 /* LUEditController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUEditController.h; sourceTree = "<group>"; };
 		4B74C8C1205A23A40050A105 /* LUEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUEditController.m; sourceTree = "<group>"; };
 		4B74C8C3205A23D10050A105 /* LUPostController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUPostController.h; sourceTree = "<group>"; };
@@ -184,8 +180,6 @@
 				C58A2EDD2075368500DB0E04 /* WebKit.framework in Frameworks */,
 				4B0BB176207ABD5A00A16FDD /* lame.framework in Frameworks */,
 				C58A2EBA20729B8E00DB0E04 /* CloudKit.framework in Frameworks */,
-				4B18F1CF2070164800A91731 /* Crashlytics.framework in Frameworks */,
-				4B18F1CE2070164800A91731 /* Fabric.framework in Frameworks */,
 				8D7DF7F9B981B1804FE51B5B /* libPods-Wavelength.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,8 +289,6 @@
 			children = (
 				C58A2EDC2075368500DB0E04 /* WebKit.framework */,
 				C58A2EB920729B8E00DB0E04 /* CloudKit.framework */,
-				4B18F1CD2070164800A91731 /* Crashlytics.framework */,
-				4B18F1CC2070164700A91731 /* Fabric.framework */,
 				4B0BB175207ABD5A00A16FDD /* lame.framework */,
 				43BF02616C547DCF0280214F /* libPods-Wavelength.a */,
 			);
@@ -406,7 +398,6 @@
 				C5DC3294205774A600D0594B /* Frameworks */,
 				C5DC3295205774A600D0594B /* Resources */,
 				4B74C965205D75BB0050A105 /* CopyFiles */,
-				4B18F1CB2070162300A91731 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -499,19 +490,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		4B18F1CB2070162300A91731 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 1132277aa22be300ed186611e2cb8384cef606a6 504eaa2d0677a00eea28c1e4e1d8d28ed63a290ebd077994bc4ee47db2345681";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -706,6 +684,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Wavelength.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 3F9MDJ6K4E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -718,6 +697,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shared/ExtAudioFileConverter/ExtAudioConverter",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.wavelength;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -731,6 +711,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Wavelength.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 3F9MDJ6K4E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -743,6 +724,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shared/ExtAudioFileConverter/ExtAudioConverter",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.wavelength;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
