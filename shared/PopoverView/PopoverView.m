@@ -531,7 +531,7 @@
 	CGRect r = owner.frame;
 	self.backgroundView = [[UIView alloc] initWithFrame:r];
 	self.backgroundView.opaque = NO;
-	self.backgroundView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
+	self.backgroundView.backgroundColor = [UIColor colorNamed:@"color_popover_background"];
 	self.backgroundView.alpha = 0.0;
 
 	[owner addSubview:self.backgroundView];
@@ -962,9 +962,12 @@
     CGFloat shadowBlurRadius = kShadowBlur;
     
     //// Gradient Declarations
-    NSArray* gradientColors = [NSArray arrayWithObjects:
-                               (id)kGradientTopColor.CGColor,
-                               (id)kGradientBottomColor.CGColor, nil];
+	UIColor* gradient_top_c = [UIColor colorNamed:@"color_popover_gradient_top"];
+	UIColor* gradient_bottom_c = [UIColor colorNamed:@"color_popover_gradient_bottom"];
+
+	NSArray* gradientColors = [NSArray arrayWithObjects:
+                               (id)gradient_top_c.CGColor,
+                               (id)gradient_bottom_c.CGColor, nil];
     CGFloat gradientLocations[] = {0, 1};
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFTYPECAST(CFArrayRef)gradientColors), gradientLocations);
     
