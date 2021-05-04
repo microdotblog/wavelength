@@ -143,8 +143,6 @@
 - (void) updateRecordButton
 {
 	self.recordStopPlayButton.layer.cornerRadius = 28.0;
-	self.recordStopPlayButton.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5].CGColor;
-	self.recordStopPlayButton.clipsToBounds = YES;
 	
 	UIImage* img;
 	if (self.isRecording) {

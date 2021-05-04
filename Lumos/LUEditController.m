@@ -46,6 +46,7 @@ static const NSString* kItemStatusContext;
 	self.recordDeviceField.text = @"";
 	
 	self.exportStatusContainerView.layer.cornerRadius = 10.0;
+	self.playPauseButton.layer.cornerRadius = 28.0;
 
 	[self setupDropView];
 	[self setupNotifications];
@@ -298,9 +299,6 @@ static const NSString* kItemStatusContext;
 		self.waveFormViewContainer.hidden = YES;
 	}];
 
-	self.playPauseButton.layer.cornerRadius = 0.0;
-	self.playPauseButton.layer.backgroundColor = nil;
-
 	[self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
 
 	[UIView animateWithDuration:0.3 animations:^
@@ -348,9 +346,6 @@ static const NSString* kItemStatusContext;
 	}];
 
 	self.playPauseButton.layer.cornerRadius = 28.0;
-	self.playPauseButton.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5].CGColor;
-	self.playPauseButton.clipsToBounds = YES;
-
 	[self.playPauseButton setImage:[UIImage imageNamed:@"mic"] forState:UIControlStateNormal];
 	
 	NSString* fileName = [[[NSProcessInfo processInfo] globallyUniqueString] stringByAppendingPathExtension:@"m4a"];
@@ -499,9 +494,6 @@ static const NSString* kItemStatusContext;
 	
 	self.isInRecordMode = NO;
 
-	self.playPauseButton.layer.cornerRadius = 0;
-	self.playPauseButton.layer.backgroundColor = nil;
-
 	[self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
 
 	self.recordDeviceField.text = @"";
@@ -569,6 +561,7 @@ static const NSString* kItemStatusContext;
 		img = [UIImage imageNamed:@"play"];
 	}
 
+	self.playPauseButton.layer.cornerRadius = 28.0;
 	[self.playPauseButton setImage:img forState:UIControlStateNormal];
 }
 

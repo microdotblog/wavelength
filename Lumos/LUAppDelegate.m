@@ -59,30 +59,6 @@
 - (void) setupAppearance
 {
 	self.window.tintColor = [UIColor colorWithRed:0.510 green:0.698 blue:0.875 alpha:1.000];
-
-	UIColor* fontColor = self.window.tintColor;
-
-	UIColor* shadowColor = [UIColor clearColor];
-	NSShadow* shadow = [[NSShadow alloc] init];
-	shadow.shadowOffset = CGSizeMake(0, 1);
-	shadow.shadowColor = shadowColor;
-	shadow.shadowBlurRadius = 2.0;
-	[[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-														  [UIColor blackColor], NSForegroundColorAttributeName,
-														  //shadowColor, NSBackgroundColorAttributeName,
-														  shadow, NSShadowAttributeName,
-														  [UIFont fontWithName:@"AvenirNext-Medium" size:16], NSFontAttributeName,
-														  nil]];
-	
-	UIImage* header_img = [[UIImage imageNamed:@"menu_header"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
-	[[UINavigationBar appearance] setBackgroundImage:header_img forBarMetrics:UIBarMetricsDefault];
-	
-	[[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-														  fontColor, NSForegroundColorAttributeName,
-														  //shadowColor, NSBackgroundColorAttributeName,
-														  shadow, NSShadowAttributeName,
-														  [UIFont fontWithName:@"AvenirNext-Regular" size:16], NSFontAttributeName, nil]
-												forState:UIControlStateNormal];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

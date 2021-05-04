@@ -38,13 +38,9 @@
 
 - (void) setupButtons
 {
+	self.playPauseButton.layer.cornerRadius = 28.0;
 	self.splitButton.layer.cornerRadius = 28.0;
-	self.splitButton.layer.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
-	self.splitButton.clipsToBounds = YES;
-
 	self.zoomButton.layer.cornerRadius = 28.0;
-	self.zoomButton.layer.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
-	self.zoomButton.clipsToBounds = YES;
 }
 
 - (void) setupGraph
