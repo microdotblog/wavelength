@@ -1292,7 +1292,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="cCQ-T0-tZd"/>
-        <segue reference="pR2-pI-Ygd"/>
+        <segue reference="k0j-Kr-gI3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="MicroBlogIcon" width="64" height="64"/>
@@ -1308,10 +1308,10 @@
         <image name="trash_small" width="12" height="12"/>
         <image name="zoom_in" width="16" height="16"/>
         <namedColor name="color_field_background">
-            <color white="0.92799997329711914" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="color_round_button">
-            <color white="0.76999998092651367" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color white="0.92155748605728149" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
