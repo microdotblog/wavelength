@@ -66,11 +66,11 @@
 	
 	if (self.scrollingContainer == nil) {
 		self.scrollingContainer = [[UIView alloc] initWithFrame:container_r];
-		self.scrollingContainer.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+		self.scrollingContainer.layer.shadowColor = [UIColor colorNamed:@"color_waveform_shadow"].CGColor;
 		self.scrollingContainer.layer.shadowOpacity = 0.3;
 		self.scrollingContainer.layer.shadowRadius = 3.0;
 		self.scrollingContainer.layer.shadowOffset = CGSizeMake (0, 0);
-		self.scrollingContainer.layer.backgroundColor = [UIColor whiteColor].CGColor;
+		self.scrollingContainer.layer.backgroundColor = [UIColor colorNamed:@"color_waveform_background"].CGColor;
 		self.scrollingContainer.layer.cornerRadius = 7.0;
 		[self.scrollingContainer addSubview:v];
 		[self.scrollView addSubview:self.scrollingContainer];

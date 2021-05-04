@@ -197,7 +197,7 @@
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tns-if-QQj">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
@@ -205,9 +205,9 @@
                             </wkWebView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aNM-2D-v51"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="tns-if-QQj" firstAttribute="bottom" secondItem="aNM-2D-v51" secondAttribute="bottom" id="2l0-Ok-lh5"/>
+                            <constraint firstItem="tns-if-QQj" firstAttribute="bottom" secondItem="ibm-Yr-MAL" secondAttribute="bottom" id="2l0-Ok-lh5"/>
                             <constraint firstItem="tns-if-QQj" firstAttribute="trailing" secondItem="aNM-2D-v51" secondAttribute="trailing" id="Wbv-g1-dwT"/>
                             <constraint firstItem="tns-if-QQj" firstAttribute="leading" secondItem="aNM-2D-v51" secondAttribute="leading" id="rao-3u-F9t"/>
                             <constraint firstItem="tns-if-QQj" firstAttribute="top" secondItem="aNM-2D-v51" secondAttribute="top" id="uTj-ix-Dyh"/>
@@ -350,7 +350,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="xgH-es-3c3" secondAttribute="trailing" constant="8" id="9CI-v5-Xit"/>
                                     <constraint firstItem="vvA-qE-zAw" firstAttribute="leading" secondItem="p5R-ab-qc2" secondAttribute="leading" constant="97" id="EcF-4R-CHc"/>
@@ -573,7 +573,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="7Or-nu-cTE"/>
                                     <constraint firstAttribute="trailing" secondItem="zIf-T2-fex" secondAttribute="trailing" constant="40" id="C0m-33-mq3"/>
@@ -975,18 +975,18 @@
             <objects>
                 <viewController id="rbR-yE-SLm" customClass="LUPostController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wbd-Zx-YQW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSf-pX-uX4">
-                                <rect key="frame" x="-1" y="56" width="377" height="50"/>
+                                <rect key="frame" x="-1" y="44" width="377" height="50"/>
                                 <color key="backgroundColor" white="0.9845552884615385" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dD8-EE-8tl"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-Os-aMO">
-                                <rect key="frame" x="16" y="66" width="343" height="30"/>
+                                <rect key="frame" x="16" y="54" width="343" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="TKf-zJ-bHZ"/>
                                 </constraints>
@@ -994,13 +994,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1HZ-QX-Oyy">
-                                <rect key="frame" x="10" y="116" width="355" height="457"/>
+                                <rect key="frame" x="10" y="104" width="355" height="489"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TB4-ZF-HVb">
-                                <rect key="frame" x="0.0" y="603" width="365" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="365" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-qP-RHr">
                                         <rect key="frame" x="35" y="0.0" width="292" height="44"/>
@@ -1062,7 +1062,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="podcast.micro.blog" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SkV-J3-qcw">
-                                <rect key="frame" x="10" y="581" width="355" height="21"/>
+                                <rect key="frame" x="10" y="601" width="355" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="1AC-c7-n4Z"/>
                                 </constraints>
@@ -1290,7 +1290,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fbK-IJ-eUI"/>
+        <segue reference="cCQ-T0-tZd"/>
         <segue reference="pR2-pI-Ygd"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1305,7 +1305,7 @@
         <image name="trash_small" width="12" height="12"/>
         <image name="zoom_in" width="16" height="16"/>
         <namedColor name="color_field_background">
-            <color white="0.88351839780807495" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color white="0.92799997329711914" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="color_round_button">
             <color white="0.76999998092651367" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
