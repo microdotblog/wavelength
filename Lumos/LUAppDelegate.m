@@ -7,7 +7,7 @@
 //
 
 #import "LUAppDelegate.h"
-#import <EZAudio/EZAudio.h>
+#import "EZAudio.h"
 #import "UUString.h"
 #import "UUAlert.h"
 #import "RFMicropub.h"

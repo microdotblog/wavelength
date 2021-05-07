@@ -7,7 +7,7 @@
 //
 
 #import "LUEpisode.h"
-#import <EZAudio/EZAudio.h>
+#import "EZAudio.h"
 #import "UUString.h"
 #import "UUDate.h"
 #import "ExtAudioConverter.h"

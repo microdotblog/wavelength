@@ -25,7 +25,7 @@
 		4B74C959205A3F4A0050A105 /* LUSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C958205A3F4A0050A105 /* LUSegmentCell.m */; };
 		4B881CA72061492C008A4C13 /* LUSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA62061492B008A4C13 /* LUSplitController.m */; };
 		4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA920614AA2008A4C13 /* LUSegment.m */; };
-		8D7DF7F9B981B1804FE51B5B /* libPods-Wavelength.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BF02616C547DCF0280214F /* libPods-Wavelength.a */; };
+		B441860D2983511B97F51C68 /* Pods_Wavelength.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06689646BEAB0CDFA5412685 /* Pods_Wavelength.framework */; };
 		C5357B2520602B750067413C /* LUAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C5357B2420602B750067413C /* LUAudioRecorder.m */; };
 		C54C8F702065A350007F7565 /* UUDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F682065A350007F7565 /* UUDictionary.m */; };
 		C54C8F712065A350007F7565 /* UUHttpResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C54C8F692065A350007F7565 /* UUHttpResponseHandler.m */; };
@@ -72,7 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		43BF02616C547DCF0280214F /* libPods-Wavelength.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wavelength.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06689646BEAB0CDFA5412685 /* Pods_Wavelength.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wavelength.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B01D4DF2073DC2600FD8A00 /* LUExportTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUExportTransition.h; sourceTree = "<group>"; };
 		4B01D4E02073DC2600FD8A00 /* LUExportTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUExportTransition.m; sourceTree = "<group>"; };
 		4B01D4E22074648900FD8A00 /* LUDeleteDropView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUDeleteDropView.h; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				C58A2EDD2075368500DB0E04 /* WebKit.framework in Frameworks */,
 				4B0BB176207ABD5A00A16FDD /* lame.framework in Frameworks */,
 				C58A2EBA20729B8E00DB0E04 /* CloudKit.framework in Frameworks */,
-				8D7DF7F9B981B1804FE51B5B /* libPods-Wavelength.a in Frameworks */,
+				B441860D2983511B97F51C68 /* Pods_Wavelength.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +287,7 @@
 				C58A2EDC2075368500DB0E04 /* WebKit.framework */,
 				C58A2EB920729B8E00DB0E04 /* CloudKit.framework */,
 				4B0BB175207ABD5A00A16FDD /* lame.framework */,
-				43BF02616C547DCF0280214F /* libPods-Wavelength.a */,
+				06689646BEAB0CDFA5412685 /* Pods_Wavelength.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -393,6 +393,7 @@
 				C5DC3294205774A600D0594B /* Frameworks */,
 				C5DC3295205774A600D0594B /* Resources */,
 				4B74C965205D75BB0050A105 /* CopyFiles */,
+				8578B2F4460975D5762BFA0F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -484,6 +485,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8578B2F4460975D5762BFA0F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wavelength/Pods-Wavelength-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DisPlayers-Audio-Visualizers/DisPlayers_Audio_Visualizers.framework",
+				"${BUILT_PRODUCTS_DIR}/EZAudio/EZAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/SnippetsFramework/Snippets.framework",
+				"${BUILT_PRODUCTS_DIR}/TPCircularBuffer/TPCircularBuffer.framework",
+				"${BUILT_PRODUCTS_DIR}/UUSwift/UUSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DisPlayers_Audio_Visualizers.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Snippets.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPCircularBuffer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UUSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wavelength/Pods-Wavelength-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
