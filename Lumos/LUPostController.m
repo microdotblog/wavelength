@@ -135,11 +135,11 @@
 		return;
 	}
 
-	NSInteger max_upload_filesize = 1024 * 1024 * 30; // 30 MB
+	NSInteger max_upload_filesize = 1024 * 1024 * 45; // 45 MB
 	if (d.length > max_upload_filesize) {
 		self.isPosting = NO;
 		[self.progressSpinner stopAnimating];
-		[UUAlertViewController uuShowOneButtonAlert:@"Audio Size Limit" message:@"Your microcast episodes can be a few minutes up to 20 minutes. There is a 30 MB upload size limit." button:@"OK" completionHandler:NULL];
+		[UUAlertViewController uuShowOneButtonAlert:@"Audio Size Limit" message:@"Your microcast episodes can be a few minutes up to 30 minutes. There is a 45 MB upload size limit." button:@"OK" completionHandler:NULL];
 		return;
 	}
 	
