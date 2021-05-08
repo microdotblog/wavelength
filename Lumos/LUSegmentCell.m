@@ -27,7 +27,7 @@
 	
 	self.durationField.text = clip.durationString;
 	self.previewImageView.layer.cornerRadius = 3.0;
-	self.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	self.previewImageView.layer.borderColor = [UIColor colorNamed:@"color_segment_border"].CGColor;
 	self.previewImageView.layer.borderWidth = 0.5;
 	self.positionLine.hidden = YES;
 
@@ -49,7 +49,7 @@
 	
 	if (selected) {
 		self.previewImageView.layer.borderColor = [UIColor blackColor].CGColor;
-		self.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+		self.backgroundColor = [UIColor colorNamed:@"color_segment_selected"];
 		self.deleteButton.hidden = NO;
 	}
 	else {
