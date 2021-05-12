@@ -27,5 +27,6 @@
 @property (strong, nonatomic) NSString* _Nullable part1File;
 @property (strong, nonatomic) NSString* _Nullable part2File;
 @property (assign, nonatomic) BOOL isZoomed;
+@property (strong, nonatomic) id timeObserver;
 
 @end

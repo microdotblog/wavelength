@@ -209,6 +209,7 @@
 - (IBAction) play:(id)sender
 {
 	if (self.player) {
+		[self.player removeTimeObserver:self.timeObserver];
 		[self.player pause];
 		self.player = nil;
 	}
@@ -222,7 +223,7 @@
 
 		CMTime interval = CMTimeMakeWithSeconds (0.05, NSEC_PER_SEC);
 		__weak LUSplitController* weak_self = self;
-		[self.player addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
+		self.timeObserver = [self.player addPeriodicTimeObserverForInterval:interval queue:NULL usingBlock:^(CMTime time) {
 			dispatch_async (dispatch_get_main_queue(), ^{
 				[weak_self updatePlaybackForTime:time];
 			});
