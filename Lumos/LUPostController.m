@@ -39,8 +39,10 @@
 
 - (void) setupFields
 {
-	self.titleContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
-	self.titleContainer.layer.borderWidth = 0.5;
+	if (@available(iOS 13.0, *)) {
+		self.titleContainer.layer.borderColor = [UIColor separatorColor].CGColor;
+		self.titleContainer.layer.borderWidth = 0.5;
+	}
 
 	NSString* blog_name = [[NSUserDefaults standardUserDefaults] objectForKey:@"Wavelength:blog:name"];
 	self.hostnameField.text = blog_name;
@@ -247,10 +249,10 @@
 {
 	UIImage* img = nil;
 	if (self.player) {
-		img = [UIImage imageNamed:@"pause"];
+		img = [UIImage imageNamed:@"pause_noborder"];
 	}
 	else {
-		img = [UIImage imageNamed:@"play"];
+		img = [UIImage imageNamed:@"play_noborder"];
 		self.positionLine.hidden = YES;
 	}
 

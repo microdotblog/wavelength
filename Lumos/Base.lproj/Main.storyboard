@@ -435,7 +435,7 @@
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEZ-AP-8yw">
                                                     <rect key="frame" x="20" y="0.0" width="1" height="90"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" systemColor="separatorColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="lls-ni-5aA"/>
                                                     </constraints>
@@ -981,7 +981,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSf-pX-uX4">
                                 <rect key="frame" x="-1" y="44" width="377" height="50"/>
-                                <color key="backgroundColor" white="0.9845552884615385" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dD8-EE-8tl"/>
                                 </constraints>
@@ -996,7 +996,7 @@
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1HZ-QX-Oyy">
                                 <rect key="frame" x="10" y="104" width="355" height="489"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1005,7 +1005,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-qP-RHr">
                                         <rect key="frame" x="35" y="0.0" width="292" height="44"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="XKF-zS-11H"/>
                                         </constraints>
@@ -1016,7 +1016,7 @@
                                             <constraint firstAttribute="height" constant="20" id="YYG-u8-j2J"/>
                                             <constraint firstAttribute="width" constant="20" id="rWr-Fv-PBJ"/>
                                         </constraints>
-                                        <state key="normal" image="play"/>
+                                        <state key="normal" image="play_noborder"/>
                                         <connections>
                                             <action selector="playOrPause:" destination="rbR-yE-SLm" eventType="touchUpInside" id="m7X-WK-aZR"/>
                                         </connections>
@@ -1032,7 +1032,7 @@
                                     </button>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gy-kn-cky">
                                         <rect key="frame" x="67" y="0.0" width="1" height="44"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="separatorColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="Cbd-tJ-v6y"/>
                                         </constraints>
@@ -1073,7 +1073,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DNk-ns-fm0"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SkV-J3-qcw" firstAttribute="leading" secondItem="DNk-ns-fm0" secondAttribute="leading" constant="10" id="0wn-af-qiK"/>
                             <constraint firstItem="kP6-Os-aMO" firstAttribute="leading" secondItem="DNk-ns-fm0" secondAttribute="leading" constant="16" id="8tr-IH-Dpn"/>
@@ -1242,9 +1242,9 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YXi-m5-z3F">
-                                        <rect key="frame" x="0.0" y="79.5" width="240" height="1"/>
+                                        <rect key="frame" x="0.0" y="80" width="240" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="separatorColor"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preparing episode..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="sWU-Ou-NKp">
                                         <rect key="frame" x="47" y="19" width="179" height="21"/>
@@ -1260,12 +1260,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-3M-w9k">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-3M-w9k">
                                         <rect key="frame" x="15" y="33" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.97038762019230773" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="vav-Rm-ZPJ"/>
                                     <constraint firstAttribute="width" constant="240" id="wRE-Da-Ia1"/>
@@ -1292,7 +1292,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="cCQ-T0-tZd"/>
-        <segue reference="k0j-Kr-gI3"/>
+        <segue reference="pR2-pI-Ygd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="MicroBlogIcon" width="64" height="64"/>
@@ -1301,6 +1301,7 @@
         <image name="mic.fill" catalog="system" width="108" height="128"/>
         <image name="mic_small" width="16" height="16"/>
         <image name="play" width="32" height="32"/>
+        <image name="play_noborder" width="32" height="32"/>
         <image name="publish" width="28" height="22"/>
         <image name="settings" width="24" height="24"/>
         <image name="split" width="16" height="16"/>
@@ -1308,10 +1309,10 @@
         <image name="trash_small" width="12" height="12"/>
         <image name="zoom_in" width="16" height="16"/>
         <namedColor name="color_field_background">
-            <color white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color white="0.94999998807907104" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="color_round_button">
-            <color white="0.92155748605728149" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color white="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
