@@ -9,6 +9,7 @@
 #import "LUSelectBlogController.h"
 
 #import "LUBlogCell.h"
+#import "LUNotifications.h"
 #import "RFClient.h"
 #import "UUAlert.h"
 
@@ -74,6 +75,8 @@
 	[[NSUserDefaults standardUserDefaults] setObject:uid forKey:@"Wavelength:blog:uid"];
 	[[NSUserDefaults standardUserDefaults] setObject:name forKey:@"Wavelength:blog:name"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:kDefaultBlogsUpdatedNotification object:self];
 	
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }

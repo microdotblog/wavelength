@@ -9,7 +9,8 @@
 #ifndef LUNotifications_h
 #define LUNotifications_h
 
-#define kMicroblogConfiguredNotification        @"kMicroblogConfiguredNotification"
+static NSString* const kMicroblogConfiguredNotification = @"MicroblogConfiguredNotification";
+static NSString* const kDefaultBlogsUpdatedNotification = @"DefaultBlogsUpdatedNotification";
 
 static NSString* const kReplaceSegmentNotification = @"ReplaceSegmentNotification";
 static NSString* const kReplaceSegmentOriginalKey = @"original"; // LUSegment

@@ -14,20 +14,15 @@
 #import "LUNotifications.h"
 #import "UUAlert.h"
 
-@interface LUSettingsViewController ()
-
-@end
-
 @implementation LUSettingsViewController
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
 	
-    self.navigationItem.title = @"Settings";
-
-	self.versionNumber.text = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
-
+	[self setupTitleAndVersion];
+	[self setupNotifications];
+	
 	[self updateAppearance];
 }
 
@@ -36,6 +31,17 @@
 	[super viewWillAppear:animated];
 	
 	[self updateAppearance];
+}
+
+- (void) setupTitleAndVersion
+{
+	self.navigationItem.title = @"Settings";
+	self.versionNumber.text = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+}
+
+- (void) setupNotifications
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultBlogsUpdatedNotification:) name:kDefaultBlogsUpdatedNotification object:nil];
 }
 
 - (void) updateAppearance
@@ -68,6 +74,11 @@
 		self.auphonicName.text = @"Auphonic.com";
 		[self.auphonicButton setTitle:@"Sign In" forState:UIControlStateNormal];
 	}
+}
+
+- (void) defaultBlogsUpdatedNotification:(NSNotification *)notification
+{
+	[self updateAppearance];
 }
 
 - (IBAction) onLogin:(id)sender
