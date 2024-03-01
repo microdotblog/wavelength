@@ -42,7 +42,7 @@ then
 
 		if [ "$ARCH" = "i386" -o "$ARCH" = "x86_64" ]
 		then
-		    PLATFORM="iPhoneSimulator"
+		    PLATFORM="iPhone"
 		    if [ "$ARCH" = "x86_64" ]
 		    then
 		    	SIMULATOR="-mios-simulator-version-min=7.0"
@@ -52,8 +52,8 @@ then
                         HOST=i386-apple-darwin
 		    fi
 		else
-		    PLATFORM="iPhoneSimulator"
-			SIMULATOR="-mios-simulator-version-min=7.0"
+		    PLATFORM="iPhone"
+			SIMULATOR=
                     HOST=arm-apple-darwin
 		fi
 
