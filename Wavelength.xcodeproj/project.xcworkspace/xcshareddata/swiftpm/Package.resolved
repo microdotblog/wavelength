@@ -1,0 +1,59 @@
+{
+  "pins" : [
+    {
+      "identity" : "snippets",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microdotblog/snippets",
+      "state" : {
+        "revision" : "85c1657f857e6176a0d6baccd600f8825b77d78a",
+        "version" : "1.1.4"
+      }
+    },
+    {
+      "identity" : "uuswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SilverPineSoftware/UUSwift.git",
+      "state" : {
+        "revision" : "d2cb8b86e8c4a928a38c8fa3b51851e4b66c970e",
+        "version" : "1.1.11"
+      }
+    },
+    {
+      "identity" : "uuswiftcore",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SilverPineSoftware/UUSwiftCore",
+      "state" : {
+        "revision" : "20859a9a2d9349804c7cdaf229fc66daca65e322",
+        "version" : "1.1.9"
+      }
+    },
+    {
+      "identity" : "uuswiftimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SilverPineSoftware/UUSwiftImage",
+      "state" : {
+        "revision" : "d84c524b4d00ce6f2b985d1fbfabfc17a7acd41a",
+        "version" : "1.1.2"
+      }
+    },
+    {
+      "identity" : "uuswiftnetworking",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SilverPineSoftware/UUSwiftNetworking",
+      "state" : {
+        "revision" : "62b16d4bdbf12a95d759915105072da2484ecd1f",
+        "version" : "1.3.8"
+      }
+    },
+    {
+      "identity" : "uuswiftux",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SilverPineSoftware/UUSwiftUX",
+      "state" : {
+        "revision" : "ae493b6001f69371c498f440cf8c20c26b5cc9cc",
+        "version" : "1.0.10"
+      }
+    }
+  ],
+  "version" : 2
+}

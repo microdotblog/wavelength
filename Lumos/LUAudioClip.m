@@ -7,7 +7,7 @@
 //
 
 #import "LUAudioClip.h"
-#import <EZAudio/EZAudio.h>
+#import "EZAudio.h"
 #import "UUDate.h"
 
 @import AVFoundation;

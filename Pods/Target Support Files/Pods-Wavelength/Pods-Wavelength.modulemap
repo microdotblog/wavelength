@@ -1,6 +1,0 @@
-framework module Pods_Wavelength {
-  umbrella header "Pods-Wavelength-umbrella.h"
-
-  export *
-  module * { export * }
-}

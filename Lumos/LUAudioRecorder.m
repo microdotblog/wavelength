@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LUNotifications.h"
 #import "LUAudioRecorder.h"
-#import <EZAudio/EZAudio.h>
+#import "EZAudio.h"
 #import "UUDate.h"
 #import "UUString.h"
 #import "UUColor.h"
