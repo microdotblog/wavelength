@@ -12,6 +12,8 @@
 		4B01D4E72075E24D00FD8A00 /* LUSelectBlogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B01D4E62075E24D00FD8A00 /* LUSelectBlogController.m */; };
 		4B01D4EA2075E5C100FD8A00 /* LUBlogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B01D4E92075E5C100FD8A00 /* LUBlogCell.m */; };
 		4B01D4ED2075F6DC00FD8A00 /* Blogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B01D4EB2075F6DC00FD8A00 /* Blogs.storyboard */; };
+		4B024E602B9232D5002E0033 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B024E5E2B9232D5002E0033 /* ExtAudioConverter.m */; };
+		4B024E632B92331F002E0033 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B024E622B92331F002E0033 /* libmp3lame.a */; };
 		4B0BB179207DCB6A00A16FDD /* LUNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BB178207DCB6A00A16FDD /* LUNavigationController.m */; };
 		4B18F1BD206E0E6100A91731 /* LUAuphonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BC206E0E6100A91731 /* LUAuphonic.m */; };
 		4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BF206E951200A91731 /* LUAuphonicController.m */; };
@@ -108,6 +110,9 @@
 		4B01D4E82075E5C100FD8A00 /* LUBlogCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUBlogCell.h; sourceTree = "<group>"; };
 		4B01D4E92075E5C100FD8A00 /* LUBlogCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUBlogCell.m; sourceTree = "<group>"; };
 		4B01D4EC2075F6DC00FD8A00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Blogs.storyboard; sourceTree = "<group>"; };
+		4B024E5E2B9232D5002E0033 /* ExtAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtAudioConverter.m; path = shared/ExtAudioFileConverter/ExtAudioConverter/ExtAudioConverter/ExtAudioConverter.m; sourceTree = "<group>"; };
+		4B024E5F2B9232D5002E0033 /* ExtAudioConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtAudioConverter.h; path = shared/ExtAudioFileConverter/ExtAudioConverter/ExtAudioConverter/ExtAudioConverter.h; sourceTree = "<group>"; };
+		4B024E622B92331F002E0033 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = shared/ExtAudioFileConverter/ExtAudioConverter/libmp3lame.a; sourceTree = "<group>"; };
 		4B0BB177207DCB6A00A16FDD /* LUNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUNavigationController.h; sourceTree = "<group>"; };
 		4B0BB178207DCB6A00A16FDD /* LUNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUNavigationController.m; sourceTree = "<group>"; };
 		4B18F1BB206E0E6100A91731 /* LUAuphonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonic.h; sourceTree = "<group>"; };
@@ -248,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C58A2EDD2075368500DB0E04 /* WebKit.framework in Frameworks */,
+				4B024E632B92331F002E0033 /* libmp3lame.a in Frameworks */,
 				C527BEA42B91590E008E2B74 /* UUSwiftUX in Frameworks */,
 				C527BE9E2B9158EA008E2B74 /* UUSwiftNetworking in Frameworks */,
 				C58A2EBA20729B8E00DB0E04 /* CloudKit.framework in Frameworks */,
@@ -260,6 +266,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B024E612B9232DB002E0033 /* ExtAudioConverter */ = {
+			isa = PBXGroup;
+			children = (
+				4B024E5F2B9232D5002E0033 /* ExtAudioConverter.h */,
+				4B024E5E2B9232D5002E0033 /* ExtAudioConverter.m */,
+			);
+			name = ExtAudioConverter;
+			sourceTree = "<group>";
+		};
 		4B74C963205D758B0050A105 /* Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +354,7 @@
 		C54C8F642065A328007F7565 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4B024E612B9232DB002E0033 /* ExtAudioConverter */,
 				C527BEEA2B915CF1008E2B74 /* DisPlayers-Audio-Visualizers */,
 				C527BEB42B915BDE008E2B74 /* EZAudio */,
 				C54C8F842065A3B6007F7565 /* PopoverView */,
@@ -411,6 +427,7 @@
 			children = (
 				C58A2EDC2075368500DB0E04 /* WebKit.framework */,
 				C58A2EB920729B8E00DB0E04 /* CloudKit.framework */,
+				4B024E622B92331F002E0033 /* libmp3lame.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -616,6 +633,7 @@
 				C54C8F702065A350007F7565 /* UUDictionary.m in Sources */,
 				C54C8F972065B233007F7565 /* RFSettings.m in Sources */,
 				C527BF002B915D11008E2B74 /* DPRollingEqualizerView.m in Sources */,
+				4B024E602B9232D5002E0033 /* ExtAudioConverter.m in Sources */,
 				C527BEE32B915C9E008E2B74 /* EZAudio.m in Sources */,
 				C527BED72B915C9E008E2B74 /* EZAudioPlotGL.m in Sources */,
 				C54C8F942065B192007F7565 /* RFMicropub.m in Sources */,
