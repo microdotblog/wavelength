@@ -58,7 +58,7 @@
 
 - (void) setupAppearance
 {
-	self.window.tintColor = [UIColor colorWithRed:0.510 green:0.698 blue:0.875 alpha:1.000];
+	self.window.tintColor = [UIColor colorNamed:@"color_tint"];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
