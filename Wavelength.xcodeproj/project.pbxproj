@@ -12,8 +12,6 @@
 		4B01D4E72075E24D00FD8A00 /* LUSelectBlogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B01D4E62075E24D00FD8A00 /* LUSelectBlogController.m */; };
 		4B01D4EA2075E5C100FD8A00 /* LUBlogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B01D4E92075E5C100FD8A00 /* LUBlogCell.m */; };
 		4B01D4ED2075F6DC00FD8A00 /* Blogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B01D4EB2075F6DC00FD8A00 /* Blogs.storyboard */; };
-		4B024E602B9232D5002E0033 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B024E5E2B9232D5002E0033 /* ExtAudioConverter.m */; };
-		4B024E632B92331F002E0033 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B024E622B92331F002E0033 /* libmp3lame.a */; };
 		4B0BB179207DCB6A00A16FDD /* LUNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BB178207DCB6A00A16FDD /* LUNavigationController.m */; };
 		4B18F1BD206E0E6100A91731 /* LUAuphonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BC206E0E6100A91731 /* LUAuphonic.m */; };
 		4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B18F1BF206E951200A91731 /* LUAuphonicController.m */; };
@@ -25,6 +23,8 @@
 		4B74C959205A3F4A0050A105 /* LUSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C958205A3F4A0050A105 /* LUSegmentCell.m */; };
 		4B881CA72061492C008A4C13 /* LUSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA62061492B008A4C13 /* LUSplitController.m */; };
 		4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA920614AA2008A4C13 /* LUSegment.m */; };
+		4B8F42192B925C140062BD12 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8F42172B925C140062BD12 /* ExtAudioConverter.m */; };
+		4B8F421B2B925C260062BD12 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B8F421A2B925C260062BD12 /* libmp3lame.a */; };
 		C527BE9B2B915895008E2B74 /* UUSwiftCore in Frameworks */ = {isa = PBXBuildFile; productRef = C527BE9A2B915895008E2B74 /* UUSwiftCore */; };
 		C527BE9E2B9158EA008E2B74 /* UUSwiftNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = C527BE9D2B9158EA008E2B74 /* UUSwiftNetworking */; };
 		C527BEA12B915904008E2B74 /* UUSwiftImage in Frameworks */ = {isa = PBXBuildFile; productRef = C527BEA02B915904008E2B74 /* UUSwiftImage */; };
@@ -110,9 +110,6 @@
 		4B01D4E82075E5C100FD8A00 /* LUBlogCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUBlogCell.h; sourceTree = "<group>"; };
 		4B01D4E92075E5C100FD8A00 /* LUBlogCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUBlogCell.m; sourceTree = "<group>"; };
 		4B01D4EC2075F6DC00FD8A00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Blogs.storyboard; sourceTree = "<group>"; };
-		4B024E5E2B9232D5002E0033 /* ExtAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtAudioConverter.m; path = shared/ExtAudioFileConverter/ExtAudioConverter/ExtAudioConverter/ExtAudioConverter.m; sourceTree = "<group>"; };
-		4B024E5F2B9232D5002E0033 /* ExtAudioConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtAudioConverter.h; path = shared/ExtAudioFileConverter/ExtAudioConverter/ExtAudioConverter/ExtAudioConverter.h; sourceTree = "<group>"; };
-		4B024E622B92331F002E0033 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = shared/ExtAudioFileConverter/ExtAudioConverter/libmp3lame.a; sourceTree = "<group>"; };
 		4B0BB177207DCB6A00A16FDD /* LUNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUNavigationController.h; sourceTree = "<group>"; };
 		4B0BB178207DCB6A00A16FDD /* LUNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUNavigationController.m; sourceTree = "<group>"; };
 		4B18F1BB206E0E6100A91731 /* LUAuphonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUAuphonic.h; sourceTree = "<group>"; };
@@ -135,6 +132,9 @@
 		4B881CA62061492B008A4C13 /* LUSplitController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSplitController.m; sourceTree = "<group>"; };
 		4B881CA820614AA2008A4C13 /* LUSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUSegment.h; sourceTree = "<group>"; };
 		4B881CA920614AA2008A4C13 /* LUSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSegment.m; sourceTree = "<group>"; };
+		4B8F42172B925C140062BD12 /* ExtAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtAudioConverter.m; path = shared/ExtAudioFileConverter/ExtAudioConverter.m; sourceTree = "<group>"; };
+		4B8F42182B925C140062BD12 /* ExtAudioConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtAudioConverter.h; path = shared/ExtAudioFileConverter/ExtAudioConverter.h; sourceTree = "<group>"; };
+		4B8F421A2B925C260062BD12 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = shared/ExtAudioFileConverter/lame/libmp3lame.a; sourceTree = "<group>"; };
 		C527BEB52B915C9D008E2B74 /* EZAudioPlotGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioPlotGL.m; path = shared/EZAudio/EZAudioPlotGL.m; sourceTree = "<group>"; };
 		C527BEB62B915C9D008E2B74 /* EZAudioFFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioFFT.m; path = shared/EZAudio/EZAudioFFT.m; sourceTree = "<group>"; };
 		C527BEB72B915C9D008E2B74 /* EZAudioFloatData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatData.h; path = shared/EZAudio/EZAudioFloatData.h; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C58A2EDD2075368500DB0E04 /* WebKit.framework in Frameworks */,
-				4B024E632B92331F002E0033 /* libmp3lame.a in Frameworks */,
+				4B8F421B2B925C260062BD12 /* libmp3lame.a in Frameworks */,
 				C527BEA42B91590E008E2B74 /* UUSwiftUX in Frameworks */,
 				C527BE9E2B9158EA008E2B74 /* UUSwiftNetworking in Frameworks */,
 				C58A2EBA20729B8E00DB0E04 /* CloudKit.framework in Frameworks */,
@@ -269,8 +269,8 @@
 		4B024E612B9232DB002E0033 /* ExtAudioConverter */ = {
 			isa = PBXGroup;
 			children = (
-				4B024E5F2B9232D5002E0033 /* ExtAudioConverter.h */,
-				4B024E5E2B9232D5002E0033 /* ExtAudioConverter.m */,
+				4B8F42182B925C140062BD12 /* ExtAudioConverter.h */,
+				4B8F42172B925C140062BD12 /* ExtAudioConverter.m */,
 			);
 			name = ExtAudioConverter;
 			sourceTree = "<group>";
@@ -427,7 +427,7 @@
 			children = (
 				C58A2EDC2075368500DB0E04 /* WebKit.framework */,
 				C58A2EB920729B8E00DB0E04 /* CloudKit.framework */,
-				4B024E622B92331F002E0033 /* libmp3lame.a */,
+				4B8F421A2B925C260062BD12 /* libmp3lame.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -633,7 +633,7 @@
 				C54C8F702065A350007F7565 /* UUDictionary.m in Sources */,
 				C54C8F972065B233007F7565 /* RFSettings.m in Sources */,
 				C527BF002B915D11008E2B74 /* DPRollingEqualizerView.m in Sources */,
-				4B024E602B9232D5002E0033 /* ExtAudioConverter.m in Sources */,
+				4B8F42192B925C140062BD12 /* ExtAudioConverter.m in Sources */,
 				C527BEE32B915C9E008E2B74 /* EZAudio.m in Sources */,
 				C527BED72B915C9E008E2B74 /* EZAudioPlotGL.m in Sources */,
 				C54C8F942065B192007F7565 /* RFMicropub.m in Sources */,
@@ -849,6 +849,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shared/ExtAudioFileConverter/ExtAudioConverter",
+					"$(PROJECT_DIR)/shared/ExtAudioFileConverter/lame",
 				);
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.wavelength;
@@ -879,6 +880,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/shared/ExtAudioFileConverter/ExtAudioConverter",
+					"$(PROJECT_DIR)/shared/ExtAudioFileConverter/lame",
 				);
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.wavelength;
