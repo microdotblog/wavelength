@@ -107,15 +107,15 @@
 		NSDictionary* info = [self.blogs objectAtIndex:indexPath.row];
 		cell.nameField.text = [info objectForKey:@"name"];
 		if ([[info objectForKey:@"microblog-audio"] boolValue]) {
-			cell.subtitleField.text = @"This microblog is ready for podcasting.";
+//			cell.subtitleField.text = @"This microblog is ready for podcasting.";
 		}
 		else {
-			cell.subtitleField.text = @"Tap to upgrade this microblog for podcasting.";
+//			cell.subtitleField.text = @"Tap to upgrade this microblog for podcasting.";
 		}
 	}
 	else {
 		cell.nameField.text = @"New Blog + Microcast";
-		cell.subtitleField.text = @"Create a new microblog for podcasting.";
+//		cell.subtitleField.text = @"Create a new microblog for podcasting.";
 	}
 	
 	return cell;

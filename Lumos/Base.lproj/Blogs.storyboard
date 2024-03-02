@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +14,7 @@
             <objects>
                 <navigationController storyboardIdentifier="BlogsNavigation" id="2VV-Hk-z9k" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vf9-lN-tqn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -33,26 +33,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a blog to use for your podcast. Hosted microblogs can be upgraded to allow audio hosting and podcast creation." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqd-H1-QxY">
-                                <rect key="frame" x="18" y="62" width="319" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a blog to use for your podcast. Requires a subscription to Micro.blog Premium." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqd-H1-QxY">
+                                <rect key="frame" x="18" y="82" width="319" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5gb-FS-LFL">
-                                <rect key="frame" x="20" y="134" width="335" height="513"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5gb-FS-LFL">
+                                <rect key="frame" x="20" y="154" width="335" height="493"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlogCell" rowHeight="80" id="K7z-hi-yic" customClass="LUBlogCell">
-                                        <rect key="frame" x="0.0" y="24.5" width="335" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlogCell" rowHeight="60" id="K7z-hi-yic" customClass="LUBlogCell">
+                                        <rect key="frame" x="0.0" y="50" width="335" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K7z-hi-yic" id="2T0-5V-TjJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="manton.micro.blog" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4de-qd-fDB">
-                                                    <rect key="frame" x="16" y="17" width="303" height="21"/>
+                                                    <rect key="frame" x="16" y="19.5" width="303" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="5ae-wl-yJS"/>
                                                     </constraints>
@@ -60,29 +60,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade this microblog." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaS-20-a8V">
-                                                    <rect key="frame" x="16" y="44" width="303" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="IEX-kX-R7K"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="XaS-20-a8V" firstAttribute="trailing" secondItem="2T0-5V-TjJ" secondAttribute="trailingMargin" id="0K1-Lc-SFr"/>
-                                                <constraint firstItem="XaS-20-a8V" firstAttribute="leading" secondItem="2T0-5V-TjJ" secondAttribute="leadingMargin" id="55v-JS-JS2"/>
-                                                <constraint firstItem="4de-qd-fDB" firstAttribute="top" secondItem="2T0-5V-TjJ" secondAttribute="topMargin" constant="6" id="ADm-qV-9jZ"/>
-                                                <constraint firstItem="XaS-20-a8V" firstAttribute="top" secondItem="4de-qd-fDB" secondAttribute="bottom" constant="6" id="AOy-iT-BUC"/>
                                                 <constraint firstItem="4de-qd-fDB" firstAttribute="leading" secondItem="2T0-5V-TjJ" secondAttribute="leadingMargin" id="urQ-bK-iP2"/>
+                                                <constraint firstItem="4de-qd-fDB" firstAttribute="centerY" secondItem="2T0-5V-TjJ" secondAttribute="centerY" id="yiw-7a-Jty"/>
                                                 <constraint firstItem="4de-qd-fDB" firstAttribute="trailing" secondItem="2T0-5V-TjJ" secondAttribute="trailingMargin" id="zM4-Bf-Kvz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="nameField" destination="4de-qd-fDB" id="N1W-8G-FEx"/>
-                                            <outlet property="subtitleField" destination="XaS-20-a8V" id="qCa-Rb-4Xf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -92,7 +79,7 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ng2-WK-mEA">
-                                <rect key="frame" x="345" y="79" width="20" height="20"/>
+                                <rect key="frame" x="345" y="99" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="HdY-xZ-jPf"/>
                                     <constraint firstAttribute="height" constant="20" id="z1B-Q9-lOi"/>
@@ -139,13 +126,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new hosted microblog on Micro.blog with support for podcasting." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUa-Is-CfR">
-                                <rect key="frame" x="16" y="62" width="343" height="36"/>
+                                <rect key="frame" x="16" y="82" width="343" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMk-YA-ZdN">
-                                <rect key="frame" x="0.0" y="117" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="137" width="375" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="yoursite" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FXy-cc-oJu">
                                         <rect key="frame" x="13" y="15" width="162.5" height="22"/>
@@ -177,7 +164,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10/month after a 10-day trial." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8E-BH-TeN">
-                                <rect key="frame" x="16" y="183" width="343" height="18"/>
+                                <rect key="frame" x="16" y="203" width="343" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -216,7 +203,7 @@
     </scenes>
     <resources>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
