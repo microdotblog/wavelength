@@ -23,8 +23,8 @@
 		4B74C959205A3F4A0050A105 /* LUSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C958205A3F4A0050A105 /* LUSegmentCell.m */; };
 		4B881CA72061492C008A4C13 /* LUSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA62061492B008A4C13 /* LUSplitController.m */; };
 		4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA920614AA2008A4C13 /* LUSegment.m */; };
-		4B8F42192B925C140062BD12 /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8F42172B925C140062BD12 /* ExtAudioConverter.m */; };
-		4B8F421B2B925C260062BD12 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B8F421A2B925C260062BD12 /* libmp3lame.a */; };
+		4BB4E4832B936FB70069B917 /* FFmpeg-iOS-Lame in Frameworks */ = {isa = PBXBuildFile; productRef = 4BB4E4822B936FB70069B917 /* FFmpeg-iOS-Lame */; };
+		4BB4E4862B936FF90069B917 /* LUAudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4E4852B936FF90069B917 /* LUAudioFile.swift */; };
 		C527BE9B2B915895008E2B74 /* UUSwiftCore in Frameworks */ = {isa = PBXBuildFile; productRef = C527BE9A2B915895008E2B74 /* UUSwiftCore */; };
 		C527BE9E2B9158EA008E2B74 /* UUSwiftNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = C527BE9D2B9158EA008E2B74 /* UUSwiftNetworking */; };
 		C527BEA12B915904008E2B74 /* UUSwiftImage in Frameworks */ = {isa = PBXBuildFile; productRef = C527BEA02B915904008E2B74 /* UUSwiftImage */; };
@@ -134,7 +134,8 @@
 		4B881CA920614AA2008A4C13 /* LUSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSegment.m; sourceTree = "<group>"; };
 		4B8F42172B925C140062BD12 /* ExtAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtAudioConverter.m; path = shared/ExtAudioFileConverter/ExtAudioConverter.m; sourceTree = "<group>"; };
 		4B8F42182B925C140062BD12 /* ExtAudioConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtAudioConverter.h; path = shared/ExtAudioFileConverter/ExtAudioConverter.h; sourceTree = "<group>"; };
-		4B8F421A2B925C260062BD12 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = shared/ExtAudioFileConverter/lame/libmp3lame.a; sourceTree = "<group>"; };
+		4BB4E4842B936FF90069B917 /* Wavelength-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wavelength-Bridging-Header.h"; sourceTree = "<group>"; };
+		4BB4E4852B936FF90069B917 /* LUAudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUAudioFile.swift; sourceTree = "<group>"; };
 		C527BEB52B915C9D008E2B74 /* EZAudioPlotGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioPlotGL.m; path = shared/EZAudio/EZAudioPlotGL.m; sourceTree = "<group>"; };
 		C527BEB62B915C9D008E2B74 /* EZAudioFFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioFFT.m; path = shared/EZAudio/EZAudioFFT.m; sourceTree = "<group>"; };
 		C527BEB72B915C9D008E2B74 /* EZAudioFloatData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatData.h; path = shared/EZAudio/EZAudioFloatData.h; sourceTree = "<group>"; };
@@ -253,8 +254,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C58A2EDD2075368500DB0E04 /* WebKit.framework in Frameworks */,
-				4B8F421B2B925C260062BD12 /* libmp3lame.a in Frameworks */,
 				C527BEA42B91590E008E2B74 /* UUSwiftUX in Frameworks */,
+				4BB4E4832B936FB70069B917 /* FFmpeg-iOS-Lame in Frameworks */,
 				C527BE9E2B9158EA008E2B74 /* UUSwiftNetworking in Frameworks */,
 				C58A2EBA20729B8E00DB0E04 /* CloudKit.framework in Frameworks */,
 				C527BEA12B915904008E2B74 /* UUSwiftImage in Frameworks */,
@@ -427,7 +428,6 @@
 			children = (
 				C58A2EDC2075368500DB0E04 /* WebKit.framework */,
 				C58A2EB920729B8E00DB0E04 /* CloudKit.framework */,
-				4B8F421A2B925C260062BD12 /* libmp3lame.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -502,7 +502,9 @@
 				C58A2EDA2075347A00DB0E04 /* LUCreditsViewController.m */,
 				4B0BB177207DCB6A00A16FDD /* LUNavigationController.h */,
 				4B0BB178207DCB6A00A16FDD /* LUNavigationController.m */,
+				4BB4E4852B936FF90069B917 /* LUAudioFile.swift */,
 				C5DC32BD2057810C00D0594B /* Supporting Files */,
+				4BB4E4842B936FF90069B917 /* Wavelength-Bridging-Header.h */,
 			);
 			path = Lumos;
 			sourceTree = "<group>";
@@ -543,6 +545,7 @@
 				C527BEA02B915904008E2B74 /* UUSwiftImage */,
 				C527BEA32B91590E008E2B74 /* UUSwiftUX */,
 				C527BEA62B915930008E2B74 /* Snippets */,
+				4BB4E4822B936FB70069B917 /* FFmpeg-iOS-Lame */,
 			);
 			productName = Lumos;
 			productReference = C5DC3297205774A600D0594B /* Wavelength.app */;
@@ -559,6 +562,7 @@
 				TargetAttributes = {
 					C5DC3296205774A600D0594B = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1510;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -592,6 +596,7 @@
 				C527BE9F2B915904008E2B74 /* XCRemoteSwiftPackageReference "UUSwiftImage" */,
 				C527BEA22B91590E008E2B74 /* XCRemoteSwiftPackageReference "UUSwiftUX" */,
 				C527BEA52B915930008E2B74 /* XCRemoteSwiftPackageReference "snippets" */,
+				4BB4E4812B936FB70069B917 /* XCRemoteSwiftPackageReference "FFmpeg-iOS-Lame" */,
 			);
 			productRefGroup = C5DC3298205774A600D0594B /* Products */;
 			projectDirPath = "";
@@ -633,12 +638,12 @@
 				C54C8F702065A350007F7565 /* UUDictionary.m in Sources */,
 				C54C8F972065B233007F7565 /* RFSettings.m in Sources */,
 				C527BF002B915D11008E2B74 /* DPRollingEqualizerView.m in Sources */,
-				4B8F42192B925C140062BD12 /* ExtAudioConverter.m in Sources */,
 				C527BEE32B915C9E008E2B74 /* EZAudio.m in Sources */,
 				C527BED72B915C9E008E2B74 /* EZAudioPlotGL.m in Sources */,
 				C54C8F942065B192007F7565 /* RFMicropub.m in Sources */,
 				C527BEFE2B915D11008E2B74 /* DPWaveEqualizerView.m in Sources */,
 				4B0BB179207DCB6A00A16FDD /* LUNavigationController.m in Sources */,
+				4BB4E4862B936FF90069B917 /* LUAudioFile.swift in Sources */,
 				4B01D4E72075E24D00FD8A00 /* LUSelectBlogController.m in Sources */,
 				C54C8F722065A350007F7565 /* UUString.m in Sources */,
 				C527BEE62B915C9E008E2B74 /* EZAudioPlayer.m in Sources */,
@@ -831,6 +836,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Wavelength.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 25;
@@ -854,6 +860,9 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.wavelength;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lumos/Wavelength-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -862,6 +871,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Wavelength.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 25;
@@ -885,6 +895,8 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = blog.micro.wavelength;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lumos/Wavelength-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -913,6 +925,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4BB4E4812B936FB70069B917 /* XCRemoteSwiftPackageReference "FFmpeg-iOS-Lame" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kewlbear/FFmpeg-iOS-Lame";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		C527BE992B915895008E2B74 /* XCRemoteSwiftPackageReference "UUSwiftCore" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SilverPineSoftware/UUSwiftCore";
@@ -956,6 +976,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4BB4E4822B936FB70069B917 /* FFmpeg-iOS-Lame */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4BB4E4812B936FB70069B917 /* XCRemoteSwiftPackageReference "FFmpeg-iOS-Lame" */;
+			productName = "FFmpeg-iOS-Lame";
+		};
 		C527BE9A2B915895008E2B74 /* UUSwiftCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C527BE992B915895008E2B74 /* XCRemoteSwiftPackageReference "UUSwiftCore" */;

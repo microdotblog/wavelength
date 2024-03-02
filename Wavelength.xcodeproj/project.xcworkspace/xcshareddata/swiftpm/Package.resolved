@@ -1,6 +1,24 @@
 {
   "pins" : [
     {
+      "identity" : "ffmpeg-ios-lame",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kewlbear/FFmpeg-iOS-Lame",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1808fa5a1263c5e216646cd8421fc7dcb70520cc"
+      }
+    },
+    {
+      "identity" : "ffmpeg-ios-support",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kewlbear/FFmpeg-iOS-Support",
+      "state" : {
+        "revision" : "be3bd9149ac53760e8725652eee99c405b2be47a",
+        "version" : "0.0.2"
+      }
+    },
+    {
       "identity" : "snippets",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/microdotblog/snippets",
