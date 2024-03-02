@@ -550,17 +550,21 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zIf-T2-fex" customClass="LUDeleteDropView">
                                         <rect key="frame" x="279" y="22" width="56" height="56"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash" translatesAutoresizingMaskIntoConstraints="NO" id="pqR-7L-rTk">
-                                                <rect key="frame" x="20" y="20" width="16" height="16"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pqR-7L-rTk">
+                                                <rect key="frame" x="18.5" y="17" width="19.5" height="20.5"/>
+                                                <color key="tintColor" name="color_trash_normal"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="color_round_button"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="56" id="EAU-Gt-S4R"/>
                                             <constraint firstAttribute="height" constant="56" id="O2A-wU-RAV"/>
                                             <constraint firstItem="pqR-7L-rTk" firstAttribute="centerX" secondItem="zIf-T2-fex" secondAttribute="centerX" id="QtT-XA-LTs"/>
                                             <constraint firstItem="pqR-7L-rTk" firstAttribute="centerY" secondItem="zIf-T2-fex" secondAttribute="centerY" id="lSb-Bv-DFs"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="iconView" destination="pqR-7L-rTk" id="HBv-cC-JDQ"/>
+                                        </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Microphone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVd-20-clL">
                                         <rect key="frame" x="100" y="78" width="175" height="21"/>
@@ -976,18 +980,18 @@
             <objects>
                 <viewController id="rbR-yE-SLm" customClass="LUPostController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wbd-Zx-YQW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSf-pX-uX4">
-                                <rect key="frame" x="-1" y="56" width="377" height="50"/>
+                                <rect key="frame" x="-1" y="64" width="377" height="50"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dD8-EE-8tl"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-Os-aMO">
-                                <rect key="frame" x="16" y="66" width="343" height="30"/>
+                                <rect key="frame" x="16" y="74" width="343" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="TKf-zJ-bHZ"/>
                                 </constraints>
@@ -995,13 +999,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1HZ-QX-Oyy">
-                                <rect key="frame" x="10" y="116" width="355" height="457"/>
+                                <rect key="frame" x="10" y="124" width="355" height="469"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TB4-ZF-HVb">
-                                <rect key="frame" x="0.0" y="603" width="365" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="365" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-qP-RHr">
                                         <rect key="frame" x="35" y="0.0" width="292" height="44"/>
@@ -1063,7 +1067,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="podcast.micro.blog" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SkV-J3-qcw">
-                                <rect key="frame" x="10" y="581" width="355" height="21"/>
+                                <rect key="frame" x="10" y="601" width="355" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="1AC-c7-n4Z"/>
                                 </constraints>
@@ -1296,7 +1300,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fbK-IJ-eUI"/>
+        <segue reference="cCQ-T0-tZd"/>
         <segue reference="pR2-pI-Ygd"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1310,7 +1314,7 @@
         <image name="play" width="32" height="32"/>
         <image name="play_noborder" width="32" height="32"/>
         <image name="split" width="16" height="16"/>
-        <image name="trash" width="16" height="16"/>
+        <image name="trash.fill" catalog="system" width="32" height="32"/>
         <image name="trash_small" width="12" height="12"/>
         <image name="zoom_in" width="16" height="16"/>
         <namedColor name="color_field_background">
@@ -1319,17 +1323,20 @@
         <namedColor name="color_round_button">
             <color white="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
+        <namedColor name="color_trash_normal">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="separatorColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

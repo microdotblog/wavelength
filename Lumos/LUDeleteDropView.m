@@ -21,7 +21,6 @@
 	self.interactions = @[ self.dropInteraction ];
 
 	self.layer.cornerRadius = 28.0;
-	self.layer.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
 	self.clipsToBounds = YES;
 }
 
@@ -32,12 +31,14 @@
 
 - (void) dropInteraction:(UIDropInteraction *)interaction sessionDidEnter:(id<UIDropSession>)session
 {
-	self.layer.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1.0].CGColor;
+	self.backgroundColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:1.0];
+	self.iconView.tintColor = [UIColor colorNamed:@"color_trash_highlighted"];
 }
 
 - (void) dropInteraction:(UIDropInteraction *)interaction sessionDidExit:(id<UIDropSession>)session
 {
-	self.layer.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
+	self.backgroundColor = [UIColor colorNamed:@"color_round_button"];
+	self.iconView.tintColor = [UIColor colorNamed:@"color_trash_normal"];
 }
 
 - (UIDropProposal *) dropInteraction:(UIDropInteraction *)interaction sessionDidUpdate:(id<UIDropSession>)session

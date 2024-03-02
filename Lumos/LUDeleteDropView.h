@@ -10,6 +10,8 @@
 
 @interface LUDeleteDropView : UIView <UIDropInteractionDelegate>
 
+@property (strong, nonatomic) IBOutlet UIImageView* iconView;
+
 @property (strong, nonatomic) UIDropInteraction* dropInteraction;
 
 @end
