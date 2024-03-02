@@ -18,7 +18,7 @@
 #import "LUExportController.h"
 #import "LUExportTransition.h"
 #import "LUNotifications.h"
-#import <EZAudio/EZAudio.h>
+#import "EZAudio.h"
 #import "SSKeychain.h"
 #import "LUNotifications.h"
 #import "UUAlert.h"

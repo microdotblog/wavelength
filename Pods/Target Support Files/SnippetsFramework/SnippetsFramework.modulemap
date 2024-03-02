@@ -1,6 +1,0 @@
-framework module Snippets {
-  umbrella header "SnippetsFramework-umbrella.h"
-
-  export *
-  module * { export * }
-}

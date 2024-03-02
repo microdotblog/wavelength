@@ -10,7 +10,8 @@
 #import "EZAudio.h"
 #import "UUString.h"
 #import "UUDate.h"
-#import "ExtAudioConverter.h"
+//#import "ExtAudioConverter.h"
+#import "Wavelength-Swift.h"
 
 @interface LUEpisode()
 	@property (strong, nonatomic) NSMutableArray* audioSegmentPaths;
@@ -230,20 +231,23 @@
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		NSString* mp3_path = [self.exportedPath stringByDeletingLastPathComponent];
 		mp3_path = [mp3_path stringByAppendingPathComponent:@"exported.mp3"];
-		[[NSFileManager defaultManager] removeItemAtPath:mp3_path error:NULL];
+
+		[LUAudioFile convertToMP3:self.exportedPath outputFile:mp3_path];
 		
-		ExtAudioConverter* converter = [[ExtAudioConverter alloc] init];
-		converter.inputFile = self.exportedPath;
-		converter.outputFile = mp3_path;
+//		[[NSFileManager defaultManager] removeItemAtPath:mp3_path error:NULL];
+		
+//		ExtAudioConverter* converter = [[ExtAudioConverter alloc] init];
+//		converter.inputFile = self.exportedPath;
+//		converter.outputFile = mp3_path;
 		
 		//	converter.outputSampleRate = 44100;
 		//	converter.outputBitDepth = BitDepth_16;
 		
 		//	converter.outputNumberChannels = 1;
-		converter.outputFormatID = kAudioFormatMPEGLayer3;
-		converter.outputFileType = kAudioFileMP3Type;
-		
-		[converter convert];
+//		converter.outputFormatID = kAudioFormatMPEGLayer3;
+//		converter.outputFileType = kAudioFileMP3Type;
+//		
+//		[converter convert];
 		
 		handler(mp3_path);
 	});
