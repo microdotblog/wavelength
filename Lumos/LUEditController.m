@@ -310,7 +310,7 @@ static const NSString* kItemStatusContext;
 - (IBAction) addAudio:(id)sender
 {
 	CGRect r = [self.view bounds];
-	CGPoint pt = CGPointMake (r.size.width - 85, 83);
+	CGPoint pt = CGPointMake (r.size.width - 92, 95);
 	
 	self.addPopover = [PopoverView showPopoverAtPoint:pt inView:self.view withContentView:self.addPopoverView delegate:self];
 }

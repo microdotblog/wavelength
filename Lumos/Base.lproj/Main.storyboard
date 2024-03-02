@@ -727,7 +727,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NVI-j4-nAu">
-                            <rect key="frame" x="0.0" y="44" width="240" height="1"/>
+                            <rect key="frame" x="15" y="44" width="209" height="0.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="separatorColor"/>
                         </view>
