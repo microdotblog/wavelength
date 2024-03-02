@@ -132,8 +132,6 @@
 		4B881CA62061492B008A4C13 /* LUSplitController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSplitController.m; sourceTree = "<group>"; };
 		4B881CA820614AA2008A4C13 /* LUSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUSegment.h; sourceTree = "<group>"; };
 		4B881CA920614AA2008A4C13 /* LUSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSegment.m; sourceTree = "<group>"; };
-		4B8F42172B925C140062BD12 /* ExtAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtAudioConverter.m; path = shared/ExtAudioFileConverter/ExtAudioConverter.m; sourceTree = "<group>"; };
-		4B8F42182B925C140062BD12 /* ExtAudioConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtAudioConverter.h; path = shared/ExtAudioFileConverter/ExtAudioConverter.h; sourceTree = "<group>"; };
 		4BB4E4842B936FF90069B917 /* Wavelength-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wavelength-Bridging-Header.h"; sourceTree = "<group>"; };
 		4BB4E4852B936FF90069B917 /* LUAudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUAudioFile.swift; sourceTree = "<group>"; };
 		C527BEB52B915C9D008E2B74 /* EZAudioPlotGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioPlotGL.m; path = shared/EZAudio/EZAudioPlotGL.m; sourceTree = "<group>"; };
@@ -267,15 +265,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4B024E612B9232DB002E0033 /* ExtAudioConverter */ = {
-			isa = PBXGroup;
-			children = (
-				4B8F42182B925C140062BD12 /* ExtAudioConverter.h */,
-				4B8F42172B925C140062BD12 /* ExtAudioConverter.m */,
-			);
-			name = ExtAudioConverter;
-			sourceTree = "<group>";
-		};
 		4B74C963205D758B0050A105 /* Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,7 +344,6 @@
 		C54C8F642065A328007F7565 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				4B024E612B9232DB002E0033 /* ExtAudioConverter */,
 				C527BEEA2B915CF1008E2B74 /* DisPlayers-Audio-Visualizers */,
 				C527BEB42B915BDE008E2B74 /* EZAudio */,
 				C54C8F842065A3B6007F7565 /* PopoverView */,
