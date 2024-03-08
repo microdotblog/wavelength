@@ -20,7 +20,7 @@
 
 	self.durationField.text = [NSString stringWithFormat:@"%@", episode.duration];
 
-	self.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	self.previewImageView.layer.borderColor = [UIColor colorNamed:@"color_segment_border"].CGColor;
 	self.previewImageView.layer.cornerRadius = 3.0;
 	self.previewImageView.layer.borderWidth = 0.5;
 }

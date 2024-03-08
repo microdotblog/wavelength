@@ -59,7 +59,10 @@
 - (void) setupAppearance
 {
 	self.window.tintColor = [UIColor colorNamed:@"color_tint"];
-	self.window.backgroundColor = [UIColor colorNamed:@"color_theme_background"];
+
+	UIColor* c = [UIColor colorNamed:@"color_theme_background"];
+	[[UIView appearance] setBackgroundColor:c];
+	[[UINavigationBar appearance] setBarTintColor:c];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

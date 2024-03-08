@@ -17,6 +17,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i2j-18-qT7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="color_theme_background"/>
                     </navigationBar>
                     <connections>
                         <segue destination="7vi-7i-8Kg" kind="relationship" relationship="rootViewController" id="7F7-gT-hnq"/>
@@ -35,24 +36,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@cheesemaker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lt5-II-AIL">
-                                <rect key="frame" x="16" y="149" width="117.5" height="20.5"/>
+                                <rect key="frame" x="16" y="148.5" width="117.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUB-24-JuF">
-                                <rect key="frame" x="293" y="153" width="66" height="33"/>
+                                <rect key="frame" x="293" y="152.5" width="66" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Sign Out"/>
                                 <connections>
                                     <action selector="onLogin:" destination="0L5-6a-8xF" eventType="touchUpInside" id="jZW-bF-JNc"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T9g-DJ-tEb">
-                                <rect key="frame" x="0.0" y="128" width="375" height="1"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T9g-DJ-tEb">
+                                <rect key="frame" x="0.0" y="128" width="375" height="0.5"/>
                                 <color key="backgroundColor" systemColor="separatorColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="pmt-XY-zpE"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="pmt-XY-zpE"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qS3-7T-1MA">
@@ -72,7 +73,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auphonic.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjn-Wk-9tF">
-                                <rect key="frame" x="16" y="230" width="202" height="21"/>
+                                <rect key="frame" x="16" y="229" width="202" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="SJE-fn-OOT"/>
                                 </constraints>
@@ -81,7 +82,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZSF-Wg-7ef">
-                                <rect key="frame" x="290" y="243" width="69" height="30"/>
+                                <rect key="frame" x="290" y="242" width="69" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="69" id="7f2-32-64w"/>
                                     <constraint firstAttribute="height" constant="30" id="DYG-0c-fgt"/>
@@ -93,7 +94,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with an Auphonic account to post-process your audio." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDU-aU-gJJ">
-                                <rect key="frame" x="16" y="259" width="209" height="31.5"/>
+                                <rect key="frame" x="16" y="258" width="209" height="31.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="209" id="9ZY-LB-cS4"/>
                                 </constraints>
@@ -101,15 +102,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41n-9B-KlM">
-                                <rect key="frame" x="0.0" y="209" width="375" height="1"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41n-9B-KlM">
+                                <rect key="frame" x="0.0" y="208.5" width="375" height="0.5"/>
                                 <color key="backgroundColor" systemColor="separatorColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="Ua1-v8-Z2K"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="Ua1-v8-Z2K"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cheesemaker.micro.blog" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufL-Nk-o0g">
-                                <rect key="frame" x="16" y="176" width="209" height="21"/>
+                                <rect key="frame" x="16" y="175.5" width="209" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="209" id="ghw-fj-oay"/>
                                     <constraint firstAttribute="height" constant="21" id="ow8-qL-SkA"/>
@@ -127,7 +128,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeQ-Pj-zhq">
-                                <rect key="frame" x="174" y="151.5" width="105" height="36"/>
+                                <rect key="frame" x="174" y="151" width="105" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="105" id="Nc5-ks-E8W"/>
                                     <constraint firstAttribute="height" constant="36" id="dLj-45-QuT"/>
@@ -140,6 +141,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cJA-pf-jbG"/>
+                        <color key="backgroundColor" name="color_theme_background"/>
                         <constraints>
                             <constraint firstItem="ZSF-Wg-7ef" firstAttribute="leading" secondItem="xjn-Wk-9tF" secondAttribute="trailing" constant="72" id="32c-S6-UUi"/>
                             <constraint firstItem="ufL-Nk-o0g" firstAttribute="leading" secondItem="cJA-pf-jbG" secondAttribute="leading" constant="16" id="6R6-6H-BsC"/>
@@ -204,6 +206,7 @@
                             </wkWebView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aNM-2D-v51"/>
+                        <color key="backgroundColor" name="color_theme_background"/>
                         <constraints>
                             <constraint firstItem="tns-if-QQj" firstAttribute="bottom" secondItem="ibm-Yr-MAL" secondAttribute="bottom" id="2l0-Ok-lh5"/>
                             <constraint firstItem="tns-if-QQj" firstAttribute="trailing" secondItem="aNM-2D-v51" secondAttribute="trailing" id="Wbv-g1-dwT"/>
@@ -259,6 +262,7 @@
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YLx-vp-Xuf">
                                                     <rect key="frame" x="13" y="22" width="120" height="54"/>
+                                                    <color key="backgroundColor" name="color_segment_background"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="159-GZ-iZb"/>
                                                         <constraint firstAttribute="height" constant="54" id="1Uz-bv-BUz"/>
@@ -425,6 +429,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EFA-Ea-Blr">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="90"/>
+                                                    <color key="backgroundColor" name="color_segment_background"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7x-G7-hOu">
                                                     <rect key="frame" x="117" y="74" width="29" height="12"/>
@@ -759,6 +764,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aeH-YI-V4W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="color_theme_background"/>
                     </navigationBar>
                     <connections>
                         <segue destination="amd-cP-OOi" kind="relationship" relationship="rootViewController" id="lWU-ND-nc5"/>
@@ -775,6 +781,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TUg-Di-Dxt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="color_theme_background"/>
                     </navigationBar>
                     <connections>
                         <segue destination="wqu-9m-yDZ" kind="relationship" relationship="rootViewController" id="83G-dD-AbJ"/>
@@ -1297,20 +1304,20 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="cCQ-T0-tZd"/>
-        <segue reference="pR2-pI-Ygd"/>
+        <segue reference="k0j-Kr-gI3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="MicroBlogIcon" width="64" height="64"/>
-        <image name="folder.fill" catalog="system" width="128" height="96"/>
-        <image name="gearshape" catalog="system" width="128" height="123"/>
-        <image name="icloud.and.arrow.up" catalog="system" width="128" height="115"/>
+        <image name="folder.fill" catalog="system" width="32" height="32"/>
+        <image name="gearshape" catalog="system" width="32" height="32"/>
+        <image name="icloud.and.arrow.up" catalog="system" width="32" height="32"/>
         <image name="mic" width="16" height="16"/>
-        <image name="mic.fill" catalog="system" width="110" height="128"/>
+        <image name="mic.fill" catalog="system" width="32" height="32"/>
         <image name="mic_small" width="16" height="16"/>
         <image name="play" width="32" height="32"/>
         <image name="play_noborder" width="32" height="32"/>
         <image name="split" width="16" height="16"/>
-        <image name="trash.fill" catalog="system" width="117" height="128"/>
+        <image name="trash.fill" catalog="system" width="32" height="32"/>
         <image name="trash_small" width="12" height="12"/>
         <image name="zoom_in" width="16" height="16"/>
         <namedColor name="color_field_background">
@@ -1319,8 +1326,11 @@
         <namedColor name="color_round_button">
             <color white="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
+        <namedColor name="color_segment_background">
+            <color white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
         <namedColor name="color_theme_background">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.38831746578216553" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="color_trash_normal">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1329,13 +1339,13 @@
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="separatorColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

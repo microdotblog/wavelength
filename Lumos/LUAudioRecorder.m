@@ -198,8 +198,8 @@
 	DPEqualizerSettings* settings = [DPEqualizerSettings createByType: DPCircleWave];
 	
     settings.equalizerBinColors = [[NSMutableArray alloc] initWithObjects:[UIColor clearColor], nil];
-    settings.lowFrequencyColors = [[NSMutableArray alloc] initWithObjects:[UIApplication sharedApplication].windows.firstObject.tintColor, nil];
-    settings.hightFrequencyColors = [[NSMutableArray alloc] initWithObjects:[UIApplication sharedApplication].windows.firstObject.tintColor, nil];
+    settings.lowFrequencyColors = [[NSMutableArray alloc] initWithObjects:[UIColor colorNamed:@"color_waveform_frequency"], nil];
+    settings.hightFrequencyColors = [[NSMutableArray alloc] initWithObjects:[UIColor colorNamed:@"color_waveform_frequency"], nil];
     settings.equalizerBackgroundColors = [[NSMutableArray alloc] initWithObjects:[UIColor clearColor], nil];
     settings.fillGraph = NO;
 

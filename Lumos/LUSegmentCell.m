@@ -53,7 +53,7 @@
 		self.deleteButton.hidden = NO;
 	}
 	else {
-		self.previewImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+		self.previewImageView.layer.borderColor = [UIColor colorNamed:@"color_segment_border"].CGColor;
 		self.backgroundColor = nil;
 		self.deleteButton.hidden = YES;
 	}
