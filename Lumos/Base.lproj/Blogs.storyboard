@@ -87,7 +87,6 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WLR-yg-Nxv"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ng2-WK-mEA" firstAttribute="leading" secondItem="Eqd-H1-QxY" secondAttribute="trailing" constant="8" id="6Xj-qT-i7M"/>
                             <constraint firstItem="WLR-yg-Nxv" firstAttribute="trailing" secondItem="5gb-FS-LFL" secondAttribute="trailing" constant="20" id="7BY-ED-ucn"/>
@@ -171,7 +170,6 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YE0-ys-WMn"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="R8E-BH-TeN" firstAttribute="top" secondItem="gMk-YA-ZdN" secondAttribute="bottom" constant="16" id="BBC-wf-Lug"/>
                             <constraint firstItem="gMk-YA-ZdN" firstAttribute="trailing" secondItem="YE0-ys-WMn" secondAttribute="trailing" id="OHw-5w-KuU"/>
@@ -204,9 +202,6 @@
     <resources>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

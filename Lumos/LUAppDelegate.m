@@ -59,6 +59,7 @@
 - (void) setupAppearance
 {
 	self.window.tintColor = [UIColor colorNamed:@"color_tint"];
+	self.window.backgroundColor = [UIColor colorNamed:@"color_theme_background"];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

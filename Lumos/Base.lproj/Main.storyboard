@@ -140,7 +140,6 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cJA-pf-jbG"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZSF-Wg-7ef" firstAttribute="leading" secondItem="xjn-Wk-9tF" secondAttribute="trailing" constant="72" id="32c-S6-UUi"/>
                             <constraint firstItem="ufL-Nk-o0g" firstAttribute="leading" secondItem="cJA-pf-jbG" secondAttribute="leading" constant="16" id="6R6-6H-BsC"/>
@@ -205,7 +204,6 @@
                             </wkWebView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aNM-2D-v51"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tns-if-QQj" firstAttribute="bottom" secondItem="ibm-Yr-MAL" secondAttribute="bottom" id="2l0-Ok-lh5"/>
                             <constraint firstItem="tns-if-QQj" firstAttribute="trailing" secondItem="aNM-2D-v51" secondAttribute="trailing" id="Wbv-g1-dwT"/>
@@ -231,7 +229,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wvl-IB-D5a">
                                 <rect key="frame" x="0.0" y="64" width="375" height="503"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="color_theme_background"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EpisodeCell" rowHeight="100" id="dXD-jE-0YC" customClass="LUEpisodeCell">
@@ -278,6 +276,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="uRe-uH-nPK" secondAttribute="trailing" constant="4" id="v6I-sQ-WL4"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="color_theme_background"/>
                                         <connections>
                                             <outlet property="durationField" destination="uRe-uH-nPK" id="xIw-Y2-Vyc"/>
                                             <outlet property="previewImageView" destination="YLx-vp-Xuf" id="0zn-zw-ydR"/>
@@ -350,7 +349,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="color_theme_background"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="xgH-es-3c3" secondAttribute="trailing" constant="8" id="9CI-v5-Xit"/>
                                     <constraint firstItem="vvA-qE-zAw" firstAttribute="leading" secondItem="p5R-ab-qc2" secondAttribute="leading" constant="97" id="EcF-4R-CHc"/>
@@ -364,7 +363,6 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mfT-lC-gUt"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Wvl-IB-D5a" firstAttribute="leading" secondItem="mfT-lC-gUt" secondAttribute="leading" id="99d-i9-mgc"/>
                             <constraint firstItem="uXV-JR-Aq4" firstAttribute="trailing" secondItem="mfT-lC-gUt" secondAttribute="trailing" id="BNk-zE-K4X"/>
@@ -410,7 +408,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ji9-mB-grC">
                                 <rect key="frame" x="0.0" y="64" width="375" height="454"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="color_theme_background"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8VD-Z5-O4D">
                                     <size key="itemSize" width="150" height="90"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -577,7 +575,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="color_theme_background"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="7Or-nu-cTE"/>
                                     <constraint firstAttribute="trailing" secondItem="zIf-T2-fex" secondAttribute="trailing" constant="40" id="C0m-33-mq3"/>
@@ -644,7 +642,6 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pTY-oC-YxB"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Y8Q-b5-e3S" secondAttribute="bottom" id="1gP-4Z-YSG"/>
                             <constraint firstItem="4za-bv-mkl" firstAttribute="trailing" secondItem="pTY-oC-YxB" secondAttribute="trailing" id="3Sp-b1-FxZ"/>
@@ -846,7 +843,6 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wSe-XW-K2C"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="PXN-BF-0dI" firstAttribute="centerY" secondItem="QPH-Mx-zZF" secondAttribute="centerY" id="5et-tw-ng7"/>
                             <constraint firstItem="GYa-JG-MKO" firstAttribute="trailing" secondItem="wSe-XW-K2C" secondAttribute="trailing" id="668-Ta-fW2"/>
@@ -945,7 +941,6 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qmq-9u-dpF"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qmq-9u-dpF" firstAttribute="trailing" secondItem="iVW-Lx-4Zw" secondAttribute="trailing" constant="12" id="Jl5-1l-dSz"/>
                             <constraint firstItem="f4S-Io-k2P" firstAttribute="top" secondItem="iVW-Lx-4Zw" secondAttribute="bottom" constant="10" id="KUi-Pe-iK2"/>
@@ -1077,7 +1072,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DNk-ns-fm0"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="color_theme_background"/>
                         <constraints>
                             <constraint firstItem="SkV-J3-qcw" firstAttribute="leading" secondItem="DNk-ns-fm0" secondAttribute="leading" constant="10" id="0wn-af-qiK"/>
                             <constraint firstItem="kP6-Os-aMO" firstAttribute="leading" secondItem="DNk-ns-fm0" secondAttribute="leading" constant="16" id="8tr-IH-Dpn"/>
@@ -1130,7 +1125,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odl-wd-qay">
                                 <rect key="frame" x="0.0" y="64" width="375" height="434"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="color_theme_background"/>
                                 <connections>
                                     <outlet property="delegate" destination="YAV-e1-9h8" id="ZUo-U7-6Ug"/>
                                 </connections>
@@ -1175,6 +1170,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" name="color_theme_background"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="2u7-p3-3ju" secondAttribute="trailing" constant="42" id="Exs-27-7Yd"/>
                                     <constraint firstItem="ujs-LJ-pGH" firstAttribute="top" secondItem="A30-Uk-Tul" secondAttribute="top" constant="32" id="L5E-KU-JGs"/>
@@ -1193,7 +1189,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="I8F-oX-It9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="color_theme_background"/>
                         <constraints>
                             <constraint firstItem="ujs-LJ-pGH" firstAttribute="centerX" secondItem="I8F-oX-It9" secondAttribute="centerX" id="0IH-CA-0IG"/>
                             <constraint firstItem="A30-Uk-Tul" firstAttribute="bottom" secondItem="I8F-oX-It9" secondAttribute="bottom" id="5J9-eg-7S0"/>
@@ -1305,16 +1301,16 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="MicroBlogIcon" width="64" height="64"/>
-        <image name="folder.fill" catalog="system" width="32" height="32"/>
-        <image name="gearshape" catalog="system" width="32" height="32"/>
-        <image name="icloud.and.arrow.up" catalog="system" width="32" height="32"/>
+        <image name="folder.fill" catalog="system" width="128" height="96"/>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
+        <image name="icloud.and.arrow.up" catalog="system" width="128" height="115"/>
         <image name="mic" width="16" height="16"/>
-        <image name="mic.fill" catalog="system" width="32" height="32"/>
+        <image name="mic.fill" catalog="system" width="110" height="128"/>
         <image name="mic_small" width="16" height="16"/>
         <image name="play" width="32" height="32"/>
         <image name="play_noborder" width="32" height="32"/>
         <image name="split" width="16" height="16"/>
-        <image name="trash.fill" catalog="system" width="32" height="32"/>
+        <image name="trash.fill" catalog="system" width="117" height="128"/>
         <image name="trash_small" width="12" height="12"/>
         <image name="zoom_in" width="16" height="16"/>
         <namedColor name="color_field_background">
@@ -1322,6 +1318,9 @@
         </namedColor>
         <namedColor name="color_round_button">
             <color white="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="color_theme_background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="color_trash_normal">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
