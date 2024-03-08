@@ -52,6 +52,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Wavelength does not use the camera.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Wavelength needs your microphone to record your podcasts.</string>
 	<key>UILaunchStoryboardName</key>
