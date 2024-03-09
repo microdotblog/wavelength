@@ -7,6 +7,7 @@
 //
 
 #import "LUViewController.h"
+
 #import "LUMainViewController.h"
 #import "LUNotifications.h"
 #import "LUAudioRecorder.h"
@@ -16,6 +17,7 @@
 #import "LUEditController.h"
 #import "LUSettingsViewController.h"
 #import "UUAlert.h"
+#import "NSString+Extras.h"
 
 @interface LUMainViewController ()
 	@property (nonatomic, strong) IBOutlet UIButton* recordStopPlayButton;
@@ -210,11 +212,11 @@
 
 		UIImage* previewImage = [self.audioRecorder renderWaveImage:preview_size];
 		NSData* d = UIImagePNGRepresentation(previewImage);
-		NSString* preview_filepath = [episodePath stringByAppendingPathComponent:@"preview.png"];
+		NSString* preview_filepath = [episodePath stringByAppendingPathComponent:[@"preview.png" mb_filenameWithAppearance]];
 		[d writeToFile:preview_filepath atomically:NO];
 		
 		NSString* thumbnail_filepath = self.audioRecorder.destination.path;
-		thumbnail_filepath = [thumbnail_filepath stringByAppendingString:@"-thumbnail.png"];
+		thumbnail_filepath = [thumbnail_filepath stringByAppendingString:[@"-thumbnail.png" mb_filenameWithAppearance]];
 		[d writeToFile:thumbnail_filepath atomically:NO];
 
 		LUEpisode* episode = [[LUEpisode alloc] initWithFolder:episodePath];

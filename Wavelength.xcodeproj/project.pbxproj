@@ -23,6 +23,8 @@
 		4B74C959205A3F4A0050A105 /* LUSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C958205A3F4A0050A105 /* LUSegmentCell.m */; };
 		4B881CA72061492C008A4C13 /* LUSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA62061492B008A4C13 /* LUSplitController.m */; };
 		4B881CAA20614AA2008A4C13 /* LUSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B881CA920614AA2008A4C13 /* LUSegment.m */; };
+		4BA11C882B9BF923008FC80C /* UIView+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA11C872B9BF923008FC80C /* UIView+Extras.m */; };
+		4BA11C8B2B9BFAD7008FC80C /* NSString+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA11C8A2B9BFAD7008FC80C /* NSString+Extras.m */; };
 		4BB4E4832B936FB70069B917 /* FFmpeg-iOS-Lame in Frameworks */ = {isa = PBXBuildFile; productRef = 4BB4E4822B936FB70069B917 /* FFmpeg-iOS-Lame */; };
 		4BB4E4862B936FF90069B917 /* LUAudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4E4852B936FF90069B917 /* LUAudioFile.swift */; };
 		C527BE9B2B915895008E2B74 /* UUSwiftCore in Frameworks */ = {isa = PBXBuildFile; productRef = C527BE9A2B915895008E2B74 /* UUSwiftCore */; };
@@ -132,6 +134,10 @@
 		4B881CA62061492B008A4C13 /* LUSplitController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSplitController.m; sourceTree = "<group>"; };
 		4B881CA820614AA2008A4C13 /* LUSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LUSegment.h; sourceTree = "<group>"; };
 		4B881CA920614AA2008A4C13 /* LUSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LUSegment.m; sourceTree = "<group>"; };
+		4BA11C862B9BF923008FC80C /* UIView+Extras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Extras.h"; sourceTree = "<group>"; };
+		4BA11C872B9BF923008FC80C /* UIView+Extras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extras.m"; sourceTree = "<group>"; };
+		4BA11C892B9BFAD7008FC80C /* NSString+Extras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Extras.h"; sourceTree = "<group>"; };
+		4BA11C8A2B9BFAD7008FC80C /* NSString+Extras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extras.m"; sourceTree = "<group>"; };
 		4BB4E4842B936FF90069B917 /* Wavelength-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wavelength-Bridging-Header.h"; sourceTree = "<group>"; };
 		4BB4E4852B936FF90069B917 /* LUAudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUAudioFile.swift; sourceTree = "<group>"; };
 		C527BEB52B915C9D008E2B74 /* EZAudioPlotGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioPlotGL.m; path = shared/EZAudio/EZAudioPlotGL.m; sourceTree = "<group>"; };
@@ -490,6 +496,10 @@
 				C58A2EDA2075347A00DB0E04 /* LUCreditsViewController.m */,
 				4B0BB177207DCB6A00A16FDD /* LUNavigationController.h */,
 				4B0BB178207DCB6A00A16FDD /* LUNavigationController.m */,
+				4BA11C892B9BFAD7008FC80C /* NSString+Extras.h */,
+				4BA11C8A2B9BFAD7008FC80C /* NSString+Extras.m */,
+				4BA11C862B9BF923008FC80C /* UIView+Extras.h */,
+				4BA11C872B9BF923008FC80C /* UIView+Extras.m */,
 				4BB4E4852B936FF90069B917 /* LUAudioFile.swift */,
 				C5DC32BD2057810C00D0594B /* Supporting Files */,
 				4BB4E4842B936FF90069B917 /* Wavelength-Bridging-Header.h */,
@@ -636,6 +646,7 @@
 				C54C8F722065A350007F7565 /* UUString.m in Sources */,
 				C527BEE62B915C9E008E2B74 /* EZAudioPlayer.m in Sources */,
 				C527BEE02B915C9E008E2B74 /* EZPlot.m in Sources */,
+				4BA11C8B2B9BFAD7008FC80C /* NSString+Extras.m in Sources */,
 				C54C8F882065A3C4007F7565 /* PopoverView.m in Sources */,
 				C527BEFD2B915D11008E2B74 /* DPMainEqualizerView.m in Sources */,
 				4B881CA72061492C008A4C13 /* LUSplitController.m in Sources */,
@@ -653,6 +664,7 @@
 				4B74C8CB205A27E90050A105 /* LUEpisodeCell.m in Sources */,
 				4B18F1C0206E951200A91731 /* LUAuphonicController.m in Sources */,
 				4B01D4E42074648900FD8A00 /* LUDeleteDropView.m in Sources */,
+				4BA11C882B9BF923008FC80C /* UIView+Extras.m in Sources */,
 				C527BEDD2B915C9E008E2B74 /* TPCircularBuffer.c in Sources */,
 				C527BEE22B915C9E008E2B74 /* EZAudioFile.m in Sources */,
 				C527BED92B915C9E008E2B74 /* EZAudioPlot.m in Sources */,

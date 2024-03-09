@@ -9,6 +9,7 @@
 #import "LUAudioClip.h"
 #import "EZAudio.h"
 #import "UUDate.h"
+#import "NSString+Extras.h"
 
 @import AVFoundation;
 
@@ -47,7 +48,7 @@
 {
 	NSString* thumbnail_filename = [self.destination lastPathComponent];
 	NSURL* thumbnail_base = [self.destination URLByDeletingLastPathComponent];
-	thumbnail_filename = [thumbnail_filename stringByAppendingString:@"-thumbnail.png"];
+	thumbnail_filename = [thumbnail_filename stringByAppendingString:[@"-thumbnail.png" mb_filenameWithAppearance]];
 	NSURL* thumbnail_url = [thumbnail_base URLByAppendingPathComponent:thumbnail_filename];
 	
 	if ([[NSFileManager defaultManager] fileExistsAtPath:thumbnail_url.path])
@@ -104,7 +105,7 @@
 	}
 
 	self.audioPlot = [[EZAudioPlot alloc] init];
-	self.audioPlot.color = [UIColor colorNamed:@"color_tint"];
+	self.audioPlot.color = [UIColor colorNamed:@"color_waveform_plot"];
 	self.audioPlot.backgroundColor = [UIColor colorNamed:@"color_segment_background"];
     self.audioPlot.plotType = EZPlotTypeRolling;
     self.audioPlot.shouldFill = YES;
