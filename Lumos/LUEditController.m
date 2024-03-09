@@ -24,6 +24,7 @@
 #import "UUAlert.h"
 
 @import MobileCoreServices;
+@import UniformTypeIdentifiers;
 
 static CGFloat const kCellPadding = 10.0;
 static const NSString* kItemStatusContext;
@@ -319,14 +320,14 @@ static const NSString* kItemStatusContext;
 {
 	[self.addPopover dismiss];
 	
-	NSArray* supportedAudioTypes = @[ 	(NSString*)kUTTypeAudio,
-										(NSString*)kUTTypeMP3,
-										(NSString*)kUTTypeWaveformAudio,
-										(NSString*)kUTTypeAudioInterchangeFileFormat
-	 								];
+	NSArray* supportedAudioTypes = @[  UTTypeAudio, 
+                                       UTTypeMP3,
+                                       UTTypeWAV,
+                                       UTTypeAIFF ];
 	
-	UIDocumentPickerViewController* documentProviderMenu = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:supportedAudioTypes inMode:UIDocumentPickerModeImport];
-	documentProviderMenu.delegate = self;
+    UIDocumentPickerViewController* documentProviderMenu = [[UIDocumentPickerViewController alloc] initForOpeningContentTypes:supportedAudioTypes];
+    documentProviderMenu.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    //documentProviderMenu.delegate = self;
 	[self presentViewController:documentProviderMenu animated:YES completion:nil];
 	
 	//NSString* test_file = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"m4a" inDirectory:@"Music"];
