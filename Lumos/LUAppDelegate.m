@@ -61,7 +61,7 @@
 	self.window.tintColor = [UIColor colorNamed:@"color_tint"];
 
 	UIColor* c = [UIColor colorNamed:@"color_theme_background"];
-	[[UIView appearance] setBackgroundColor:c];
+	//[[UIView appearance] setBackgroundColor:c];
 	[[UINavigationBar appearance] setBarTintColor:c];
 }
 
