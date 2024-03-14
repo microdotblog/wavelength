@@ -79,17 +79,9 @@
 		self.audioSegmentPaths = [NSMutableArray array];
 		
 		NSString* preview_path = [path stringByAppendingPathComponent:[@"preview.png" mb_filenameWithAppearance]];
-		NSString* preview_light_path = [path stringByAppendingPathComponent:@"preview.light.png"];
-		NSString* preview_dark_path = [path stringByAppendingPathComponent:@"preview.dark.png"];
 		NSString* preview_old_path = [path stringByAppendingPathComponent:@"preview.png"];
 
 		if ([[NSFileManager defaultManager] fileExistsAtPath:preview_path]) {
-			self.previewImage = [[UIImage alloc] initWithContentsOfFile:preview_path];
-		}
-		else if ([[NSFileManager defaultManager] fileExistsAtPath:preview_light_path]) {
-			self.previewImage = [[UIImage alloc] initWithContentsOfFile:preview_path];
-		}
-		else if ([[NSFileManager defaultManager] fileExistsAtPath:preview_dark_path]) {
 			self.previewImage = [[UIImage alloc] initWithContentsOfFile:preview_path];
 		}
 		else if ([[NSFileManager defaultManager] fileExistsAtPath:preview_old_path]) {

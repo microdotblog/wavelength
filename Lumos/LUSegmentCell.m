@@ -23,7 +23,7 @@
 	NSURL* audio_url = [NSURL fileURLWithPath:path];
 	LUAudioClip* clip = [[LUAudioClip alloc] initWithDestination:audio_url];
 	
-	self.previewImageView.image = clip.waveFormImage; // [clip renderWaveImage:size];
+	self.previewImageView.image = [clip waveFormImage];
 	
 	self.durationField.text = clip.durationString;
 	self.previewImageView.layer.cornerRadius = 3.0;

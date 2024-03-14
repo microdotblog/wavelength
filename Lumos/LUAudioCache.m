@@ -62,24 +62,17 @@
 	}
 	else {
 		CGSize preview_size = CGSizeMake (150, 54);
-		UITraitCollection* trait;
 		NSData* d;
 		
 		// light mode
-		trait = [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleLight];
-		[recorder getPlot].color = [UIColor colorNamed:@"color_waveform_plot" inBundle:nil compatibleWithTraitCollection:trait];
-		[recorder getPlot].backgroundColor = [UIColor colorNamed:@"color_segment_background" inBundle:nil compatibleWithTraitCollection:trait];
-
+		[recorder getPlot].color = [UIColor colorNamed:@"color_waveform_plot_light"];
 		NSString* light_path = [episode_path stringByAppendingPathComponent:[@"preview.png" mb_filenameWithAppearance:@"light"]];
 		img = [recorder renderWaveImage:preview_size];
 		d = UIImagePNGRepresentation(img);
 		[d writeToFile:light_path atomically:YES];
 		
 		// dark mode
-		trait = [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleDark];
-		[recorder getPlot].color = [UIColor colorNamed:@"color_waveform_plot" inBundle:nil compatibleWithTraitCollection:trait];
-		[recorder getPlot].backgroundColor = [UIColor colorNamed:@"color_segment_background" inBundle:nil compatibleWithTraitCollection:trait];
-
+		[recorder getPlot].color = [UIColor colorNamed:@"color_waveform_plot_dark"];
 		NSString* dark_path = [episode_path stringByAppendingPathComponent:[@"preview.png" mb_filenameWithAppearance:@"dark"]];
 		img = [recorder renderWaveImage:preview_size];
 		d = UIImagePNGRepresentation(img);

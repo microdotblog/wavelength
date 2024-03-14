@@ -40,10 +40,7 @@
 {
     [super viewDidLoad];
 	
-	[self setupEpisodes];
-	
-	[self updateRecordButton];
-	
+	[self updateRecordButton];	
 	[self setupAudio];
 }
 
