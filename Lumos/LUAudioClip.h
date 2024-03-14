@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class EZAudioPlot;
+
 @interface LUAudioClip : NSObject
 
 	- (instancetype) initWithDestination:(NSURL*)destinationUrl;
@@ -17,6 +19,7 @@
 	- (UIImage*) waveFormImage;
 	- (UIView*) requestAudioInputView;
 	- (UIImage*) renderWaveImage:(CGSize)size;
+	- (EZAudioPlot *) getPlot;
 
 	// Set the callback if you want to be notified when the playback of the audio completes. Optional.
 	@property (nonatomic, copy) void (^playbackCompleteCallback)(LUAudioClip* recorder);

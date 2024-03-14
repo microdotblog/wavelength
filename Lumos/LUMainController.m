@@ -1,5 +1,5 @@
 //
-//  LUMainViewController.m
+//  LUMainController.m
 //  Lumos
 //
 //  Created by Jonathan Hays on 3/12/18.
@@ -7,11 +7,12 @@
 //
 
 #import "LUViewController.h"
+#import "LUMainController.h"
 
-#import "LUMainViewController.h"
 #import "LUNotifications.h"
 #import "LUAudioRecorder.h"
 #import "LUAudioClip.h"
+#import "LUAudioCache.h"
 #import "LUEpisode.h"
 #import "LUEpisodeCell.h"
 #import "LUEditController.h"
@@ -19,7 +20,7 @@
 #import "UUAlert.h"
 #import "NSString+Extras.h"
 
-@interface LUMainViewController ()
+@interface LUMainController ()
 	@property (nonatomic, strong) IBOutlet UIButton* recordStopPlayButton;
 	@property (nonatomic, strong) IBOutlet UIView* waveFormViewContainer;
 	@property (nonatomic, strong) IBOutlet UITableView* tableView;
@@ -33,7 +34,7 @@
 	@property (nonatomic, assign) BOOL isRecordingRecentlyStarted;
 @end
 
-@implementation LUMainViewController
+@implementation LUMainController
 
 - (void) viewDidLoad
 {
@@ -90,7 +91,7 @@
 //		NSURL* path = [LUAudioRecorder generateTimeStampedFileURL];
 		self.audioRecorder = [[LUAudioRecorder alloc] initWithDestination:nil];
 		
-		__weak LUMainViewController* weakSelf = self;
+		__weak LUMainController* weakSelf = self;
 		self.audioRecorder.recordProgressCallback = ^(NSString* timeString)
 		{
 			weakSelf.timerLabel.text = timeString;
@@ -205,20 +206,10 @@
 
 		//self.waveFormViewContainer.hidden = YES;
 		//[self.audioRecorder stop];
-		
-		CGSize preview_size = CGSizeMake (150, 54);
+				
+		UIImage* previewImage = [LUAudioCache thumbnailForRecorder:self.audioRecorder];
 		
 		NSString* episodePath = [self.audioRecorder.destination URLByDeletingLastPathComponent].path;
-
-		UIImage* previewImage = [self.audioRecorder renderWaveImage:preview_size];
-		NSData* d = UIImagePNGRepresentation(previewImage);
-		NSString* preview_filepath = [episodePath stringByAppendingPathComponent:[@"preview.png" mb_filenameWithAppearance]];
-		[d writeToFile:preview_filepath atomically:NO];
-		
-		NSString* thumbnail_filepath = self.audioRecorder.destination.path;
-		thumbnail_filepath = [thumbnail_filepath stringByAppendingString:[@"-thumbnail.png" mb_filenameWithAppearance]];
-		[d writeToFile:thumbnail_filepath atomically:NO];
-
 		LUEpisode* episode = [[LUEpisode alloc] initWithFolder:episodePath];
 		episode.previewImage = previewImage;
 		

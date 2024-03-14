@@ -1,5 +1,5 @@
 //
-//  LUMainViewController.h
+//  LUMainController.h
 //  Lumos
 //
 //  Created by Jonathan Hays on 3/12/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LUMainViewController : LUViewController <UITableViewDataSource, UITableViewDelegate>
+@interface LUMainController : LUViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

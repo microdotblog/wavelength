@@ -14,17 +14,21 @@
 
 - (NSString *) mb_filenameWithAppearance
 {
-	NSString* e = [self pathExtension];
-	NSString* without_extension = [self stringByReplacingOccurrencesOfString:e withString:@""];
-
 	NSString* mode = @"light";
 	UITraitCollection* trait_collection = [UIScreen mainScreen].traitCollection;
 	if ([trait_collection userInterfaceStyle] == UIUserInterfaceStyleDark) {
 		mode = @"dark";
 	}
 
+	return [self mb_filenameWithAppearance:mode];
+}
+
+- (NSString *) mb_filenameWithAppearance:(NSString *)mode
+{
+	NSString* e = [self pathExtension];
+	NSString* without_extension = [self stringByReplacingOccurrencesOfString:e withString:@""];
+	
 	NSString* new_filename = [without_extension stringByAppendingFormat:@"%@.%@", mode, e];
-	NSLog(@"new filename %@", new_filename);
 	return new_filename;
 }
 

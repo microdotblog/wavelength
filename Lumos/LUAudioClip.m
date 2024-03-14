@@ -7,6 +7,8 @@
 //
 
 #import "LUAudioClip.h"
+
+#import "LUAudioCache.h"
 #import "EZAudio.h"
 #import "UUDate.h"
 #import "NSString+Extras.h"
@@ -44,43 +46,14 @@
 	return self;
 }
 
+- (EZAudioPlot *) getPlot
+{
+	return self.audioPlot;
+}
+
 - (void) loadThumbnailImage
 {
-	NSString* thumbnail_filename = [self.destination lastPathComponent];
-	NSURL* thumbnail_base = [self.destination URLByDeletingLastPathComponent];
-	thumbnail_filename = [thumbnail_filename stringByAppendingString:[@"-thumbnail.png" mb_filenameWithAppearance]];
-	NSURL* thumbnail_url = [thumbnail_base URLByAppendingPathComponent:thumbnail_filename];
-	
-	if ([[NSFileManager defaultManager] fileExistsAtPath:thumbnail_url.path])
-	{
-		self.thumbnailImage = [UIImage imageWithContentsOfFile:thumbnail_url.path];
-	}
-	else
-	{
-		CGSize preview_size = CGSizeMake (150, 54);
-
-		UIImage* image = [self renderWaveImage:preview_size];
-		if (image)
-		{
-			NSData* imageData = UIImagePNGRepresentation(image);
-			if (imageData)
-			{
-				NSError* error = nil;
-				[imageData writeToURL:thumbnail_url options:NSDataWritingFileProtectionNone error:&error];
-				
-				if (error)
-				{
-					NSLog(@"Error = %@", error);
-				}
-			}
-			
-			self.thumbnailImage = image;
-		}
-		else
-		{
-			NSLog(@"ERROR! Unable to load or render waveform!");
-		}
-	}
+	self.thumbnailImage = [LUAudioCache thumbnailForClip:self];
 }
 
 - (BOOL) setupPlotAndPlayer

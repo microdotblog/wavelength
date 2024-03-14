@@ -69,7 +69,6 @@
 																[date uuLongYear],
 																[date uuHour],
 																[date uuMinute],
-																//[date uuSecond],
 																[date uuIsEvening] ? @"pm" : @"am" ];
 
 		self.title = timeStampString;//[path lastPathComponent];

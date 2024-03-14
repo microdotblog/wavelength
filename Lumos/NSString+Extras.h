@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSString (Extras)
 
 - (NSString *) mb_filenameWithAppearance;
+- (NSString *) mb_filenameWithAppearance:(NSString *)mode;
 
 @end
 

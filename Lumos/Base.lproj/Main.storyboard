@@ -226,7 +226,7 @@
         <!--Wavelength-->
         <scene sceneID="Ynp-2P-NAL">
             <objects>
-                <viewController title="Wavelength" id="7vi-7i-8Kg" customClass="LUMainViewController" sceneMemberID="viewController">
+                <viewController title="Wavelength" id="7vi-7i-8Kg" customClass="LUMainController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="UdG-Sy-qPT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1313,16 +1313,16 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="MicroBlogIcon" width="64" height="64"/>
-        <image name="folder.fill" catalog="system" width="128" height="96"/>
-        <image name="gearshape" catalog="system" width="128" height="123"/>
-        <image name="icloud.and.arrow.up" catalog="system" width="128" height="115"/>
+        <image name="folder.fill" catalog="system" width="32" height="32"/>
+        <image name="gearshape" catalog="system" width="32" height="32"/>
+        <image name="icloud.and.arrow.up" catalog="system" width="32" height="32"/>
         <image name="mic" width="16" height="16"/>
-        <image name="mic.fill" catalog="system" width="110" height="128"/>
+        <image name="mic.fill" catalog="system" width="32" height="32"/>
         <image name="mic_small" width="16" height="16"/>
         <image name="play" width="32" height="32"/>
         <image name="play_noborder" width="32" height="32"/>
         <image name="split" width="16" height="16"/>
-        <image name="trash.fill" catalog="system" width="117" height="128"/>
+        <image name="trash.fill" catalog="system" width="32" height="32"/>
         <image name="trash_small" width="12" height="12"/>
         <image name="zoom_in" width="16" height="16"/>
         <namedColor name="color_field_background">
@@ -1344,13 +1344,13 @@
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="separatorColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
