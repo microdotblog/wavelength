@@ -783,26 +783,24 @@ static const NSString* kItemStatusContext;
 
 - (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray <NSURL *>*)urls
 {
-	//NSURL* destination = [LUAudioRecorder generateTimeStampedFileURL];
-	//NSString* fileName = destination.path.lastPathComponent;
-	
-	//NSURL* destination = self.episode.path;
-	//destination = [[NSURL fileURLWithPath:self.episode.path] URLByAppendingPathComponent:fileName];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+		for (NSURL* url in urls) {
+			[url startAccessingSecurityScopedResource];
 
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^
-	{
-		for (NSURL* url in urls)
-		{
 			NSString* fileName = url.lastPathComponent;
 			NSURL* destination = destination = [[NSURL fileURLWithPath:self.episode.path] URLByAppendingPathComponent:fileName];
-			NSData* audioData = [NSData dataWithContentsOfURL:url];
-			[audioData writeToURL:destination atomically:YES];
-		
-			[self.episode addFile:destination.path];
+			NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] init];
+			NSError *error;
+			[coordinator coordinateReadingItemAtURL:url options:0 error:&error byAccessor:^(NSURL* newURL) {
+				NSData* audioData = [NSData dataWithContentsOfURL:newURL];
+				[audioData writeToURL:destination atomically:YES];
+				[self.episode addFile:destination.path];
+			}];
+
+			[url stopAccessingSecurityScopedResource];
 		}
 	
-		dispatch_async(dispatch_get_main_queue(), ^
-		{
+		dispatch_async(dispatch_get_main_queue(), ^{
 			[self.collectionView reloadData];
 		});
 	});
