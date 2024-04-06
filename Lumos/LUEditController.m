@@ -327,7 +327,7 @@ static const NSString* kItemStatusContext;
 	
     UIDocumentPickerViewController* documentProviderMenu = [[UIDocumentPickerViewController alloc] initForOpeningContentTypes:supportedAudioTypes];
     documentProviderMenu.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    //documentProviderMenu.delegate = self;
+    documentProviderMenu.delegate = self;
 	[self presentViewController:documentProviderMenu animated:YES completion:nil];
 	
 	//NSString* test_file = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"m4a" inDirectory:@"Music"];
